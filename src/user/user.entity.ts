@@ -30,7 +30,7 @@ export class User {
 		this.password = password;
 	}
 
-	async validatePassword(password) {
+	async validatePassword(password): Promise<boolean> {
 		return bcrypt.compare(password, this.password);
 	}
 }
