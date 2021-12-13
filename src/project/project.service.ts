@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { QueryOrder } from '@mikro-orm/core';
 import { InjectRepository } from '@mikro-orm/nestjs';
-import { EntityRepository } from '@mikro-orm/sqlite';
+import { EntityRepository } from '@mikro-orm/postgresql';
 import { Project } from './project.entity';
 import { IProjectRO, IProjectsRO } from './project.interface';
 import { CreateProjectDto } from './dto';
