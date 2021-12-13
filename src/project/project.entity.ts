@@ -53,10 +53,10 @@ export class Project {
 	last_deployed!: Date;
 
 	@Property()
-	created_at = new Date();
+	created_at: Date = new Date();
 
-	@Property({ onUpdate: () => new Date() })
-	updated_at = new Date();
+	@Property()
+	updated_at: Date = new Date();
 
 	constructor(
 		name: string,

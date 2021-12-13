@@ -23,7 +23,7 @@ export class ProjectController {
 		return this.projectService.findAll();
 	}
 
-	@Get('/:id')
+	@Get(':id')
 	async findOne(@Param('id') id: number): Promise<IProjectRO> {
 		return await this.projectService.findOne(id);
 	}
