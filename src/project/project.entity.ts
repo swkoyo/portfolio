@@ -8,7 +8,9 @@ import {
 	ArrayNotEmpty
 } from 'class-validator';
 
-@Entity()
+@Entity({
+	tableName: 'Projects'
+})
 export class Project {
 	@PrimaryKey()
 	id!: number;
