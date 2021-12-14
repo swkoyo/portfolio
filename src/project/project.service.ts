@@ -27,11 +27,10 @@ export class ProjectService {
 	}
 
 	async findOne(projectId: number): Promise<IProjectRO> {
-		const project = await this.projectRepository.findOneOrFail(projectId);
-		return { project };
+		return this.projectRepository.findOneOrFail(projectId);
 	}
 
-	async create(dto: CreateProjectDto) {
+	async create(dto: CreateProjectDto): Promise<IProjectRO> {
 		const project = new Project(
 			dto.name,
 			dto.description,
@@ -53,6 +52,6 @@ export class ProjectService {
 
 		await this.projectRepository.persistAndFlush(project);
 
-		return { project };
+		return project;
 	}
 }
