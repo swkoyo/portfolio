@@ -6,7 +6,6 @@ import {
 	Param,
 	Post,
 	Body,
-	Delete,
 	UseGuards
 } from '@nestjs/common';
 import { ProjectService } from './project.service';
@@ -28,13 +27,17 @@ export class ProjectController {
 
 	@Get(':id')
 	@UseGuards(AuthGuard('jwt'))
-	async findOne(@Param('id') id: number): Promise<IProjectRO> {
-		return this.projectService.findOne(id);
+	async findOne(@Param('id') id: number) {
+		const user = await this.projectService.findOne(id);
+		if (!user) {
+			throw new NotFoundException();
+		}
+		return user;
 	}
 
 	@Post()
 	@UseGuards(AuthGuard('jwt'))
-	async postProjects(@Body() body: CreateProjectDto): Promise<IProjectRO> {
+	async postProjects(@Body() body: CreateProjectDto) {
 		return this.projectService.create(body);
 	}
 }

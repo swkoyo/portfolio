@@ -1,5 +1,5 @@
 import { Entity, PrimaryKey, Property, wrap } from '@mikro-orm/core';
-import { IsNotEmpty, IsString, IsEmail } from 'class-validator';
+import { IsNotEmpty, IsString, IsEmail, IsLowercase } from 'class-validator';
 import * as bcrypt from 'bcrypt';
 import { omit } from 'lodash';
 
@@ -13,6 +13,7 @@ export class User {
 	@Property()
 	@IsEmail()
 	@IsNotEmpty()
+	@IsLowercase()
 	email!: string;
 
 	@Property()
@@ -23,11 +24,13 @@ export class User {
 	@Property()
 	@IsString()
 	@IsNotEmpty()
+	@IsLowercase()
 	first_name!: string;
 
 	@Property()
 	@IsString()
 	@IsNotEmpty()
+	@IsLowercase()
 	last_name!: string;
 
 	@Property()

@@ -5,7 +5,8 @@ import {
 	IsOptional,
 	IsDateString,
 	IsArray,
-	ArrayNotEmpty
+	ArrayNotEmpty,
+	IsLowercase
 } from 'class-validator';
 
 @Entity({
@@ -18,6 +19,7 @@ export class Project {
 	@Property()
 	@IsString()
 	@IsNotEmpty()
+	@IsLowercase()
 	name!: string;
 
 	@Property()
