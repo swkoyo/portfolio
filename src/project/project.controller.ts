@@ -29,7 +29,7 @@ export class ProjectController {
 	@Get(':id')
 	@UseGuards(AuthGuard('jwt'))
 	async findOne(@Param('id') id: number): Promise<IProjectRO> {
-		return await this.projectService.findOne(id);
+		return this.projectService.findOne(id);
 	}
 
 	@Post()
