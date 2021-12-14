@@ -9,8 +9,7 @@ import {
 	UseGuards
 } from '@nestjs/common';
 import { ProjectService } from './project.service';
-import { IProjectRO, IProjectsRO } from './project.interface';
-import { CreateProjectDto } from './dto';
+import { CreateProjectDto, GetProjectDto } from './dto';
 import { AuthGuard } from '@nestjs/passport';
 
 @Controller('projects')
@@ -21,18 +20,18 @@ export class ProjectController {
 
 	@Get()
 	@UseGuards(AuthGuard('jwt'))
-	async findAll(): Promise<IProjectsRO> {
+	async findAll() {
 		return this.projectService.findAll();
 	}
 
 	@Get(':id')
 	@UseGuards(AuthGuard('jwt'))
-	async findOne(@Param('id') id: number) {
-		const user = await this.projectService.findOne(id);
-		if (!user) {
+	async findOne(@Param() param: GetProjectDto) {
+		const project = await this.projectService.findOne(param.id);
+		if (!project) {
 			throw new NotFoundException();
 		}
-		return user;
+		return project;
 	}
 
 	@Post()
