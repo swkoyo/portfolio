@@ -10,11 +10,7 @@ export class UserService {
 		private readonly userRepository: EntityRepository<User>
 	) {}
 
-	async count(): Promise<number> {
-		return this.userRepository.count();
-	}
-
-	async findOneByEmail(email: string): Promise<User> {
-		return this.userRepository.findOneOrFail({ email });
+	async findOneByEmail(email: string): Promise<User | undefined> {
+		return this.userRepository.findOne({ email });
 	}
 }

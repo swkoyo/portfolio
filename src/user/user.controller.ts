@@ -3,16 +3,11 @@ import {
 	Logger,
 	Request,
 	Get,
-	NotFoundException,
-	Param,
-	Post,
-	Body,
-	Delete,
-	UseGuards
+	UseGuards,
+	NotFoundException
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { AuthGuard } from '@nestjs/passport';
-import { IUserRO } from './user.interface';
 
 @Controller('user')
 export class UserController {
@@ -22,8 +17,11 @@ export class UserController {
 
 	@Get()
 	@UseGuards(AuthGuard('jwt'))
-	async findOne(@Request() request): Promise<IUserRO> {
-		const user = await this.userService.findOneByEmail(request.user.email);
+	async findOne(@Request() req) {
+		const user = await this.userService.findOneByEmail(req.user.email);
+		if (!user) {
+			throw new NotFoundException();
+		}
 		return user.toJSON();
 	}
 }
