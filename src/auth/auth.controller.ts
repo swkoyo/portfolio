@@ -6,8 +6,8 @@ import { AuthService } from './auth.service';
 export class AuthController {
 	constructor(private readonly authService: AuthService) {}
 
-	@UseGuards(AuthGuard('local'))
 	@Post('login')
+	@UseGuards(AuthGuard('local'))
 	async postLogin(@Request() request) {
 		return this.authService.createToken(request.user);
 	}
