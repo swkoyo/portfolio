@@ -26,7 +26,7 @@ export class ProjectService {
 	}
 
 	async findOne(projectId: number): Promise<IProjectRO | undefined> {
-		return this.projectRepository.findOne(projectId);
+		return this.projectRepository.findOne({ id: projectId });
 	}
 
 	async create(dto: CreateProjectDto): Promise<IProjectRO> {
