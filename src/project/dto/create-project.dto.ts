@@ -1,9 +1,42 @@
+import {
+	IsString,
+	IsNotEmpty,
+	IsOptional,
+	IsUrl,
+	IsArray,
+	ArrayNotEmpty,
+	IsDateString
+} from 'class-validator';
+
 export class CreateProjectDto {
-	readonly name!: string;
-	readonly description!: string;
-	readonly repo_url!: string;
-	readonly web_url?: string;
-	readonly languages!: string[];
-	readonly technologies?: string[];
-	readonly last_deployed!: Date;
+	@IsString()
+	@IsNotEmpty()
+	name: string;
+
+	@IsString()
+	@IsNotEmpty()
+	description: string;
+
+	@IsUrl()
+	repo_url: string;
+
+	@IsUrl()
+	@IsOptional()
+	web_url: string;
+
+	@IsArray()
+	@ArrayNotEmpty()
+	@IsString({ each: true })
+	@IsNotEmpty({ each: true })
+	languages: string[];
+
+	@IsArray()
+	@ArrayNotEmpty()
+	@IsString({ each: true })
+	@IsNotEmpty({ each: true })
+	@IsOptional()
+	technologies: string[];
+
+	@IsDateString()
+	last_deployed: Date;
 }

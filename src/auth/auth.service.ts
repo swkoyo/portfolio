@@ -14,7 +14,7 @@ export class AuthService {
 		const user = await this.userService.findOneByEmail(email);
 
 		if (user && (await user.validatePassword(password))) {
-			return user;
+			return user.toJSON();
 		}
 
 		return null;

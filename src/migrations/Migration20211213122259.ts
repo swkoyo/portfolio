@@ -23,7 +23,7 @@ export class Migration20211213122259 extends Migration {
 				name VARCHAR(255) NOT NULL,
 				description VARCHAR(255) NOT NULL,
 				repo_url VARCHAR(255) NOT NULL,
-				web_url VARCHAR(255) NOT NULL,
+				web_url VARCHAR(255),
 				languages VARCHAR(255)[] NOT NULL,
 				technologies VARCHAR(255)[] NOT NULL,
 				last_deployed TIMESTAMP NOT NULL,
@@ -46,7 +46,7 @@ export class Migration20211213122259 extends Migration {
 	}
 
 	async down(): Promise<void> {
-		await this.addSql('DROP TABLE "Projects"');
-		await this.addSql('DROP TABLE "Users"');
+		await this.addSql('DROP TABLE "Projects";');
+		await this.addSql('DROP TABLE "Users";');
 	}
 }
