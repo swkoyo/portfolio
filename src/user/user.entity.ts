@@ -1,6 +1,7 @@
-import { Entity, PrimaryKey, Property } from '@mikro-orm/core';
+import { Entity, PrimaryKey, Property, wrap } from '@mikro-orm/core';
 import { IsNotEmpty, IsString, IsEmail } from 'class-validator';
 import * as bcrypt from 'bcrypt';
+import { omit } from 'lodash';
 
 @Entity({
 	tableName: 'Users'
@@ -63,5 +64,10 @@ export class User {
 
 	async validatePassword(password): Promise<boolean> {
 		return bcrypt.compare(password, this.password);
+	}
+
+	toJSON() {
+		const o = wrap(this).toObject();
+		return omit(o, ['password']);
 	}
 }
