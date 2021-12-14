@@ -5,6 +5,4 @@ export interface IProjectsRO {
 	projects: Project[];
 }
 
-export interface IProjectRO {
-	project: Project;
-}
+export type IProjectRO = Project;
