@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@mikro-orm/nestjs';
 import { EntityRepository } from '@mikro-orm/postgresql';
 import { User } from './user.entity';
-import { IUserRO } from './user.interface';
 
 @Injectable()
 export class UserService {
@@ -15,8 +14,7 @@ export class UserService {
 		return this.userRepository.count();
 	}
 
-	async findOneByEmail(email: string): Promise<IUserRO> {
-		const user = await this.userRepository.findOneOrFail({ email });
-		return { user };
+	async findOneByEmail(email: string): Promise<User> {
+		return this.userRepository.findOneOrFail({ email });
 	}
 }
