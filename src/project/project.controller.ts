@@ -28,9 +28,13 @@ export class ProjectController {
 	@UseGuards(AuthGuard('jwt'))
 	async findOne(@Param() param: GetProjectDto) {
 		const project = await this.projectService.findOne(param.id);
+
 		if (!project) {
+			this.logger.error('findOne no project found %o', { id: param.id });
+
 			throw new NotFoundException();
 		}
+
 		return project;
 	}
 
