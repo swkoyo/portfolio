@@ -12,7 +12,7 @@ import { ProjectService } from './project.service';
 import { CreateProjectDto, GetProjectDto } from './dto';
 import { AuthGuard } from '@nestjs/passport';
 
-@Controller('projects')
+@Controller('api/projects')
 export class ProjectController {
 	logger: Logger = new Logger(ProjectController.name);
 

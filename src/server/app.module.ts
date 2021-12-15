@@ -8,9 +8,13 @@ import { MikroOrmModule } from '@mikro-orm/nestjs';
 import { AuthModule } from './auth/auth.module';
 import { ProjectModule } from './project/project.module';
 import { UserModule } from './user/user.module';
+import { ViewModule } from './view/view.module';
 
 import configuration from './config';
 import { nanoid } from 'nanoid';
+import { UserController } from './user/user.controller';
+import { ProjectController } from './project/project.controller';
+import { AuthController } from './auth/auth.controller';
 
 @Module({
 	imports: [
@@ -19,6 +23,7 @@ import { nanoid } from 'nanoid';
 			load: [configuration]
 		}),
 		LoggerModule.forRoot({
+			forRoutes: [UserController, ProjectController, AuthController],
 			pinoHttp: {
 				level: 'trace',
 				genReqId: () => nanoid(),
@@ -58,7 +63,8 @@ import { nanoid } from 'nanoid';
 		MikroOrmModule.forRoot(),
 		ProjectModule,
 		UserModule,
-		AuthModule
+		AuthModule,
+		ViewModule
 	],
 	controllers: [AppController],
 	providers: [AppService]
