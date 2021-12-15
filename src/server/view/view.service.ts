@@ -2,11 +2,11 @@ import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import createServer from 'next';
 import { NextServer } from 'next/dist/server/next';
-import { Request, Response } from 'express';
 
 @Injectable()
 export class ViewService implements OnModuleInit {
 	private server: NextServer;
+
 	logger: Logger = new Logger(ViewService.name);
 
 	constructor(private configService: ConfigService) {}
@@ -25,7 +25,7 @@ export class ViewService implements OnModuleInit {
 		}
 	}
 
-	handler(req: Request, res: Response) {
-		return this.server.getRequestHandler()(req, res);
+	getNextServer(): NextServer {
+		return this.server;
 	}
 }
