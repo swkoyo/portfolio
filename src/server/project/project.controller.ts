@@ -19,13 +19,11 @@ export class ProjectController {
 	constructor(private readonly projectService: ProjectService) {}
 
 	@Get()
-	@UseGuards(AuthGuard('jwt'))
 	async findAll() {
 		return this.projectService.findAll();
 	}
 
 	@Get(':id')
-	@UseGuards(AuthGuard('jwt'))
 	async findOne(@Param() param: GetProjectDto) {
 		const project = await this.projectService.findOne(param.id);
 
