@@ -1,7 +1,6 @@
-import React from 'react';
-import { NextPage } from 'next';
+import { NextComponentType } from 'next';
 
-const Home: NextPage = () => {
+const Navbar: NextComponentType = () => {
 	return (
 		<div className='navbar mb-2 shadow-lg bg-neutral text-neutral-content rounded-box'>
 			<div className='flex-1 px-2 mx-2'>
@@ -28,4 +27,4 @@ const Home: NextPage = () => {
 	);
 };
 
-export default Home;
+export default Navbar;
