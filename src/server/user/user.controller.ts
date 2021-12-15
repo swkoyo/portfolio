@@ -7,7 +7,6 @@ import {
 	Logger
 } from '@nestjs/common';
 import { UserService } from './user.service';
-import { AuthGuard } from '@nestjs/passport';
 
 @Controller('user')
 export class UserController {
@@ -16,14 +15,11 @@ export class UserController {
 	constructor(private readonly userService: UserService) {}
 
 	@Get()
-	@UseGuards(AuthGuard('jwt'))
-	async findOne(@Request() req) {
-		const user = await this.userService.findOneByEmail(req.user.email);
+	async findOne() {
+		const user = await this.userService.findOneById(1);
 
 		if (!user) {
-			this.logger.error('findOne user not found %o', {
-				email: req.user.email
-			});
+			this.logger.error('findOne user not found %o', { id: 1 });
 
 			throw new NotFoundException();
 		}

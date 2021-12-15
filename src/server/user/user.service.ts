@@ -12,6 +12,16 @@ export class UserService {
 		private readonly userRepository: EntityRepository<User>
 	) {}
 
+	async findOneById(id: number): Promise<User | undefined> {
+		this.logger.debug('findOneById finding user %o', { id });
+
+		const user = await this.userRepository.findOne({ id });
+
+		this.logger.debug('findOneById response %o', user?.toJSON() ?? {});
+
+		return user;
+	}
+
 	async findOneByEmail(email: string): Promise<User | undefined> {
 		this.logger.debug('findOneByEmail finding user %o', { email });
 
