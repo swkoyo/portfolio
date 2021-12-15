@@ -10,7 +10,9 @@ const Index: NextPage = () => {
 				{/* <link rel='icon' href='/favicon.ico' /> */}
 			</Head>
 			<main>
-				<h1>Hello from NextJS! - Index</h1>
+				<div className="text-3xl font-bold underline">
+					Hello from NextJS! - Index
+				</div>
 			</main>
 		</div>
 	);
