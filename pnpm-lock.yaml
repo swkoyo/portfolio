@@ -57,7 +57,6 @@ dependencies:
   '@mikro-orm/migrations': 4.5.9_@mikro-orm+core@4.5.9
   '@mikro-orm/nestjs': 4.3.1_8196f6c68e4c281d5f992655e1494a11
   '@mikro-orm/postgresql': 4.5.9_c5924a60946be4b9f3a0784c71d54059
-  '@mikro-orm/sql-highlighter': 1.0.1
   '@nestjs/common': 8.2.3_7b1fc936b9361df55228aaa721957d0e
   '@nestjs/config': 1.1.5_4067a5d44d4606b10b1aff77c2f9d3cd
   '@nestjs/core': 8.2.3_1864eb04cdb557d7ef263925d28b0dee
@@ -80,6 +79,7 @@ dependencies:
 
 devDependencies:
   '@mikro-orm/cli': 4.5.9_@mikro-orm+postgresql@4.5.9
+  '@mikro-orm/sql-highlighter': 1.0.1
   '@nestjs/cli': 8.1.5_eslint@8.4.1
   '@nestjs/schematics': 8.0.5_typescript@4.5.3
   '@nestjs/testing': 8.2.3_51e6544c14e6c411f90104b32018d9ce
@@ -1159,7 +1159,7 @@ packages:
     engines: {node: '>= 10.13.0'}
     dependencies:
       ansi-colors: 4.1.1
-    dev: false
+    dev: true
 
   /@nestjs/cli/8.1.5_eslint@8.4.1:
     resolution: {integrity: sha512-eGlSTCFf/M3ACSNpW3mx5raZ+qq7k/4v6nFuaGpKafQKSKNw7cRVqSeAtHzd7bcK0ik7tKTyhQ8oxnygMLm5Iw==}
