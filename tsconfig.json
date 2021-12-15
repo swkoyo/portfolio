@@ -19,6 +19,6 @@
     "noFallthroughCasesInSwitch": false
   },
   "include": [
-    "src/**/*"
+    "src/server/*"
   ]
 }
