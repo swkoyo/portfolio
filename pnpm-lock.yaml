@@ -31,6 +31,7 @@ specifiers:
   bcrypt: ^5.0.1
   class-transformer: ^0.5.1
   class-validator: ^0.13.2
+  daisyui: ^1.16.5
   eslint: ^8.0.1
   eslint-config-prettier: ^8.3.0
   eslint-plugin-prettier: ^4.0.0
@@ -74,6 +75,7 @@ dependencies:
   bcrypt: 5.0.1
   class-transformer: 0.5.1
   class-validator: 0.13.2
+  daisyui: 1.16.5
   lodash: 4.17.21
   nanoid: 3.1.30
   nestjs-pino: 2.3.1_pino-http@6.4.0
@@ -3286,6 +3288,10 @@ packages:
   /csstype/3.0.10:
     resolution: {integrity: sha512-2u44ZG2OcNUO9HDp/Jl8C07x6pU/eTR3ncV91SiK3dhG9TWvRVsCoJw14Ckx5DgWkzGA3waZWO3d7pgqpUI/XA==}
     dev: true
+
+  /daisyui/1.16.5:
+    resolution: {integrity: sha512-34nXxyQ0M8CWv8OE8/+jEasBbw5pipBNgWkC4HVsOVDgZ0Y5jD7UgcvosOmm+pEBgZHWNze2Ocwi9NUDge6gHg==}
+    dev: false
 
   /data-uri-to-buffer/3.0.1:
     resolution: {integrity: sha512-WboRycPNsVw3B3TL559F7kuBUM4d8CgMEvk6xEJlOp7OBPjt6G7z8WMWlD2rOFZLk6OYfFIUGsCOWzcQH9K2og==}
