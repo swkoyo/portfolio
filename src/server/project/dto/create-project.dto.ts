@@ -3,9 +3,8 @@ import {
 	IsNotEmpty,
 	IsOptional,
 	IsUrl,
-	IsArray,
-	ArrayNotEmpty,
-	IsDateString
+	IsDateString,
+	IsArray
 } from 'class-validator';
 
 export class CreateProjectDto {
@@ -25,16 +24,7 @@ export class CreateProjectDto {
 	web_url: string;
 
 	@IsArray()
-	@ArrayNotEmpty()
 	@IsString({ each: true })
-	@IsNotEmpty({ each: true })
-	languages: string[];
-
-	@IsArray()
-	@ArrayNotEmpty()
-	@IsString({ each: true })
-	@IsNotEmpty({ each: true })
-	@IsOptional()
 	technologies: string[];
 
 	@IsDateString()

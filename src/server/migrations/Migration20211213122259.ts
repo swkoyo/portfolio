@@ -24,13 +24,109 @@ export class Migration20211213122259 extends Migration {
 				description VARCHAR(255) NOT NULL,
 				repo_url VARCHAR(255) NOT NULL,
 				web_url VARCHAR(255),
-				languages VARCHAR(255)[] NOT NULL,
-				technologies VARCHAR(255)[] NOT NULL,
 				last_deployed TIMESTAMP NOT NULL,
 				created_at TIMESTAMP DEFAULT NOW(),
 				updated_at TIMESTAMP DEFAULT NOW()
 			);
 		`);
+
+		await this.addSql(`
+			CREATE TABLE "Technologies" (
+				id SERIAL PRIMARY KEY,
+				name VARCHAR(255) NOT NULL,
+				logo VARCHAR(255) NOT NULL,
+				created_at TIMESTAMP DEFAULT NOW(),
+				updated_at TIMESTAMP DEFAULT NOW()
+			);
+		`);
+
+		this.addSql(`
+			CREATE TABLE "projects_technologies" (
+				project_id INT4 NOT NULL,
+				technology_id INT4 NOT NULL,
+				CONSTRAINT projects_technologies_pkey
+					PRIMARY KEY (project_id, technology_id),
+				CONSTRAINT projects_technologies_project_id_foreign
+					FOREIGN KEY (project_id) REFERENCES "Projects" (id)
+					ON UPDATE CASCADE
+					ON DELETE CASCADE,
+				CONSTRAINT projects_technologies_technology_id_foreign
+					FOREIGN KEY (technology_id) REFERENCES "Technologies" (id)
+					ON UPDATE CASCADE
+					ON DELETE CASCADE
+			);
+		`);
+
+		// this.addSql(`
+		// 	alter table "projects_technologies"
+		// 	add constraint "projects_technologies_pkey" primary key ("project_id", "technology_id");
+		// `);
+
+		this.addSql(`
+			CREATE TABLE "technologies_projects" (
+				technology_id INT4 NOT NULL,
+				project_id INT4 NOT NULL,
+				CONSTRAINT technologies_projects_pkey
+					PRIMARY KEY (technology_id, project_id),
+				CONSTRAINT technologies_projects_technology_id_foreign
+					FOREIGN KEY (technology_id) REFERENCES "Technologies" (id)
+					ON UPDATE CASCADE
+					ON DELETE CASCADE,
+				CONSTRAINT technologies_projects_project_id_foreign
+					FOREIGN KEY (project_id) REFERENCES "Projects" (id)
+					ON UPDATE CASCADE
+					ON DELETE CASCADE
+			);
+		`);
+
+		// this.addSql(`
+		// 	alter table "technologies_projects"
+		// 	add constraint "technologies_projects_pkey" primary key ("technology_id", "project_id");
+		// `);
+
+		// this.addSql(`
+		// 	ALTER TABLE "projects_technologies" ADD
+		// 	CONSTRAINT projects_technologies_project_id_foreign
+		// 		FOREIGN KEY (project_id) REFERENCES "Projects" (id)
+		// 		ON UPDATE CASCADE
+		// 		ON DELETE CASCADE,
+		// 	CONSTRAINT projects_technologies_technology_id_foreign
+		// 		FOREIGN KEY (technology_id) REFERENCES "Technologies" (id)
+		// 		ON UPDATE CASCADE
+		// 		ON DELETE CASCADE;
+		// `);
+
+		// this.addSql(`
+		// 	alter table "projects_technologies"
+		// 	add constraint "projects_technologies_project_id_foreign" foreign key ("project_id") references "Projects" ("id") on update cascade on delete cascade;
+		// `);
+
+		// this.addSql(`
+		// 	alter table "projects_technologies"
+		// 	add constraint "projects_technologies_technology_id_foreign" foreign key ("technology_id") references "Technologies" ("id") on update cascade on delete cascade;
+		// `);
+
+		// this.addSql(`
+		// 	ALTER TABLE "technologies_projects" ADD
+		// 	CONSTRAINT technologies_projects_technology_id_foreign
+		// 		FOREIGN KEY (technology_id) REFERENCES "Technologies" (id)
+		// 		ON UPDATE CASCADE
+		// 		ON DELETE CASCADE,
+		// 	CONSTRAINT technologies_projects_project_id_foreign
+		// 		FOREIGN KEY (project_id) REFERENCES "Projects" (id)
+		// 		ON UPDATE CASCADE
+		// 		ON DELETE CASCADE;
+		// `);
+
+		// this.addSql(`
+		// 	alter table "technologies_projects"
+		// 	add constraint "technologies_projects_technology_id_foreign" foreign key ("technology_id") references "Technologies" ("id") on update cascade on delete cascade;
+		// `);
+
+		// this.addSql(`
+		// 	alter table "technologies_projects"
+		// 	add constraint "technologies_projects_project_id_foreign" foreign key ("project_id") references "Projects" ("id") on update cascade on delete cascade;
+		// `);
 
 		const email = process.env.ADMIN_EMAIL;
 		const password = await bcrypt.hash(process.env.ADMIN_PASSWORD, 10);
@@ -46,7 +142,10 @@ export class Migration20211213122259 extends Migration {
 	}
 
 	async down(): Promise<void> {
+		await this.addSql('DROP TABLE "projects_technologies";');
+		await this.addSql('DROP TABLE "technologies_projects";');
 		await this.addSql('DROP TABLE "Projects";');
 		await this.addSql('DROP TABLE "Users";');
+		await this.addSql('DROP TABLE "Technologies";');
 	}
 }
