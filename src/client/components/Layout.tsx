@@ -1,11 +1,10 @@
 import { NextComponentType } from 'next';
 import Head from 'next/head';
 import Navbar from './Navbar';
-import { useContext } from 'react';
-import UserContext from '../context/UserContext';
+import { useUserContext } from '../context/UserContext';
 
 const Layout: NextComponentType = ({ children }) => {
-	const { userData } = useContext(UserContext);
+	const { userData } = useUserContext();
 
 	return (
 		<>

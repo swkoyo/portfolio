@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useContext, useState } from 'react';
 
-interface Project {
+export interface Project {
 	id: number;
 	name: string;
 	description: string;
@@ -25,16 +25,17 @@ const PortfolioContext = createContext<portfolioContextType>(
 	portfolioContextDefaultValues
 );
 
-export const usePortfolio = () => {
+export const usePortfolioContext = () => {
 	return useContext(PortfolioContext);
 };
 
 type Props = {
 	children: ReactNode;
+	projects: Project[];
 };
 
-export const PortfolioProvider = ({ children }: Props) => {
-	const [projectsData, setProjectsData] = useState<Project[]>([]);
+export const PortfolioProvider = ({ children, projects }: Props) => {
+	const [projectsData, setProjectsData] = useState<Project[]>(projects);
 
 	const handleProjectsData = (projects: Project[]) => {
 		setProjectsData(projects);
@@ -46,10 +47,8 @@ export const PortfolioProvider = ({ children }: Props) => {
 	};
 
 	return (
-		<>
-			<PortfolioContext.Provider value={value}>
-				{children}
-			</PortfolioContext.Provider>
-		</>
+		<PortfolioContext.Provider value={value}>
+			{children}
+		</PortfolioContext.Provider>
 	);
 };
