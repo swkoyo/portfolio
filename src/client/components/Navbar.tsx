@@ -28,7 +28,7 @@ const Navbar: ComponentType = () => {
 					<Link href='/portfolio'>
 						<a
 							className={`${
-								router.pathname === '/portfolio'
+								router.pathname.includes('/portfolio')
 									? 'btn-active'
 									: ''
 							} btn btn-ghost btn-sm rounded-btn`}

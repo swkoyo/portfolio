@@ -1,7 +1,7 @@
 import React from 'react';
 import { NextPage } from 'next';
-import { usePortfolioContext } from '../context/PortfolioContext';
-import ProjectCard from '../components/ProjectCard';
+import { usePortfolioContext } from '../../context/PortfolioContext';
+import ProjectCard from '../../components/ProjectCard';
 
 const Portfolio: NextPage = () => {
 	const { projectsData } = usePortfolioContext();
