@@ -1,5 +1,4 @@
 import { Entity, PrimaryKey, Property, wrap } from '@mikro-orm/core';
-import { IsNotEmpty, IsString, IsEmail, IsLowercase } from 'class-validator';
 import * as bcrypt from 'bcrypt';
 
 @Entity({
@@ -10,36 +9,21 @@ export class User {
 	id!: number;
 
 	@Property()
-	@IsEmail()
-	@IsNotEmpty()
-	@IsLowercase()
 	email!: string;
 
 	@Property({ hidden: true })
-	@IsString()
-	@IsNotEmpty()
 	password!: string;
 
 	@Property()
-	@IsString()
-	@IsNotEmpty()
-	@IsLowercase()
 	first_name!: string;
 
 	@Property()
-	@IsString()
-	@IsNotEmpty()
-	@IsLowercase()
 	last_name!: string;
 
 	@Property()
-	@IsString()
-	@IsNotEmpty()
 	tagline!: string;
 
 	@Property()
-	@IsString()
-	@IsNotEmpty()
 	profile!: string;
 
 	@Property({ hidden: true })
@@ -69,6 +53,8 @@ export class User {
 	}
 
 	toJSON() {
-		return wrap(this).toObject();
+		const o = wrap(this).toObject();
+		o.full_name = `${o.first_name} ${o.last_name}`;
+		return o;
 	}
 }

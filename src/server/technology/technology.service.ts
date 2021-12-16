@@ -1,5 +1,4 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { QueryOrder } from '@mikro-orm/core';
 import { InjectRepository } from '@mikro-orm/nestjs';
 import { EntityRepository } from '@mikro-orm/postgresql';
 import { Technology } from './technology.entity';
@@ -18,17 +17,9 @@ export class TechnologyService {
 	async findAll(): Promise<ITechnologiesRO> {
 		this.logger.debug('findAll finding all technologies');
 
-		const count = await this.technologyRepository.count();
+		const data = await this.technologyRepository.findAll(['projects']);
 
-		const qb = this.technologyRepository
-			.createQueryBuilder('a')
-			.select('a.*')
-			.orderBy({ id: QueryOrder.DESC });
-		const technologies = await qb.getResult();
-
-		this.logger.debug('findAll found %o', { count });
-
-		return { count, technologies };
+		return data;
 	}
 
 	async findOne(name: string): Promise<ITechnologyRO | undefined> {
