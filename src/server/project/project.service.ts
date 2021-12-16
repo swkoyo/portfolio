@@ -5,6 +5,7 @@ import { EntityRepository } from '@mikro-orm/postgresql';
 import { Project } from './project.entity';
 import { IProjectRO, IProjectsRO } from './project.interface';
 import { CreateProjectDto } from './dto';
+import { TechnologyService } from '../technology/technology.service';
 
 @Injectable()
 export class ProjectService {
@@ -12,7 +13,8 @@ export class ProjectService {
 
 	constructor(
 		@InjectRepository(Project)
-		private readonly projectRepository: EntityRepository<Project>
+		private readonly projectRepository: EntityRepository<Project>,
+		private readonly technologyService: TechnologyService
 	) {}
 
 	async findAll(): Promise<IProjectsRO> {
@@ -49,10 +51,13 @@ export class ProjectService {
 			dto.description,
 			dto.repo_url,
 			dto.web_url,
-			dto.languages,
-			dto.technologies,
 			dto.last_deployed
 		);
+
+		for (const technology of dto.technologies) {
+			const tech = await this.technologyService.findOne(technology);
+			project.technologies.add(tech);
+		}
 
 		await this.projectRepository.persistAndFlush(project);
 

@@ -1,13 +1,12 @@
 import { Entity, PrimaryKey, Property, wrap } from '@mikro-orm/core';
 import { IsNotEmpty, IsString, IsEmail, IsLowercase } from 'class-validator';
 import * as bcrypt from 'bcrypt';
-import { omit } from 'lodash';
 
 @Entity({
 	tableName: 'Users'
 })
 export class User {
-	@PrimaryKey()
+	@PrimaryKey({ hidden: true })
 	id!: number;
 
 	@Property()
@@ -16,7 +15,7 @@ export class User {
 	@IsLowercase()
 	email!: string;
 
-	@Property()
+	@Property({ hidden: true })
 	@IsString()
 	@IsNotEmpty()
 	password!: string;
@@ -43,10 +42,10 @@ export class User {
 	@IsNotEmpty()
 	profile!: string;
 
-	@Property()
+	@Property({ hidden: true })
 	created_at: Date = new Date();
 
-	@Property()
+	@Property({ hidden: true })
 	updated_at: Date = new Date();
 
 	constructor(
@@ -70,7 +69,6 @@ export class User {
 	}
 
 	toJSON() {
-		const o = wrap(this).toObject();
-		return omit(o, ['password']);
+		return wrap(this).toObject();
 	}
 }

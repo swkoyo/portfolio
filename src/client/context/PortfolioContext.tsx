@@ -6,7 +6,6 @@ export interface Project {
 	description: string;
 	repo_url: string;
 	web_url?: string;
-	languages: string[];
 	technologies?: string[];
 	last_deployed: Date;
 }
