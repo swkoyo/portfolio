@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext, useState } from 'react';
+import { createContext } from 'react';
 
 export interface User {
 	id: number;
@@ -21,27 +21,4 @@ const userContextDefaultValues: userContextType = {
 
 const UserContext = createContext<userContextType>(userContextDefaultValues);
 
-export const useUser = () => {
-	return useContext(UserContext);
-};
-
-type Props = {
-	children: ReactNode;
-};
-
-export const UserProvider = ({ children }: Props) => {
-	const [userData, setUserData] = useState<User>(null);
-
-	const handleUserData = (updatedUser: User) => {
-		setUserData(updatedUser);
-	};
-
-	const value = {
-		userData,
-		handleUserData
-	};
-
-	return (
-		<UserContext.Provider value={value}>{children}</UserContext.Provider>
-	);
-};
+export default UserContext;

@@ -1,28 +1,28 @@
 import { NextComponentType } from 'next';
+import { useContext } from 'react';
+import UserContext from '../context/UserContext';
 
 const Navbar: NextComponentType = () => {
+	const { userData } = useContext(UserContext);
+
 	return (
 		<div className='navbar mb-2 shadow-lg bg-neutral text-neutral-content rounded-box'>
-			<div className='flex-1 px-2 mx-2'>
-				<span className='text-lg font-bold'>daisyUI</span>
+			<div className='px-2 mx-2 navbar-start'>
+				<span className='text-lg font-bold'>
+					{userData.first_name} {userData.last_name}
+				</span>
 			</div>
-			<div className='flex-none'>
-				<button className='btn btn-square btn-ghost'>
-					<svg
-						xmlns='http://www.w3.org/2000/svg'
-						fill='none'
-						viewBox='0 0 24 24'
-						className='inline-block w-6 h-6 stroke-current text-error'
-					>
-						<path
-							stroke-line-cap='round'
-							strokeLinejoin='round'
-							strokeWidth='2'
-							d='M6 18L18 6M6 6l12 12'
-						></path>
-					</svg>
-				</button>
+			<div className='hidden px-2 mx-2 navbar-center lg:flex'>
+				<div className='flex items-stretch'>
+					<a className='btn btn-ghost btn-sm rounded-btn'>Home</a>
+					<a className='btn btn-ghost btn-sm rounded-btn'>
+						Portfolio
+					</a>
+					<a className='btn btn-ghost btn-sm rounded-btn'>About</a>
+					<a className='btn btn-ghost btn-sm rounded-btn'>Contact</a>
+				</div>
 			</div>
+			<div className='navbar-end' />
 		</div>
 	);
 };
