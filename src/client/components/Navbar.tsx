@@ -1,9 +1,11 @@
 import { NextComponentType } from 'next';
 import { useUserContext } from '../context/UserContext';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 
 const Navbar: NextComponentType = () => {
 	const { userData } = useUserContext();
+	const router = useRouter();
 
 	return (
 		<div className='navbar mb-2 shadow-lg bg-neutral text-neutral-content rounded-box'>
@@ -15,10 +17,22 @@ const Navbar: NextComponentType = () => {
 			<div className='hidden px-2 mx-2 navbar-center lg:flex'>
 				<div className='flex items-stretch'>
 					<Link href='/'>
-						<a className='btn btn-ghost btn-sm rounded-btn'>Home</a>
+						<a
+							className={`${
+								router.pathname === '/' ? 'btn-active' : ''
+							} btn btn-ghost btn-sm rounded-btn`}
+						>
+							Home
+						</a>
 					</Link>
 					<Link href='/portfolio'>
-						<a className='btn btn-ghost btn-sm rounded-btn'>
+						<a
+							className={`${
+								router.pathname === '/portfolio'
+									? 'btn-active'
+									: ''
+							} btn btn-ghost btn-sm rounded-btn`}
+						>
 							Portfolio
 						</a>
 					</Link>
