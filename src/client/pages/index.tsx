@@ -38,10 +38,10 @@ const Index: NextPage = ({
 };
 
 export const getServerSideProps: GetServerSideProps = async () => {
-	const userRes = await fetch('http://localhost:3000/api/user');
-	const user = await userRes.json();
+	const res = await fetch('http://localhost:3000/api/user');
+	const data = await res.json();
 
-	return { props: { userProps: user } };
+	return { props: { userProps: data } };
 };
 
 export default Index;
