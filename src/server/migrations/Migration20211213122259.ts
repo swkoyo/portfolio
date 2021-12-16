@@ -26,7 +26,9 @@ export class Migration20211213122259 extends Migration {
 				web_url VARCHAR(255),
 				last_deployed TIMESTAMP NOT NULL,
 				created_at TIMESTAMP DEFAULT NOW(),
-				updated_at TIMESTAMP DEFAULT NOW()
+				updated_at TIMESTAMP DEFAULT NOW(),
+				CONSTRAINT "Projects_name_unique"
+					UNIQUE (name)
 			);
 		`);
 
@@ -36,7 +38,9 @@ export class Migration20211213122259 extends Migration {
 				name VARCHAR(255) NOT NULL,
 				logo VARCHAR(255) NOT NULL,
 				created_at TIMESTAMP DEFAULT NOW(),
-				updated_at TIMESTAMP DEFAULT NOW()
+				updated_at TIMESTAMP DEFAULT NOW(),
+				CONSTRAINT "Technologies_name_unique"
+					UNIQUE (name)
 			);
 		`);
 
@@ -57,11 +61,6 @@ export class Migration20211213122259 extends Migration {
 			);
 		`);
 
-		// this.addSql(`
-		// 	alter table "projects_technologies"
-		// 	add constraint "projects_technologies_pkey" primary key ("project_id", "technology_id");
-		// `);
-
 		this.addSql(`
 			CREATE TABLE "technologies_projects" (
 				technology_id INT4 NOT NULL,
@@ -78,55 +77,6 @@ export class Migration20211213122259 extends Migration {
 					ON DELETE CASCADE
 			);
 		`);
-
-		// this.addSql(`
-		// 	alter table "technologies_projects"
-		// 	add constraint "technologies_projects_pkey" primary key ("technology_id", "project_id");
-		// `);
-
-		// this.addSql(`
-		// 	ALTER TABLE "projects_technologies" ADD
-		// 	CONSTRAINT projects_technologies_project_id_foreign
-		// 		FOREIGN KEY (project_id) REFERENCES "Projects" (id)
-		// 		ON UPDATE CASCADE
-		// 		ON DELETE CASCADE,
-		// 	CONSTRAINT projects_technologies_technology_id_foreign
-		// 		FOREIGN KEY (technology_id) REFERENCES "Technologies" (id)
-		// 		ON UPDATE CASCADE
-		// 		ON DELETE CASCADE;
-		// `);
-
-		// this.addSql(`
-		// 	alter table "projects_technologies"
-		// 	add constraint "projects_technologies_project_id_foreign" foreign key ("project_id") references "Projects" ("id") on update cascade on delete cascade;
-		// `);
-
-		// this.addSql(`
-		// 	alter table "projects_technologies"
-		// 	add constraint "projects_technologies_technology_id_foreign" foreign key ("technology_id") references "Technologies" ("id") on update cascade on delete cascade;
-		// `);
-
-		// this.addSql(`
-		// 	ALTER TABLE "technologies_projects" ADD
-		// 	CONSTRAINT technologies_projects_technology_id_foreign
-		// 		FOREIGN KEY (technology_id) REFERENCES "Technologies" (id)
-		// 		ON UPDATE CASCADE
-		// 		ON DELETE CASCADE,
-		// 	CONSTRAINT technologies_projects_project_id_foreign
-		// 		FOREIGN KEY (project_id) REFERENCES "Projects" (id)
-		// 		ON UPDATE CASCADE
-		// 		ON DELETE CASCADE;
-		// `);
-
-		// this.addSql(`
-		// 	alter table "technologies_projects"
-		// 	add constraint "technologies_projects_technology_id_foreign" foreign key ("technology_id") references "Technologies" ("id") on update cascade on delete cascade;
-		// `);
-
-		// this.addSql(`
-		// 	alter table "technologies_projects"
-		// 	add constraint "technologies_projects_project_id_foreign" foreign key ("project_id") references "Projects" ("id") on update cascade on delete cascade;
-		// `);
 
 		const email = process.env.ADMIN_EMAIL;
 		const password = await bcrypt.hash(process.env.ADMIN_PASSWORD, 10);

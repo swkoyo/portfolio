@@ -3,28 +3,23 @@ import {
 	PrimaryKey,
 	Property,
 	ManyToMany,
-	Collection
+	Collection,
+	wrap
 } from '@mikro-orm/core';
-import { IsNotEmpty, IsString, IsLowercase, IsUrl } from 'class-validator';
+import { pick } from 'lodash';
 import { Project } from '../project/project.entity';
 
 @Entity({
 	tableName: 'Technologies'
 })
 export class Technology {
-	@PrimaryKey()
+	@PrimaryKey({ hidden: true })
 	id!: number;
 
-	@Property()
-	@IsString()
-	@IsNotEmpty()
-	@IsLowercase()
+	@Property({ unique: true })
 	name!: string;
 
 	@Property()
-	@IsString()
-	@IsNotEmpty()
-	@IsUrl()
 	logo!: string;
 
 	@Property({ hidden: true })
@@ -39,5 +34,11 @@ export class Technology {
 	constructor(name: string, logo: string) {
 		this.name = name;
 		this.logo = logo;
+	}
+
+	toJSON() {
+		const o = wrap(this).toObject();
+		o.projects = o.projects.map((project) => pick(project, ['name']));
+		return o;
 	}
 }

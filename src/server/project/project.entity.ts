@@ -6,13 +6,6 @@ import {
 	Collection,
 	wrap
 } from '@mikro-orm/core';
-import {
-	IsNotEmpty,
-	IsString,
-	IsOptional,
-	IsDateString,
-	IsLowercase
-} from 'class-validator';
 import { Technology } from '../technology/technology.entity';
 
 @Entity({
@@ -22,29 +15,19 @@ export class Project {
 	@PrimaryKey()
 	id!: number;
 
-	@Property()
-	@IsString()
-	@IsNotEmpty()
-	@IsLowercase()
+	@Property({ unique: true })
 	name!: string;
 
 	@Property()
-	@IsString()
-	@IsNotEmpty()
 	description!: string;
 
 	@Property()
-	@IsString()
-	@IsNotEmpty()
 	repo_url!: string;
 
 	@Property()
-	@IsString()
-	@IsOptional()
 	web_url?: string = '';
 
 	@Property()
-	@IsDateString()
 	last_deployed!: Date;
 
 	@Property({ hidden: true })
