@@ -12,13 +12,13 @@ interface Project {
 }
 
 type portfolioContextType = {
-	projects?: Project[];
-	addProject: (project: Project) => void;
+	projectsData?: Project[];
+	handleProjectsData: (projects: Project[]) => void;
 };
 
 const portfolioContextDefaultValues: portfolioContextType = {
-	projects: [],
-	addProject: () => {}
+	projectsData: [],
+	handleProjectsData: () => {}
 };
 
 const PortfolioContext = createContext<portfolioContextType>(
@@ -34,15 +34,15 @@ type Props = {
 };
 
 export const PortfolioProvider = ({ children }: Props) => {
-	const [projects, setProjects] = useState<Project[]>([]);
+	const [projectsData, setProjectsData] = useState<Project[]>([]);
 
-	const addProject = (project: Project) => {
-		setProjects([...projects, project]);
+	const handleProjectsData = (projects: Project[]) => {
+		setProjectsData(projects);
 	};
 
 	const value = {
-		projects,
-		addProject
+		projectsData,
+		handleProjectsData
 	};
 
 	return (

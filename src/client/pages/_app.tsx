@@ -1,12 +1,21 @@
 import App, { AppProps, AppContext } from 'next/app';
 import Layout from '../components/Layout';
+import { AuthProvider } from '../context/AuthContext';
+import { UserProvider } from '../context/UserContext';
+import { PortfolioProvider } from '../context/PortfolioContext';
 import '../styles/globals.css';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
 	return (
-		<Layout>
-			<Component {...pageProps} />
-		</Layout>
+		<AuthProvider>
+			<UserProvider>
+				<PortfolioProvider>
+					<Layout>
+						<Component {...pageProps} />
+					</Layout>
+				</PortfolioProvider>
+			</UserProvider>
+		</AuthProvider>
 	);
 };
 
