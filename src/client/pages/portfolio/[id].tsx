@@ -13,7 +13,10 @@ const Project: NextPage = () => {
 
 	return (
 		<div className='container mx-auto'>
-			{project ? JSON.stringify(project) : 'Project Not Found'}
+			<div className='text-center text-8xl'>
+				{project.name.toUpperCase()}
+			</div>
+			<div className='mt-8 text-center'>{project.description}</div>
 		</div>
 	);
 };
