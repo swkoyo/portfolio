@@ -1,5 +1,6 @@
 import { NextComponentType } from 'next';
 import { useUserContext } from '../context/UserContext';
+import Link from 'next/link';
 
 const Navbar: NextComponentType = () => {
 	const { userData } = useUserContext();
@@ -13,12 +14,24 @@ const Navbar: NextComponentType = () => {
 			</div>
 			<div className='hidden px-2 mx-2 navbar-center lg:flex'>
 				<div className='flex items-stretch'>
-					<a className='btn btn-ghost btn-sm rounded-btn'>Home</a>
-					<a className='btn btn-ghost btn-sm rounded-btn'>
-						Portfolio
-					</a>
-					<a className='btn btn-ghost btn-sm rounded-btn'>About</a>
-					<a className='btn btn-ghost btn-sm rounded-btn'>Contact</a>
+					<Link href='/'>
+						<a className='btn btn-ghost btn-sm rounded-btn'>Home</a>
+					</Link>
+					<Link href='/portfolio'>
+						<a className='btn btn-ghost btn-sm rounded-btn'>
+							Portfolio
+						</a>
+					</Link>
+					<Link href='/'>
+						<a className='btn btn-ghost btn-sm rounded-btn'>
+							About
+						</a>
+					</Link>
+					<Link href='/'>
+						<a className='btn btn-ghost btn-sm rounded-btn'>
+							Contact
+						</a>
+					</Link>
 				</div>
 			</div>
 			<div className='navbar-end' />
