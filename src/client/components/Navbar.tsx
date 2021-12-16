@@ -1,9 +1,9 @@
-import { NextComponentType } from 'next';
+import { ComponentType } from 'react';
 import { useUserContext } from '../context/UserContext';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
-const Navbar: NextComponentType = () => {
+const Navbar: ComponentType = () => {
 	const { userData } = useUserContext();
 	const router = useRouter();
 
