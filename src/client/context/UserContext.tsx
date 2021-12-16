@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useContext, useState } from 'react';
 
-interface User {
+export interface User {
 	id: number;
 	email: string;
 	first_name: string;
@@ -10,13 +10,13 @@ interface User {
 }
 
 type userContextType = {
-	user?: User;
-	update: (user: User) => void;
+	userData?: User;
+	handleUserData: (user: User) => void;
 };
 
 const userContextDefaultValues: userContextType = {
-	user: null,
-	update: () => {}
+	userData: null,
+	handleUserData: () => {}
 };
 
 const UserContext = createContext<userContextType>(userContextDefaultValues);
@@ -30,22 +30,18 @@ type Props = {
 };
 
 export const UserProvider = ({ children }: Props) => {
-	const [user, setUser] = useState<User>(null);
+	const [userData, setUserData] = useState<User>(null);
 
-	const update = (updatedUser: User) => {
-		setUser(updatedUser);
+	const handleUserData = (updatedUser: User) => {
+		setUserData(updatedUser);
 	};
 
 	const value = {
-		user,
-		update
+		userData,
+		handleUserData
 	};
 
 	return (
-		<>
-			<UserContext.Provider value={value}>
-				{children}
-			</UserContext.Provider>
-		</>
+		<UserContext.Provider value={value}>{children}</UserContext.Provider>
 	);
 };
