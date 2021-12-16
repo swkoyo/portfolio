@@ -1,10 +1,9 @@
 import React from 'react';
 import { NextPage } from 'next';
-import { useContext } from 'react';
-import UserContext from '../context/UserContext';
+import { useUserContext } from '../context/UserContext';
 
 const Index: NextPage = () => {
-	const { userData } = useContext(UserContext);
+	const { userData } = useUserContext();
 
 	return (
 		<div className='text-3xl font-bold underline'>

@@ -1,9 +1,8 @@
 import { NextComponentType } from 'next';
-import { useContext } from 'react';
-import UserContext from '../context/UserContext';
+import { useUserContext } from '../context/UserContext';
 
 const Navbar: NextComponentType = () => {
-	const { userData } = useContext(UserContext);
+	const { userData } = useUserContext();
 
 	return (
 		<div className='navbar mb-2 shadow-lg bg-neutral text-neutral-content rounded-box'>
