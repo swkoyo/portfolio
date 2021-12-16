@@ -3,5 +3,6 @@
 	"trailingComma": "none",
 	"tabWidth": 4,
 	"useTabs": true,
-	"quoteProps": "as-needed"
+	"quoteProps": "as-needed",
+	"jsxSingleQuote": true
 }
