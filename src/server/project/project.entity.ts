@@ -1,82 +1,54 @@
-import { Entity, PrimaryKey, Property } from '@mikro-orm/core';
 import {
-	IsNotEmpty,
-	IsString,
-	IsOptional,
-	IsDateString,
-	IsArray,
-	ArrayNotEmpty,
-	IsLowercase
-} from 'class-validator';
+	Entity,
+	PrimaryKey,
+	Property,
+	ManyToMany,
+	Collection
+} from '@mikro-orm/core';
+import { Technology } from '../technology/technology.entity';
 
 @Entity({
 	tableName: 'Projects'
 })
 export class Project {
-	@PrimaryKey()
+	@PrimaryKey({ hidden: true })
 	id!: number;
 
-	@Property()
-	@IsString()
-	@IsNotEmpty()
-	@IsLowercase()
+	@Property({ unique: true })
 	name!: string;
 
 	@Property()
-	@IsString()
-	@IsNotEmpty()
 	description!: string;
 
 	@Property()
-	@IsString()
-	@IsNotEmpty()
 	repo_url!: string;
 
 	@Property()
-	@IsString()
-	@IsOptional()
 	web_url?: string = '';
 
 	@Property()
-	@IsArray()
-	@ArrayNotEmpty()
-	@IsString({ each: true })
-	@IsNotEmpty({ each: true })
-	languages!: string[];
-
-	@Property()
-	@IsArray()
-	@ArrayNotEmpty()
-	@IsString({ each: true })
-	@IsNotEmpty({ each: true })
-	@IsOptional()
-	technologies?: string[] = [];
-
-	@Property()
-	@IsDateString()
 	last_deployed!: Date;
 
-	@Property()
+	@Property({ hidden: true })
 	created_at: Date = new Date();
 
-	@Property()
+	@Property({ hidden: true })
 	updated_at: Date = new Date();
+
+	@ManyToMany(() => Technology)
+	technologies = new Collection<Technology>(this);
 
 	constructor(
 		name: string,
 		description: string,
 		repo_url: string,
 		web_url: string,
-		languages: string[],
-		technologies: string[],
 		last_deployed: Date
 	) {
 		this.name = name;
 		this.description = description;
 		this.repo_url = repo_url;
 		this.web_url = web_url;
-		this.languages = languages;
-		this.technologies = technologies;
 		this.last_deployed = last_deployed;
 	}
 }

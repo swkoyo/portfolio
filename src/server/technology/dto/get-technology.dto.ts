@@ -1,6 +1,6 @@
 import { IsLowercase, IsNotEmpty, IsString } from 'class-validator';
 
-export class GetProjectDto {
+export class GetTechnologyDto {
 	@IsString()
 	@IsNotEmpty()
 	@IsLowercase()

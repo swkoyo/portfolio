@@ -9,12 +9,14 @@ import { AuthModule } from './auth/auth.module';
 import { ProjectModule } from './project/project.module';
 import { UserModule } from './user/user.module';
 import { ViewModule } from './view/view.module';
+import { TechnologyModule } from './technology/technology.module';
 
 import configuration from './config';
 import { nanoid } from 'nanoid';
 import { UserController } from './user/user.controller';
 import { ProjectController } from './project/project.controller';
 import { AuthController } from './auth/auth.controller';
+import { TechnologyController } from './technology/technology.controller';
 
 @Module({
 	imports: [
@@ -23,7 +25,12 @@ import { AuthController } from './auth/auth.controller';
 			load: [configuration]
 		}),
 		LoggerModule.forRoot({
-			forRoutes: [UserController, ProjectController, AuthController],
+			forRoutes: [
+				UserController,
+				ProjectController,
+				AuthController,
+				TechnologyController
+			],
 			pinoHttp: {
 				level: 'trace',
 				genReqId: () => nanoid(),
@@ -64,7 +71,8 @@ import { AuthController } from './auth/auth.controller';
 		ProjectModule,
 		UserModule,
 		AuthModule,
-		ViewModule
+		ViewModule,
+		TechnologyModule
 	],
 	controllers: [AppController],
 	providers: [AppService]
