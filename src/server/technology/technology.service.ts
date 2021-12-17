@@ -1,4 +1,4 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { BadRequestException, Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@mikro-orm/nestjs';
 import { EntityRepository } from '@mikro-orm/postgresql';
 import { Technology } from './technology.entity';
@@ -54,6 +54,12 @@ export class TechnologyService {
 
 	async create(dto: CreateTechnologyDto): Promise<ITechnologyRO> {
 		this.logger.debug('create creating technology %o', dto);
+
+		const existingTech = await this.findOneByName(dto.name);
+
+		if (existingTech) {
+			throw new BadRequestException();
+		}
 
 		const technology = new Technology(dto.name, dto.logo);
 
