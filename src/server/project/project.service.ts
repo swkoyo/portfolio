@@ -22,20 +22,23 @@ export class ProjectService {
 	async findAll(): Promise<IProjectsRO> {
 		this.logger.debug('findAll finding all projects');
 
-		const data = await this.projectRepository.findAll(['technologies']);
+		const projects = await this.projectRepository.findAll(['technologies']);
 
-		return data;
+		this.logger.debug('findOne found projects %o', {
+			count: projects.length
+		});
+
+		return projects;
 	}
 
-	async findOne(projectId: number): Promise<IProjectRO | undefined> {
-		this.logger.debug('findOne finding project %o', { projectId });
+	async findOneByName(name: string): Promise<IProjectRO | undefined> {
+		this.logger.debug('findOneByName finding project %o', { name });
 
-		const project = await this.projectRepository.findOne(
-			{ id: projectId },
-			['technologies']
-		);
+		const project = await this.projectRepository.findOne({ name }, [
+			'technologies'
+		]);
 
-		this.logger.debug('findOne found project %o', project ?? {});
+		this.logger.debug('findOneByName found project %o', project ?? {});
 
 		return project;
 	}
