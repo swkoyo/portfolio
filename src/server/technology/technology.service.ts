@@ -22,7 +22,7 @@ export class TechnologyService {
 		return data;
 	}
 
-	async findOne(name: string): Promise<ITechnologyRO | undefined> {
+	async findOneByName(name: string): Promise<ITechnologyRO | undefined> {
 		this.logger.debug('findOne finding technology %o', { name });
 
 		const technology = await this.technologyRepository.findOne({
