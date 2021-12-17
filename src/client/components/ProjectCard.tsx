@@ -1,5 +1,5 @@
 import { ComponentType } from 'react';
-import { Project } from '../context/PortfolioContext';
+import { Project } from '../models';
 import Link from 'next/link';
 
 interface Props {
@@ -8,7 +8,7 @@ interface Props {
 
 const ProjectCard: ComponentType<Props> = ({ project }) => {
 	return (
-		<Link href={`/portfolio/${project.id}`}>
+		<Link href={`/portfolio/${project.name}`}>
 			<div className='card shadow bg-blue-300 hover:bg-black hover:cursor-pointer'>
 				<div className='card-body'>
 					<h2 className='card-title'>{project.name}</h2>

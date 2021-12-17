@@ -3,19 +3,29 @@ import Layout from '../components/Layout';
 import { AuthProvider } from '../context/AuthContext';
 import { UserProvider } from '../context/UserContext';
 import { PortfolioProvider } from '../context/PortfolioContext';
-import { User, Project } from '../models';
+import { User, Project, Technology } from '../models';
 import '../styles/globals.css';
 
 interface AppProps extends NextAppProps {
 	user: User;
 	projects: Project[];
+	technologies: Technology[];
 }
 
-const MyApp = ({ Component, pageProps, user, projects }: AppProps) => {
+const MyApp = ({
+	Component,
+	pageProps,
+	user,
+	projects,
+	technologies
+}: AppProps) => {
 	return (
 		<AuthProvider>
 			<UserProvider user={user}>
-				<PortfolioProvider projects={projects}>
+				<PortfolioProvider
+					projects={projects}
+					technologies={technologies}
+				>
 					<Layout>
 						<Component {...pageProps} />
 					</Layout>
@@ -31,11 +41,16 @@ MyApp.getInitialProps = async (appContext: AppContext) => {
 	const user = await userRes.json();
 
 	const projectsRes = await fetch('http://localhost:3000/api/projects');
-	const { projects } = await projectsRes.json();
+	const projects = await projectsRes.json();
+
+	const technologiesRes = await fetch(
+		'http://localhost:3000/api/technologies'
+	);
+	const technologies = await technologiesRes.json();
 
 	const appProps = await App.getInitialProps(appContext);
 
-	return { ...appProps, user, projects };
+	return { ...appProps, user, projects, technologies };
 };
 
 export default MyApp;
