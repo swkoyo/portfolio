@@ -1,5 +1,5 @@
 import { Project } from './project.entity';
 
-export type IProjectsRO = Project[];
+export type IProjectRO = Omit<Project, 'created_at' | 'updated_at'>;
 
-export type IProjectRO = Project;
+export type IProjectsRO = IProjectRO[];

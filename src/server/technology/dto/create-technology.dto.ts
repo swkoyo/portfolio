@@ -6,8 +6,6 @@ export class CreateTechnologyDto {
 	@IsLowercase()
 	name: string;
 
-	@IsString()
-	@IsNotEmpty()
 	@IsUrl()
 	logo: string;
 }

@@ -1,8 +1,9 @@
 import App, { AppContext, AppProps as NextAppProps } from 'next/app';
 import Layout from '../components/Layout';
 import { AuthProvider } from '../context/AuthContext';
-import { UserProvider, User } from '../context/UserContext';
-import { PortfolioProvider, Project } from '../context/PortfolioContext';
+import { UserProvider } from '../context/UserContext';
+import { PortfolioProvider } from '../context/PortfolioContext';
+import { User, Project } from '../models';
 import '../styles/globals.css';
 
 interface AppProps extends NextAppProps {

@@ -1,5 +1,8 @@
 import { Technology } from './technology.entity';
 
-export type ITechnologiesRO = Technology[];
+export type ITechnologyRO = Omit<
+	Technology,
+	'id' | 'created_at' | 'updated_at'
+>;
 
-export type ITechnologyRO = Technology;
+export type ITechnologiesRO = ITechnologyRO[];

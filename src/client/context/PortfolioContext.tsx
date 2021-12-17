@@ -1,14 +1,5 @@
 import { createContext, ReactNode, useContext, useState } from 'react';
-
-export interface Project {
-	id: number;
-	name: string;
-	description: string;
-	repo_url: string;
-	web_url?: string;
-	technologies?: string[];
-	last_deployed: Date;
-}
+import { Project } from '../models';
 
 type portfolioContextType = {
 	projectsData?: Project[];

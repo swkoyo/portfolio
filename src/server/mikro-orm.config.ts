@@ -12,7 +12,7 @@ const config: Options = {
 	user: process.env.DATABASE_USER,
 	password: process.env.DATABASE_PASSWORD,
 	dbName: process.env.DATABASE_NAME,
-	entities: ['./dist/**/*.entity.js'],
+	entities: ['./dist/server/**/*.entity.js'],
 	entitiesTs: ['./src/server/**/*.entity.ts'],
 	debug: true,
 	highlighter: new SqlHighlighter(),
