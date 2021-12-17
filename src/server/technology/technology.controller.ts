@@ -1,6 +1,15 @@
-import { Controller, Logger, Get, Post, Body, UseGuards } from '@nestjs/common';
+import {
+	Controller,
+	Logger,
+	Get,
+	Post,
+	Body,
+	UseGuards,
+	Param,
+	NotFoundException
+} from '@nestjs/common';
 import { TechnologyService } from './technology.service';
-import { CreateTechnologyDto } from './dto';
+import { CreateTechnologyDto, GetTechnologyDto } from './dto';
 import { AuthGuard } from '@nestjs/passport';
 
 @Controller('api/technologies')
@@ -12,6 +21,21 @@ export class TechnologyController {
 	@Get()
 	async findAll() {
 		return this.technologyService.findAll();
+	}
+
+	@Get(':name')
+	async findOne(@Param() param: GetTechnologyDto) {
+		const tech = await this.technologyService.findOneByName(param.name);
+
+		if (!tech) {
+			this.logger.error('findOne no tech found %o', {
+				name: param.name
+			});
+
+			throw new NotFoundException();
+		}
+
+		return tech;
 	}
 
 	@Post()
