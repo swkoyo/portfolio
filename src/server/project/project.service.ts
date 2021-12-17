@@ -46,6 +46,12 @@ export class ProjectService {
 	async create(dto: CreateProjectDto): Promise<IProjectRO> {
 		this.logger.debug('create creating project %o', dto);
 
+		const existingProject = await this.findOneByName(dto.name);
+
+		if (existingProject) {
+			throw new BadRequestException();
+		}
+
 		if (dto.technologies.length > 0) {
 			for (const technology of dto.technologies) {
 				const tech = await this.technologyService.findOneByName(
