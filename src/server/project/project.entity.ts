@@ -3,8 +3,7 @@ import {
 	PrimaryKey,
 	Property,
 	ManyToMany,
-	Collection,
-	wrap
+	Collection
 } from '@mikro-orm/core';
 import { Technology } from '../technology/technology.entity';
 
@@ -12,7 +11,7 @@ import { Technology } from '../technology/technology.entity';
 	tableName: 'Projects'
 })
 export class Project {
-	@PrimaryKey()
+	@PrimaryKey({ hidden: true })
 	id!: number;
 
 	@Property({ unique: true })
@@ -37,7 +36,7 @@ export class Project {
 	updated_at: Date = new Date();
 
 	@ManyToMany(() => Technology)
-	technologies: Collection<Technology> = new Collection<Technology>(this);
+	technologies = new Collection<Technology>(this);
 
 	constructor(
 		name: string,
@@ -51,15 +50,5 @@ export class Project {
 		this.repo_url = repo_url;
 		this.web_url = web_url;
 		this.last_deployed = last_deployed;
-	}
-
-	toJSON() {
-		const technologies = [];
-		for (const tech of this.technologies) {
-			technologies.push(wrap(tech).toObject());
-		}
-		const o = wrap(this).toObject();
-		o.technologies = technologies;
-		return o;
 	}
 }
