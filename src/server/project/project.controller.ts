@@ -23,12 +23,14 @@ export class ProjectController {
 		return this.projectService.findAll();
 	}
 
-	@Get(':id')
+	@Get(':name')
 	async findOne(@Param() param: GetProjectDto) {
-		const project = await this.projectService.findOne(param.id);
+		const project = await this.projectService.findOneByName(param.name);
 
 		if (!project) {
-			this.logger.error('findOne no project found %o', { id: param.id });
+			this.logger.error('findOne no project found %o', {
+				name: param.name
+			});
 
 			throw new NotFoundException();
 		}
@@ -38,7 +40,7 @@ export class ProjectController {
 
 	@Post()
 	@UseGuards(AuthGuard('jwt'))
-	async postProjects(@Body() body: CreateProjectDto) {
+	async create(@Body() body: CreateProjectDto) {
 		return this.projectService.create(body);
 	}
 }
