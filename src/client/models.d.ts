@@ -1,12 +1,5 @@
-interface BaseModel {
-	id: number;
-	created_at: Date;
-	updated_at: Date;
-}
-
-export interface User extends BaseModel {
+export interface User {
 	email: string;
-	password: string;
 	first_name: string;
 	last_name: string;
 	tagline: string;
@@ -14,17 +7,17 @@ export interface User extends BaseModel {
 	full_name: string;
 }
 
-export interface Project extends BaseModel {
+export interface Project {
 	name: string;
 	description: string;
 	repo_url: string;
 	web_url: string;
 	last_deployed: Date;
-	technologies: Technology[];
+	technologies?: Technology[];
 }
 
-export interface Technology extends BaseModel {
+export interface Technology {
 	name: string;
 	logo: string;
-	projects: Project[];
+	projects?: Project[];
 }
