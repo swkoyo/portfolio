@@ -1,5 +1,6 @@
 import { User } from './user.entity';
 
-export interface IUserRO extends Partial<User> {
-	password?: string;
-}
+export type IUserRO = Omit<
+	User,
+	'id' | 'password' | 'created_at' | 'updated_at'
+>;
