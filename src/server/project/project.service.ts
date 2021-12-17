@@ -57,7 +57,7 @@ export class ProjectService {
 		await this.projectRepository.persist(project);
 
 		for (const technology of dto.technologies) {
-			const tech = await this.technologyService.findOne(technology);
+			const tech = await this.technologyService.findOneByName(technology);
 			project.technologies.add(tech as Technology);
 			tech.projects.add(project);
 

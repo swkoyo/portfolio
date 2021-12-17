@@ -17,17 +17,35 @@ export class TechnologyService {
 	async findAll(): Promise<ITechnologiesRO> {
 		this.logger.debug('findAll finding all technologies');
 
-		const data = await this.technologyRepository.findAll(['projects']);
+		const techs = await this.technologyRepository.findAll({
+			populate: ['projects'],
+			fields: ['name', 'logo', 'projects.name', 'projects.description']
+		});
 
-		return data;
+		this.logger.debug('findOne found technologies %o', {
+			count: techs.length
+		});
+
+		return techs;
 	}
 
 	async findOneByName(name: string): Promise<ITechnologyRO | undefined> {
 		this.logger.debug('findOne finding technology %o', { name });
 
-		const technology = await this.technologyRepository.findOne({
-			name
-		});
+		const technology = await this.technologyRepository.findOne(
+			{
+				name
+			},
+			{
+				populate: ['projects'],
+				fields: [
+					'name',
+					'logo',
+					'projects.name',
+					'projects.description'
+				]
+			}
+		);
 
 		this.logger.debug('findOne found technology %o', technology ?? {});
 

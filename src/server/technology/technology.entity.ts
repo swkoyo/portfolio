@@ -35,10 +35,4 @@ export class Technology {
 		this.name = name;
 		this.logo = logo;
 	}
-
-	toJSON() {
-		const o = wrap(this).toObject();
-		o.projects = o.projects.map((project) => pick(project, ['name']));
-		return o;
-	}
 }
