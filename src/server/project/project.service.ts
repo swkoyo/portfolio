@@ -1,4 +1,4 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { BadRequestException, Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@mikro-orm/nestjs';
 import { EntityRepository } from '@mikro-orm/postgresql';
 import { Project } from './project.entity';
@@ -45,6 +45,18 @@ export class ProjectService {
 
 	async create(dto: CreateProjectDto): Promise<IProjectRO> {
 		this.logger.debug('create creating project %o', dto);
+
+		if (dto.technologies.length > 0) {
+			for (const technology of dto.technologies) {
+				const tech = await this.technologyService.findOneByName(
+					technology
+				);
+
+				if (!tech) {
+					throw new BadRequestException();
+				}
+			}
+		}
 
 		const project = new Project(
 			dto.name,
