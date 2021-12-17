@@ -35,7 +35,8 @@ export const PortfolioProvider = ({
 	technologies
 }: Props) => {
 	const [projectsData, setProjectsData] = useState<Project[]>(projects);
-	const [technologiesData, setTechnologiesData] = useState<Technology[]>(technologies);
+	const [technologiesData, setTechnologiesData] =
+		useState<Technology[]>(technologies);
 
 	const handleProjectsData = (projects: Project[]) => {
 		setProjectsData(projects);
