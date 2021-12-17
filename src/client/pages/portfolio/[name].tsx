@@ -7,9 +7,9 @@ const Project: NextPage = () => {
 	const router = useRouter();
 	const { projectsData } = usePortfolioContext();
 
-	const id = parseInt(router.query.id as string);
+	const name = router.query.name;
 
-	const project = projectsData.find((project) => project.id === id);
+	const project = projectsData.find((project) => project.name === name);
 
 	return (
 		<div className='container mx-auto'>

@@ -1,8 +1,5 @@
 import { Project } from './project.entity';
 
-export interface IProjectsRO {
-	count: number;
-	projects: Project[];
-}
+export type IProjectRO = Omit<Project, 'id' | 'created_at' | 'updated_at'>;
 
-export type IProjectRO = Project;
+export type IProjectsRO = IProjectRO[];

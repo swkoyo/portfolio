@@ -1,13 +1,5 @@
 import { createContext, ReactNode, useContext, useState } from 'react';
-
-export interface User {
-	id: number;
-	email: string;
-	first_name: string;
-	last_name: string;
-	tagline: string;
-	profile: string;
-}
+import { User } from '../models';
 
 type userContextType = {
 	userData?: User;
