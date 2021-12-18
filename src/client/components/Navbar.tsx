@@ -1,10 +1,12 @@
 import { ComponentType } from 'react';
 import { useUserContext } from '../context/UserContext';
+import { useAuthContext } from '../context/AuthContext';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
 const Navbar: ComponentType = () => {
 	const { userData } = useUserContext();
+	const { auth, logout } = useAuthContext();
 	const router = useRouter();
 
 	return (
@@ -48,7 +50,22 @@ const Navbar: ComponentType = () => {
 					</Link>
 				</div>
 			</div>
-			<div className='navbar-end' />
+			<div className='px-2 mx-2 navbar-end'>
+				{auth ? (
+					<a
+						className='btn btn-sm rounded-btn btn-error text-white'
+						onClick={() => logout()}
+					>
+						Logout
+					</a>
+				) : (
+					<Link href='/login'>
+						<a className='btn btn-sm rounded-btn btn-primary text-white'>
+							Login
+						</a>
+					</Link>
+				)}
+			</div>
 		</div>
 	);
 };
