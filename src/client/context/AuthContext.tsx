@@ -33,7 +33,7 @@ export const AuthProvider = ({ children, authenticated }: Props) => {
 	};
 
 	const logout = () => {
-		cookieCutter.set('token');
+		cookieCutter.set('token', null, { expires: new Date(0) });
 		setAuth(false);
 	};
 
