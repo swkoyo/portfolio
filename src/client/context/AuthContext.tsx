@@ -21,10 +21,11 @@ export const useAuthContext = () => {
 
 type Props = {
 	children: ReactNode;
+	authenticated: boolean;
 };
 
-export const AuthProvider = ({ children }: Props) => {
-	const [auth, setAuth] = useState<boolean>(null);
+export const AuthProvider = ({ children, authenticated }: Props) => {
+	const [auth, setAuth] = useState<boolean>(authenticated);
 
 	const login = (token: string) => {
 		cookieCutter.set('token', token);
