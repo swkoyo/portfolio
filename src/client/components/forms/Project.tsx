@@ -1,6 +1,9 @@
 import { ComponentType } from 'react';
 import { Formik, Field, Form, FormikHelpers } from 'formik';
 import { Project } from '../../models';
+import cookieCutter from 'cookie-cutter';
+import { usePortfolioContext } from '../../context/PortfolioContext';
+import Select from 'react-select';
 
 type NewProjectValues = Project;
 
@@ -8,7 +11,26 @@ interface Props {
 	handleShow: (data: boolean) => void;
 }
 
+const postProject = async (values: NewProjectValues) => {
+	const res = await fetch('http://localhost:3000/api/projects', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+			authorization: `Bearer ${cookieCutter.get('token')}`
+		},
+		body: JSON.stringify(values)
+	});
+	const data = await res.json();
+	return data;
+};
+
 const ProjectForm: ComponentType<Props> = (props) => {
+	const { projectsData, technologiesData, handleProjectsData } =
+		usePortfolioContext();
+	const options = technologiesData.map((tech) => ({
+		value: tech.name,
+		label: tech.name
+	}));
 	return (
 		<Formik
 			initialValues={{
@@ -18,90 +40,78 @@ const ProjectForm: ComponentType<Props> = (props) => {
 				web_url: '',
 				technologies: []
 			}}
-			onSubmit={(
+			onSubmit={async (
 				values: NewProjectValues,
 				{ setSubmitting, resetForm }: FormikHelpers<NewProjectValues>
 			) => {
-				console.log('submit');
-				// setTimeout(async () => {
-				// 	const res = await fetch(
-				// 		'http://localhost:3000/api/auth/login',
-				// 		{
-				// 			method: 'POST',
-				// 			headers: {
-				// 				'Content-Type':
-				// 					'application/json'
-				// 			},
-				// 			body: JSON.stringify({
-				// 				email: userData.email,
-				// 				...values
-				// 			})
-				// 		}
-				// 	);
-				// 	const data = await res.json();
-
-				// 	if (data.access_token) {
-				// 		login(data.access_token);
-				// 	}
 				alert(JSON.stringify(values));
+				const data = await postProject(values);
+				handleProjectsData([...projectsData, data]);
 				setSubmitting(false);
 				resetForm();
-				// props.handleShow(false);
-				// }, 500);
 			}}
 			onReset={() => {
 				console.log('ehlol');
 				props.handleShow(false);
 			}}
 		>
-			<Form className='form-control'>
-				<Field
-					className='input'
-					id='name'
-					name='name'
-					placeholder='name'
-					type='text'
-				/>
+			{(props) => (
+				<Form className='form-control'>
+					<Field
+						className='input'
+						id='name'
+						name='name'
+						placeholder='name'
+						as='input'
+					/>
 
-				<Field
-					className='input'
-					id='description'
-					name='description'
-					placeholder='description'
-					type='text'
-				/>
+					<Field
+						className='textarea h-24'
+						id='description'
+						name='description'
+						placeholder='description'
+						as='textarea'
+					/>
 
-				<Field
-					className='input'
-					id='repo_url'
-					name='repo_url'
-					placeholder='repo url'
-					type='text'
-				/>
+					<Field
+						className='input'
+						id='repo_url'
+						name='repo_url'
+						placeholder='repo url'
+						as='input'
+					/>
 
-				<Field
-					className='input'
-					id='web_url'
-					name='web_url'
-					placeholder='web url'
-					type='text'
-				/>
+					<Field
+						className='input'
+						id='web_url'
+						name='web_url'
+						placeholder='web url'
+						as='input'
+					/>
 
-				<Field
-					className='input'
-					id='technologies'
-					name='technologies'
-					placeholder='technologies'
-					type='text'
-				/>
+					<Select
+						className='w-full'
+						id='technologies'
+						name='technologies'
+						instanceId='technologies'
+						isMulti={true}
+						onChange={(v) =>
+							props.setFieldValue(
+								'technologies',
+								v.map((tech) => tech.value)
+							)
+						}
+						options={options}
+					/>
 
-				<button type='submit' className='btn btn-primary'>
-					Login
-				</button>
-				<button type='reset' className='btn btn-primary'>
-					Cancel
-				</button>
-			</Form>
+					<button type='submit' className='btn btn-primary'>
+						Create
+					</button>
+					<button type='reset' className='btn btn-primary'>
+						Cancel
+					</button>
+				</Form>
+			)}
 		</Formik>
 	);
 };
