@@ -1,0 +1,77 @@
+import { ComponentType } from 'react';
+import { Formik, Field, Form, FormikHelpers } from 'formik';
+import { Technology } from '../../models';
+import cookieCutter from 'cookie-cutter';
+import { usePortfolioContext } from '../../context/PortfolioContext';
+
+type NewTechnologyValues = Technology;
+
+interface Props {
+	handleShow: (data: boolean) => void;
+}
+
+const postTechnology = async (values: NewTechnologyValues) => {
+	const res = await fetch('http://localhost:3000/api/technologies', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+			authorization: `Bearer ${cookieCutter.get('token')}`
+		},
+		body: JSON.stringify(values)
+	});
+	const data = await res.json();
+	return data;
+};
+
+const TechnologyForm: ComponentType<Props> = (props) => {
+	const { technologiesData, handleTechnologiesData } = usePortfolioContext();
+	return (
+		<Formik
+			initialValues={{
+				name: '',
+				logo: ''
+			}}
+			onSubmit={async (
+				values: NewTechnologyValues,
+				{ setSubmitting, resetForm }: FormikHelpers<NewTechnologyValues>
+			) => {
+				alert(JSON.stringify(values));
+				const data = await postTechnology(values);
+				handleTechnologiesData([...technologiesData, data]);
+				setSubmitting(false);
+				resetForm();
+			}}
+			onReset={() => {
+				console.log('ehlol');
+				props.handleShow(false);
+			}}
+		>
+			<Form className='form-control'>
+				<Field
+					className='input'
+					id='name'
+					name='name'
+					placeholder='name'
+					as='input'
+				/>
+
+				<Field
+					className='input'
+					id='logo'
+					name='logo'
+					placeholder='logo'
+					as='input'
+				/>
+
+				<button type='submit' className='btn btn-primary'>
+					Create
+				</button>
+				<button type='reset' className='btn btn-primary'>
+					Cancel
+				</button>
+			</Form>
+		</Formik>
+	);
+};
+
+export default TechnologyForm;
