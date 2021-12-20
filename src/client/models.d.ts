@@ -12,7 +12,6 @@ export interface Project {
 	description: string;
 	repo_url: string;
 	web_url: string;
-	last_deployed: Date;
 	technologies?: Technology[];
 }
 

@@ -3,9 +3,9 @@ import {
 	IsNotEmpty,
 	IsOptional,
 	IsUrl,
-	IsDateString,
 	IsArray,
-	IsLowercase
+	IsLowercase,
+	IsDate
 } from 'class-validator';
 
 export class CreateProjectDto {
@@ -30,6 +30,6 @@ export class CreateProjectDto {
 	@IsLowercase({ each: true })
 	technologies: string[];
 
-	@IsDateString()
-	last_deployed: Date;
+	@IsDate()
+	last_deployed = new Date();
 }

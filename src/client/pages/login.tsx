@@ -24,7 +24,7 @@ const Login: NextPage = () => {
 		<div className='p-10 card bg-base-200'>
 			<Formik
 				initialValues={{
-					password: 'password'
+					password: ''
 				}}
 				onSubmit={(
 					values: Values,
