@@ -20,21 +20,19 @@ const ProjectsGrid: ComponentType = () => {
 					<ProjectForm handleShow={handleShowFormModal} />
 				</div>
 			</div>
-			<div className='grid grid-cols-3 gap-4'>
-				{auth ? (
-					<div className='card shadow bg-green-300 hover:bg-black hover:cursor-pointer'>
-						<div
-							className='card-body'
-							onClick={() => handleShowFormModal(true)}
-						>
-							Add
-						</div>
+			{auth ? (
+				<div className='card shadow bg-green-300 hover:bg-black hover:cursor-pointer'>
+					<div
+						className='card-body'
+						onClick={() => handleShowFormModal(true)}
+					>
+						Add
 					</div>
-				) : null}
-				{projectsData.map((project, i) => (
-					<ProjectCard key={i} project={project} />
-				))}
-			</div>
+				</div>
+			) : null}
+			{projectsData.map((project, i) => (
+				<ProjectCard key={i} project={project} />
+			))}
 		</>
 	);
 };
