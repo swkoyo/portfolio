@@ -15,7 +15,6 @@ const deleteTechnology = async (name: string) => {
 		{
 			method: 'DELETE',
 			headers: {
-				'Content-Type': 'application/json',
 				authorization: `Bearer ${cookieCutter.get('token')}`
 			}
 		}
