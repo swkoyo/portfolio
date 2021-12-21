@@ -11,7 +11,7 @@ export interface Project {
 	name: string;
 	description: string;
 	repo_url: string;
-	web_url: string;
+	web_url?: string;
 	technologies?: Technology[];
 }
 
