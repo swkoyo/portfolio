@@ -1,7 +1,6 @@
 import { ComponentType } from 'react';
 import { Formik, Field, Form, FormikHelpers } from 'formik';
 import { Project } from '../../models';
-import cookieCutter from 'cookie-cutter';
 import { usePortfolioContext } from '../../context/PortfolioContext';
 import Select from 'react-select';
 import { CreateProjectSchema } from '../forms/Schema';
@@ -12,26 +11,13 @@ interface Props {
 	handleShow: (data: boolean) => void;
 }
 
-const postProject = async (values: NewProjectValues) => {
-	const res = await fetch('http://localhost:3000/api/projects', {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json',
-			authorization: `Bearer ${cookieCutter.get('token')}`
-		},
-		body: JSON.stringify(values)
-	});
-	const data = await res.json();
-	return data;
-};
-
 const ProjectForm: ComponentType<Props> = (props) => {
-	const { projectsData, technologiesData, handleProjectsData } =
-		usePortfolioContext();
+	const { technologiesData, addProject } = usePortfolioContext();
 	const options = technologiesData.map((tech) => ({
 		value: tech.name,
 		label: tech.name
 	}));
+
 	return (
 		<Formik
 			initialValues={{
@@ -46,8 +32,7 @@ const ProjectForm: ComponentType<Props> = (props) => {
 				{ setSubmitting, resetForm }: FormikHelpers<NewProjectValues>
 			) => {
 				alert(JSON.stringify(values));
-				const data = await postProject(values);
-				handleProjectsData([...projectsData, data]);
+				await addProject(values);
 				setSubmitting(false);
 				resetForm();
 			}}

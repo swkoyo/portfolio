@@ -5,21 +5,21 @@ import cookieCutter from 'cookie-cutter';
 type portfolioContextType = {
 	projectsData?: Project[];
 	technologiesData?: Technology[];
-	handleProjectsData: (projects: Project[]) => void;
-	handleTechnologiesData: (technologies: Technology[]) => void;
 	refreshData: () => void;
 	deleteProject: (name: string) => void;
 	deleteTechnology: (name: string) => void;
+	addProject: (project: Project) => void;
+	addTechnology: (technology: Technology) => void;
 };
 
 const portfolioContextDefaultValues: portfolioContextType = {
 	projectsData: [],
 	technologiesData: [],
-	handleProjectsData: () => {},
-	handleTechnologiesData: () => {},
 	refreshData: () => {},
 	deleteProject: () => {},
-	deleteTechnology: () => {}
+	deleteTechnology: () => {},
+	addProject: () => {},
+	addTechnology: () => {}
 };
 
 const PortfolioContext = createContext<portfolioContextType>(
@@ -44,14 +44,6 @@ export const PortfolioProvider = ({
 	const [projectsData, setProjectsData] = useState<Project[]>(projects);
 	const [technologiesData, setTechnologiesData] =
 		useState<Technology[]>(technologies);
-
-	const handleProjectsData = (projects: Project[]) => {
-		setProjectsData(projects);
-	};
-
-	const handleTechnologiesData = (technologies: Technology[]) => {
-		setTechnologiesData(technologies);
-	};
 
 	const refreshData = async () => {
 		const projectsRes = await fetch('http://localhost:3000/api/projects');
@@ -96,14 +88,38 @@ export const PortfolioProvider = ({
 		await refreshData();
 	};
 
+	const addProject = async (project: Project) => {
+		await fetch('http://localhost:3000/api/projects', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				authorization: `Bearer ${cookieCutter.get('token')}`
+			},
+			body: JSON.stringify(project)
+		});
+		await refreshData();
+	};
+
+	const addTechnology = async (technology: Technology) => {
+		await fetch('http://localhost:3000/api/technologies', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				authorization: `Bearer ${cookieCutter.get('token')}`
+			},
+			body: JSON.stringify(technology)
+		});
+		await refreshData();
+	};
+
 	const value = {
 		projectsData,
 		technologiesData,
-		handleProjectsData,
-		handleTechnologiesData,
 		refreshData,
 		deleteProject,
-		deleteTechnology
+		deleteTechnology,
+		addProject,
+		addTechnology
 	};
 
 	return (
