@@ -43,56 +43,65 @@ const ProjectForm: ComponentType<Props> = (props) => {
 			validationSchema={CreateProjectSchema}
 		>
 			{({ setFieldValue, errors, touched }) => (
-				<Form className='form-control'>
+				<Form className='form-control space-y-4'>
 					<Field
-						className='input'
+						className='input border-white'
 						id='name'
 						name='name'
 						placeholder='name'
 						as='input'
 					/>
 					{errors.name && touched.name ? (
-						<div>{errors.name}</div>
+						<div className='text-xs text-red-600'>
+							{errors.name}
+						</div>
 					) : null}
 
 					<Field
-						className='textarea h-24'
+						className='textarea h-24 border-white'
 						id='description'
 						name='description'
 						placeholder='description'
 						as='textarea'
 					/>
 					{errors.description && touched.description ? (
-						<div>{errors.description}</div>
+						<div className='text-xs text-red-600'>
+							{errors.description}
+						</div>
 					) : null}
 
 					<Field
-						className='input'
+						className='input border-white'
 						id='repo_url'
 						name='repo_url'
 						placeholder='repo url'
 						as='input'
 					/>
 					{errors.repo_url && touched.repo_url ? (
-						<div>{errors.repo_url}</div>
+						<div className='text-xs text-red-600'>
+							{errors.repo_url}
+						</div>
 					) : null}
 
 					<Field
-						className='input'
+						className='input border-white'
 						id='web_url'
 						name='web_url'
 						placeholder='web url'
 						as='input'
 					/>
 					{errors.web_url && touched.web_url ? (
-						<div>{errors.web_url}</div>
+						<div className='text-xs text-red-600'>
+							{errors.web_url}
+						</div>
 					) : null}
 
 					<Select
-						className='w-full'
+						className='w-full text-black'
 						id='technologies'
 						name='technologies'
 						instanceId='technologies'
+						placeholder='technologies'
 						isMulti={true}
 						onChange={(v) =>
 							setFieldValue(
@@ -103,13 +112,15 @@ const ProjectForm: ComponentType<Props> = (props) => {
 						options={options}
 					/>
 					{errors.technologies && touched.technologies ? (
-						<div>{errors.technologies}</div>
+						<div className='text-xs text-red-600'>
+							{errors.technologies}
+						</div>
 					) : null}
 
-					<button type='submit' className='btn btn-primary'>
+					<button type='submit' className='btn btn-success'>
 						Create
 					</button>
-					<button type='reset' className='btn btn-primary'>
+					<button type='reset' className='btn btn-error'>
 						Cancel
 					</button>
 				</Form>

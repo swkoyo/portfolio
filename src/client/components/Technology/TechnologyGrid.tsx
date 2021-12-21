@@ -21,19 +21,22 @@ const TechnologyGrid: ComponentType = () => {
 				</div>
 			</div>
 			<div className='grid grid-cols-2 gap-4 bg-neutral h-full rounded-box p-4'>
-				<div>Technologies</div>
+				<div className='col-span-2 uppercase'>Technologies</div>
 				{auth ? (
 					<div
 						key='add'
-						className='btn bg-green-300 col-span-2'
+						className='btn bg-green-800 hover:bg-primary col-span-2 border-none'
 						onClick={() => handelShowFormModal(true)}
 					>
-						add
+						Add
 					</div>
 				) : null}
 				{technologiesData.map((tech, i) => (
-					<div key={i} className='relative mx-auto'>
-						<TechnologyLogo tech={tech} />
+					<div key={i} className='relative'>
+						<div className='flex flex-row space-x-2 items-center'>
+							<TechnologyLogo tech={tech} />
+							<div className='text-xs uppercase'>{tech.name}</div>
+						</div>
 						{auth ? (
 							<div className='absolute top-0 right-0'>
 								<div
