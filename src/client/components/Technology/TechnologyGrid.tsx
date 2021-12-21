@@ -2,6 +2,7 @@ import { ComponentType, useState } from 'react';
 import { usePortfolioContext } from '../../context/PortfolioContext';
 import { useAuthContext } from '../../context/AuthContext';
 import TechnologyForm from './TechnologyForm';
+import TechnologyLogo from './TechnologyLogo';
 
 const TechnologyGrid: ComponentType = () => {
 	const { auth } = useAuthContext();
@@ -31,10 +32,8 @@ const TechnologyGrid: ComponentType = () => {
 					</div>
 				) : null}
 				{technologiesData.map((tech, i) => (
-					<div key={i} className='relative'>
-						<div className='btn btn-primary w-full'>
-							{tech.name}
-						</div>
+					<div key={i} className='relative mx-auto'>
+						<TechnologyLogo tech={tech} />
 						{auth ? (
 							<div className='absolute top-0 right-0'>
 								<div
