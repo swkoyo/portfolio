@@ -8,13 +8,26 @@ const TechnologyGrid: ComponentType = () => {
 	const { auth } = useAuthContext();
 	const { technologiesData, deleteTechnology } = usePortfolioContext();
 	const [showFormModal, setShowFormModal] = useState(false);
+	const [showUpdateModal, setShowUpdateModal] = useState(null);
 
 	const handelShowFormModal = (show: boolean) => {
 		setShowFormModal(show);
 	};
 
+	const closeModal = () => {
+		setShowUpdateModal(null);
+	};
+
 	return (
 		<>
+			<div className={`modal ${showUpdateModal ? 'modal-open' : null}`}>
+				<div className='modal-box'>
+					<TechnologyForm
+						handleShow={closeModal}
+						technology={showUpdateModal}
+					/>
+				</div>
+			</div>
 			<div className={`modal ${showFormModal ? 'modal-open' : null}`}>
 				<div className='modal-box'>
 					<TechnologyForm handleShow={handelShowFormModal} />
@@ -39,6 +52,12 @@ const TechnologyGrid: ComponentType = () => {
 						</div>
 						{auth ? (
 							<div className='absolute top-0 right-0'>
+								<div
+									className='btn btn-xs btn-circle btn-primary'
+									onClick={() => setShowUpdateModal(tech)}
+								>
+									Edit
+								</div>
 								<div
 									className='btn btn-xs btn-circle btn-error'
 									onClick={() => deleteTechnology(tech.name)}
