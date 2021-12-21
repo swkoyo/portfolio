@@ -40,7 +40,7 @@ const Navbar: ComponentType = () => {
 					</Link>
 					<Link href='/'>
 						<a className='btn btn-ghost btn-sm rounded-btn'>
-							About
+							Resume
 						</a>
 					</Link>
 					<Link href='/'>
