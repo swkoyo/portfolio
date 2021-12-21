@@ -1,5 +1,6 @@
 import { createContext, ReactNode, useContext, useState } from 'react';
 import { Project, Technology } from '../models';
+import cookieCutter from 'cookie-cutter';
 
 type portfolioContextType = {
 	projectsData?: Project[];
@@ -7,6 +8,8 @@ type portfolioContextType = {
 	handleProjectsData: (projects: Project[]) => void;
 	handleTechnologiesData: (technologies: Technology[]) => void;
 	refreshData: () => void;
+	deleteProject: (name: string) => void;
+	deleteTechnology: (name: string) => void;
 };
 
 const portfolioContextDefaultValues: portfolioContextType = {
@@ -14,7 +17,9 @@ const portfolioContextDefaultValues: portfolioContextType = {
 	technologiesData: [],
 	handleProjectsData: () => {},
 	handleTechnologiesData: () => {},
-	refreshData: () => {}
+	refreshData: () => {},
+	deleteProject: () => {},
+	deleteTechnology: () => {}
 };
 
 const PortfolioContext = createContext<portfolioContextType>(
@@ -61,12 +66,44 @@ export const PortfolioProvider = ({
 		setTechnologiesData(technologies);
 	};
 
+	const deleteProject = async (name: string) => {
+		await fetch(
+			`http://localhost:3000/api/projects?name=${encodeURIComponent(
+				name
+			)}`,
+			{
+				method: 'DELETE',
+				headers: {
+					authorization: `Bearer ${cookieCutter.get('token')}`
+				}
+			}
+		);
+		await refreshData();
+	};
+
+	const deleteTechnology = async (name: string) => {
+		await fetch(
+			`http://localhost:3000/api/technologies?name=${encodeURIComponent(
+				name
+			)}`,
+			{
+				method: 'DELETE',
+				headers: {
+					authorization: `Bearer ${cookieCutter.get('token')}`
+				}
+			}
+		);
+		await refreshData();
+	};
+
 	const value = {
 		projectsData,
 		technologiesData,
 		handleProjectsData,
 		handleTechnologiesData,
-		refreshData
+		refreshData,
+		deleteProject,
+		deleteTechnology
 	};
 
 	return (

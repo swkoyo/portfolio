@@ -1,35 +1,15 @@
 import { ComponentType, useState } from 'react';
 import { usePortfolioContext } from '../../context/PortfolioContext';
 import { useAuthContext } from '../../context/AuthContext';
-import cookieCutter from 'cookie-cutter';
 import TechnologyForm from './TechnologyForm';
-
-const deleteTechnology = async (name: string) => {
-	await fetch(
-		`http://localhost:3000/api/technologies?name=${encodeURIComponent(
-			name
-		)}`,
-		{
-			method: 'DELETE',
-			headers: {
-				authorization: `Bearer ${cookieCutter.get('token')}`
-			}
-		}
-	);
-};
 
 const TechnologyCarousel: ComponentType = () => {
 	const { auth } = useAuthContext();
-	const { technologiesData, refreshData } = usePortfolioContext();
+	const { technologiesData, deleteTechnology } = usePortfolioContext();
 	const [showFormModal, setShowFormModal] = useState(false);
 
 	const handelShowFormModal = (show: boolean) => {
 		setShowFormModal(show);
-	};
-
-	const handleDeleteTech = async (name) => {
-		await deleteTechnology(name);
-		await refreshData();
 	};
 
 	return (
@@ -56,7 +36,7 @@ const TechnologyCarousel: ComponentType = () => {
 							<div className='absolute top-0 right-0'>
 								<div
 									className='btn btn-xs btn-circle btn-error'
-									onClick={() => handleDeleteTech(tech.name)}
+									onClick={() => deleteTechnology(tech.name)}
 								>
 									X
 								</div>
