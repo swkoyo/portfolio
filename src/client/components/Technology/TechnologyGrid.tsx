@@ -20,6 +20,7 @@ const TechnologyGrid: ComponentType = () => {
 				</div>
 			</div>
 			<div className='grid grid-cols-2 gap-4 bg-neutral h-full rounded-box p-4'>
+				<div>Technologies</div>
 				{auth ? (
 					<div
 						key='add'
