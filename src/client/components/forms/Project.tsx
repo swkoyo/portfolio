@@ -4,6 +4,7 @@ import { Project } from '../../models';
 import cookieCutter from 'cookie-cutter';
 import { usePortfolioContext } from '../../context/PortfolioContext';
 import Select from 'react-select';
+import { CreateProjectSchema } from './Schema';
 
 type NewProjectValues = Project;
 
@@ -54,8 +55,9 @@ const ProjectForm: ComponentType<Props> = (props) => {
 				console.log('ehlol');
 				props.handleShow(false);
 			}}
+			validationSchema={CreateProjectSchema}
 		>
-			{(props) => (
+			{({ setFieldValue, errors, touched }) => (
 				<Form className='form-control'>
 					<Field
 						className='input'
@@ -64,6 +66,9 @@ const ProjectForm: ComponentType<Props> = (props) => {
 						placeholder='name'
 						as='input'
 					/>
+					{errors.name && touched.name ? (
+						<div>{errors.name}</div>
+					) : null}
 
 					<Field
 						className='textarea h-24'
@@ -72,6 +77,9 @@ const ProjectForm: ComponentType<Props> = (props) => {
 						placeholder='description'
 						as='textarea'
 					/>
+					{errors.description && touched.description ? (
+						<div>{errors.description}</div>
+					) : null}
 
 					<Field
 						className='input'
@@ -80,6 +88,9 @@ const ProjectForm: ComponentType<Props> = (props) => {
 						placeholder='repo url'
 						as='input'
 					/>
+					{errors.repo_url && touched.repo_url ? (
+						<div>{errors.repo_url}</div>
+					) : null}
 
 					<Field
 						className='input'
@@ -88,6 +99,9 @@ const ProjectForm: ComponentType<Props> = (props) => {
 						placeholder='web url'
 						as='input'
 					/>
+					{errors.web_url && touched.web_url ? (
+						<div>{errors.web_url}</div>
+					) : null}
 
 					<Select
 						className='w-full'
@@ -96,13 +110,16 @@ const ProjectForm: ComponentType<Props> = (props) => {
 						instanceId='technologies'
 						isMulti={true}
 						onChange={(v) =>
-							props.setFieldValue(
+							setFieldValue(
 								'technologies',
 								v.map((tech) => tech.value)
 							)
 						}
 						options={options}
 					/>
+					{errors.technologies && touched.technologies ? (
+						<div>{errors.technologies}</div>
+					) : null}
 
 					<button type='submit' className='btn btn-primary'>
 						Create
