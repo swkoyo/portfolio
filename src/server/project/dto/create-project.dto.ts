@@ -7,10 +7,12 @@ import {
 	IsLowercase,
 	IsDate
 } from 'class-validator';
+import { Transform } from 'class-transformer';
 
 export class CreateProjectDto {
 	@IsString()
 	@IsNotEmpty()
+	@Transform(({ value }) => value.trim().toLowerCase())
 	@IsLowercase()
 	name: string;
 
@@ -27,6 +29,8 @@ export class CreateProjectDto {
 
 	@IsArray()
 	@IsString({ each: true })
+	@IsNotEmpty({ each: true })
+	@Transform(({ value }) => value.map((v) => v.trim().toLowerCase()))
 	@IsLowercase({ each: true })
 	technologies: string[];
 
