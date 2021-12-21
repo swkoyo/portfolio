@@ -1,7 +1,7 @@
 import { ComponentType } from 'react';
 import { Formik, Field, Form, FormikHelpers } from 'formik';
 import { useUserContext, UpdateUser } from '../../context/UserContext';
-import { UpdateUserSchema } from '../forms/Schema';
+import { UpdateUserSchema } from '../../utils/Schema';
 
 interface Props {
 	handleShow: (data: boolean) => void;

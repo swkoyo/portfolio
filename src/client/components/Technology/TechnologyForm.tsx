@@ -2,7 +2,7 @@ import { ComponentType } from 'react';
 import { Formik, Field, Form, FormikHelpers } from 'formik';
 import { Technology } from '../../models';
 import { usePortfolioContext } from '../../context/PortfolioContext';
-import { CreateTechnologySchema } from '../forms/Schema';
+import { CreateTechnologySchema } from '../../utils/Schema';
 
 type NewTechnologyValues = Technology;
 
