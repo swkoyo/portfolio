@@ -3,7 +3,7 @@ import { Formik, Field, Form, FormikHelpers } from 'formik';
 import { Technology } from '../../models';
 import cookieCutter from 'cookie-cutter';
 import { usePortfolioContext } from '../../context/PortfolioContext';
-import { CreateTechnologySchema } from './Schema';
+import { CreateTechnologySchema } from '../forms/Schema';
 
 type NewTechnologyValues = Technology;
 
