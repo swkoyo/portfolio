@@ -6,13 +6,15 @@ type portfolioContextType = {
 	technologiesData?: Technology[];
 	handleProjectsData: (projects: Project[]) => void;
 	handleTechnologiesData: (technologies: Technology[]) => void;
+	refreshData: () => void;
 };
 
 const portfolioContextDefaultValues: portfolioContextType = {
 	projectsData: [],
 	technologiesData: [],
 	handleProjectsData: () => {},
-	handleTechnologiesData: () => {}
+	handleTechnologiesData: () => {},
+	refreshData: () => {}
 };
 
 const PortfolioContext = createContext<portfolioContextType>(
@@ -46,11 +48,25 @@ export const PortfolioProvider = ({
 		setTechnologiesData(technologies);
 	};
 
+	const refreshData = async () => {
+		const projectsRes = await fetch('http://localhost:3000/api/projects');
+		const projects = await projectsRes.json();
+
+		const technologiesRes = await fetch(
+			'http://localhost:3000/api/technologies'
+		);
+		const technologies = await technologiesRes.json();
+
+		setProjectsData(projects);
+		setTechnologiesData(technologies);
+	};
+
 	const value = {
 		projectsData,
 		technologiesData,
 		handleProjectsData,
-		handleTechnologiesData
+		handleTechnologiesData,
+		refreshData
 	};
 
 	return (

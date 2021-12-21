@@ -5,9 +5,24 @@ import { useAuthContext } from '../../context/AuthContext';
 import ProjectCard from '../../components/ProjectCard';
 import ProjectForm from '../../components/forms/Project';
 import TechnologyForm from '../../components/forms/Technology';
+import cookieCutter from 'cookie-cutter';
+
+const deleteTechnology = async (name: string) => {
+	await fetch(
+		`http://localhost:3000/api/technologies?name=${encodeURIComponent(name)}`,
+		{
+			method: 'DELETE',
+			headers: {
+				'Content-Type': 'application/json',
+				authorization: `Bearer ${cookieCutter.get('token')}`
+			}
+		}
+	);
+};
 
 const Portfolio: NextPage = () => {
-	const { projectsData, technologiesData } = usePortfolioContext();
+	const { projectsData, technologiesData, refreshData } =
+		usePortfolioContext();
 	const [show, setShow] = useState(false);
 	const [showTech, setShowTech] = useState(false);
 	const { auth } = useAuthContext();
@@ -18,6 +33,11 @@ const Portfolio: NextPage = () => {
 
 	const handleShowTech = (show) => {
 		setShowTech(show);
+	};
+
+	const handleDeleteTech = async (name) => {
+		await deleteTechnology(name);
+		await refreshData();
 	};
 
 	return (
@@ -43,8 +63,18 @@ const Portfolio: NextPage = () => {
 					</div>
 				) : null}
 				{technologiesData.map((tech, i) => (
-					<div key={i} className='carousel-item'>
+					<div key={i} className='carousel-item relative'>
 						<div className='btn btn-primary'>{tech.name}</div>
+						{auth ? (
+							<div className='absolute top-0 right-0'>
+								<div
+									className='btn btn-xs btn-circle btn-error'
+									onClick={() => handleDeleteTech(tech.name)}
+								>
+									X
+								</div>
+							</div>
+						) : null}
 					</div>
 				))}
 			</div>
