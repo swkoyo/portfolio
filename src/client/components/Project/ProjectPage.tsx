@@ -9,10 +9,10 @@ interface Props {
 const ProjectPage: ComponentType<Props> = ({ project }) => {
 	return (
 		<div className='grid grid-cols-3 gap-4'>
-			<div className='text-center text-8xl uppercase col-span-2'>
+			<div className='text-8xl text-center uppercase col-span-2'>
 				{project.name}
 			</div>
-			<div className='row-span-2'>
+			<div className='col-span-1 row-span-2'>
 				<div className='grid grid-cols-2 gap-4 bg-neutral h-full rounded-box p-4'>
 					<div className='col-span-2 uppercase'>Technologies</div>
 					{project.technologies.map((tech, i) => (
@@ -27,7 +27,10 @@ const ProjectPage: ComponentType<Props> = ({ project }) => {
 					))}
 				</div>
 			</div>
-			<div className='text-center col-span-2'>{project.description}</div>
+			<div className='text-center col-span-2'>Links</div>
+			<div className='text-center col-span-3 mt-4'>
+				{project.description}
+			</div>
 		</div>
 	);
 };
