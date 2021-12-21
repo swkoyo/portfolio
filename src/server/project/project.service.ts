@@ -1,4 +1,9 @@
-import { BadRequestException, Injectable, Logger } from '@nestjs/common';
+import {
+	BadRequestException,
+	Injectable,
+	Logger,
+	NotFoundException
+} from '@nestjs/common';
 import { InjectRepository } from '@mikro-orm/nestjs';
 import { EntityRepository } from '@mikro-orm/postgresql';
 import { Project } from './project.entity';
@@ -39,6 +44,20 @@ export class ProjectService {
 		]);
 
 		this.logger.debug('findOneByName found project %o', project ?? {});
+
+		return project;
+	}
+
+	async removeByName(name: string): Promise<IProjectRO> {
+		this.logger.debug('removeByName removing project %o', { name });
+
+		const project = await this.findOneByName(name);
+
+		if (!project) {
+			throw new NotFoundException();
+		}
+
+		await this.projectRepository.removeAndFlush(project);
 
 		return project;
 	}
