@@ -1,12 +1,14 @@
 import React from 'react';
 import { NextPage } from 'next';
-import ProjectsGrid from '../../components/Project/ProjectsGrid';
-import TechnologyCarousel from '../../components/Technology/TechnologyCarousel';
+import ProjectsGrid from '../../components/Project/ProjectsItems';
+import TechnologyGrid from '../../components/Technology/TechnologyGrid';
 
 const Portfolio: NextPage = () => {
 	return (
-		<div className='container mx-auto'>
-			<TechnologyCarousel />
+		<div className='grid grid-cols-3 gap-4'>
+			<div className='row-span-2'>
+				<TechnologyGrid />
+			</div>
 			<ProjectsGrid />
 		</div>
 	);

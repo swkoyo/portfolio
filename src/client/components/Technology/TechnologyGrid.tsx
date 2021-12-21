@@ -3,7 +3,7 @@ import { usePortfolioContext } from '../../context/PortfolioContext';
 import { useAuthContext } from '../../context/AuthContext';
 import TechnologyForm from './TechnologyForm';
 
-const TechnologyCarousel: ComponentType = () => {
+const TechnologyGrid: ComponentType = () => {
 	const { auth } = useAuthContext();
 	const { technologiesData, deleteTechnology } = usePortfolioContext();
 	const [showFormModal, setShowFormModal] = useState(false);
@@ -19,19 +19,21 @@ const TechnologyCarousel: ComponentType = () => {
 					<TechnologyForm handleShow={handelShowFormModal} />
 				</div>
 			</div>
-			<div className='w-full p-4 space-x-4 carousel carousel-center bg-neutral rounded-box'>
+			<div className='grid grid-cols-2 gap-4 bg-neutral h-full rounded-box p-4'>
 				{auth ? (
 					<div
 						key='add'
-						className='carousel-item btn bg-green-300'
+						className='btn bg-green-300 col-span-2'
 						onClick={() => handelShowFormModal(true)}
 					>
 						add
 					</div>
 				) : null}
 				{technologiesData.map((tech, i) => (
-					<div key={i} className='carousel-item relative'>
-						<div className='btn btn-primary'>{tech.name}</div>
+					<div key={i} className='relative'>
+						<div className='btn btn-primary w-full'>
+							{tech.name}
+						</div>
 						{auth ? (
 							<div className='absolute top-0 right-0'>
 								<div
@@ -49,4 +51,4 @@ const TechnologyCarousel: ComponentType = () => {
 	);
 };
 
-export default TechnologyCarousel;
+export default TechnologyGrid;
