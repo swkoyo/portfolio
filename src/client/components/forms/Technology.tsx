@@ -3,6 +3,7 @@ import { Formik, Field, Form, FormikHelpers } from 'formik';
 import { Technology } from '../../models';
 import cookieCutter from 'cookie-cutter';
 import { usePortfolioContext } from '../../context/PortfolioContext';
+import { CreateTechnologySchema } from './Schema';
 
 type NewTechnologyValues = Technology;
 
@@ -45,31 +46,40 @@ const TechnologyForm: ComponentType<Props> = (props) => {
 				console.log('ehlol');
 				props.handleShow(false);
 			}}
+			validationSchema={CreateTechnologySchema}
 		>
-			<Form className='form-control'>
-				<Field
-					className='input'
-					id='name'
-					name='name'
-					placeholder='name'
-					as='input'
-				/>
+			{({ errors, touched }) => (
+				<Form className='form-control'>
+					<Field
+						className='input'
+						id='name'
+						name='name'
+						placeholder='name'
+						as='input'
+					/>
+					{errors.name && touched.name ? (
+						<div>{errors.name}</div>
+					) : null}
 
-				<Field
-					className='input'
-					id='logo'
-					name='logo'
-					placeholder='logo'
-					as='input'
-				/>
+					<Field
+						className='input'
+						id='logo'
+						name='logo'
+						placeholder='logo'
+						as='input'
+					/>
+					{errors.logo && touched.logo ? (
+						<div>{errors.logo}</div>
+					) : null}
 
-				<button type='submit' className='btn btn-primary'>
-					Create
-				</button>
-				<button type='reset' className='btn btn-primary'>
-					Cancel
-				</button>
-			</Form>
+					<button type='submit' className='btn btn-primary'>
+						Create
+					</button>
+					<button type='reset' className='btn btn-primary'>
+						Cancel
+					</button>
+				</Form>
+			)}
 		</Formik>
 	);
 };

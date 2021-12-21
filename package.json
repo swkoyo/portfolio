@@ -52,7 +52,8 @@
 		"react-select": "^5.2.1",
 		"reflect-metadata": "^0.1.13",
 		"rimraf": "^3.0.2",
-		"rxjs": "^7.2.0"
+		"rxjs": "^7.2.0",
+		"yup": "^0.32.11"
 	},
 	"devDependencies": {
 		"@mikro-orm/cli": "^4.5.9",
