@@ -9,7 +9,9 @@ import cookieCutter from 'cookie-cutter';
 
 const deleteTechnology = async (name: string) => {
 	await fetch(
-		`http://localhost:3000/api/technologies?name=${encodeURIComponent(name)}`,
+		`http://localhost:3000/api/technologies?name=${encodeURIComponent(
+			name
+		)}`,
 		{
 			method: 'DELETE',
 			headers: {
