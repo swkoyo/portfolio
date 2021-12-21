@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { NextPage } from 'next';
 import { usePortfolioContext } from '../../context/PortfolioContext';
+import { useAuthContext } from '../../context/AuthContext';
 import ProjectCard from '../../components/ProjectCard';
 import ProjectForm from '../../components/forms/Project';
 import TechnologyForm from '../../components/forms/Technology';
@@ -9,6 +10,7 @@ const Portfolio: NextPage = () => {
 	const { projectsData, technologiesData } = usePortfolioContext();
 	const [show, setShow] = useState(false);
 	const [showTech, setShowTech] = useState(false);
+	const { auth } = useAuthContext();
 
 	const handleShow = (show) => {
 		setShow(show);
@@ -31,13 +33,15 @@ const Portfolio: NextPage = () => {
 				</div>
 			</div>
 			<div className='w-full p-4 space-x-4 carousel carousel-center bg-neutral rounded-box'>
-				<div
-					key='add'
-					className='carousel-item btn bg-green-300'
-					onClick={() => handleShowTech(true)}
-				>
-					add
-				</div>
+				{auth ? (
+					<div
+						key='add'
+						className='carousel-item btn bg-green-300'
+						onClick={() => handleShowTech(true)}
+					>
+						add
+					</div>
+				) : null}
 				{technologiesData.map((tech, i) => (
 					<div key={i} className='carousel-item'>
 						<div>{tech.name}</div>
@@ -45,14 +49,19 @@ const Portfolio: NextPage = () => {
 				))}
 			</div>
 			<div className='grid grid-cols-3 gap-4'>
+				{auth ? (
+					<div className='card shadow bg-green-300 hover:bg-black hover:cursor-pointer'>
+						<div
+							className='card-body'
+							onClick={() => handleShow(true)}
+						>
+							Add
+						</div>
+					</div>
+				) : null}
 				{projectsData.map((project, i) => (
 					<ProjectCard key={i} project={project} />
 				))}
-				<div className='card shadow bg-green-300 hover:bg-black hover:cursor-pointer'>
-					<div className='card-body' onClick={() => handleShow(true)}>
-						Add
-					</div>
-				</div>
 			</div>
 		</div>
 	);
