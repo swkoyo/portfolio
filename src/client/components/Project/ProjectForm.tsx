@@ -4,7 +4,7 @@ import { Project } from '../../models';
 import cookieCutter from 'cookie-cutter';
 import { usePortfolioContext } from '../../context/PortfolioContext';
 import Select from 'react-select';
-import { CreateProjectSchema } from './Schema';
+import { CreateProjectSchema } from '../forms/Schema';
 
 type NewProjectValues = Project;
 

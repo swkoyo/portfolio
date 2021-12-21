@@ -1,9 +1,9 @@
 import { ComponentType } from 'react';
-import { Project } from '../models';
+import { Project } from '../../models';
 import Link from 'next/link';
-import { useAuthContext } from '../context/AuthContext';
+import { useAuthContext } from '../../context/AuthContext';
 import cookieCutter from 'cookie-cutter';
-import { usePortfolioContext } from '../context/PortfolioContext';
+import { usePortfolioContext } from '../../context/PortfolioContext';
 
 interface Props {
 	project: Project;
