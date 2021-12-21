@@ -8,10 +8,15 @@ import {
 	Param,
 	NotFoundException,
 	Delete,
-	Query
+	Query,
+	Put
 } from '@nestjs/common';
 import { TechnologyService } from './technology.service';
-import { CreateTechnologyDto, GetTechnologyDto } from './dto';
+import {
+	CreateTechnologyDto,
+	GetTechnologyDto,
+	UpdateTechnologyDto
+} from './dto';
 import { AuthGuard } from '@nestjs/passport';
 
 @Controller('api/technologies')
@@ -50,5 +55,11 @@ export class TechnologyController {
 	@UseGuards(AuthGuard('jwt'))
 	async remove(@Query() param: GetTechnologyDto) {
 		return this.technologyService.removeByName(param.name);
+	}
+
+	@Put()
+	@UseGuards(AuthGuard('jwt'))
+	async update(@Body() body: UpdateTechnologyDto) {
+		return this.technologyService.update(body);
 	}
 }

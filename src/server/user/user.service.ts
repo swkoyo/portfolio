@@ -35,12 +35,12 @@ export class UserService {
 		return user;
 	}
 
-	async update(body: UpdateUserDto): Promise<User> {
+	async update(dto: UpdateUserDto): Promise<User> {
 		this.logger.debug('update updating user');
 
 		const user = await this.findOneById(1);
 
-		const updateFields = omitBy(body, isNil);
+		const updateFields = omitBy(dto, isNil);
 
 		wrap(user).assign(updateFields);
 
