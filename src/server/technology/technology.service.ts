@@ -104,7 +104,7 @@ export class TechnologyService {
 
 		wrap(tech).assign(updateFields);
 
-		this.technologyRepository.flush();
+		await this.technologyRepository.flush();
 
 		this.logger.debug('update updated technology %o', { name });
 

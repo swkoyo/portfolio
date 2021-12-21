@@ -8,9 +8,15 @@ import { InjectRepository } from '@mikro-orm/nestjs';
 import { EntityRepository } from '@mikro-orm/postgresql';
 import { Project } from './project.entity';
 import { IProjectRO, IProjectsRO } from './project.interface';
-import { CreateProjectDto } from './dto';
+import {
+	CreateProjectDto,
+	UpdateProjectDto,
+	UpdateProjectTechDto
+} from './dto';
 import { TechnologyService } from '../technology/technology.service';
 import { Technology } from '../technology/technology.entity';
+import { isNil, omitBy } from 'lodash';
+import { wrap } from '@mikro-orm/core';
 
 @Injectable()
 export class ProjectService {
@@ -71,6 +77,8 @@ export class ProjectService {
 			throw new BadRequestException();
 		}
 
+		const technologies = [];
+
 		if (dto.technologies.length > 0) {
 			for (const technology of dto.technologies) {
 				const tech = await this.technologyService.findOneByName(
@@ -80,6 +88,8 @@ export class ProjectService {
 				if (!tech) {
 					throw new BadRequestException();
 				}
+
+				technologies.push(tech);
 			}
 		}
 
@@ -93,18 +103,115 @@ export class ProjectService {
 
 		await this.projectRepository.persist(project);
 
-		for (const technology of dto.technologies) {
-			const tech = await this.technologyService.findOneByName(technology);
-			project.technologies.add(tech as Technology);
-			tech.projects.add(project);
-
-			await this.technologyRepository.persist(tech);
+		if (technologies.length > 0) {
+			project.technologies.set(technologies);
+			for (const tech of technologies) {
+				tech.projects.add(project);
+			}
 		}
 
 		await this.projectRepository.flush();
 		await this.technologyRepository.flush();
 
 		this.logger.debug('create created project %o', project);
+
+		return project;
+	}
+
+	async update({ name, data }: UpdateProjectDto): Promise<IProjectRO> {
+		this.logger.debug('update updating project %o', { name });
+
+		const project = await this.findOneByName(name);
+
+		if (!project) {
+			throw new BadRequestException();
+		}
+
+		const updateFields = omitBy(data, isNil);
+
+		wrap(project).assign(updateFields);
+
+		await this.projectRepository.flush();
+
+		this.logger.debug('update updated project %o', { name });
+
+		return project;
+	}
+
+	async addTech({
+		name,
+		technology
+	}: UpdateProjectTechDto): Promise<IProjectRO> {
+		this.logger.debug('addTech adding project tech %o', {
+			name,
+			technology
+		});
+
+		const project = await this.findOneByName(name);
+
+		if (!project) {
+			throw new BadRequestException();
+		}
+
+		const tech = await this.technologyService.findOneByName(technology);
+
+		if (!tech) {
+			throw new BadRequestException();
+		}
+
+		if (project.technologies.contains(tech as Technology)) {
+			throw new BadRequestException();
+		}
+
+		project.technologies.add(tech as Technology);
+		tech.projects.add(project as Project);
+
+		await this.projectRepository.flush();
+		await this.technologyRepository.flush();
+
+		this.logger.debug('addTech added project tech %o', {
+			name,
+			technology
+		});
+
+		return project;
+	}
+
+	async removeTech({
+		name,
+		technology
+	}: UpdateProjectTechDto): Promise<IProjectRO> {
+		this.logger.debug('removeTech removing project tech %o', {
+			name,
+			technology
+		});
+
+		const project = await this.findOneByName(name);
+
+		if (!project) {
+			throw new BadRequestException();
+		}
+
+		const tech = await this.technologyService.findOneByName(technology);
+
+		if (!tech) {
+			throw new BadRequestException();
+		}
+
+		if (!project.technologies.contains(tech as Technology)) {
+			throw new BadRequestException();
+		}
+
+		project.technologies.remove(tech as Technology);
+		tech.projects.remove(project as Project);
+
+		await this.projectRepository.flush();
+		await this.technologyRepository.flush();
+
+		this.logger.debug('removeTech removing project tech %o', {
+			name,
+			technology
+		});
 
 		return project;
 	}
