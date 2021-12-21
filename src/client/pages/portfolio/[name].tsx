@@ -2,6 +2,7 @@ import React from 'react';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { usePortfolioContext } from '../../context/PortfolioContext';
+import ProjectPage from '../../components/Project/ProjectPage';
 
 const Project: NextPage = () => {
 	const router = useRouter();
@@ -11,12 +12,7 @@ const Project: NextPage = () => {
 
 	const project = projectsData.find((project) => project.name === name);
 
-	return (
-		<div className='container mx-auto'>
-			<div className='text-center text-8xl uppercase'>{project.name}</div>
-			<div className='mt-8 text-center'>{project.description}</div>
-		</div>
-	);
+	return <ProjectPage project={project} />;
 };
 
 export default Project;
