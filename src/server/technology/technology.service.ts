@@ -1,4 +1,9 @@
-import { BadRequestException, Injectable, Logger } from '@nestjs/common';
+import {
+	BadRequestException,
+	Injectable,
+	Logger,
+	NotFoundException
+} from '@nestjs/common';
 import { InjectRepository } from '@mikro-orm/nestjs';
 import { EntityRepository } from '@mikro-orm/postgresql';
 import { Technology } from './technology.entity';
@@ -48,6 +53,20 @@ export class TechnologyService {
 		);
 
 		this.logger.debug('findOne found technology %o', technology ?? {});
+
+		return technology;
+	}
+
+	async removeByName(name: string): Promise<ITechnologyRO> {
+		this.logger.debug('removeByName removing technology %o', { name });
+
+		const technology = await this.findOneByName(name);
+
+		if (!technology) {
+			throw new NotFoundException();
+		}
+
+		await this.technologyRepository.removeAndFlush(technology);
 
 		return technology;
 	}

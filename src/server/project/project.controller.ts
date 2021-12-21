@@ -6,7 +6,9 @@ import {
 	Param,
 	Post,
 	Body,
-	UseGuards
+	UseGuards,
+	Delete,
+	Query
 } from '@nestjs/common';
 import { ProjectService } from './project.service';
 import { CreateProjectDto, GetProjectDto } from './dto';
@@ -42,5 +44,11 @@ export class ProjectController {
 	@UseGuards(AuthGuard('jwt'))
 	async create(@Body() body: CreateProjectDto) {
 		return this.projectService.create(body);
+	}
+
+	@Delete()
+	@UseGuards(AuthGuard('jwt'))
+	async remove(@Query() param: GetProjectDto) {
+		return this.projectService.removeByName(param.name);
 	}
 }

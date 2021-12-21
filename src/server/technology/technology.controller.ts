@@ -6,7 +6,9 @@ import {
 	Body,
 	UseGuards,
 	Param,
-	NotFoundException
+	NotFoundException,
+	Delete,
+	Query
 } from '@nestjs/common';
 import { TechnologyService } from './technology.service';
 import { CreateTechnologyDto, GetTechnologyDto } from './dto';
@@ -42,5 +44,11 @@ export class TechnologyController {
 	@UseGuards(AuthGuard('jwt'))
 	async postTechnologies(@Body() body: CreateTechnologyDto) {
 		return this.technologyService.create(body);
+	}
+
+	@Delete()
+	@UseGuards(AuthGuard('jwt'))
+	async remove(@Query() param: GetTechnologyDto) {
+		return this.technologyService.removeByName(param.name);
 	}
 }
