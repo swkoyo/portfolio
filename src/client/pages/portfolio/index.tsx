@@ -44,7 +44,7 @@ const Portfolio: NextPage = () => {
 				) : null}
 				{technologiesData.map((tech, i) => (
 					<div key={i} className='carousel-item'>
-						<div>{tech.name}</div>
+						<div className='btn btn-primary'>{tech.name}</div>
 					</div>
 				))}
 			</div>
