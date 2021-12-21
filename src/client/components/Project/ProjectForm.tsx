@@ -3,7 +3,7 @@ import { Formik, Field, Form, FormikHelpers } from 'formik';
 import { Project } from '../../models';
 import { usePortfolioContext } from '../../context/PortfolioContext';
 import Select from 'react-select';
-import { CreateProjectSchema } from '../forms/Schema';
+import { CreateProjectSchema } from '../../utils/Schema';
 
 type NewProjectValues = Project;
 

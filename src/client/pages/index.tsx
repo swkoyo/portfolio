@@ -10,13 +10,13 @@ const Index: NextPage = () => {
 	const [showFormModal, setShowFormModal] = useState(false);
 
 	return (
-		<>
+		<div className='relative'>
 			<div className={`modal ${showFormModal ? 'modal-open' : null}`}>
 				<div className='modal-box'>
 					<UserForm handleShow={setShowFormModal} />
 				</div>
 			</div>
-			<div className='container mx-auto space-y-14 text-center relative'>
+			<div className='container mx-auto space-y-14 text-center'>
 				{auth ? (
 					<div
 						className='absolute top-0 right-0 btn btn-primary'
@@ -29,7 +29,7 @@ const Index: NextPage = () => {
 				<div className='text-2xl uppercase'>{userData.tagline}</div>
 				<div>{userData.profile}</div>
 			</div>
-		</>
+		</div>
 	);
 };
 
