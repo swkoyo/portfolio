@@ -21,9 +21,9 @@ const ProjectsGrid: ComponentType = () => {
 				</div>
 			</div>
 			{auth ? (
-				<div className='card shadow bg-green-300 hover:bg-black hover:cursor-pointer'>
+				<div className='card shadow bg-green-800 hover:bg-primary hover:cursor-pointer'>
 					<div
-						className='card-body'
+						className='card-body uppercase font-bold'
 						onClick={() => handleShowFormModal(true)}
 					>
 						Add

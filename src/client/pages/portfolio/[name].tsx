@@ -13,9 +13,7 @@ const Project: NextPage = () => {
 
 	return (
 		<div className='container mx-auto'>
-			<div className='text-center text-8xl'>
-				{project.name.toUpperCase()}
-			</div>
+			<div className='text-center text-8xl uppercase'>{project.name}</div>
 			<div className='mt-8 text-center'>{project.description}</div>
 		</div>
 	);
