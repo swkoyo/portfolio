@@ -7,8 +7,10 @@ import {
 import { InjectRepository } from '@mikro-orm/nestjs';
 import { EntityRepository } from '@mikro-orm/postgresql';
 import { Technology } from './technology.entity';
-import { CreateTechnologyDto } from './dto';
+import { CreateTechnologyDto, UpdateTechnologyDto } from './dto';
 import { ITechnologyRO, ITechnologiesRO } from './technology.interface';
+import { isNil, omitBy } from 'lodash';
+import { wrap } from '@mikro-orm/core';
 
 @Injectable()
 export class TechnologyService {
@@ -87,5 +89,25 @@ export class TechnologyService {
 		this.logger.debug('create created technology %o', technology);
 
 		return technology;
+	}
+
+	async update({ name, data }: UpdateTechnologyDto): Promise<ITechnologyRO> {
+		this.logger.debug('update updating technology %o', { name });
+
+		const tech = await this.findOneByName(name);
+
+		if (!tech) {
+			throw new NotFoundException();
+		}
+
+		const updateFields = omitBy(data, isNil);
+
+		wrap(tech).assign(updateFields);
+
+		this.technologyRepository.flush();
+
+		this.logger.debug('update updated technology %o', { name });
+
+		return tech;
 	}
 }

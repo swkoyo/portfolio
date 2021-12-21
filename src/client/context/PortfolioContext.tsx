@@ -2,6 +2,8 @@ import { createContext, ReactNode, useContext, useState } from 'react';
 import { Project, Technology } from '../models';
 import cookieCutter from 'cookie-cutter';
 
+type updateTechnologyData = Partial<Technology>;
+
 type portfolioContextType = {
 	projectsData?: Project[];
 	technologiesData?: Technology[];
@@ -10,6 +12,7 @@ type portfolioContextType = {
 	deleteTechnology: (name: string) => void;
 	addProject: (project: Project) => void;
 	addTechnology: (technology: Technology) => void;
+	updateTechnology: (name: string, data: updateTechnologyData) => void;
 };
 
 const portfolioContextDefaultValues: portfolioContextType = {
@@ -19,7 +22,8 @@ const portfolioContextDefaultValues: portfolioContextType = {
 	deleteProject: () => {},
 	deleteTechnology: () => {},
 	addProject: () => {},
-	addTechnology: () => {}
+	addTechnology: () => {},
+	updateTechnology: () => {}
 };
 
 const PortfolioContext = createContext<portfolioContextType>(
@@ -112,6 +116,21 @@ export const PortfolioProvider = ({
 		await refreshData();
 	};
 
+	const updateTechnology = async (
+		name: string,
+		data: updateTechnologyData
+	) => {
+		await fetch('http://localhost:3000/api/technologies', {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json',
+				authorization: `Bearer ${cookieCutter.get('token')}`
+			},
+			body: JSON.stringify({ name, data })
+		});
+		await refreshData();
+	};
+
 	const value = {
 		projectsData,
 		technologiesData,
@@ -119,7 +138,8 @@ export const PortfolioProvider = ({
 		deleteProject,
 		deleteTechnology,
 		addProject,
-		addTechnology
+		addTechnology,
+		updateTechnology
 	};
 
 	return (
