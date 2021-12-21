@@ -9,6 +9,7 @@ type NewProjectValues = Project;
 
 interface Props {
 	handleShow: (data: boolean) => void;
+	project?: Project;
 }
 
 const ProjectForm: ComponentType<Props> = (props) => {
