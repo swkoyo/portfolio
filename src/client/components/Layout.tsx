@@ -7,15 +7,15 @@ const Layout: ComponentType = ({ children }) => {
 	const { userData } = useUserContext();
 
 	return (
-		<>
+		<div className='m-5'>
 			<Head>
 				<title>
 					{userData.first_name} {userData.last_name}
 				</title>
 			</Head>
 			<Navbar />
-			<main>{children}</main>
-		</>
+			<main className='mt-10'>{children}</main>
+		</div>
 	);
 };
 
