@@ -58,13 +58,7 @@ const Navbar: ComponentType = () => {
 					>
 						Logout
 					</a>
-				) : (
-					<Link href='/login'>
-						<a className='btn btn-sm rounded-btn btn-primary text-white'>
-							Login
-						</a>
-					</Link>
-				)}
+				) : null}
 			</div>
 		</div>
 	);
