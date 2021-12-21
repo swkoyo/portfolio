@@ -17,7 +17,7 @@ const Navbar: ComponentType = () => {
 				</span>
 			</div>
 			<div className='hidden px-2 mx-2 navbar-center lg:flex'>
-				<div className='flex items-stretch'>
+				<div className='flex items-stretch space-x-2'>
 					<Link href='/'>
 						<a
 							className={`${
