@@ -1,38 +1,51 @@
-import { ComponentType } from 'react';
-import { Formik, Field, Form, FormikHelpers } from 'formik';
+import { ComponentType, useEffect, useState } from 'react';
+import { Formik, Field, Form, FormikHelpers, setIn } from 'formik';
 import { Technology } from '../../models';
 import { usePortfolioContext } from '../../context/PortfolioContext';
-import { CreateTechnologySchema } from '../../utils/Schema';
+import {
+	CreateTechnologySchema,
+	UpdateTechnologySchema
+} from '../../utils/Schema';
 
 type NewTechnologyValues = Technology;
 
 interface Props {
-	handleShow: (data: boolean) => void;
+	handleShow: (data: boolean | string) => void;
+	technology?: Technology;
 }
 
 const TechnologyForm: ComponentType<Props> = (props) => {
-	const { addTechnology } = usePortfolioContext();
+	const { addTechnology, updateTechnology } = usePortfolioContext();
+	const [technology, setTechnology] = useState(props.technology);
+
+	useEffect(() => {
+		if (props.technology) {
+			setTechnology(props.technology);
+		}
+	}, [props.technology]);
 
 	return (
 		<Formik
+			enableReinitialize={true}
 			initialValues={{
-				name: '',
-				logo: ''
+				name: technology?.name || '',
+				logo: technology?.logo || ''
 			}}
 			onSubmit={async (
 				values: NewTechnologyValues,
 				{ setSubmitting, resetForm }: FormikHelpers<NewTechnologyValues>
 			) => {
 				alert(JSON.stringify(values));
-				await addTechnology(values);
+				technology
+					? await updateTechnology(technology.name, values)
+					: await addTechnology(values);
 				setSubmitting(false);
 				resetForm();
-			}}
-			onReset={() => {
-				console.log('ehlol');
 				props.handleShow(false);
 			}}
-			validationSchema={CreateTechnologySchema}
+			validationSchema={
+				technology ? UpdateTechnologySchema : CreateTechnologySchema
+			}
 		>
 			{({ errors, touched }) => (
 				<Form className='form-control'>
@@ -59,9 +72,13 @@ const TechnologyForm: ComponentType<Props> = (props) => {
 					) : null}
 
 					<button type='submit' className='btn btn-primary'>
-						Create
+						{technology ? 'Update' : 'Create'}
 					</button>
-					<button type='reset' className='btn btn-primary'>
+					<button
+						type='reset'
+						className='btn btn-primary'
+						onClick={() => props.handleShow(false)}
+					>
 						Cancel
 					</button>
 				</Form>

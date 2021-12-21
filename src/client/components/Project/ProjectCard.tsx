@@ -28,8 +28,9 @@ const ProjectCard: ComponentType<Props> = ({ project }) => {
 					<h2 className='card-title'>{project.name}</h2>
 					<p>{project.description}</p>
 					<div className='flex flex-row space-x-2 justify-end'>
-						{project.technologies.map((tech) => (
+						{project.technologies.map((tech, i) => (
 							<TechnologyLogo
+								key={i}
 								tech={tech}
 								height={20}
 								width={20}
