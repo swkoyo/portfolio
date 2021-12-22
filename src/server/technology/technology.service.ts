@@ -26,7 +26,12 @@ export class TechnologyService {
 
 		const techs = await this.technologyRepository.findAll({
 			populate: ['projects'],
-			fields: ['name', 'logo', 'projects.name', 'projects.description']
+			fields: [
+				'name',
+				'logo_url',
+				'projects.name',
+				'projects.description'
+			]
 		});
 
 		this.logger.debug('findOne found technologies %o', {
@@ -47,7 +52,7 @@ export class TechnologyService {
 				populate: ['projects'],
 				fields: [
 					'name',
-					'logo',
+					'logo_url',
 					'projects.name',
 					'projects.description'
 				]
@@ -70,7 +75,7 @@ export class TechnologyService {
 				populate: ['projects'],
 				fields: [
 					'name',
-					'logo',
+					'logo_url',
 					'projects.name',
 					'projects.description'
 				]
@@ -122,7 +127,7 @@ export class TechnologyService {
 			throw new BadRequestException();
 		}
 
-		const technology = new Technology(dto.name, dto.logo);
+		const technology = new Technology(dto.name, dto.logo_url);
 
 		await this.technologyRepository.persistAndFlush(technology);
 
