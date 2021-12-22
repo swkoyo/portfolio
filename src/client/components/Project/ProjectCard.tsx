@@ -18,12 +18,12 @@ const ProjectCard: ComponentType<Props> = ({ project }) => {
 			{auth ? (
 				<div
 					className='absolute top-0 right-0 btn btn-circle btn-xs btn-error'
-					onClick={() => deleteProject(project.name)}
+					onClick={() => deleteProject(project.id)}
 				>
 					X
 				</div>
 			) : null}
-			<Link href={`/portfolio/${project.name}`}>
+			<Link href={`/portfolio/${project.id}`}>
 				<div className='card-body hover:bg-neutral hover:cursor-pointer'>
 					<h2 className='card-title'>{project.name}</h2>
 					<p>{project.description}</p>

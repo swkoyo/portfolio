@@ -1,10 +1,9 @@
-import { IsLowercase, IsNotEmpty, IsString } from 'class-validator';
-import { Transform } from 'class-transformer';
+import { Type } from 'class-transformer';
+import { IsInt, Min } from 'class-validator';
 
 export class GetProjectDto {
-	@IsString()
-	@IsNotEmpty()
-	@Transform(({ value }) => value.trim().toLowerCase())
-	@IsLowercase()
-	name: string;
+	@Type(() => Number)
+	@IsInt()
+	@Min(1)
+	id: number;
 }

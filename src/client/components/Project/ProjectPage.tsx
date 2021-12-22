@@ -16,13 +16,16 @@ const ProjectPage: ComponentType<Props> = ({ project }) => {
 		<>
 			<div className={`modal ${showFormModal ? 'modal-open' : null}`}>
 				<div className='modal-box'>
-					<ProjectForm handleShow={setShowFormModal} />
+					<ProjectForm
+						handleShow={setShowFormModal}
+						project={project}
+					/>
 				</div>
 			</div>
 			<div className='grid grid-cols-3 gap-4 relative'>
 				{auth ? (
 					<div
-						className='absolute top-0 right-0 btn btn-primary'
+						className='absolute top-0 left-0 btn btn-primary'
 						onClick={() => setShowFormModal(true)}
 					>
 						Edit

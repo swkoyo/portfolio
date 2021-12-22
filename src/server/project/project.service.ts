@@ -42,6 +42,18 @@ export class ProjectService {
 		return projects;
 	}
 
+	async findOneById(id: number): Promise<IProjectRO | undefined> {
+		this.logger.debug('findOneById finding project %o', { id });
+
+		const project = await this.projectRepository.findOne({ id }, [
+			'technologies'
+		]);
+
+		this.logger.debug('findOneById found project %o', project ?? {});
+
+		return project;
+	}
+
 	async findOneByName(name: string): Promise<IProjectRO | undefined> {
 		this.logger.debug('findOneByName finding project %o', { name });
 
@@ -58,6 +70,20 @@ export class ProjectService {
 		this.logger.debug('removeByName removing project %o', { name });
 
 		const project = await this.findOneByName(name);
+
+		if (!project) {
+			throw new NotFoundException();
+		}
+
+		await this.projectRepository.removeAndFlush(project);
+
+		return project;
+	}
+
+	async removeById(id: number): Promise<IProjectRO> {
+		this.logger.debug('removeById removing project %o', { id });
+
+		const project = await this.findOneById(id);
 
 		if (!project) {
 			throw new NotFoundException();
@@ -118,10 +144,10 @@ export class ProjectService {
 		return project;
 	}
 
-	async update({ name, data }: UpdateProjectDto): Promise<IProjectRO> {
-		this.logger.debug('update updating project %o', { name });
+	async update({ id, data }: UpdateProjectDto): Promise<IProjectRO> {
+		this.logger.debug('update updating project %o', { id });
 
-		const project = await this.findOneByName(name);
+		const project = await this.findOneById(id);
 
 		if (!project) {
 			throw new BadRequestException();
@@ -133,7 +159,7 @@ export class ProjectService {
 
 		await this.projectRepository.flush();
 
-		this.logger.debug('update updated project %o', { name });
+		this.logger.debug('update updated project %o', { id });
 
 		return project;
 	}

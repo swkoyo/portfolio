@@ -27,13 +27,13 @@ export class ProjectController {
 		return this.projectService.findAll();
 	}
 
-	@Get(':name')
+	@Get(':id')
 	async findOne(@Param() param: GetProjectDto) {
-		const project = await this.projectService.findOneByName(param.name);
+		const project = await this.projectService.findOneById(param.id);
 
 		if (!project) {
 			this.logger.error('findOne no project found %o', {
-				name: param.name
+				id: param.id
 			});
 
 			throw new NotFoundException();
@@ -51,7 +51,7 @@ export class ProjectController {
 	@Delete()
 	@UseGuards(AuthGuard('jwt'))
 	async remove(@Query() param: GetProjectDto) {
-		return this.projectService.removeByName(param.name);
+		return this.projectService.removeById(param.id);
 	}
 
 	@Put()

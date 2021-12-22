@@ -2,7 +2,9 @@ import { createContext, ReactNode, useContext, useState } from 'react';
 import { Project, Technology } from '../models';
 import cookieCutter from 'cookie-cutter';
 
-export type UpdateProjectData = Partial<Omit<Project, 'technologies'>>;
+export type AddProjectData = Omit<Project, 'id'>;
+export type UpdateProjectData = Partial<Omit<AddProjectData, 'technologies'>>;
+
 export type AddTechnologyData = Omit<Technology, 'id'>;
 export type UpdateTechnologyData = Partial<AddTechnologyData>;
 
@@ -10,12 +12,12 @@ type portfolioContextType = {
 	projectsData?: Project[];
 	technologiesData?: Technology[];
 	refreshData: () => void;
-	deleteProject: (name: string) => void;
+	deleteProject: (id: number) => void;
 	deleteTechnology: (id: number) => void;
-	addProject: (project: Project) => void;
+	addProject: (project: AddProjectData) => void;
 	addTechnology: (technology: AddTechnologyData) => void;
 	updateTechnology: (id: number, data: UpdateTechnologyData) => void;
-	updateProject: (name: string, data: UpdateProjectData) => void;
+	updateProject: (id: number, data: UpdateProjectData) => void;
 	addProjectTechnology: (name: string, technology: string) => void;
 	removeProjectTechnology: (name: string, technology: string) => void;
 };
@@ -70,11 +72,9 @@ export const PortfolioProvider = ({
 		setTechnologiesData(technologies);
 	};
 
-	const deleteProject = async (name: string) => {
+	const deleteProject = async (id: number) => {
 		await fetch(
-			`http://localhost:3000/api/projects?name=${encodeURIComponent(
-				name
-			)}`,
+			`http://localhost:3000/api/projects?id=${encodeURIComponent(id)}`,
 			{
 				method: 'DELETE',
 				headers: {
@@ -136,14 +136,14 @@ export const PortfolioProvider = ({
 		await refreshData();
 	};
 
-	const updateProject = async (name: string, data: UpdateProjectData) => {
+	const updateProject = async (id: number, data: UpdateProjectData) => {
 		await fetch('http://localhost:3000/api/projects', {
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json',
 				authorization: `Bearer ${cookieCutter.get('token')}`
 			},
-			body: JSON.stringify({ name, data })
+			body: JSON.stringify({ id, data })
 		});
 		await refreshData();
 	};
