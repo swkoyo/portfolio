@@ -40,7 +40,7 @@ const Index: NextPage = () => {
 						height={200}
 					/>
 				</svg>
-				<div className='flex flex-row space-x-4 mx-auto justify-center'>
+				<div className='flex flex-row space-x-4 mx-auto justify-center items-center'>
 					{Object.entries(
 						pickBy(userData.link_urls, (value) => !!value)
 					).map(([key, value]) => (

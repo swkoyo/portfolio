@@ -7,6 +7,6 @@ export const getLogo = (type: string): string => {
 		case 'website':
 			return 'https://img.icons8.com/ios-filled/50/000000/domain.png';
 		case 'resume':
-			return 'https://www.pngrepo.com/png/192668/180/curriculum-resume.png';
+			return 'https://img.icons8.com/external-prettycons-solid-prettycons/60/000000/external-resume-user-interface-vol-3-prettycons-solid-prettycons.png';
 	}
 };
