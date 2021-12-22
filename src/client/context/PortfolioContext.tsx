@@ -18,8 +18,8 @@ type portfolioContextType = {
 	addTechnology: (technology: AddTechnologyData) => void;
 	updateTechnology: (id: number, data: UpdateTechnologyData) => void;
 	updateProject: (id: number, data: UpdateProjectData) => void;
-	addProjectTechnology: (name: string, technology: string) => void;
-	removeProjectTechnology: (name: string, technology: string) => void;
+	addProjectTechnology: (id: number, technology_id: number) => void;
+	removeProjectTechnology: (id: number, technology_id: number) => void;
 };
 
 const portfolioContextDefaultValues: portfolioContextType = {
@@ -148,21 +148,21 @@ export const PortfolioProvider = ({
 		await refreshData();
 	};
 
-	const addProjectTechnology = async (name: string, technology: string) => {
+	const addProjectTechnology = async (id: number, technology_id: number) => {
 		await fetch('http://localhost:3000/api/projects/technology', {
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json',
 				authorization: `Bearer ${cookieCutter.get('token')}`
 			},
-			body: JSON.stringify({ name, technology })
+			body: JSON.stringify({ id, technology_id })
 		});
 		await refreshData();
 	};
 
 	const removeProjectTechnology = async (
-		name: string,
-		technology: string
+		id: number,
+		technology_id: number
 	) => {
 		await fetch('http://localhost:3000/api/projects/technology', {
 			method: 'DELETE',
@@ -170,7 +170,7 @@ export const PortfolioProvider = ({
 				'Content-Type': 'application/json',
 				authorization: `Bearer ${cookieCutter.get('token')}`
 			},
-			body: JSON.stringify({ name, technology })
+			body: JSON.stringify({ id, technology_id })
 		});
 		await refreshData();
 	};

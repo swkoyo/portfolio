@@ -107,7 +107,7 @@ export class ProjectService {
 
 		if (dto.technologies.length > 0) {
 			for (const technology of dto.technologies) {
-				const tech = await this.technologyService.findOneByName(
+				const tech = await this.technologyService.findOneById(
 					technology
 				);
 
@@ -165,21 +165,21 @@ export class ProjectService {
 	}
 
 	async addTech({
-		name,
-		technology
+		id,
+		technology_id
 	}: UpdateProjectTechDto): Promise<IProjectRO> {
 		this.logger.debug('addTech adding project tech %o', {
-			name,
-			technology
+			id,
+			technology_id
 		});
 
-		const project = await this.findOneByName(name);
+		const project = await this.findOneById(id);
 
 		if (!project) {
 			throw new BadRequestException();
 		}
 
-		const tech = await this.technologyService.findOneByName(technology);
+		const tech = await this.technologyService.findOneById(technology_id);
 
 		if (!tech) {
 			throw new BadRequestException();
@@ -196,29 +196,29 @@ export class ProjectService {
 		await this.technologyRepository.flush();
 
 		this.logger.debug('addTech added project tech %o', {
-			name,
-			technology
+			id,
+			technology_id
 		});
 
 		return project;
 	}
 
 	async removeTech({
-		name,
-		technology
+		id,
+		technology_id
 	}: UpdateProjectTechDto): Promise<IProjectRO> {
 		this.logger.debug('removeTech removing project tech %o', {
-			name,
-			technology
+			id,
+			technology_id
 		});
 
-		const project = await this.findOneByName(name);
+		const project = await this.findOneById(id);
 
 		if (!project) {
 			throw new BadRequestException();
 		}
 
-		const tech = await this.technologyService.findOneByName(technology);
+		const tech = await this.technologyService.findOneById(technology_id);
 
 		if (!tech) {
 			throw new BadRequestException();
@@ -235,8 +235,8 @@ export class ProjectService {
 		await this.technologyRepository.flush();
 
 		this.logger.debug('removeTech removing project tech %o', {
-			name,
-			technology
+			id,
+			technology_id
 		});
 
 		return project;
