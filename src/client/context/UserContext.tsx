@@ -3,7 +3,7 @@ import { User } from '../models';
 import cookieCutter from 'cookie-cutter';
 
 export type UpdateUser = Partial<
-	Pick<User, 'avatar_url' | 'tagline' | 'description'>
+	Pick<User, 'avatar_url' | 'tagline' | 'description' | 'link_urls'>
 >;
 
 type userContextType = {
