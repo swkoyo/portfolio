@@ -14,7 +14,8 @@ const UserForm: ComponentType<Props> = (props) => {
 		<Formik
 			initialValues={{
 				tagline: userData.tagline,
-				description: userData.description
+				description: userData.description,
+				picture_url: userData.avatar_url
 			}}
 			onSubmit={async (
 				values: UpdateUser,
@@ -55,8 +56,19 @@ const UserForm: ComponentType<Props> = (props) => {
 						<div>{errors.description}</div>
 					) : null}
 
+					<Field
+						className='input border-white'
+						id='avatar_url'
+						name='avatar_url'
+						placeholder='avatar_url'
+						as='input'
+					/>
+					{errors.avatar_url && touched.avatar_url ? (
+						<div>{errors.avatar_url}</div>
+					) : null}
+
 					<button type='submit' className='btn btn-primary'>
-						Create
+						Update
 					</button>
 					<button type='reset' className='btn btn-primary'>
 						Cancel

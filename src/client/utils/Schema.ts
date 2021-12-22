@@ -18,7 +18,8 @@ export const CreateTechnologySchema = Yup.object().shape({
 
 export const UpdateUserSchema = Yup.object().shape({
 	tagline: Yup.string().min(1).lowercase().trim().optional(),
-	description: Yup.string().min(1).optional()
+	description: Yup.string().min(1).optional(),
+	avatar_url: Yup.string().url()
 });
 
 export const UpdateTechnologySchema = Yup.object().shape({
