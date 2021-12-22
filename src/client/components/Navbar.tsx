@@ -38,7 +38,7 @@ const Navbar: ComponentType = () => {
 							Portfolio
 						</a>
 					</Link>
-					<Link href='/'>
+					{/* <Link href='/'>
 						<a className='btn btn-ghost btn-sm rounded-btn'>
 							Resume
 						</a>
@@ -47,7 +47,7 @@ const Navbar: ComponentType = () => {
 						<a className='btn btn-ghost btn-sm rounded-btn'>
 							Contact
 						</a>
-					</Link>
+					</Link> */}
 				</div>
 			</div>
 			<div className='px-2 mx-2 navbar-end'>
