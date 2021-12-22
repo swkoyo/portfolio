@@ -27,7 +27,7 @@ const Index: NextPage = () => {
 				) : null}
 				<div className='text-8xl uppercase'>{userData.full_name}</div>
 				<div className='text-2xl uppercase'>{userData.tagline}</div>
-				<div>{userData.profile}</div>
+				<div>{userData.description}</div>
 			</div>
 		</div>
 	);
