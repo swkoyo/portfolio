@@ -1,12 +1,13 @@
-import { ComponentType } from 'react';
+import { ComponentType, useEffect, useState } from 'react';
 import { Formik, Field, Form, FormikHelpers } from 'formik';
 import { Project } from '../../models';
 import {
 	usePortfolioContext,
-	AddProjectData
+	AddProjectData,
+	UpdateProjectData
 } from '../../context/PortfolioContext';
 import Select from 'react-select';
-import { CreateProjectSchema } from '../../utils/Schema';
+import { CreateProjectSchema, UpdateProjectSchema } from '../../utils/Schema';
 
 interface Props {
 	handleShow: (data: boolean) => void;
@@ -14,35 +15,54 @@ interface Props {
 }
 
 const ProjectForm: ComponentType<Props> = (props) => {
-	const { technologiesData, addProject } = usePortfolioContext();
+	const { technologiesData, addProject, updateProject } =
+		usePortfolioContext();
+	const [project, setProject] = useState(props.project);
+
 	const options = technologiesData.map((tech) => ({
 		value: tech.name,
 		label: tech.name
 	}));
 
+	useEffect(() => {
+		if (props.project) {
+			setProject(props.project);
+		}
+	}, [props.project]);
+
 	return (
 		<Formik
-			initialValues={{
-				name: '',
-				description: '',
-				repo_url: '',
-				web_url: '',
-				technologies: []
-			}}
+			initialValues={
+				project
+					? {
+							name: project.name,
+							description: project.description,
+							repo_url: project.repo_url,
+							web_url: project.web_url
+					  }
+					: {
+							name: '',
+							description: '',
+							repo_url: '',
+							web_url: '',
+							technologies: []
+					  }
+			}
 			onSubmit={async (
 				values: AddProjectData,
 				{ setSubmitting, resetForm }: FormikHelpers<AddProjectData>
 			) => {
 				alert(JSON.stringify(values));
-				await addProject(values);
+				project
+					? await updateProject(project.id, values)
+					: await addProject(values);
 				setSubmitting(false);
 				resetForm();
-			}}
-			onReset={() => {
-				console.log('ehlol');
 				props.handleShow(false);
 			}}
-			validationSchema={CreateProjectSchema}
+			validationSchema={
+				project ? UpdateProjectSchema : CreateProjectSchema
+			}
 		>
 			{({ setFieldValue, errors, touched }) => (
 				<Form className='form-control space-y-4'>
@@ -98,31 +118,37 @@ const ProjectForm: ComponentType<Props> = (props) => {
 						</div>
 					) : null}
 
-					<Select
-						className='w-full text-black'
-						id='technologies'
-						name='technologies'
-						instanceId='technologies'
-						placeholder='technologies'
-						isMulti={true}
-						onChange={(v) =>
-							setFieldValue(
-								'technologies',
-								v.map((tech) => tech.value)
-							)
-						}
-						options={options}
-					/>
-					{errors.technologies && touched.technologies ? (
+					{!project ? (
+						<Select
+							className='w-full text-black'
+							id='technologies'
+							name='technologies'
+							instanceId='technologies'
+							placeholder='technologies'
+							isMulti={true}
+							onChange={(v) =>
+								setFieldValue(
+									'technologies',
+									v.map((tech) => tech.value)
+								)
+							}
+							options={options}
+						/>
+					) : null}
+					{!project && errors.technologies && touched.technologies ? (
 						<div className='text-xs text-red-600'>
 							{errors.technologies}
 						</div>
 					) : null}
 
 					<button type='submit' className='btn btn-success'>
-						Create
+						{project ? 'Update' : 'Create'}
 					</button>
-					<button type='reset' className='btn btn-error'>
+					<button
+						type='reset'
+						className='btn btn-error'
+						onClick={() => props.handleShow(false)}
+					>
 						Cancel
 					</button>
 				</Form>

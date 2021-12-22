@@ -49,7 +49,7 @@ const TechnologyForm: ComponentType<Props> = (props) => {
 			}
 		>
 			{({ errors, touched }) => (
-				<Form className='form-control'>
+				<Form className='form-control space-y-4'>
 					<Field
 						className='input'
 						id='name'

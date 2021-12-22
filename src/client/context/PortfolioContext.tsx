@@ -6,7 +6,9 @@ export type AddProjectData = Omit<Project, 'id'>;
 export type UpdateProjectData = Partial<Omit<AddProjectData, 'technologies'>>;
 
 export type AddTechnologyData = Omit<Technology, 'id'>;
-export type UpdateTechnologyData = Partial<AddTechnologyData>;
+export type UpdateTechnologyData = Partial<
+	Omit<AddTechnologyData, 'technologies'>
+>;
 
 type portfolioContextType = {
 	projectsData?: Project[];
