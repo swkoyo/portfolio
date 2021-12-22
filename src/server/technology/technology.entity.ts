@@ -3,17 +3,15 @@ import {
 	PrimaryKey,
 	Property,
 	ManyToMany,
-	Collection,
-	wrap
+	Collection
 } from '@mikro-orm/core';
-import { pick } from 'lodash';
 import { Project } from '../project/project.entity';
 
 @Entity({
 	tableName: 'Technologies'
 })
 export class Technology {
-	@PrimaryKey({ hidden: true })
+	@PrimaryKey()
 	id!: number;
 
 	@Property({ unique: true })

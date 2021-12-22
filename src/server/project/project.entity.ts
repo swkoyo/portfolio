@@ -11,7 +11,7 @@ import { Technology } from '../technology/technology.entity';
 	tableName: 'Projects'
 })
 export class Project {
-	@PrimaryKey({ hidden: true })
+	@PrimaryKey()
 	id!: number;
 
 	@Property({ unique: true })

@@ -8,6 +8,7 @@ export interface User {
 }
 
 export interface Project {
+	id: number;
 	name: string;
 	description: string;
 	repo_url: string;
@@ -16,6 +17,7 @@ export interface Project {
 }
 
 export interface Technology {
+	id: number;
 	name: string;
 	logo: string;
 	projects?: Project[];
