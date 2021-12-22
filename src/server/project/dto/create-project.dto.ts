@@ -1,11 +1,8 @@
 import {
 	IsString,
 	IsNotEmpty,
-	IsOptional,
-	IsUrl,
 	IsArray,
 	IsLowercase,
-	IsDate,
 	IsInt,
 	Min
 } from 'class-validator';
@@ -22,18 +19,8 @@ export class CreateProjectDto {
 	@IsNotEmpty()
 	description: string;
 
-	@IsUrl()
-	repo_url: string;
-
-	@IsUrl()
-	@IsOptional()
-	web_url: string;
-
 	@IsArray()
 	@IsInt({ each: true })
 	@Min(0, { each: true })
 	technologies: number[];
-
-	@IsDate()
-	last_deployed = new Date();
 }
