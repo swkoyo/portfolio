@@ -26,6 +26,9 @@ export class User {
 	@Property()
 	description!: string;
 
+	@Property()
+	avatar_url!: string;
+
 	@Property({ hidden: true })
 	created_at: Date = new Date();
 

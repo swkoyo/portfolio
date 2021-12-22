@@ -5,6 +5,7 @@ export interface User {
 	tagline: string;
 	description: string;
 	full_name: string;
+	avatar_url: string;
 }
 
 export interface Project {

@@ -12,6 +12,7 @@ export class Migration20211213122259 extends Migration {
 				last_name VARCHAR(255) NOT NULL,
 				tagline VARCHAR(255) NOT NULL,
 				description TEXT NOT NULL,
+				avatar_url VARCHAR(255) NOT NULL,
 				created_at TIMESTAMP DEFAULT NOW(),
 				updated_at TIMESTAMP DEFAULT NOW()
 			);
@@ -85,10 +86,11 @@ export class Migration20211213122259 extends Migration {
 		const tagline = process.env.ADMIN_TAGLINE || 'A Full-Stack Developer';
 		const description =
 			process.env.ADMIN_DESCRIPTION || 'I am a developer.';
+		const avatar_url = process.env.ADMIN_AVATAR_URL;
 
 		await this.addSql(`
-			INSERT INTO "Users" (id, email, password, first_name, last_name, tagline, description)
-			VALUES (1, '${email}', '${password}', '${first_name}', '${last_name}', '${tagline}', '${description}');
+			INSERT INTO "Users" (id, email, password, first_name, last_name, tagline, description, avatar_url)
+			VALUES (1, '${email}', '${password}', '${first_name}', '${last_name}', '${tagline}', '${description}', '${avatar_url});
 		`);
 	}
 
