@@ -1,13 +1,14 @@
 import { ComponentType, useEffect, useState } from 'react';
 import { Formik, Field, Form, FormikHelpers } from 'formik';
 import { Technology } from '../../models';
-import { usePortfolioContext } from '../../context/PortfolioContext';
+import {
+	usePortfolioContext,
+	AddTechnologyData
+} from '../../context/PortfolioContext';
 import {
 	CreateTechnologySchema,
 	UpdateTechnologySchema
 } from '../../utils/Schema';
-
-type NewTechnologyValues = Technology;
 
 interface Props {
 	handleShow: (data: boolean | string) => void;
@@ -26,18 +27,18 @@ const TechnologyForm: ComponentType<Props> = (props) => {
 
 	return (
 		<Formik
-			enableReinitialize={true}
+			enableReinitialize
 			initialValues={{
 				name: technology?.name || '',
 				logo: technology?.logo || ''
 			}}
 			onSubmit={async (
-				values: NewTechnologyValues,
-				{ setSubmitting, resetForm }: FormikHelpers<NewTechnologyValues>
+				values: AddTechnologyData,
+				{ setSubmitting, resetForm }: FormikHelpers<AddTechnologyData>
 			) => {
 				alert(JSON.stringify(values));
 				technology
-					? await updateTechnology(technology.name, values)
+					? await updateTechnology(technology.id, values)
 					: await addTechnology(values);
 				setSubmitting(false);
 				resetForm();

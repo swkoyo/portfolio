@@ -44,8 +44,8 @@ const TechnologyGrid: ComponentType = () => {
 						Add
 					</div>
 				) : null}
-				{technologiesData.map((tech, i) => (
-					<div key={i} className='relative'>
+				{technologiesData.map((tech) => (
+					<div key={tech.id} className='relative'>
 						<div className='flex flex-row space-x-2 items-center'>
 							<TechnologyLogo tech={tech} />
 							<div className='text-xs uppercase'>{tech.name}</div>
@@ -60,7 +60,7 @@ const TechnologyGrid: ComponentType = () => {
 								</div>
 								<div
 									className='btn btn-xs btn-circle btn-error'
-									onClick={() => deleteTechnology(tech.name)}
+									onClick={() => deleteTechnology(tech.id)}
 								>
 									X
 								</div>

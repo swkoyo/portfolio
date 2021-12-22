@@ -2,17 +2,22 @@ import { createContext, ReactNode, useContext, useState } from 'react';
 import { Project, Technology } from '../models';
 import cookieCutter from 'cookie-cutter';
 
-type updateTechnologyData = Partial<Technology>;
+export type UpdateProjectData = Partial<Omit<Project, 'technologies'>>;
+export type AddTechnologyData = Omit<Technology, 'id'>;
+export type UpdateTechnologyData = Partial<AddTechnologyData>;
 
 type portfolioContextType = {
 	projectsData?: Project[];
 	technologiesData?: Technology[];
 	refreshData: () => void;
 	deleteProject: (name: string) => void;
-	deleteTechnology: (name: string) => void;
+	deleteTechnology: (id: number) => void;
 	addProject: (project: Project) => void;
-	addTechnology: (technology: Technology) => void;
-	updateTechnology: (name: string, data: updateTechnologyData) => void;
+	addTechnology: (technology: AddTechnologyData) => void;
+	updateTechnology: (id: number, data: UpdateTechnologyData) => void;
+	updateProject: (name: string, data: UpdateProjectData) => void;
+	addProjectTechnology: (name: string, technology: string) => void;
+	removeProjectTechnology: (name: string, technology: string) => void;
 };
 
 const portfolioContextDefaultValues: portfolioContextType = {
@@ -23,7 +28,10 @@ const portfolioContextDefaultValues: portfolioContextType = {
 	deleteTechnology: () => {},
 	addProject: () => {},
 	addTechnology: () => {},
-	updateTechnology: () => {}
+	updateTechnology: () => {},
+	updateProject: () => {},
+	addProjectTechnology: () => {},
+	removeProjectTechnology: () => {}
 };
 
 const PortfolioContext = createContext<portfolioContextType>(
@@ -77,10 +85,10 @@ export const PortfolioProvider = ({
 		await refreshData();
 	};
 
-	const deleteTechnology = async (name: string) => {
+	const deleteTechnology = async (id: number) => {
 		await fetch(
-			`http://localhost:3000/api/technologies?name=${encodeURIComponent(
-				name
+			`http://localhost:3000/api/technologies?id=${encodeURIComponent(
+				id
 			)}`,
 			{
 				method: 'DELETE',
@@ -104,7 +112,7 @@ export const PortfolioProvider = ({
 		await refreshData();
 	};
 
-	const addTechnology = async (technology: Technology) => {
+	const addTechnology = async (technology: AddTechnologyData) => {
 		await fetch('http://localhost:3000/api/technologies', {
 			method: 'POST',
 			headers: {
@@ -116,17 +124,53 @@ export const PortfolioProvider = ({
 		await refreshData();
 	};
 
-	const updateTechnology = async (
-		name: string,
-		data: updateTechnologyData
-	) => {
+	const updateTechnology = async (id: number, data: UpdateTechnologyData) => {
 		await fetch('http://localhost:3000/api/technologies', {
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json',
 				authorization: `Bearer ${cookieCutter.get('token')}`
 			},
+			body: JSON.stringify({ id, data })
+		});
+		await refreshData();
+	};
+
+	const updateProject = async (name: string, data: UpdateProjectData) => {
+		await fetch('http://localhost:3000/api/projects', {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json',
+				authorization: `Bearer ${cookieCutter.get('token')}`
+			},
 			body: JSON.stringify({ name, data })
+		});
+		await refreshData();
+	};
+
+	const addProjectTechnology = async (name: string, technology: string) => {
+		await fetch('http://localhost:3000/api/projects/technology', {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json',
+				authorization: `Bearer ${cookieCutter.get('token')}`
+			},
+			body: JSON.stringify({ name, technology })
+		});
+		await refreshData();
+	};
+
+	const removeProjectTechnology = async (
+		name: string,
+		technology: string
+	) => {
+		await fetch('http://localhost:3000/api/projects/technology', {
+			method: 'DELETE',
+			headers: {
+				'Content-Type': 'application/json',
+				authorization: `Bearer ${cookieCutter.get('token')}`
+			},
+			body: JSON.stringify({ name, technology })
 		});
 		await refreshData();
 	};
@@ -139,7 +183,10 @@ export const PortfolioProvider = ({
 		deleteTechnology,
 		addProject,
 		addTechnology,
-		updateTechnology
+		updateTechnology,
+		updateProject,
+		addProjectTechnology,
+		removeProjectTechnology
 	};
 
 	return (

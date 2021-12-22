@@ -36,8 +36,31 @@ export class TechnologyService {
 		return techs;
 	}
 
+	async findOneById(id: number): Promise<ITechnologyRO | undefined> {
+		this.logger.debug('findOneById finding technology %o', { id });
+
+		const technology = await this.technologyRepository.findOne(
+			{
+				id
+			},
+			{
+				populate: ['projects'],
+				fields: [
+					'name',
+					'logo',
+					'projects.name',
+					'projects.description'
+				]
+			}
+		);
+
+		this.logger.debug('findOneById found technology %o', technology ?? {});
+
+		return technology;
+	}
+
 	async findOneByName(name: string): Promise<ITechnologyRO | undefined> {
-		this.logger.debug('findOne finding technology %o', { name });
+		this.logger.debug('findOneByName finding technology %o', { name });
 
 		const technology = await this.technologyRepository.findOne(
 			{
@@ -54,7 +77,24 @@ export class TechnologyService {
 			}
 		);
 
-		this.logger.debug('findOne found technology %o', technology ?? {});
+		this.logger.debug(
+			'findOneByName found technology %o',
+			technology ?? {}
+		);
+
+		return technology;
+	}
+
+	async removeById(id: number): Promise<ITechnologyRO> {
+		this.logger.debug('removeById removing technology %o', { id });
+
+		const technology = await this.findOneById(id);
+
+		if (!technology) {
+			throw new NotFoundException();
+		}
+
+		await this.technologyRepository.removeAndFlush(technology);
 
 		return technology;
 	}
@@ -91,10 +131,10 @@ export class TechnologyService {
 		return technology;
 	}
 
-	async update({ name, data }: UpdateTechnologyDto): Promise<ITechnologyRO> {
-		this.logger.debug('update updating technology %o', { name });
+	async update({ id, data }: UpdateTechnologyDto): Promise<ITechnologyRO> {
+		this.logger.debug('update updating technology %o', { id });
 
-		const tech = await this.findOneByName(name);
+		const tech = await this.findOneById(id);
 
 		if (!tech) {
 			throw new NotFoundException();
@@ -106,7 +146,7 @@ export class TechnologyService {
 
 		await this.technologyRepository.flush();
 
-		this.logger.debug('update updated technology %o', { name });
+		this.logger.debug('update updated technology %o', { id });
 
 		return tech;
 	}
