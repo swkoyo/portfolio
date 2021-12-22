@@ -1,10 +1,12 @@
 import { ComponentType } from 'react';
 import { useUserContext } from '../context/UserContext';
+import { useAuthContext } from '../context/AuthContext';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
 const Navbar: ComponentType = () => {
 	const { userData } = useUserContext();
+	const { auth, logout } = useAuthContext();
 	const router = useRouter();
 
 	return (
@@ -15,7 +17,7 @@ const Navbar: ComponentType = () => {
 				</span>
 			</div>
 			<div className='hidden px-2 mx-2 navbar-center lg:flex'>
-				<div className='flex items-stretch'>
+				<div className='flex items-stretch space-x-2'>
 					<Link href='/'>
 						<a
 							className={`${
@@ -38,7 +40,7 @@ const Navbar: ComponentType = () => {
 					</Link>
 					<Link href='/'>
 						<a className='btn btn-ghost btn-sm rounded-btn'>
-							About
+							Resume
 						</a>
 					</Link>
 					<Link href='/'>
@@ -48,7 +50,16 @@ const Navbar: ComponentType = () => {
 					</Link>
 				</div>
 			</div>
-			<div className='navbar-end' />
+			<div className='px-2 mx-2 navbar-end'>
+				{auth ? (
+					<a
+						className='btn btn-sm rounded-btn btn-error text-white'
+						onClick={() => logout()}
+					>
+						Logout
+					</a>
+				) : null}
+			</div>
 		</div>
 	);
 };

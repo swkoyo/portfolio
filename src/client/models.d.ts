@@ -8,15 +8,16 @@ export interface User {
 }
 
 export interface Project {
+	id: number;
 	name: string;
 	description: string;
 	repo_url: string;
-	web_url: string;
-	last_deployed: Date;
+	web_url?: string;
 	technologies?: Technology[];
 }
 
 export interface Technology {
+	id: number;
 	name: string;
 	logo: string;
 	projects?: Project[];

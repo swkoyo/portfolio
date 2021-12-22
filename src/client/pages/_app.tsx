@@ -4,12 +4,14 @@ import { AuthProvider } from '../context/AuthContext';
 import { UserProvider } from '../context/UserContext';
 import { PortfolioProvider } from '../context/PortfolioContext';
 import { User, Project, Technology } from '../models';
+import cookies from 'next-cookies';
 import '../styles/globals.css';
 
 interface AppProps extends NextAppProps {
 	user: User;
 	projects: Project[];
 	technologies: Technology[];
+	authenticated: boolean;
 }
 
 const MyApp = ({
@@ -17,10 +19,11 @@ const MyApp = ({
 	pageProps,
 	user,
 	projects,
-	technologies
+	technologies,
+	authenticated
 }: AppProps) => {
 	return (
-		<AuthProvider>
+		<AuthProvider authenticated={authenticated}>
 			<UserProvider user={user}>
 				<PortfolioProvider
 					projects={projects}
@@ -50,7 +53,15 @@ MyApp.getInitialProps = async (appContext: AppContext) => {
 
 	const appProps = await App.getInitialProps(appContext);
 
-	return { ...appProps, user, projects, technologies };
+	const { token } = cookies(appContext.ctx);
+
+	return {
+		...appProps,
+		user,
+		projects,
+		technologies,
+		authenticated: !!token
+	};
 };
 
 export default MyApp;

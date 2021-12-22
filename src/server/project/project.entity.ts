@@ -11,7 +11,7 @@ import { Technology } from '../technology/technology.entity';
 	tableName: 'Projects'
 })
 export class Project {
-	@PrimaryKey({ hidden: true })
+	@PrimaryKey()
 	id!: number;
 
 	@Property({ unique: true })
@@ -27,7 +27,7 @@ export class Project {
 	web_url?: string = '';
 
 	@Property()
-	last_deployed!: Date;
+	last_deployed = new Date();
 
 	@Property({ hidden: true })
 	created_at: Date = new Date();
