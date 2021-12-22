@@ -8,7 +8,7 @@ import {
 import {
 	CreateTechnologySchema,
 	UpdateTechnologySchema
-} from '../../utils/Schema';
+} from '../../utils/schema';
 
 interface Props {
 	handleShow: (data: boolean | string) => void;

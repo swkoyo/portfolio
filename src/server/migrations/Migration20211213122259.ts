@@ -13,6 +13,7 @@ export class Migration20211213122259 extends Migration {
 				tagline VARCHAR(255) NOT NULL,
 				description TEXT NOT NULL,
 				avatar_url VARCHAR(255) NOT NULL,
+				link_urls JSONB NOT NULL DEFAULT '{}'::JSONB,
 				created_at TIMESTAMP DEFAULT NOW(),
 				updated_at TIMESTAMP DEFAULT NOW()
 			);
@@ -21,27 +22,22 @@ export class Migration20211213122259 extends Migration {
 		await this.addSql(`
 			CREATE TABLE "Projects" (
 				id SERIAL PRIMARY KEY,
-				name VARCHAR(255) NOT NULL,
-				description VARCHAR(255) NOT NULL,
-				repo_url VARCHAR(255) NOT NULL,
-				web_url VARCHAR(255),
-				last_deployed TIMESTAMP NOT NULL,
+				name VARCHAR(255) NOT NULL UNIQUE,
+				description TEXT NOT NULL,
+				tagline VARCHAR(255) NOT NULL,
+				link_urls JSONB NOT NULL DEFAULT '{}'::JSONB,
 				created_at TIMESTAMP DEFAULT NOW(),
-				updated_at TIMESTAMP DEFAULT NOW(),
-				CONSTRAINT "Projects_name_unique"
-					UNIQUE (name)
+				updated_at TIMESTAMP DEFAULT NOW()
 			);
 		`);
 
 		await this.addSql(`
 			CREATE TABLE "Technologies" (
 				id SERIAL PRIMARY KEY,
-				name VARCHAR(255) NOT NULL,
+				name VARCHAR(255) NOT NULL UNIQUE,
 				logo_url VARCHAR(255) NOT NULL,
 				created_at TIMESTAMP DEFAULT NOW(),
-				updated_at TIMESTAMP DEFAULT NOW(),
-				CONSTRAINT "Technologies_name_unique"
-					UNIQUE (name)
+				updated_at TIMESTAMP DEFAULT NOW()
 			);
 		`);
 
@@ -87,10 +83,18 @@ export class Migration20211213122259 extends Migration {
 		const description =
 			process.env.ADMIN_DESCRIPTION || 'I am a developer.';
 		const avatar_url = process.env.ADMIN_AVATAR_URL;
+		const link_urls: Record<string, string> = {};
+
+		if (process.env.ADMIN_GITHUB_URL)
+			link_urls.github = process.env.ADMIN_GITHUB_URL;
+		if (process.env.ADMIN_LINKEDIN_URL)
+			link_urls.linkedin = process.env.ADMIN_LINKEDIN_URL;
+		if (process.env.ADMIN_RESUME_URL)
+			link_urls.resume = process.env.ADMIN_RESUME_URL;
 
 		await this.addSql(`
-			INSERT INTO "Users" (id, email, password, first_name, last_name, tagline, description, avatar_url)
-			VALUES (1, '${email}', '${password}', '${first_name}', '${last_name}', '${tagline}', '${description}', '${avatar_url});
+			INSERT INTO "Users" (id, email, password, first_name, last_name, tagline, description, avatar_url, link_urls)
+			VALUES (1, '${email}', '${password}', '${first_name}', '${last_name}', '${tagline}', '${description}', '${avatar_url}', '${link_urls}'::JSONB);
 		`);
 	}
 

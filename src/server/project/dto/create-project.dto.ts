@@ -1,15 +1,26 @@
 import {
 	IsString,
 	IsNotEmpty,
-	IsOptional,
-	IsUrl,
 	IsArray,
 	IsLowercase,
-	IsDate,
 	IsInt,
-	Min
+	Min,
+	IsUrl,
+	IsOptional,
+	IsObject,
+	ValidateNested
 } from 'class-validator';
-import { Transform } from 'class-transformer';
+import { Transform, Type } from 'class-transformer';
+
+class ProjectLinks {
+	@IsUrl()
+	@IsOptional()
+	github: string;
+
+	@IsUrl()
+	@IsOptional()
+	website: string;
+}
 
 export class CreateProjectDto {
 	@IsString()
@@ -22,18 +33,20 @@ export class CreateProjectDto {
 	@IsNotEmpty()
 	description: string;
 
-	@IsUrl()
-	repo_url: string;
-
-	@IsUrl()
-	@IsOptional()
-	web_url: string;
+	@IsString()
+	@IsNotEmpty()
+	@Transform(({ value }) => value.trim().toLowerCase())
+	@IsLowercase()
+	tagline: string;
 
 	@IsArray()
 	@IsInt({ each: true })
 	@Min(0, { each: true })
 	technologies: number[];
 
-	@IsDate()
-	last_deployed = new Date();
+	@IsObject()
+	@IsOptional()
+	@ValidateNested()
+	@Type(() => ProjectLinks)
+	link_urls: ProjectLinks;
 }

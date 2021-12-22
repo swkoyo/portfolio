@@ -119,13 +119,7 @@ export class ProjectService {
 			}
 		}
 
-		const project = new Project(
-			dto.name,
-			dto.description,
-			dto.repo_url,
-			dto.web_url,
-			dto.last_deployed
-		);
+		const project = new Project(dto.name, dto.description, dto.tagline);
 
 		await this.projectRepository.persist(project);
 
@@ -155,7 +149,7 @@ export class ProjectService {
 
 		const updateFields = omitBy(data, isNil);
 
-		wrap(project).assign(updateFields);
+		wrap(project).assign(updateFields, { updateNestedEntities: true });
 
 		await this.projectRepository.flush();
 

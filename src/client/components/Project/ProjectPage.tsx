@@ -4,7 +4,8 @@ import TechnologyLogo from '../Technology/TechnologyLogo';
 import { useAuthContext } from '../../context/AuthContext';
 import ProjectForm from './ProjectForm';
 import { usePortfolioContext } from '../../context/PortfolioContext';
-import { differenceBy } from 'lodash';
+import { differenceBy, pickBy } from 'lodash';
+import SvgLink from '../SvgLink';
 
 interface Props {
 	project: Project;
@@ -113,7 +114,16 @@ const ProjectPage: ComponentType<Props> = ({ project }) => {
 						))}
 					</div>
 				</div>
-				<div className='text-center col-span-2'>Links</div>
+				<div className='text-center text-lg uppercase font-bold col-span-2'>
+					{project.tagline}
+				</div>
+				<div className='flex flex-row mx-auto space-x-2 col-span-2'>
+					{Object.entries(
+						pickBy(project.link_urls, (value) => !!value)
+					).map(([key, value]) => (
+						<SvgLink key={key} type={key} url={value} />
+					))}
+				</div>
 				<div className='text-center col-span-3 mt-4'>
 					{project.description}
 				</div>

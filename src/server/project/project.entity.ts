@@ -3,9 +3,15 @@ import {
 	PrimaryKey,
 	Property,
 	ManyToMany,
-	Collection
+	Collection,
+	JsonType
 } from '@mikro-orm/core';
 import { Technology } from '../technology/technology.entity';
+
+export interface ProjectLinks {
+	github?: string;
+	website?: string;
+}
 
 @Entity({
 	tableName: 'Projects'
@@ -21,13 +27,10 @@ export class Project {
 	description!: string;
 
 	@Property()
-	repo_url!: string;
+	tagline!: string;
 
-	@Property()
-	web_url?: string = '';
-
-	@Property()
-	last_deployed = new Date();
+	@Property({ type: JsonType })
+	link_urls: ProjectLinks = {};
 
 	@Property({ hidden: true })
 	created_at: Date = new Date();
@@ -41,14 +44,12 @@ export class Project {
 	constructor(
 		name: string,
 		description: string,
-		repo_url: string,
-		web_url: string,
-		last_deployed: Date
+		tagline: string,
+		link_urls?: ProjectLinks
 	) {
 		this.name = name;
 		this.description = description;
-		this.repo_url = repo_url;
-		this.web_url = web_url;
-		this.last_deployed = last_deployed;
+		this.tagline = tagline;
+		this.link_urls = link_urls;
 	}
 }

@@ -2,13 +2,24 @@ import {
 	IsString,
 	IsNotEmpty,
 	IsOptional,
-	IsUrl,
 	IsLowercase,
-	IsDate,
 	IsInt,
-	Min
+	Min,
+	IsUrl,
+	IsObject,
+	ValidateNested
 } from 'class-validator';
 import { Transform, Type } from 'class-transformer';
+
+class ProjectLinks {
+	@IsUrl()
+	@IsOptional()
+	github: string;
+
+	@IsUrl()
+	@IsOptional()
+	website: string;
+}
 
 class UpdateProjectBody {
 	@IsString()
@@ -23,17 +34,18 @@ class UpdateProjectBody {
 	@IsOptional()
 	description: string;
 
-	@IsUrl()
+	@IsString()
+	@IsNotEmpty()
 	@IsOptional()
-	repo_url: string;
+	@Transform(({ value }) => value.trim().toLowerCase())
+	@IsLowercase()
+	tagline: string;
 
-	@IsUrl()
+	@IsObject()
 	@IsOptional()
-	web_url: string;
-
-	@IsDate()
-	@IsOptional()
-	last_deployed = new Date();
+	@ValidateNested()
+	@Type(() => ProjectLinks)
+	link_urls: ProjectLinks;
 }
 
 export class UpdateProjectDto {

@@ -1,11 +1,27 @@
-import { Transform } from 'class-transformer';
+import { Transform, Type } from 'class-transformer';
 import {
 	IsString,
 	IsNotEmpty,
 	IsOptional,
 	IsLowercase,
-	IsUrl
+	IsUrl,
+	IsObject,
+	ValidateNested
 } from 'class-validator';
+
+class UserLinks {
+	@IsUrl()
+	@IsOptional()
+	github: string;
+
+	@IsUrl()
+	@IsOptional()
+	linkedin: string;
+
+	@IsUrl()
+	@IsOptional()
+	resume: string;
+}
 
 export class UpdateUserDto {
 	@IsString()
@@ -23,4 +39,10 @@ export class UpdateUserDto {
 
 	@IsUrl()
 	avatar_url: string;
+
+	@IsObject()
+	@IsOptional()
+	@ValidateNested()
+	@Type(() => UserLinks)
+	link_urls: UserLinks;
 }

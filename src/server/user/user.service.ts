@@ -42,7 +42,7 @@ export class UserService {
 
 		const updateFields = omitBy(dto, isNil);
 
-		wrap(user).assign(updateFields);
+		wrap(user).assign(updateFields, { updateNestedEntities: true });
 
 		this.userRepository.flush();
 
