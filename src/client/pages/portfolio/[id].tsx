@@ -2,23 +2,19 @@ import React from 'react';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { usePortfolioContext } from '../../context/PortfolioContext';
+import ProjectPage from '../../components/Project/ProjectPage';
 
 const Project: NextPage = () => {
 	const router = useRouter();
 	const { projectsData } = usePortfolioContext();
 
-	const name = router.query.name;
+	const id = router.query.id;
 
-	const project = projectsData.find((project) => project.name === name);
-
-	return (
-		<div className='container mx-auto'>
-			<div className='text-center text-8xl'>
-				{project.name.toUpperCase()}
-			</div>
-			<div className='mt-8 text-center'>{project.description}</div>
-		</div>
+	const project = projectsData.find(
+		(project) => project.id === parseInt(id as string)
 	);
+
+	return <ProjectPage project={project} />;
 };
 
 export default Project;

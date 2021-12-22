@@ -1,18 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NextPage } from 'next';
 import { useUserContext } from '../context/UserContext';
+import { useAuthContext } from '../context/AuthContext';
+import UserForm from '../components/User/UserForm';
 
 const Index: NextPage = () => {
+	const { auth } = useAuthContext();
 	const { userData } = useUserContext();
+	const [showFormModal, setShowFormModal] = useState(false);
 
 	return (
-		<div className='container mx-auto'>
-			<div className='text-center text-8xl'>
-				{userData.first_name.toUpperCase()}{' '}
-				{userData.last_name.toUpperCase()}
+		<div className='relative'>
+			<div className={`modal ${showFormModal ? 'modal-open' : null}`}>
+				<div className='modal-box'>
+					<UserForm handleShow={setShowFormModal} />
+				</div>
 			</div>
-			<div className='text-center text-2xl'>{userData.tagline}</div>
-			<div className='mt-8 text-center'>{userData.profile}</div>
+			<div className='container mx-auto space-y-14 text-center'>
+				{auth ? (
+					<div
+						className='absolute top-0 right-0 btn btn-primary'
+						onClick={() => setShowFormModal(true)}
+					>
+						Edit
+					</div>
+				) : null}
+				<div className='text-8xl uppercase'>{userData.full_name}</div>
+				<div className='text-2xl uppercase'>{userData.tagline}</div>
+				<div>{userData.profile}</div>
+			</div>
 		</div>
 	);
 };

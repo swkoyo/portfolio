@@ -1,40 +1,44 @@
 import { createContext, ReactNode, useContext, useState } from 'react';
+import cookieCutter from 'cookie-cutter';
 
 type authContextType = {
-	user: boolean;
-	login: () => void;
+	auth: boolean;
+	login: (data: string) => void;
 	logout: () => void;
 };
 
 const authContextDefaultValues: authContextType = {
-	user: null,
+	auth: null,
 	login: () => {},
 	logout: () => {}
 };
 
 const AuthContext = createContext<authContextType>(authContextDefaultValues);
 
-export const useAuth = () => {
+export const useAuthContext = () => {
 	return useContext(AuthContext);
 };
 
 type Props = {
 	children: ReactNode;
+	authenticated: boolean;
 };
 
-export const AuthProvider = ({ children }: Props) => {
-	const [user, setUser] = useState<boolean>(null);
+export const AuthProvider = ({ children, authenticated }: Props) => {
+	const [auth, setAuth] = useState<boolean>(authenticated);
 
-	const login = () => {
-		setUser(true);
+	const login = (token: string) => {
+		cookieCutter.set('token', token);
+		setAuth(true);
 	};
 
 	const logout = () => {
-		setUser(false);
+		cookieCutter.set('token', null, { expires: new Date(0) });
+		setAuth(false);
 	};
 
 	const value = {
-		user,
+		auth,
 		login,
 		logout
 	};

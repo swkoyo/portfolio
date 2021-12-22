@@ -1,9 +1,16 @@
-import { BadRequestException, Injectable, Logger } from '@nestjs/common';
+import {
+	BadRequestException,
+	Injectable,
+	Logger,
+	NotFoundException
+} from '@nestjs/common';
 import { InjectRepository } from '@mikro-orm/nestjs';
 import { EntityRepository } from '@mikro-orm/postgresql';
 import { Technology } from './technology.entity';
-import { CreateTechnologyDto } from './dto';
+import { CreateTechnologyDto, UpdateTechnologyDto } from './dto';
 import { ITechnologyRO, ITechnologiesRO } from './technology.interface';
+import { isNil, omitBy } from 'lodash';
+import { wrap } from '@mikro-orm/core';
 
 @Injectable()
 export class TechnologyService {
@@ -29,8 +36,31 @@ export class TechnologyService {
 		return techs;
 	}
 
+	async findOneById(id: number): Promise<ITechnologyRO | undefined> {
+		this.logger.debug('findOneById finding technology %o', { id });
+
+		const technology = await this.technologyRepository.findOne(
+			{
+				id
+			},
+			{
+				populate: ['projects'],
+				fields: [
+					'name',
+					'logo',
+					'projects.name',
+					'projects.description'
+				]
+			}
+		);
+
+		this.logger.debug('findOneById found technology %o', technology ?? {});
+
+		return technology;
+	}
+
 	async findOneByName(name: string): Promise<ITechnologyRO | undefined> {
-		this.logger.debug('findOne finding technology %o', { name });
+		this.logger.debug('findOneByName finding technology %o', { name });
 
 		const technology = await this.technologyRepository.findOne(
 			{
@@ -47,7 +77,38 @@ export class TechnologyService {
 			}
 		);
 
-		this.logger.debug('findOne found technology %o', technology ?? {});
+		this.logger.debug(
+			'findOneByName found technology %o',
+			technology ?? {}
+		);
+
+		return technology;
+	}
+
+	async removeById(id: number): Promise<ITechnologyRO> {
+		this.logger.debug('removeById removing technology %o', { id });
+
+		const technology = await this.findOneById(id);
+
+		if (!technology) {
+			throw new NotFoundException();
+		}
+
+		await this.technologyRepository.removeAndFlush(technology);
+
+		return technology;
+	}
+
+	async removeByName(name: string): Promise<ITechnologyRO> {
+		this.logger.debug('removeByName removing technology %o', { name });
+
+		const technology = await this.findOneByName(name);
+
+		if (!technology) {
+			throw new NotFoundException();
+		}
+
+		await this.technologyRepository.removeAndFlush(technology);
 
 		return technology;
 	}
@@ -68,5 +129,25 @@ export class TechnologyService {
 		this.logger.debug('create created technology %o', technology);
 
 		return technology;
+	}
+
+	async update({ id, data }: UpdateTechnologyDto): Promise<ITechnologyRO> {
+		this.logger.debug('update updating technology %o', { id });
+
+		const tech = await this.findOneById(id);
+
+		if (!tech) {
+			throw new NotFoundException();
+		}
+
+		const updateFields = omitBy(data, isNil);
+
+		wrap(tech).assign(updateFields);
+
+		await this.technologyRepository.flush();
+
+		this.logger.debug('update updated technology %o', { id });
+
+		return tech;
 	}
 }

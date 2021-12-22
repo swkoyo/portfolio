@@ -1,11 +1,14 @@
 import {
 	Controller,
-	Request,
 	Get,
 	UseGuards,
 	NotFoundException,
-	Logger
+	Logger,
+	Put,
+	Body
 } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
+import { UpdateUserDto } from './dto';
 import { UserService } from './user.service';
 
 @Controller('api/user')
@@ -25,5 +28,11 @@ export class UserController {
 		}
 
 		return user.toJSON();
+	}
+
+	@Put()
+	@UseGuards(AuthGuard('jwt'))
+	async update(@Body() body: UpdateUserDto) {
+		return this.userService.update(body);
 	}
 }

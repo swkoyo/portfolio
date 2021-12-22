@@ -6,11 +6,15 @@ import {
 	Param,
 	Post,
 	Body,
-	UseGuards
+	UseGuards,
+	Delete,
+	Query,
+	Put
 } from '@nestjs/common';
 import { ProjectService } from './project.service';
-import { CreateProjectDto, GetProjectDto } from './dto';
+import { CreateProjectDto, GetProjectDto, UpdateProjectTechDto } from './dto';
 import { AuthGuard } from '@nestjs/passport';
+import { UpdateProjectDto } from './dto';
 
 @Controller('api/projects')
 export class ProjectController {
@@ -23,13 +27,13 @@ export class ProjectController {
 		return this.projectService.findAll();
 	}
 
-	@Get(':name')
+	@Get(':id')
 	async findOne(@Param() param: GetProjectDto) {
-		const project = await this.projectService.findOneByName(param.name);
+		const project = await this.projectService.findOneById(param.id);
 
 		if (!project) {
 			this.logger.error('findOne no project found %o', {
-				name: param.name
+				id: param.id
 			});
 
 			throw new NotFoundException();
@@ -42,5 +46,29 @@ export class ProjectController {
 	@UseGuards(AuthGuard('jwt'))
 	async create(@Body() body: CreateProjectDto) {
 		return this.projectService.create(body);
+	}
+
+	@Delete()
+	@UseGuards(AuthGuard('jwt'))
+	async remove(@Query() param: GetProjectDto) {
+		return this.projectService.removeById(param.id);
+	}
+
+	@Put()
+	@UseGuards(AuthGuard('jwt'))
+	async update(@Body() body: UpdateProjectDto) {
+		return this.projectService.update(body);
+	}
+
+	@Put('/technology')
+	@UseGuards(AuthGuard('jwt'))
+	async addTechnology(@Body() body: UpdateProjectTechDto) {
+		return this.projectService.addTech(body);
+	}
+
+	@Delete('/technology')
+	@UseGuards(AuthGuard('jwt'))
+	async removeTechnology(@Body() body: UpdateProjectTechDto) {
+		return this.projectService.removeTech(body);
 	}
 }
