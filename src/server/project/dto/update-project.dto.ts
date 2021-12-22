@@ -46,15 +46,13 @@ export class UpdateProjectDto {
 }
 
 export class UpdateProjectTechDto {
-	@IsString()
-	@IsNotEmpty()
-	@Transform(({ value }) => value.trim().toLowerCase())
-	@IsLowercase()
-	name: string;
+	@Type(() => Number)
+	@IsInt()
+	@Min(1)
+	id: number;
 
-	@IsString()
-	@IsNotEmpty()
-	@Transform(({ value }) => value.trim().toLowerCase())
-	@IsLowercase()
-	technology: string;
+	@Type(() => Number)
+	@IsInt()
+	@Min(1)
+	technology_id: number;
 }

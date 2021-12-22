@@ -5,7 +5,9 @@ import {
 	IsUrl,
 	IsArray,
 	IsLowercase,
-	IsDate
+	IsDate,
+	IsInt,
+	Min
 } from 'class-validator';
 import { Transform } from 'class-transformer';
 
@@ -28,11 +30,9 @@ export class CreateProjectDto {
 	web_url: string;
 
 	@IsArray()
-	@IsString({ each: true })
-	@IsNotEmpty({ each: true })
-	@Transform(({ value }) => value.map((v) => v.trim().toLowerCase()))
-	@IsLowercase({ each: true })
-	technologies: string[];
+	@IsInt({ each: true })
+	@Min(0, { each: true })
+	technologies: number[];
 
 	@IsDate()
 	last_deployed = new Date();
