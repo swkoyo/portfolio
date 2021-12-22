@@ -15,7 +15,7 @@ const TechnologyLogo: ComponentType<Props> = ({ tech, ...props }) => {
 			<image
 				width={props.width ? props.width : 50}
 				height={props.height ? props.height : 50}
-				href={tech.logo}
+				href={tech.logo_url}
 			/>
 		</svg>
 	);

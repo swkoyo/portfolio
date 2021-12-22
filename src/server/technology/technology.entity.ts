@@ -18,7 +18,7 @@ export class Technology {
 	name!: string;
 
 	@Property()
-	logo!: string;
+	logo_url!: string;
 
 	@Property({ hidden: true })
 	created_at: Date = new Date();
@@ -29,8 +29,8 @@ export class Technology {
 	@ManyToMany(() => Project)
 	projects = new Collection<Project>(this);
 
-	constructor(name: string, logo: string) {
+	constructor(name: string, logo_url: string) {
 		this.name = name;
-		this.logo = logo;
+		this.logo_url = logo_url;
 	}
 }

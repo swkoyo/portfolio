@@ -19,7 +19,7 @@ class UpdateTechnologyData {
 
 	@IsUrl()
 	@IsOptional()
-	logo: string;
+	logo_url: string;
 }
 
 export class UpdateTechnologyDto {
