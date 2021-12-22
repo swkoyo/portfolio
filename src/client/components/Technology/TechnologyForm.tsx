@@ -30,7 +30,7 @@ const TechnologyForm: ComponentType<Props> = (props) => {
 			enableReinitialize
 			initialValues={{
 				name: technology?.name || '',
-				logo: technology?.logo || ''
+				logo_url: technology?.logo_url || ''
 			}}
 			onSubmit={async (
 				values: AddTechnologyData,
@@ -63,13 +63,13 @@ const TechnologyForm: ComponentType<Props> = (props) => {
 
 					<Field
 						className='input'
-						id='logo'
-						name='logo'
-						placeholder='logo'
+						id='logo_url'
+						name='logo_url'
+						placeholder='logo_url'
 						as='input'
 					/>
-					{errors.logo && touched.logo ? (
-						<div>{errors.logo}</div>
+					{errors.logo_url && touched.logo_url ? (
+						<div>{errors.logo_url}</div>
 					) : null}
 
 					<button type='submit' className='btn btn-primary'>
