@@ -27,7 +27,14 @@ const Index: NextPage = () => {
 				) : null}
 				<div className='text-8xl uppercase'>{userData.full_name}</div>
 				<div className='text-2xl uppercase'>{userData.tagline}</div>
-				<div>{userData.profile}</div>
+				<svg className='mx-auto rounded-full' width={200} height={200}>
+					<image
+						href={userData.avatar_url}
+						width={200}
+						height={200}
+					/>
+				</svg>
+				<div>{userData.description}</div>
 			</div>
 		</div>
 	);
