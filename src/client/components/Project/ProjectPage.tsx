@@ -113,6 +113,7 @@ const ProjectPage: ComponentType<Props> = ({ project }) => {
 						))}
 					</div>
 				</div>
+				<div className='text-center col-span-2'>{project.tagline}</div>
 				<div className='text-center col-span-2'>Links</div>
 				<div className='text-center col-span-3 mt-4'>
 					{project.description}

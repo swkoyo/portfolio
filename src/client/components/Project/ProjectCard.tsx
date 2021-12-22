@@ -26,7 +26,7 @@ const ProjectCard: ComponentType<Props> = ({ project }) => {
 			<Link href={`/portfolio/${project.id}`}>
 				<div className='card-body hover:bg-neutral hover:cursor-pointer'>
 					<h2 className='card-title'>{project.name}</h2>
-					<p>{project.description}</p>
+					<p>{project.tagline}</p>
 					<div className='flex flex-row space-x-2 justify-end'>
 						{project.technologies.map((tech, i) => (
 							<TechnologyLogo

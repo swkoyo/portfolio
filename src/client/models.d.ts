@@ -12,6 +12,7 @@ export interface Project {
 	id: number;
 	name: string;
 	description: string;
+	tagline: string;
 	technologies?: Technology[];
 }
 

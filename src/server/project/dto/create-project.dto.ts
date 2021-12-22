@@ -19,6 +19,12 @@ export class CreateProjectDto {
 	@IsNotEmpty()
 	description: string;
 
+	@IsString()
+	@IsNotEmpty()
+	@Transform(({ value }) => value.trim().toLowerCase())
+	@IsLowercase()
+	tagline: string;
+
 	@IsArray()
 	@IsInt({ each: true })
 	@Min(0, { each: true })

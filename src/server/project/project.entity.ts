@@ -20,6 +20,9 @@ export class Project {
 	@Property()
 	description!: string;
 
+	@Property()
+	tagline!: string;
+
 	@Property({ hidden: true })
 	created_at: Date = new Date();
 
@@ -29,8 +32,9 @@ export class Project {
 	@ManyToMany(() => Technology)
 	technologies = new Collection<Technology>(this);
 
-	constructor(name: string, description: string) {
+	constructor(name: string, description: string, tagline: string) {
 		this.name = name;
 		this.description = description;
+		this.tagline = tagline;
 	}
 }
