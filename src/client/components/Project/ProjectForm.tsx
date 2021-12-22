@@ -8,6 +8,7 @@ import {
 } from '../../context/PortfolioContext';
 import Select from 'react-select';
 import { CreateProjectSchema, UpdateProjectSchema } from '../../utils/schema';
+import { isNil, omitBy } from 'lodash';
 
 interface Props {
 	handleShow: (data: boolean) => void;
@@ -32,17 +33,20 @@ const ProjectForm: ComponentType<Props> = (props) => {
 
 	return (
 		<Formik
+			enableReinitialize
 			initialValues={
 				project
 					? {
 							name: project.name,
 							description: project.description,
-							tagline: project.tagline
+							tagline: project.tagline,
+							link_urls: project.link_urls
 					  }
 					: {
 							name: '',
 							description: '',
 							tagline: '',
+							link_urls: {},
 							technologies: []
 					  }
 			}
@@ -51,6 +55,7 @@ const ProjectForm: ComponentType<Props> = (props) => {
 				{ setSubmitting, resetForm }: FormikHelpers<AddProjectData>
 			) => {
 				alert(JSON.stringify(values));
+				values.link_urls = omitBy(values.link_urls, (value) => !value);
 				project
 					? await updateProject(project.id, values)
 					: await addProject(values);
@@ -124,6 +129,30 @@ const ProjectForm: ComponentType<Props> = (props) => {
 						<div className='text-xs text-red-600'>
 							{errors.technologies}
 						</div>
+					) : null}
+
+					<Field
+						className='input border-white'
+						id='link_urls.github'
+						name='link_urls.github'
+						placeholder='github_url'
+						as='input'
+					/>
+					{errors['link_urls.github'] &&
+					touched['link_urls.github'] ? (
+						<div>{errors['link_urls.github']}</div>
+					) : null}
+
+					<Field
+						className='input border-white'
+						id='link_urls.website'
+						name='link_urls.website'
+						placeholder='website_url'
+						as='input'
+					/>
+					{errors['link_urls.website'] &&
+					touched['link_urls.website'] ? (
+						<div>{errors['link_urls.website']}</div>
 					) : null}
 
 					<button type='submit' className='btn btn-success'>

@@ -4,9 +4,23 @@ import {
 	IsArray,
 	IsLowercase,
 	IsInt,
-	Min
+	Min,
+	IsUrl,
+	IsOptional,
+	IsObject,
+	ValidateNested
 } from 'class-validator';
-import { Transform } from 'class-transformer';
+import { Transform, Type } from 'class-transformer';
+
+class ProjectLinks {
+	@IsUrl()
+	@IsOptional()
+	github: string;
+
+	@IsUrl()
+	@IsOptional()
+	website: string;
+}
 
 export class CreateProjectDto {
 	@IsString()
@@ -29,4 +43,10 @@ export class CreateProjectDto {
 	@IsInt({ each: true })
 	@Min(0, { each: true })
 	technologies: number[];
+
+	@IsObject()
+	@IsOptional()
+	@ValidateNested()
+	@Type(() => ProjectLinks)
+	link_urls: ProjectLinks;
 }

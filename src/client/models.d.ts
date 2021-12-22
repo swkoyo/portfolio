@@ -6,6 +6,7 @@ export interface User {
 	description: string;
 	full_name: string;
 	avatar_url: string;
+	link_urls: UserLinks;
 }
 
 export interface Project {
@@ -14,6 +15,7 @@ export interface Project {
 	description: string;
 	tagline: string;
 	technologies?: Technology[];
+	link_urls: ProjectLinks;
 }
 
 export interface Technology {
@@ -21,4 +23,15 @@ export interface Technology {
 	name: string;
 	logo_url: string;
 	projects?: Project[];
+}
+
+interface UserLinks {
+	github?: string;
+	linkedin?: string;
+	resume?: string;
+}
+
+interface ProjectLinks {
+	github?: string;
+	website?: string;
 }

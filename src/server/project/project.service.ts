@@ -149,7 +149,7 @@ export class ProjectService {
 
 		const updateFields = omitBy(data, isNil);
 
-		wrap(project).assign(updateFields);
+		wrap(project).assign(updateFields, { updateNestedEntities: true });
 
 		await this.projectRepository.flush();
 

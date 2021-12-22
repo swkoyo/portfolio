@@ -4,9 +4,22 @@ import {
 	IsOptional,
 	IsLowercase,
 	IsInt,
-	Min
+	Min,
+	IsUrl,
+	IsObject,
+	ValidateNested
 } from 'class-validator';
 import { Transform, Type } from 'class-transformer';
+
+class ProjectLinks {
+	@IsUrl()
+	@IsOptional()
+	github: string;
+
+	@IsUrl()
+	@IsOptional()
+	website: string;
+}
 
 class UpdateProjectBody {
 	@IsString()
@@ -27,6 +40,12 @@ class UpdateProjectBody {
 	@Transform(({ value }) => value.trim().toLowerCase())
 	@IsLowercase()
 	tagline: string;
+
+	@IsObject()
+	@IsOptional()
+	@ValidateNested()
+	@Type(() => ProjectLinks)
+	link_urls: ProjectLinks;
 }
 
 export class UpdateProjectDto {

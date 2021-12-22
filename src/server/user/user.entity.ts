@@ -1,5 +1,11 @@
-import { Entity, PrimaryKey, Property, wrap } from '@mikro-orm/core';
+import { Entity, JsonType, PrimaryKey, Property, wrap } from '@mikro-orm/core';
 import * as bcrypt from 'bcrypt';
+
+export interface UserLinks {
+	github?: string;
+	linkedin?: string;
+	resume?: string;
+}
 
 @Entity({
 	tableName: 'Users'
@@ -29,6 +35,9 @@ export class User {
 	@Property()
 	avatar_url!: string;
 
+	@Property({ type: JsonType })
+	link_urls: UserLinks = {};
+
 	@Property({ hidden: true })
 	created_at: Date = new Date();
 
@@ -41,7 +50,8 @@ export class User {
 		first_name: string,
 		last_name: string,
 		tagline: string,
-		description: string
+		description: string,
+		link_urls?: UserLinks
 	) {
 		this.email = email;
 		this.password = password;
@@ -49,6 +59,7 @@ export class User {
 		this.last_name = last_name;
 		this.tagline = tagline;
 		this.description = description;
+		this.link_urls = link_urls;
 	}
 
 	async validatePassword(password): Promise<boolean> {
