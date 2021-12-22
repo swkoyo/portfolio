@@ -8,9 +8,11 @@ const Project: NextPage = () => {
 	const router = useRouter();
 	const { projectsData } = usePortfolioContext();
 
-	const name = router.query.name;
+	const id = router.query.id;
 
-	const project = projectsData.find((project) => project.name === name);
+	const project = projectsData.find(
+		(project) => project.id === parseInt(id as string)
+	);
 
 	return <ProjectPage project={project} />;
 };

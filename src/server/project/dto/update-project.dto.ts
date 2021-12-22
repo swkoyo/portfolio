@@ -3,11 +3,12 @@ import {
 	IsNotEmpty,
 	IsOptional,
 	IsUrl,
-	IsArray,
 	IsLowercase,
-	IsDate
+	IsDate,
+	IsInt,
+	Min
 } from 'class-validator';
-import { Transform } from 'class-transformer';
+import { Transform, Type } from 'class-transformer';
 
 class UpdateProjectBody {
 	@IsString()
@@ -36,11 +37,10 @@ class UpdateProjectBody {
 }
 
 export class UpdateProjectDto {
-	@IsString()
-	@IsNotEmpty()
-	@Transform(({ value }) => value.trim().toLowerCase())
-	@IsLowercase()
-	name: string;
+	@Type(() => Number)
+	@IsInt()
+	@Min(1)
+	id: number;
 
 	data: UpdateProjectBody;
 }

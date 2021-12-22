@@ -1,11 +1,12 @@
 import { ComponentType } from 'react';
 import { Formik, Field, Form, FormikHelpers } from 'formik';
 import { Project } from '../../models';
-import { usePortfolioContext } from '../../context/PortfolioContext';
+import {
+	usePortfolioContext,
+	AddProjectData
+} from '../../context/PortfolioContext';
 import Select from 'react-select';
 import { CreateProjectSchema } from '../../utils/Schema';
-
-type NewProjectValues = Project;
 
 interface Props {
 	handleShow: (data: boolean) => void;
@@ -29,8 +30,8 @@ const ProjectForm: ComponentType<Props> = (props) => {
 				technologies: []
 			}}
 			onSubmit={async (
-				values: NewProjectValues,
-				{ setSubmitting, resetForm }: FormikHelpers<NewProjectValues>
+				values: AddProjectData,
+				{ setSubmitting, resetForm }: FormikHelpers<AddProjectData>
 			) => {
 				alert(JSON.stringify(values));
 				await addProject(values);
