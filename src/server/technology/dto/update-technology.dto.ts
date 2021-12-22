@@ -1,10 +1,12 @@
-import { Transform } from 'class-transformer';
+import { Transform, Type } from 'class-transformer';
 import {
 	IsString,
 	IsNotEmpty,
 	IsUrl,
 	IsLowercase,
-	IsOptional
+	IsOptional,
+	IsInt,
+	Min
 } from 'class-validator';
 
 class UpdateTechnologyData {
@@ -21,11 +23,10 @@ class UpdateTechnologyData {
 }
 
 export class UpdateTechnologyDto {
-	@IsString()
-	@IsNotEmpty()
-	@Transform(({ value }) => value.trim().toLowerCase())
-	@IsLowercase()
-	name: string;
+	@Type(() => Number)
+	@IsInt()
+	@Min(1)
+	id: number;
 
 	data: UpdateTechnologyData;
 }

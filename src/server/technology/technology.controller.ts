@@ -30,13 +30,13 @@ export class TechnologyController {
 		return this.technologyService.findAll();
 	}
 
-	@Get(':name')
+	@Get(':id')
 	async findOne(@Param() param: GetTechnologyDto) {
-		const tech = await this.technologyService.findOneByName(param.name);
+		const tech = await this.technologyService.findOneById(param.id);
 
 		if (!tech) {
 			this.logger.error('findOne no tech found %o', {
-				name: param.name
+				id: param.id
 			});
 
 			throw new NotFoundException();
@@ -54,7 +54,7 @@ export class TechnologyController {
 	@Delete()
 	@UseGuards(AuthGuard('jwt'))
 	async remove(@Query() param: GetTechnologyDto) {
-		return this.technologyService.removeByName(param.name);
+		return this.technologyService.removeById(param.id);
 	}
 
 	@Put()
