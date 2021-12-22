@@ -20,6 +20,13 @@ class UpdateProjectBody {
 	@IsNotEmpty()
 	@IsOptional()
 	description: string;
+
+	@IsString()
+	@IsNotEmpty()
+	@IsOptional()
+	@Transform(({ value }) => value.trim().toLowerCase())
+	@IsLowercase()
+	tagline: string;
 }
 
 export class UpdateProjectDto {

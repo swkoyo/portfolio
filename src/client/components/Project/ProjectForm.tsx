@@ -36,11 +36,13 @@ const ProjectForm: ComponentType<Props> = (props) => {
 				project
 					? {
 							name: project.name,
-							description: project.description
+							description: project.description,
+							tagline: project.tagline
 					  }
 					: {
 							name: '',
 							description: '',
+							tagline: '',
 							technologies: []
 					  }
 			}
@@ -72,6 +74,19 @@ const ProjectForm: ComponentType<Props> = (props) => {
 					{errors.name && touched.name ? (
 						<div className='text-xs text-red-600'>
 							{errors.name}
+						</div>
+					) : null}
+
+					<Field
+						className='input border-white'
+						id='tagline'
+						name='tagline'
+						placeholder='tagline'
+						as='input'
+					/>
+					{errors.tagline && touched.tagline ? (
+						<div className='text-xs text-red-600'>
+							{errors.tagline}
 						</div>
 					) : null}
 
