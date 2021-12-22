@@ -36,7 +36,7 @@ export class Migration20211213122259 extends Migration {
 			CREATE TABLE "Technologies" (
 				id SERIAL PRIMARY KEY,
 				name VARCHAR(255) NOT NULL,
-				logo VARCHAR(255) NOT NULL,
+				logo_url VARCHAR(255) NOT NULL,
 				created_at TIMESTAMP DEFAULT NOW(),
 				updated_at TIMESTAMP DEFAULT NOW(),
 				CONSTRAINT "Technologies_name_unique"

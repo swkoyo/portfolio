@@ -13,7 +13,7 @@ export const CreateProjectSchema = Yup.object().shape({
 
 export const CreateTechnologySchema = Yup.object().shape({
 	name: Yup.string().min(1).required().lowercase().trim(),
-	logo: Yup.string().url().required()
+	logo_url: Yup.string().url().required()
 });
 
 export const UpdateUserSchema = Yup.object().shape({
@@ -23,7 +23,7 @@ export const UpdateUserSchema = Yup.object().shape({
 
 export const UpdateTechnologySchema = Yup.object().shape({
 	name: Yup.string().min(1).optional().lowercase().trim(),
-	logo: Yup.string().url().optional()
+	logo_url: Yup.string().url().optional()
 });
 
 export const UpdateProjectSchema = Yup.object().shape({

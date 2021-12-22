@@ -19,6 +19,6 @@ export interface Project {
 export interface Technology {
 	id: number;
 	name: string;
-	logo: string;
+	logo_url: string;
 	projects?: Project[];
 }

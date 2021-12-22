@@ -9,5 +9,5 @@ export class CreateTechnologyDto {
 	name: string;
 
 	@IsUrl()
-	logo: string;
+	logo_url: string;
 }
