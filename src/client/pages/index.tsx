@@ -3,6 +3,8 @@ import { NextPage } from 'next';
 import { useUserContext } from '../context/UserContext';
 import { useAuthContext } from '../context/AuthContext';
 import UserForm from '../components/User/UserForm';
+import SvgLink from '../components/SvgLink';
+import { pickBy } from 'lodash';
 
 const Index: NextPage = () => {
 	const { auth } = useAuthContext();
@@ -27,13 +29,24 @@ const Index: NextPage = () => {
 				) : null}
 				<div className='text-8xl uppercase'>{userData.full_name}</div>
 				<div className='text-2xl uppercase'>{userData.tagline}</div>
-				<svg className='mx-auto rounded-full' width={200} height={200}>
+				<svg
+					className='block mx-auto rounded-full'
+					width={200}
+					height={200}
+				>
 					<image
 						href={userData.avatar_url}
 						width={200}
 						height={200}
 					/>
 				</svg>
+				<div className='flex flex-row space-x-4 mx-auto justify-center'>
+					{Object.entries(
+						pickBy(userData.link_urls, (value) => !!value)
+					).map(([key, value]) => (
+						<SvgLink key={key} type={key} url={value} />
+					))}
+				</div>
 				<div>{userData.description}</div>
 			</div>
 		</div>

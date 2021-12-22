@@ -5,6 +5,8 @@ export const getLogo = (type: string): string => {
 		case 'linkedin':
 			return 'https://www.vectorlogo.zone/logos/linkedin/linkedin-tile.svg';
 		case 'website':
-			return 'https://cdn2.iconfinder.com/data/icons/business-804/24/global-seo-website-globe-worldwide-256.png';
+			return 'https://img.icons8.com/ios-filled/50/000000/domain.png';
+		case 'resume':
+			return 'https://www.pngrepo.com/png/192668/180/curriculum-resume.png';
 	}
 };
