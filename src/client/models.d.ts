@@ -3,8 +3,9 @@ export interface User {
 	first_name: string;
 	last_name: string;
 	tagline: string;
-	profile: string;
+	description: string;
 	full_name: string;
+	avatar_url: string;
 }
 
 export interface Project {

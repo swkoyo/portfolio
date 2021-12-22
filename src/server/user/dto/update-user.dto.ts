@@ -1,5 +1,11 @@
 import { Transform } from 'class-transformer';
-import { IsString, IsNotEmpty, IsOptional, IsLowercase } from 'class-validator';
+import {
+	IsString,
+	IsNotEmpty,
+	IsOptional,
+	IsLowercase,
+	IsUrl
+} from 'class-validator';
 
 export class UpdateUserDto {
 	@IsString()
@@ -13,5 +19,8 @@ export class UpdateUserDto {
 	@IsNotEmpty()
 	@IsOptional()
 	@Transform(({ value }) => value.trim().toLowerCase())
-	profile: string;
+	description: string;
+
+	@IsUrl()
+	avatar_url: string;
 }
