@@ -14,7 +14,7 @@ const UserForm: ComponentType<Props> = (props) => {
 		<Formik
 			initialValues={{
 				tagline: userData.tagline,
-				profile: userData.profile
+				description: userData.description
 			}}
 			onSubmit={async (
 				values: UpdateUser,
@@ -46,13 +46,13 @@ const UserForm: ComponentType<Props> = (props) => {
 
 					<Field
 						className='textarea h-24 border-white'
-						id='profile'
-						name='profile'
-						placeholder='profile'
+						id='description'
+						name='description'
+						placeholder='description'
 						as='textarea'
 					/>
-					{errors.profile && touched.profile ? (
-						<div>{errors.profile}</div>
+					{errors.description && touched.description ? (
+						<div>{errors.description}</div>
 					) : null}
 
 					<button type='submit' className='btn btn-primary'>

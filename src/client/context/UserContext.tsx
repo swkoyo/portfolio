@@ -2,7 +2,7 @@ import { createContext, ReactNode, useContext, useState } from 'react';
 import { User } from '../models';
 import cookieCutter from 'cookie-cutter';
 
-export type UpdateUser = Partial<Pick<User, 'tagline' | 'profile'>>;
+export type UpdateUser = Partial<Pick<User, 'tagline' | 'description'>>;
 
 type userContextType = {
 	userData?: User;

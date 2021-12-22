@@ -13,5 +13,5 @@ export class UpdateUserDto {
 	@IsNotEmpty()
 	@IsOptional()
 	@Transform(({ value }) => value.trim().toLowerCase())
-	profile: string;
+	description: string;
 }

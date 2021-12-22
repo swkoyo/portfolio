@@ -24,7 +24,7 @@ export class User {
 	tagline!: string;
 
 	@Property()
-	profile!: string;
+	description!: string;
 
 	@Property({ hidden: true })
 	created_at: Date = new Date();
@@ -38,14 +38,14 @@ export class User {
 		first_name: string,
 		last_name: string,
 		tagline: string,
-		profile: string
+		description: string
 	) {
 		this.email = email;
 		this.password = password;
 		this.first_name = first_name;
 		this.last_name = last_name;
 		this.tagline = tagline;
-		this.profile = profile;
+		this.description = description;
 	}
 
 	async validatePassword(password): Promise<boolean> {
