@@ -22,7 +22,7 @@ export class Migration20211213122259 extends Migration {
 			CREATE TABLE "Projects" (
 				id SERIAL PRIMARY KEY,
 				name VARCHAR(255) NOT NULL,
-				description VARCHAR(255) NOT NULL,
+				description TEXT NOT NULL,
 				repo_url VARCHAR(255) NOT NULL,
 				web_url VARCHAR(255),
 				last_deployed TIMESTAMP NOT NULL,
