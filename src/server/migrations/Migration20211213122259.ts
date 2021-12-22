@@ -21,27 +21,20 @@ export class Migration20211213122259 extends Migration {
 		await this.addSql(`
 			CREATE TABLE "Projects" (
 				id SERIAL PRIMARY KEY,
-				name VARCHAR(255) NOT NULL,
+				name VARCHAR(255) NOT NULL UNIQUE,
 				description TEXT NOT NULL,
-				repo_url VARCHAR(255) NOT NULL,
-				web_url VARCHAR(255),
-				last_deployed TIMESTAMP NOT NULL,
 				created_at TIMESTAMP DEFAULT NOW(),
-				updated_at TIMESTAMP DEFAULT NOW(),
-				CONSTRAINT "Projects_name_unique"
-					UNIQUE (name)
+				updated_at TIMESTAMP DEFAULT NOW()
 			);
 		`);
 
 		await this.addSql(`
 			CREATE TABLE "Technologies" (
 				id SERIAL PRIMARY KEY,
-				name VARCHAR(255) NOT NULL,
+				name VARCHAR(255) NOT NULL UNIQUE,
 				logo_url VARCHAR(255) NOT NULL,
 				created_at TIMESTAMP DEFAULT NOW(),
-				updated_at TIMESTAMP DEFAULT NOW(),
-				CONSTRAINT "Technologies_name_unique"
-					UNIQUE (name)
+				updated_at TIMESTAMP DEFAULT NOW()
 			);
 		`);
 

@@ -3,8 +3,6 @@ import * as Yup from 'yup';
 export const CreateProjectSchema = Yup.object().shape({
 	name: Yup.string().min(1).required().lowercase().trim(),
 	description: Yup.string().min(1).required().lowercase(),
-	repo_url: Yup.string().url().required(),
-	web_url: Yup.string().url().optional(),
 	technologies: Yup.array()
 		.of(Yup.string().min(1).lowercase().trim())
 		.optional()
@@ -29,7 +27,5 @@ export const UpdateTechnologySchema = Yup.object().shape({
 
 export const UpdateProjectSchema = Yup.object().shape({
 	name: Yup.string().min(1).optional().lowercase().trim(),
-	description: Yup.string().min(1).optional().lowercase(),
-	repo_url: Yup.string().url().optional(),
-	web_url: Yup.string().url().optional()
+	description: Yup.string().min(1).optional().lowercase()
 });

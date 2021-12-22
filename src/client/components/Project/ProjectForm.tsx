@@ -36,15 +36,11 @@ const ProjectForm: ComponentType<Props> = (props) => {
 				project
 					? {
 							name: project.name,
-							description: project.description,
-							repo_url: project.repo_url,
-							web_url: project.web_url
+							description: project.description
 					  }
 					: {
 							name: '',
 							description: '',
-							repo_url: '',
-							web_url: '',
 							technologies: []
 					  }
 			}
@@ -89,32 +85,6 @@ const ProjectForm: ComponentType<Props> = (props) => {
 					{errors.description && touched.description ? (
 						<div className='text-xs text-red-600'>
 							{errors.description}
-						</div>
-					) : null}
-
-					<Field
-						className='input border-white'
-						id='repo_url'
-						name='repo_url'
-						placeholder='repo url'
-						as='input'
-					/>
-					{errors.repo_url && touched.repo_url ? (
-						<div className='text-xs text-red-600'>
-							{errors.repo_url}
-						</div>
-					) : null}
-
-					<Field
-						className='input border-white'
-						id='web_url'
-						name='web_url'
-						placeholder='web url'
-						as='input'
-					/>
-					{errors.web_url && touched.web_url ? (
-						<div className='text-xs text-red-600'>
-							{errors.web_url}
 						</div>
 					) : null}
 

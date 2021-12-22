@@ -2,9 +2,7 @@ import {
 	IsString,
 	IsNotEmpty,
 	IsOptional,
-	IsUrl,
 	IsLowercase,
-	IsDate,
 	IsInt,
 	Min
 } from 'class-validator';
@@ -22,18 +20,6 @@ class UpdateProjectBody {
 	@IsNotEmpty()
 	@IsOptional()
 	description: string;
-
-	@IsUrl()
-	@IsOptional()
-	repo_url: string;
-
-	@IsUrl()
-	@IsOptional()
-	web_url: string;
-
-	@IsDate()
-	@IsOptional()
-	last_deployed = new Date();
 }
 
 export class UpdateProjectDto {
