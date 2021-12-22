@@ -9,9 +9,9 @@ interface Props {
 const SvgLink: ComponentType<Props> = ({ type, url }) => {
 	return (
 		<div className='group'>
-			<svg className='block mx-auto' width={50} height={50}>
+			<svg className='block mx-auto rounded-full' width={60} height={60}>
 				<a target='_blank' href={url} rel='noopener noreferrer'>
-					<image width={50} height={50} href={getLogo(type)} />
+					<image width={60} height={60} href={getLogo(type)} />
 				</a>
 			</svg>
 			<div className='mt-2 opacity-0 group-hover:opacity-100 text-sm font-bold uppercase'>
