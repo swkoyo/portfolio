@@ -7,7 +7,7 @@ import {
 	UpdateProjectData
 } from '../../context/PortfolioContext';
 import Select from 'react-select';
-import { CreateProjectSchema, UpdateProjectSchema } from '../../utils/Schema';
+import { CreateProjectSchema, UpdateProjectSchema } from '../../utils/schema';
 
 interface Props {
 	handleShow: (data: boolean) => void;
