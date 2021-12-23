@@ -36,10 +36,14 @@ const TechnologyForm: ComponentType<Props> = (props) => {
 				values: AddTechnologyData,
 				{ setSubmitting, resetForm }: FormikHelpers<AddTechnologyData>
 			) => {
-				alert(JSON.stringify(values));
-				technology
-					? await updateTechnology(technology.id, values)
-					: await addTechnology(values);
+				try {
+					technology
+						? await updateTechnology(technology.id, values)
+						: await addTechnology(values);
+					alert(`Technology ${technology ? 'updated' : 'created'}`);
+				} catch (err) {
+					alert(err.message);
+				}
 				setSubmitting(false);
 				resetForm();
 				props.handleShow(false);

@@ -24,14 +24,15 @@ const UserForm: ComponentType<Props> = (props) => {
 				values: UpdateUser,
 				{ setSubmitting, resetForm }: FormikHelpers<UpdateUser>
 			) => {
-				alert(JSON.stringify(values));
 				values.link_urls = omitBy(values.link_urls, (value) => !value);
-				await updateUser(values);
+				try {
+					await updateUser(values);
+					alert('User updated');
+				} catch (err) {
+					alert(err.message);
+				}
 				setSubmitting(false);
 				resetForm();
-			}}
-			onReset={() => {
-				console.log('ehlol');
 				props.handleShow(false);
 			}}
 			validationSchema={UpdateUserSchema}
@@ -110,7 +111,11 @@ const UserForm: ComponentType<Props> = (props) => {
 					<button type='submit' className='btn btn-primary'>
 						Update
 					</button>
-					<button type='reset' className='btn btn-primary'>
+					<button
+						type='reset'
+						className='btn btn-primary'
+						onClick={() => props.handleShow(false)}
+					>
 						Cancel
 					</button>
 				</Form>

@@ -18,6 +18,14 @@ const TechnologyGrid: ComponentType = () => {
 		setShowUpdateModal(null);
 	};
 
+	const handleDeleteTech = async (id: number) => {
+		try {
+			await deleteTechnology(id);
+		} catch (err) {
+			alert(err.message);
+		}
+	};
+
 	return (
 		<>
 			<div className={`modal ${showUpdateModal ? 'modal-open' : null}`}>
@@ -60,7 +68,7 @@ const TechnologyGrid: ComponentType = () => {
 								</div>
 								<div
 									className='btn btn-xs btn-circle btn-error'
-									onClick={() => deleteTechnology(tech.id)}
+									onClick={() => handleDeleteTech(tech.id)}
 								>
 									X
 								</div>

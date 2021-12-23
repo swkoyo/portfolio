@@ -54,6 +54,9 @@ export class UpdateProjectDto {
 	@Min(1)
 	id: number;
 
+	@IsObject()
+	@ValidateNested()
+	@Type(() => UpdateProjectBody)
 	data: UpdateProjectBody;
 }
 

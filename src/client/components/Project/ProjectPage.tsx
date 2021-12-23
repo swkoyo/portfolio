@@ -19,8 +19,20 @@ const ProjectPage: ComponentType<Props> = ({ project }) => {
 	const [showAddTechModal, setShowAddTechModal] = useState(false);
 
 	const handleAddTech = async (tech) => {
-		await addProjectTechnology(project.id, tech.id);
+		try {
+			await addProjectTechnology(project.id, tech.id);
+		} catch (err) {
+			alert(err.message);
+		}
 		setShowAddTechModal(false);
+	};
+
+	const handleRemoveTech = async (id: number) => {
+		try {
+			await removeProjectTechnology(project.id, id);
+		} catch (err) {
+			alert(err.message);
+		}
 	};
 
 	const possibleTechs = differenceBy(
@@ -95,10 +107,7 @@ const ProjectPage: ComponentType<Props> = ({ project }) => {
 											<div
 												className='btn btn-xs btn-circle btn-error'
 												onClick={() =>
-													removeProjectTechnology(
-														project.id,
-														tech.id
-													)
+													handleRemoveTech(tech.id)
 												}
 											>
 												X

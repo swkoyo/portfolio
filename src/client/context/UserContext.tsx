@@ -39,7 +39,13 @@ export const UserProvider = ({ children, user }: Props) => {
 			},
 			body: JSON.stringify(data)
 		});
+
 		const user = await res.json();
+
+		if (!res.ok) {
+			throw new Error(user.message);
+		}
+
 		setUserData(user);
 	};
 

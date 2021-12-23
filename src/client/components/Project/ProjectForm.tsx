@@ -54,11 +54,15 @@ const ProjectForm: ComponentType<Props> = (props) => {
 				values: AddProjectData,
 				{ setSubmitting, resetForm }: FormikHelpers<AddProjectData>
 			) => {
-				alert(JSON.stringify(values));
 				values.link_urls = omitBy(values.link_urls, (value) => !value);
-				project
-					? await updateProject(project.id, values)
-					: await addProject(values);
+				try {
+					project
+						? await updateProject(project.id, values)
+						: await addProject(values);
+					alert(`Project ${project ? 'updated' : 'created'}`);
+				} catch (err) {
+					alert(err.message);
+				}
 				setSubmitting(false);
 				resetForm();
 				props.handleShow(false);

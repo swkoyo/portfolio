@@ -68,6 +68,7 @@ export const PortfolioProvider = ({
 		const technologiesRes = await fetch(
 			'http://localhost:3000/api/technologies'
 		);
+
 		const technologies = await technologiesRes.json();
 
 		setProjectsData(projects);
@@ -75,7 +76,7 @@ export const PortfolioProvider = ({
 	};
 
 	const deleteProject = async (id: number) => {
-		await fetch(
+		const res = await fetch(
 			`http://localhost:3000/api/projects?id=${encodeURIComponent(id)}`,
 			{
 				method: 'DELETE',
@@ -84,11 +85,17 @@ export const PortfolioProvider = ({
 				}
 			}
 		);
+
+		if (!res.ok) {
+			const data = await res.json();
+			throw new Error(data.message);
+		}
+
 		await refreshData();
 	};
 
 	const deleteTechnology = async (id: number) => {
-		await fetch(
+		const res = await fetch(
 			`http://localhost:3000/api/technologies?id=${encodeURIComponent(
 				id
 			)}`,
@@ -99,11 +106,17 @@ export const PortfolioProvider = ({
 				}
 			}
 		);
+
+		if (!res.ok) {
+			const data = await res.json();
+			throw new Error(data.message);
+		}
+
 		await refreshData();
 	};
 
 	const addProject = async (project: Project) => {
-		await fetch('http://localhost:3000/api/projects', {
+		const res = await fetch('http://localhost:3000/api/projects', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -111,11 +124,17 @@ export const PortfolioProvider = ({
 			},
 			body: JSON.stringify(project)
 		});
+
+		if (!res.ok) {
+			const data = await res.json();
+			throw new Error(data.message);
+		}
+
 		await refreshData();
 	};
 
 	const addTechnology = async (technology: AddTechnologyData) => {
-		await fetch('http://localhost:3000/api/technologies', {
+		const res = await fetch('http://localhost:3000/api/technologies', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -123,11 +142,17 @@ export const PortfolioProvider = ({
 			},
 			body: JSON.stringify(technology)
 		});
+
+		if (!res.ok) {
+			const data = await res.json();
+			throw new Error(data.message);
+		}
+
 		await refreshData();
 	};
 
 	const updateTechnology = async (id: number, data: UpdateTechnologyData) => {
-		await fetch('http://localhost:3000/api/technologies', {
+		const res = await fetch('http://localhost:3000/api/technologies', {
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json',
@@ -135,11 +160,17 @@ export const PortfolioProvider = ({
 			},
 			body: JSON.stringify({ id, data })
 		});
+
+		if (!res.ok) {
+			const data = await res.json();
+			throw new Error(data.message);
+		}
+
 		await refreshData();
 	};
 
 	const updateProject = async (id: number, data: UpdateProjectData) => {
-		await fetch('http://localhost:3000/api/projects', {
+		const res = await fetch('http://localhost:3000/api/projects', {
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json',
@@ -147,18 +178,33 @@ export const PortfolioProvider = ({
 			},
 			body: JSON.stringify({ id, data })
 		});
+
+		if (!res.ok) {
+			const data = await res.json();
+			throw new Error(data.message);
+		}
+
 		await refreshData();
 	};
 
 	const addProjectTechnology = async (id: number, technology_id: number) => {
-		await fetch('http://localhost:3000/api/projects/technology', {
-			method: 'PUT',
-			headers: {
-				'Content-Type': 'application/json',
-				authorization: `Bearer ${cookieCutter.get('token')}`
-			},
-			body: JSON.stringify({ id, technology_id })
-		});
+		const res = await fetch(
+			'http://localhost:3000/api/projects/technology',
+			{
+				method: 'PUT',
+				headers: {
+					'Content-Type': 'application/json',
+					authorization: `Bearer ${cookieCutter.get('token')}`
+				},
+				body: JSON.stringify({ id, technology_id })
+			}
+		);
+
+		if (!res.ok) {
+			const data = await res.json();
+			throw new Error(data.message);
+		}
+
 		await refreshData();
 	};
 
@@ -166,14 +212,23 @@ export const PortfolioProvider = ({
 		id: number,
 		technology_id: number
 	) => {
-		await fetch('http://localhost:3000/api/projects/technology', {
-			method: 'DELETE',
-			headers: {
-				'Content-Type': 'application/json',
-				authorization: `Bearer ${cookieCutter.get('token')}`
-			},
-			body: JSON.stringify({ id, technology_id })
-		});
+		const res = await fetch(
+			'http://localhost:3000/api/projects/technology',
+			{
+				method: 'DELETE',
+				headers: {
+					'Content-Type': 'application/json',
+					authorization: `Bearer ${cookieCutter.get('token')}`
+				},
+				body: JSON.stringify({ id, technology_id })
+			}
+		);
+
+		if (!res.ok) {
+			const data = await res.json();
+			throw new Error(data.message);
+		}
+
 		await refreshData();
 	};
 
