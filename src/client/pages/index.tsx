@@ -12,22 +12,24 @@ const Index: NextPage = () => {
 	const [showFormModal, setShowFormModal] = useState(false);
 
 	return (
-		<div className='cointainer relative'>
+		<>
 			<div className={`modal ${showFormModal ? 'modal-open' : null}`}>
 				<div className='modal-box'>
 					<UserForm handleShow={setShowFormModal} />
 				</div>
 			</div>
-			<div className='container mx-auto space-y-14 text-center'>
+			<div className='container mx-auto space-y-14 text-center relative w-full max-w-7xl'>
 				{auth ? (
 					<div
-						className='absolute top-0 right-0 btn btn-primary'
+						className='absolute top-0 left-0 btn btn-primary'
 						onClick={() => setShowFormModal(true)}
 					>
 						Edit
 					</div>
 				) : null}
-				<div className='text-8xl uppercase'>{userData.full_name}</div>
+				<div className='text-5xl uppercase md:text-8xl'>
+					{userData.full_name}
+				</div>
 				<div className='text-2xl uppercase'>{userData.tagline}</div>
 				<svg
 					className='block mx-auto rounded-full'
@@ -49,7 +51,7 @@ const Index: NextPage = () => {
 				</div>
 				<div>{userData.description}</div>
 			</div>
-		</div>
+		</>
 	);
 };
 
