@@ -13,12 +13,20 @@ const ProjectCard: ComponentType<Props> = ({ project }) => {
 	const { auth } = useAuthContext();
 	const { deleteProject } = usePortfolioContext();
 
+	const handelDeleteProject = async (id: number) => {
+		try {
+			await deleteProject(id);
+		} catch (err) {
+			alert(err.message);
+		}
+	};
+
 	return (
 		<div className='card shadow bg-blue-800 relative'>
 			{auth ? (
 				<div
 					className='absolute top-0 right-0 btn btn-circle btn-xs btn-error'
-					onClick={() => deleteProject(project.id)}
+					onClick={() => handelDeleteProject(project.id)}
 				>
 					X
 				</div>

@@ -6,7 +6,9 @@ import {
 	IsLowercase,
 	IsOptional,
 	IsInt,
-	Min
+	Min,
+	IsObject,
+	ValidateNested
 } from 'class-validator';
 
 class UpdateTechnologyData {
@@ -28,5 +30,8 @@ export class UpdateTechnologyDto {
 	@Min(1)
 	id: number;
 
+	@IsObject()
+	@ValidateNested()
+	@Type(() => UpdateTechnologyData)
 	data: UpdateTechnologyData;
 }
