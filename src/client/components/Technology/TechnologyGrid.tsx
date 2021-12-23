@@ -48,7 +48,7 @@ const TechnologyGrid: ComponentType = () => {
 				{auth ? (
 					<div
 						key='add'
-						className='btn bg-green-800 hover:bg-primary col-span-2 border-none'
+						className='btn bg-green-800 hover:bg-primary col-span-full border-none'
 						onClick={() => handelShowFormModal(true)}
 					>
 						Add
