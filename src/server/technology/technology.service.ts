@@ -91,7 +91,7 @@ export class TechnologyService {
 		const technology = await this.findOneById(id);
 
 		if (!technology) {
-			throw new NotFoundException();
+			throw new NotFoundException(`Technology with id ${id} not found`);
 		}
 
 		await this.technologyRepository.removeAndFlush(technology);
@@ -105,7 +105,7 @@ export class TechnologyService {
 		const technology = await this.findOneByName(name);
 
 		if (!technology) {
-			throw new NotFoundException();
+			throw new NotFoundException(`Technology "${name}" not found`);
 		}
 
 		await this.technologyRepository.removeAndFlush(technology);
@@ -119,7 +119,9 @@ export class TechnologyService {
 		const existingTech = await this.findOneByName(dto.name);
 
 		if (existingTech) {
-			throw new BadRequestException();
+			throw new BadRequestException(
+				`Technology ${dto.name} already exists`
+			);
 		}
 
 		const technology = new Technology(dto.name, dto.logo_url);
@@ -137,10 +139,19 @@ export class TechnologyService {
 		const tech = await this.findOneById(id);
 
 		if (!tech) {
-			throw new NotFoundException();
+			throw new NotFoundException(`Technology with id ${id} not found`);
 		}
 
 		const updateFields = omitBy(data, isNil);
+
+		if (updateFields.name && updateFields.name !== tech.name) {
+			const existingTech = await this.findOneByName(updateFields.name);
+			if (existingTech) {
+				throw new BadRequestException(
+					`Technology with given updated name "${updateFields.name}" already exists`
+				);
+			}
+		}
 
 		wrap(tech).assign(updateFields);
 

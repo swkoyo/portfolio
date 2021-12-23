@@ -36,7 +36,9 @@ export class ProjectController {
 				id: param.id
 			});
 
-			throw new NotFoundException();
+			throw new NotFoundException(
+				`Project with id ${param.id} not found`
+			);
 		}
 
 		return project;
