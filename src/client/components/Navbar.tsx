@@ -24,7 +24,7 @@ const Navbar: ComponentType = () => {
 						</span>
 					</Link>
 				</div>
-				<div className='hidden px-2 mx-2 navbar-center lg:flex'>
+				<div className='hidden px-2 mx-2 navbar-center sm:flex'>
 					<div className='flex items-stretch space-x-2'>
 						<Link href='/portfolio'>
 							<a
@@ -52,13 +52,13 @@ const Navbar: ComponentType = () => {
 				<div className='px-2 mx-2 navbar-end'>
 					{auth ? (
 						<a
-							className='hidden lg:flex btn btn-sm rounded-btn btn-error text-white'
+							className='hidden sm:flex btn btn-sm rounded-btn btn-error text-white'
 							onClick={() => handleLogout()}
 						>
 							Logout
 						</a>
 					) : null}
-					<button className='lg:hidden btn btn-square btn-ghost group focus:btn-active relative z-50'>
+					<button className='sm:hidden btn btn-square btn-ghost group focus:btn-active relative z-50'>
 						<svg
 							xmlns='http://www.w3.org/2000/svg'
 							fill='none'
