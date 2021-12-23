@@ -15,35 +15,29 @@ const Navbar: ComponentType = () => {
 	};
 
 	return (
-		<div className='navbar mb-2 shadow-lg bg-neutral text-neutral-content rounded-box'>
-			<div className='px-2 mx-2 navbar-start'>
-				<span className='text-lg font-bold'>
-					{userData.first_name} {userData.last_name}
-				</span>
-			</div>
-			<div className='hidden px-2 mx-2 navbar-center lg:flex'>
-				<div className='flex items-stretch space-x-2'>
+		<div className='flex flex-row w-full shadow-lg bg-neutral text-neutral-content rounded-box mb-2'>
+			<div className='navbar mx-auto w-full max-w-7xl'>
+				<div className='px-2 mx-2 navbar-start'>
 					<Link href='/'>
-						<a
-							className={`${
-								router.pathname === '/' ? 'btn-active' : ''
-							} btn btn-ghost btn-sm rounded-btn`}
-						>
-							Home
-						</a>
+						<span className='text-lg font-bold hover:cursor-pointer'>
+							{userData.first_name} {userData.last_name}
+						</span>
 					</Link>
-					<Link href='/portfolio'>
-						<a
-							className={`${
-								router.pathname.includes('/portfolio')
-									? 'btn-active'
-									: ''
-							} btn btn-ghost btn-sm rounded-btn`}
-						>
-							Portfolio
-						</a>
-					</Link>
-					{/* <Link href='/'>
+				</div>
+				<div className='hidden px-2 mx-2 navbar-center lg:flex'>
+					<div className='flex items-stretch space-x-2'>
+						<Link href='/portfolio'>
+							<a
+								className={`${
+									router.pathname.includes('/portfolio')
+										? 'btn-active'
+										: ''
+								} btn btn-ghost btn-sm rounded-btn`}
+							>
+								Portfolio
+							</a>
+						</Link>
+						{/* <Link href='/'>
 						<a className='btn btn-ghost btn-sm rounded-btn'>
 							Resume
 						</a>
@@ -53,17 +47,60 @@ const Navbar: ComponentType = () => {
 							Contact
 						</a>
 					</Link> */}
+					</div>
 				</div>
-			</div>
-			<div className='px-2 mx-2 navbar-end'>
-				{auth ? (
-					<a
-						className='btn btn-sm rounded-btn btn-error text-white'
-						onClick={() => handleLogout()}
-					>
-						Logout
-					</a>
-				) : null}
+				<div className='px-2 mx-2 navbar-end'>
+					{auth ? (
+						<a
+							className='hidden lg:flex btn btn-sm rounded-btn btn-error text-white'
+							onClick={() => handleLogout()}
+						>
+							Logout
+						</a>
+					) : null}
+					<button className='lg:hidden btn btn-square btn-ghost group focus:btn-active relative z-50'>
+						<svg
+							xmlns='http://www.w3.org/2000/svg'
+							fill='none'
+							viewBox='0 0 24 24'
+							className='inline-block w-6 h-6 stroke-current'
+						>
+							<path
+								strokeLinecap='round'
+								strokeLinejoin='round'
+								strokeWidth='2'
+								d='M4 6h16M4 12h16M4 18h16'
+							></path>
+						</svg>
+						<div className='opacity-0 group-focus:opacity-100 absolute top-full right-0 menu shadow-log bg-base-100 rounded-box'>
+							<li>
+								<Link href='/portfolio'>
+									<a
+										className={`${
+											router.pathname.includes(
+												'/portfolio'
+											)
+												? 'btn-active'
+												: ''
+										} btn btn-ghost btn-md rounded-btn`}
+									>
+										Portfolio
+									</a>
+								</Link>
+							</li>
+							{auth ? (
+								<li>
+									<a
+										className='btn btn-error btn-md rounded-btn border-none'
+										onClick={() => handleLogout()}
+									>
+										Logout
+									</a>
+								</li>
+							) : null}
+						</div>
+					</button>
+				</div>
 			</div>
 		</div>
 	);
