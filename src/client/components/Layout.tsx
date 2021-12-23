@@ -14,7 +14,7 @@ const Layout: ComponentType = ({ children }) => {
 				</title>
 			</Head>
 			<Navbar />
-			<main className='mt-10'>{children}</main>
+			<main className='mt-10 px-6'>{children}</main>
 		</div>
 	);
 };
