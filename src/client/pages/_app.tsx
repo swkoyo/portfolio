@@ -11,7 +11,7 @@ interface AppProps extends NextAppProps {
 	user: User;
 	projects: Project[];
 	technologies: Technology[];
-	authenticated: boolean;
+	token?: string;
 }
 
 const MyApp = ({
@@ -20,10 +20,10 @@ const MyApp = ({
 	user,
 	projects,
 	technologies,
-	authenticated
+	token
 }: AppProps) => {
 	return (
-		<AuthProvider authenticated={authenticated}>
+		<AuthProvider token={token}>
 			<UserProvider user={user}>
 				<PortfolioProvider
 					projects={projects}
@@ -60,7 +60,7 @@ MyApp.getInitialProps = async (appContext: AppContext) => {
 		user,
 		projects,
 		technologies,
-		authenticated: !!token
+		token
 	};
 };
 

@@ -34,11 +34,13 @@ export class AuthService {
 			email: user.email
 		});
 
+		const access_token = this.jwtService.sign({
+			sub: user.id,
+			email: user.email
+		});
+
 		return {
-			access_token: this.jwtService.sign({
-				sub: user.id,
-				email: user.email
-			})
+			access_token
 		};
 	}
 }
