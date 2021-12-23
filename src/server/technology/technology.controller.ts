@@ -39,7 +39,9 @@ export class TechnologyController {
 				id: param.id
 			});
 
-			throw new NotFoundException();
+			throw new NotFoundException(
+				`Technology with id ${param.id} not found`
+			);
 		}
 
 		return tech;

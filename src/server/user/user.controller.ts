@@ -24,7 +24,7 @@ export class UserController {
 		if (!user) {
 			this.logger.error('findOne user not found %o', { id: 1 });
 
-			throw new NotFoundException();
+			throw new NotFoundException('Admin account not found');
 		}
 
 		return user.toJSON();

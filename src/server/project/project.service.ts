@@ -72,7 +72,7 @@ export class ProjectService {
 		const project = await this.findOneByName(name);
 
 		if (!project) {
-			throw new NotFoundException();
+			throw new NotFoundException(`Project "${name}" not found`);
 		}
 
 		await this.projectRepository.removeAndFlush(project);
@@ -86,7 +86,7 @@ export class ProjectService {
 		const project = await this.findOneById(id);
 
 		if (!project) {
-			throw new NotFoundException();
+			throw new NotFoundException(`Project with id ${id} not found`);
 		}
 
 		await this.projectRepository.removeAndFlush(project);
@@ -100,7 +100,9 @@ export class ProjectService {
 		const existingProject = await this.findOneByName(dto.name);
 
 		if (existingProject) {
-			throw new BadRequestException();
+			throw new BadRequestException(
+				`Project "${dto.name}" already exists`
+			);
 		}
 
 		const technologies = [];
@@ -112,7 +114,9 @@ export class ProjectService {
 				);
 
 				if (!tech) {
-					throw new BadRequestException();
+					throw new BadRequestException(
+						`Technology "${technology}" not found`
+					);
 				}
 
 				technologies.push(tech);
@@ -144,10 +148,19 @@ export class ProjectService {
 		const project = await this.findOneById(id);
 
 		if (!project) {
-			throw new BadRequestException();
+			throw new NotFoundException(`Project with id ${id} not found`);
 		}
 
 		const updateFields = omitBy(data, isNil);
+
+		if (updateFields.name && updateFields.name !== project.name) {
+			const existingProject = await this.findOneByName(updateFields.name);
+			if (existingProject) {
+				throw new BadRequestException(
+					`Project with given updated name "${updateFields.name}" already exists`
+				);
+			}
+		}
 
 		wrap(project).assign(updateFields, { updateNestedEntities: true });
 
@@ -170,17 +183,21 @@ export class ProjectService {
 		const project = await this.findOneById(id);
 
 		if (!project) {
-			throw new BadRequestException();
+			throw new NotFoundException(`Project with id ${id} not found`);
 		}
 
 		const tech = await this.technologyService.findOneById(technology_id);
 
 		if (!tech) {
-			throw new BadRequestException();
+			throw new NotFoundException(
+				`Technology with id ${technology_id} not found`
+			);
 		}
 
 		if (project.technologies.contains(tech as Technology)) {
-			throw new BadRequestException();
+			throw new BadRequestException(
+				`Project "${project.name}" already contains technology "${tech.name}"`
+			);
 		}
 
 		project.technologies.add(tech as Technology);
@@ -209,17 +226,21 @@ export class ProjectService {
 		const project = await this.findOneById(id);
 
 		if (!project) {
-			throw new BadRequestException();
+			throw new NotFoundException(`Project with id ${id} not found`);
 		}
 
 		const tech = await this.technologyService.findOneById(technology_id);
 
 		if (!tech) {
-			throw new BadRequestException();
+			throw new NotFoundException(
+				`Technology with id ${technology_id} not found`
+			);
 		}
 
 		if (!project.technologies.contains(tech as Technology)) {
-			throw new BadRequestException();
+			throw new BadRequestException(
+				`Project "${project.name}" does not contain technology "${tech.name}"`
+			);
 		}
 
 		project.technologies.remove(tech as Technology);
