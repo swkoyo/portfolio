@@ -9,6 +9,11 @@ const Navbar: ComponentType = () => {
 	const { auth, logout } = useAuthContext();
 	const router = useRouter();
 
+	const handleLogout = () => {
+		alert('Logged Out');
+		logout();
+	};
+
 	return (
 		<div className='navbar mb-2 shadow-lg bg-neutral text-neutral-content rounded-box'>
 			<div className='px-2 mx-2 navbar-start'>
@@ -54,7 +59,7 @@ const Navbar: ComponentType = () => {
 				{auth ? (
 					<a
 						className='btn btn-sm rounded-btn btn-error text-white'
-						onClick={() => logout()}
+						onClick={() => handleLogout()}
 					>
 						Logout
 					</a>
