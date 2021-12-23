@@ -26,32 +26,16 @@ const Login: NextPage = () => {
 				initialValues={{
 					password: ''
 				}}
-				onSubmit={(
+				onSubmit={async (
 					values: Values,
 					{ setSubmitting }: FormikHelpers<Values>
 				) => {
-					setTimeout(async () => {
-						const res = await fetch(
-							'http://localhost:3000/api/auth/login',
-							{
-								method: 'POST',
-								headers: {
-									'Content-Type': 'application/json'
-								},
-								body: JSON.stringify({
-									email: userData.email,
-									...values
-								})
-							}
-						);
-						const data = await res.json();
-
-						if (data.access_token) {
-							login(data.access_token);
-						}
-						alert(JSON.stringify(data, null, 2));
-						setSubmitting(false);
-					}, 500);
+					try {
+						await login(userData.email, values.password);
+					} catch (err) {
+						alert(err.message);
+					}
+					setSubmitting(false);
 				}}
 			>
 				<Form className='form-control'>
