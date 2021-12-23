@@ -95,7 +95,7 @@ const ProjectPage: ComponentType<Props> = ({ project }) => {
 						{auth ? (
 							<div
 								key='add'
-								className='btn bg-green-800 hover:bg-primary col-span-2 border-none'
+								className='btn bg-green-800 hover:bg-primary col-span-full border-none'
 								onClick={() => setShowAddTechModal(true)}
 							>
 								Add
