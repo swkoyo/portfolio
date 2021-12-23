@@ -12,7 +12,7 @@ const Index: NextPage = () => {
 	const [showFormModal, setShowFormModal] = useState(false);
 
 	return (
-		<div className='relative'>
+		<div className='cointainer relative'>
 			<div className={`modal ${showFormModal ? 'modal-open' : null}`}>
 				<div className='modal-box'>
 					<UserForm handleShow={setShowFormModal} />
