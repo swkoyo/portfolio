@@ -75,7 +75,7 @@ const ProjectPage: ComponentType<Props> = ({ project }) => {
 					</div>
 				</div>
 			</div>
-			<div className='grid grid-cols-3 gap-4 relative'>
+			<div className='grid grid-cols-1 md:grid-cols-3 gap-4 relative mx-auto w-full max-w-7xl'>
 				{auth ? (
 					<div
 						className='absolute top-0 left-0 btn btn-primary'
@@ -84,12 +84,14 @@ const ProjectPage: ComponentType<Props> = ({ project }) => {
 						Edit
 					</div>
 				) : null}
-				<div className='text-8xl text-center uppercase col-span-2'>
+				<div className='text-4xl md:text-8xl text-center uppercase col-span-1 md:col-span-2'>
 					{project.name}
 				</div>
-				<div className='col-span-1 row-span-2'>
-					<div className='grid grid-cols-2 gap-4 bg-neutral h-full rounded-box p-4'>
-						<div className='col-span-2 uppercase'>Technologies</div>
+				<div className='md:row-span-2'>
+					<div className='grid grid-cols-4 md:grid-cols-2 gap-4 bg-neutral h-full rounded-box p-4'>
+						<div className='mx-auto col-span-full uppercase'>
+							Technologies
+						</div>
 						{auth ? (
 							<div
 								key='add'
@@ -114,8 +116,12 @@ const ProjectPage: ComponentType<Props> = ({ project }) => {
 											</div>
 										</div>
 									) : null}
-									<TechnologyLogo tech={tech} />
-									<div className='text-xs uppercase'>
+									<TechnologyLogo
+										width={40}
+										height={40}
+										tech={tech}
+									/>
+									<div className='hidden lg:flex text-2xs uppercase'>
 										{tech.name}
 									</div>
 								</div>
@@ -123,17 +129,17 @@ const ProjectPage: ComponentType<Props> = ({ project }) => {
 						))}
 					</div>
 				</div>
-				<div className='text-center text-lg uppercase font-bold col-span-2'>
+				<div className='text-center text-lg uppercase font-bold md:col-span-2'>
 					{project.tagline}
 				</div>
-				<div className='flex flex-row mx-auto space-x-2 col-span-2'>
+				<div className='flex flex-row mx-auto space-x-2 md:col-span-2'>
 					{Object.entries(
 						pickBy(project.link_urls, (value) => !!value)
 					).map(([key, value]) => (
 						<SvgLink key={key} type={key} url={value} />
 					))}
 				</div>
-				<div className='text-center col-span-3 mt-4'>
+				<div className='text-center md:col-span-3 mt-4'>
 					{project.description}
 				</div>
 			</div>
