@@ -32,6 +32,7 @@ const Login: NextPage = () => {
 				) => {
 					try {
 						await login(userData.email, values.password);
+						alert('Welcome back!');
 					} catch (err) {
 						alert(err.message);
 					}
