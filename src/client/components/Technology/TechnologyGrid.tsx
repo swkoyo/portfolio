@@ -41,8 +41,10 @@ const TechnologyGrid: ComponentType = () => {
 					<TechnologyForm handleShow={handelShowFormModal} />
 				</div>
 			</div>
-			<div className='grid grid-cols-2 gap-4 bg-neutral h-full rounded-box p-4'>
-				<div className='col-span-2 uppercase'>Technologies</div>
+			<div className='grid grid-cols-4 md:grid-cols-2 gap-2 bg-neutral rounded-box p-4 h-full overflow-y-auto'>
+				<div className='mx-auto col-span-full uppercase'>
+					Technologies
+				</div>
 				{auth ? (
 					<div
 						key='add'
@@ -53,18 +55,21 @@ const TechnologyGrid: ComponentType = () => {
 					</div>
 				) : null}
 				{technologiesData.map((tech) => (
-					<div key={tech.id} className='relative'>
-						<div className='flex flex-row space-x-2 items-center'>
-							<TechnologyLogo tech={tech} />
-							<div className='text-xs uppercase'>{tech.name}</div>
+					<div
+						key={tech.id}
+						className='flex flex-row space-x-2 relative items-center'
+					>
+						<TechnologyLogo width={40} height={40} tech={tech} />
+						<div className='hidden lg:flex uppercase text-2xs'>
+							{tech.name}
 						</div>
 						{auth ? (
-							<div className='absolute top-0 right-0'>
+							<div className='absolute top-0 right-0 space-x-1'>
 								<div
 									className='btn btn-xs btn-circle btn-primary'
 									onClick={() => setShowUpdateModal(tech)}
 								>
-									Edit
+									E
 								</div>
 								<div
 									className='btn btn-xs btn-circle btn-error'

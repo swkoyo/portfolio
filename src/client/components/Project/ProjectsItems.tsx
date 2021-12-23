@@ -4,7 +4,7 @@ import ProjectForm from './ProjectForm';
 import { usePortfolioContext } from '../../context/PortfolioContext';
 import { useAuthContext } from '../../context/AuthContext';
 
-const ProjectsGrid: ComponentType = () => {
+const ProjectsItems: ComponentType = () => {
 	const { auth } = useAuthContext();
 	const { projectsData } = usePortfolioContext();
 	const [showFormModal, setShowFormModal] = useState(false);
@@ -37,4 +37,4 @@ const ProjectsGrid: ComponentType = () => {
 	);
 };
 
-export default ProjectsGrid;
+export default ProjectsItems;
