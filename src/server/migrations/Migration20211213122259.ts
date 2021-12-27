@@ -94,7 +94,9 @@ export class Migration20211213122259 extends Migration {
 
 		await this.addSql(`
 			INSERT INTO "Users" (id, email, password, first_name, last_name, tagline, description, avatar_url, link_urls)
-			VALUES (1, '${email}', '${password}', '${first_name}', '${last_name}', '${tagline}', '${description}', '${avatar_url}', '${link_urls}'::JSONB);
+			VALUES (1, '${email}', '${password}', '${first_name}', '${last_name}', '${tagline}', '${description}', '${avatar_url}', '${JSON.stringify(
+			link_urls
+		)}'::JSONB);
 		`);
 	}
 
