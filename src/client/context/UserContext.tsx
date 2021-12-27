@@ -31,7 +31,7 @@ export const UserProvider = ({ children, user }: Props) => {
 	const [userData, setUserData] = useState<User>(user);
 
 	const updateUser = async (data: UpdateUser) => {
-		const res = await fetch('http://localhost:3000/api/user', {
+		const res = await fetch(`${process.env.API_URL}/user`, {
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json',

@@ -40,15 +40,13 @@ const MyApp = ({
 
 // This disables the ability to perform automatic static optimization, causing every page in your app to be server-side rendered.
 MyApp.getInitialProps = async (appContext: AppContext) => {
-	const userRes = await fetch('http://localhost:3000/api/user');
+	const userRes = await fetch(`${process.env.API_URL}/user`);
 	const user = await userRes.json();
 
-	const projectsRes = await fetch('http://localhost:3000/api/projects');
+	const projectsRes = await fetch(`${process.env.API_URL}/projects`);
 	const projects = await projectsRes.json();
 
-	const technologiesRes = await fetch(
-		'http://localhost:3000/api/technologies'
-	);
+	const technologiesRes = await fetch(`${process.env.API_URL}/technologies`);
 	const technologies = await technologiesRes.json();
 
 	const appProps = await App.getInitialProps(appContext);
