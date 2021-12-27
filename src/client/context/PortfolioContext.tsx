@@ -62,11 +62,11 @@ export const PortfolioProvider = ({
 		useState<Technology[]>(technologies);
 
 	const refreshData = async () => {
-		const projectsRes = await fetch('http://localhost:3000/api/projects');
+		const projectsRes = await fetch(`${process.env.API_URL}/projects`);
 		const projects = await projectsRes.json();
 
 		const technologiesRes = await fetch(
-			'http://localhost:3000/api/technologies'
+			`${process.env.API_URL}/technologies`
 		);
 
 		const technologies = await technologiesRes.json();
@@ -77,7 +77,7 @@ export const PortfolioProvider = ({
 
 	const deleteProject = async (id: number) => {
 		const res = await fetch(
-			`http://localhost:3000/api/projects?id=${encodeURIComponent(id)}`,
+			`${process.env.API_URL}/projects?id=${encodeURIComponent(id)}`,
 			{
 				method: 'DELETE',
 				headers: {
@@ -96,9 +96,7 @@ export const PortfolioProvider = ({
 
 	const deleteTechnology = async (id: number) => {
 		const res = await fetch(
-			`http://localhost:3000/api/technologies?id=${encodeURIComponent(
-				id
-			)}`,
+			`${process.env.API_URL}/technologies?id=${encodeURIComponent(id)}`,
 			{
 				method: 'DELETE',
 				headers: {
@@ -116,7 +114,7 @@ export const PortfolioProvider = ({
 	};
 
 	const addProject = async (project: Project) => {
-		const res = await fetch('http://localhost:3000/api/projects', {
+		const res = await fetch(`${process.env.API_URL}/projects`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -134,7 +132,7 @@ export const PortfolioProvider = ({
 	};
 
 	const addTechnology = async (technology: AddTechnologyData) => {
-		const res = await fetch('http://localhost:3000/api/technologies', {
+		const res = await fetch(`${process.env.API_URL}/technologies`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -152,7 +150,7 @@ export const PortfolioProvider = ({
 	};
 
 	const updateTechnology = async (id: number, data: UpdateTechnologyData) => {
-		const res = await fetch('http://localhost:3000/api/technologies', {
+		const res = await fetch(`${process.env.API_URL}/technologies`, {
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json',
@@ -170,7 +168,7 @@ export const PortfolioProvider = ({
 	};
 
 	const updateProject = async (id: number, data: UpdateProjectData) => {
-		const res = await fetch('http://localhost:3000/api/projects', {
+		const res = await fetch(`${process.env.API_URL}/projects`, {
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json',
@@ -188,17 +186,14 @@ export const PortfolioProvider = ({
 	};
 
 	const addProjectTechnology = async (id: number, technology_id: number) => {
-		const res = await fetch(
-			'http://localhost:3000/api/projects/technology',
-			{
-				method: 'PUT',
-				headers: {
-					'Content-Type': 'application/json',
-					authorization: `Bearer ${cookieCutter.get('token')}`
-				},
-				body: JSON.stringify({ id, technology_id })
-			}
-		);
+		const res = await fetch(`${process.env.API_URL}/projects/technology`, {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json',
+				authorization: `Bearer ${cookieCutter.get('token')}`
+			},
+			body: JSON.stringify({ id, technology_id })
+		});
 
 		if (!res.ok) {
 			const data = await res.json();
@@ -212,17 +207,14 @@ export const PortfolioProvider = ({
 		id: number,
 		technology_id: number
 	) => {
-		const res = await fetch(
-			'http://localhost:3000/api/projects/technology',
-			{
-				method: 'DELETE',
-				headers: {
-					'Content-Type': 'application/json',
-					authorization: `Bearer ${cookieCutter.get('token')}`
-				},
-				body: JSON.stringify({ id, technology_id })
-			}
-		);
+		const res = await fetch(`${process.env.API_URL}/projects/technology`, {
+			method: 'DELETE',
+			headers: {
+				'Content-Type': 'application/json',
+				authorization: `Bearer ${cookieCutter.get('token')}`
+			},
+			body: JSON.stringify({ id, technology_id })
+		});
 
 		if (!res.ok) {
 			const data = await res.json();
