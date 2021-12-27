@@ -21,7 +21,7 @@ const ProjectForm: ComponentType<Props> = (props) => {
 	const [project, setProject] = useState(props.project);
 
 	const options = technologiesData.map((tech) => ({
-		value: tech.name,
+		value: tech.id,
 		label: tech.name
 	}));
 

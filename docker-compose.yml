@@ -1,13 +1,18 @@
-version: '3.3'
+version: '3.7'
 
 services:
   app:
     container_name: portfolio_app
-    env_file:
-      - .env
-    build: .
+    build:
+      context: .
+    command: pnpm start:dev
+    volumes:
+      - .:/app
+      - app/node_modules
     ports:
       - 80:80
+    env_file:
+      - .env
     depends_on:
       - database
   database:
