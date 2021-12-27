@@ -19,9 +19,10 @@ const Project: NextPage = () => {
 		} else {
 			setProject(project);
 		}
-	}, []);
+	}, [projectsData]);
 
 	return project ? <ProjectPage project={project} /> : <></>;
+	return <ProjectPage project={project} />;
 };
 
 export default Project;
