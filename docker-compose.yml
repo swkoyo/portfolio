@@ -7,14 +7,14 @@ services:
       - .env
     build: .
     ports:
-      - 3000:3000
+      - 80:80
     depends_on:
       - database
   database:
     container_name: portfolio_database
     image: postgres:14.1
     ports:
-      - 5433:5432
+      - 5432:5432
     environment:
       POSTGRES_DB: ${DATABASE_NAME}
       POSTGRES_USER: ${DATABASE_USER}
