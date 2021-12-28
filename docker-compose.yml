@@ -8,6 +8,7 @@ services:
     command: pnpm start:dev
     volumes:
       - .:/app
+      - app/node_modules
     ports:
       - 3000:3000
     env_file:
