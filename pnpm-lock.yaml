@@ -34,6 +34,7 @@ specifiers:
   class-validator: ^0.13.2
   cookie-cutter: ^0.2.0
   daisyui: ^1.16.5
+  dotenv: ^10.0.0
   eslint: ^8.0.1
   eslint-config-prettier: ^8.3.0
   eslint-plugin-prettier: ^4.0.0
@@ -84,6 +85,7 @@ dependencies:
   class-validator: 0.13.2
   cookie-cutter: 0.2.0
   daisyui: 1.16.5
+  dotenv: 10.0.0
   formik: 2.2.9_react@17.0.2
   lodash: 4.17.21
   nanoid: 3.1.30

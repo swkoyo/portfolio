@@ -6,7 +6,7 @@
 	"private": false,
 	"license": "UNLICENSED",
 	"scripts": {
-		"prebuild": "rimraf dist",
+		"prebuild": "rimraf dist .next",
 		"build": "nest build && next build src/client",
 		"format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
 		"start": "nest start",
@@ -37,6 +37,7 @@
 		"class-validator": "^0.13.2",
 		"cookie-cutter": "^0.2.0",
 		"daisyui": "^1.16.5",
+		"dotenv": "^10.0.0",
 		"formik": "^2.2.9",
 		"lodash": "^4.17.21",
 		"nanoid": "^3.1.30",
