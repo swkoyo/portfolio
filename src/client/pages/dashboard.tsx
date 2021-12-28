@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { NextPage, GetStaticProps, InferGetStaticPropsType } from 'next';
+import {
+	NextPage,
+	GetServerSideProps,
+	InferGetServerSidePropsType
+} from 'next';
 import cookieCutter from 'cookie-cutter';
 import { Formik, Field, Form, FormikHelpers } from 'formik';
 import UserForm from '../components/User/UserForm';
@@ -11,7 +15,7 @@ interface LoginValues {
 }
 
 const Dashboard: NextPage = (
-	props: InferGetStaticPropsType<typeof getStaticProps>
+	props: InferGetServerSidePropsType<typeof getServerSideProps>
 ) => {
 	const [user, setUser] = useState(props.user);
 	const [technologies, setTechnologies] = useState(props.technologies);
@@ -363,7 +367,7 @@ const Dashboard: NextPage = (
 	);
 };
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
 	const userRes = await fetch(`${process.env.API_URL}/user`);
 	const user = await userRes.json();
 
