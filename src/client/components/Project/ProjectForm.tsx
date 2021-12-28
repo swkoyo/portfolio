@@ -1,7 +1,6 @@
 import { ComponentType, useEffect, useState } from 'react';
-import { Formik, Field, Form, FormikHelpers } from 'formik';
+import { Formik, Field, Form } from 'formik';
 import { Project, Technology } from '../../models';
-import { AddProjectData } from '../../context/PortfolioContext';
 import Select from 'react-select';
 import { CreateProjectSchema, UpdateProjectSchema } from '../../utils/schema';
 import { omitBy } from 'lodash';
@@ -22,6 +21,7 @@ const ProjectForm: ComponentType<Props> = ({
 	...props
 }) => {
 	const [project, setProject] = useState(props.project);
+	const [selectValues, setSelectValues] = useState([]);
 
 	const options = technologies.map((tech) => ({
 		value: tech.id,
@@ -31,6 +31,12 @@ const ProjectForm: ComponentType<Props> = ({
 	useEffect(() => {
 		if (props.project) {
 			setProject(props.project);
+			setSelectValues(
+				props.project.technologies.map((tech) => ({
+					value: tech.id,
+					label: tech.name
+				}))
+			);
 		}
 	}, [props.project]);
 
@@ -76,6 +82,10 @@ const ProjectForm: ComponentType<Props> = ({
 		return projects;
 	};
 
+	const handleSelectChange = (values) => {
+		setSelectValues(values);
+	};
+
 	return (
 		<Formik
 			enableReinitialize
@@ -85,7 +95,10 @@ const ProjectForm: ComponentType<Props> = ({
 							name: project.name,
 							description: project.description,
 							tagline: project.tagline,
-							link_urls: project.link_urls
+							link_urls: project.link_urls,
+							technologies: project.technologies.map(
+								(tech) => tech.name
+							)
 					  }
 					: {
 							name: '',
@@ -95,10 +108,7 @@ const ProjectForm: ComponentType<Props> = ({
 							technologies: []
 					  }
 			}
-			onSubmit={async (
-				values: AddProjectData,
-				{ setSubmitting, resetForm }: FormikHelpers<AddProjectData>
-			) => {
+			onSubmit={async (values, { setSubmitting, resetForm }) => {
 				values.link_urls = omitBy(values.link_urls, (value) => !value);
 				let projects;
 				try {
@@ -111,6 +121,7 @@ const ProjectForm: ComponentType<Props> = ({
 				}
 				setSubmitting(false);
 				resetForm();
+				handleSelectChange([]);
 				handleShow(project ? null : false);
 				if (projects) setProjects(projects);
 			}}
@@ -159,28 +170,30 @@ const ProjectForm: ComponentType<Props> = ({
 						</div>
 					) : null}
 
-					{!project ? (
-						<Select
-							className='w-full text-black'
-							id='technologies'
-							name='technologies'
-							instanceId='technologies'
-							placeholder='technologies'
-							isMulti={true}
-							onChange={(v) =>
-								setFieldValue(
-									'technologies',
-									v.map((tech) => tech.value)
-								)
-							}
-							options={options}
-						/>
-					) : null}
-					{!project && errors.technologies && touched.technologies ? (
+					{/* {!project ? ( */}
+					<Select
+						className='w-full text-black'
+						id='technologies'
+						name='technologies'
+						instanceId='technologies'
+						placeholder='technologies'
+						value={selectValues}
+						isMulti={true}
+						onChange={(v) => {
+							handleSelectChange(v);
+							setFieldValue(
+								'technologies',
+								v.map((tech) => tech.value)
+							);
+						}}
+						options={options}
+					/>
+					{/* ) : null} */}
+					{/* {!project && errors.technologies && touched.technologies ? (
 						<div className='text-xs text-red-600'>
 							{errors.technologies}
 						</div>
-					) : null}
+					) : null} */}
 
 					<Field
 						className='input border-white'
