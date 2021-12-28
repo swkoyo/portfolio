@@ -68,6 +68,11 @@ const Dashboard: NextPage = (
 		setToken(data.access_token);
 	};
 
+	const handleLogout = () => {
+		cookieCutter.set('token', null, { expires: new Date(0) });
+		setToken(null);
+	};
+
 	const handleDelete = async (type: string, id: number) => {
 		const res = await fetch(
 			`${process.env.API_URL}/${type}?id=${encodeURIComponent(id)}`,
@@ -167,6 +172,12 @@ const Dashboard: NextPage = (
 								technologies={technologies}
 							/>
 						</div>
+					</div>
+					<div
+						className='btn btn-error col-span-full text-white'
+						onClick={() => handleLogout()}
+					>
+						Logout
 					</div>
 					<div className='my-6 indicator h-full w-full'>
 						<div className='indicator-item indicator-top'>
