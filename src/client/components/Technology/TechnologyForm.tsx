@@ -95,8 +95,8 @@ const TechnologyForm: ComponentType<Props> = ({
 				}
 				setSubmitting(false);
 				resetForm();
-				handleShow(technologies ? null : false);
-				setTechnologies(technologies);
+				handleShow(technology ? null : false);
+				if (technologies) setTechnologies(technologies);
 			}}
 			validationSchema={
 				technology ? UpdateTechnologySchema : CreateTechnologySchema

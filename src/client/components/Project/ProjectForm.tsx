@@ -1,6 +1,6 @@
 import { ComponentType, useEffect, useState } from 'react';
 import { Formik, Field, Form, FormikHelpers } from 'formik';
-import { Project } from '../../models';
+import { Project, Technology } from '../../models';
 import {
 	usePortfolioContext,
 	AddProjectData,
@@ -13,14 +13,21 @@ import { isNil, omitBy } from 'lodash';
 interface Props {
 	handleShow: (data: boolean) => void;
 	project?: Project;
+	setProjects: (data: Project[]) => void;
+	token: string;
+	technologies: Technology[];
 }
 
-const ProjectForm: ComponentType<Props> = (props) => {
-	const { technologiesData, addProject, updateProject } =
-		usePortfolioContext();
+const ProjectForm: ComponentType<Props> = ({
+	handleShow,
+	setProjects,
+	token,
+	technologies,
+	...props
+}) => {
 	const [project, setProject] = useState(props.project);
 
-	const options = technologiesData.map((tech) => ({
+	const options = technologies.map((tech) => ({
 		value: tech.id,
 		label: tech.name
 	}));
@@ -30,6 +37,48 @@ const ProjectForm: ComponentType<Props> = (props) => {
 			setProject(props.project);
 		}
 	}, [props.project]);
+
+	const handleAdd = async (data): Promise<Project> => {
+		const res = await fetch(`${process.env.API_URL}/projects`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				authorization: `Bearer ${token}`
+			},
+			body: JSON.stringify(data)
+		});
+
+		if (!res.ok) {
+			const data = await res.json();
+			throw new Error(data.message);
+		}
+
+		const projectRes = await fetch(`${process.env.API_URL}/projects`);
+		const projects = await projectRes.json();
+
+		return projects;
+	};
+
+	const handleUpdate = async (id, data): Promise<Project> => {
+		const res = await fetch(`${process.env.API_URL}/projects`, {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json',
+				authorization: `Bearer ${token}`
+			},
+			body: JSON.stringify({ id, data })
+		});
+
+		if (!res.ok) {
+			const data = await res.json();
+			throw new Error(data.message);
+		}
+
+		const projectRes = await fetch(`${process.env.API_URL}/projects`);
+		const projects = await projectRes.json();
+
+		return projects;
+	};
 
 	return (
 		<Formik
@@ -55,17 +104,19 @@ const ProjectForm: ComponentType<Props> = (props) => {
 				{ setSubmitting, resetForm }: FormikHelpers<AddProjectData>
 			) => {
 				values.link_urls = omitBy(values.link_urls, (value) => !value);
+				let projects;
 				try {
-					project
-						? await updateProject(project.id, values)
-						: await addProject(values);
+					projects = project
+						? await handleUpdate(project.id, values)
+						: await handleAdd(values);
 					alert(`Project ${project ? 'updated' : 'created'}`);
 				} catch (err) {
 					alert(err.message);
 				}
 				setSubmitting(false);
 				resetForm();
-				props.handleShow(false);
+				handleShow(project ? null : false);
+				if (projects) setProjects(projects);
 			}}
 			validationSchema={
 				project ? UpdateProjectSchema : CreateProjectSchema
@@ -165,7 +216,7 @@ const ProjectForm: ComponentType<Props> = (props) => {
 					<button
 						type='reset'
 						className='btn btn-error'
-						onClick={() => props.handleShow(false)}
+						onClick={() => handleShow(project ? null : false)}
 					>
 						Cancel
 					</button>

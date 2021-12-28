@@ -4,6 +4,7 @@ import cookieCutter from 'cookie-cutter';
 import { Formik, Field, Form, FormikHelpers } from 'formik';
 import UserForm from '../components/User/UserForm';
 import TechnologyForm from '../components/Technology/TechnologyForm';
+import ProjectForm from '../components/Project/ProjectForm';
 
 interface LoginValues {
 	password: string;
@@ -20,6 +21,7 @@ const Dashboard: NextPage = (
 	const [showProjectModal, setShowProjectModal] = useState(false);
 	const [showTechModal, setShowTechModal] = useState(false);
 	const [showTechUpdateModal, setShowTechUpdateModal] = useState(null);
+	const [showProjectUpdateModal, setShowProjectUpdateModal] = useState(null);
 
 	useEffect(() => {
 		(async () => {
@@ -111,6 +113,35 @@ const Dashboard: NextPage = (
 							/>
 						</div>
 					</div>
+					<div
+						className={`modal ${
+							showProjectModal ? 'modal-open' : null
+						}`}
+					>
+						<div className='modal-box'>
+							<ProjectForm
+								handleShow={setShowProjectModal}
+								technologies={technologies}
+								setProjects={setProjects}
+								token={token}
+							/>
+						</div>
+					</div>
+					<div
+						className={`modal ${
+							showProjectUpdateModal ? 'modal-open' : null
+						}`}
+					>
+						<div className='modal-box'>
+							<ProjectForm
+								handleShow={setShowProjectUpdateModal}
+								project={showProjectUpdateModal}
+								setProjects={setProjects}
+								token={token}
+								technologies={technologies}
+							/>
+						</div>
+					</div>
 					<div className='my-6 indicator h-full w-full'>
 						<div className='indicator-item indicator-top'>
 							<button
@@ -184,7 +215,10 @@ const Dashboard: NextPage = (
 					</div>
 					<div className='col-span-2 my-6 indicator h-full w-full'>
 						<div className='indicator-item indicator-top'>
-							<button className='btn btn-success btn-xs'>
+							<button
+								className='btn btn-success btn-xs'
+								onClick={() => setShowProjectModal(true)}
+							>
 								Add
 							</button>
 						</div>
@@ -195,23 +229,37 @@ const Dashboard: NextPage = (
 							{projects.map((project) => (
 								<div
 									key={project.id}
-									className='flex flex-col p-4'
+									className='my-6 indicator h-full w-full'
 								>
-									{Object.entries(project).map(
-										([key, value]) => (
-											<div
-												key={key}
-											>{`${key.toUpperCase()}: ${
-												key === 'technologies'
-													? JSON.stringify(
-															value,
-															null,
-															4
-													  )
-													: value
-											}`}</div>
-										)
-									)}
+									<div className='indicator-item indicator-top'>
+										<button
+											className='btn btn-primary btn-xs'
+											onClick={() =>
+												setShowProjectUpdateModal(
+													project
+												)
+											}
+										>
+											Edit
+										</button>
+									</div>
+									<div className='flex flex-col p-4'>
+										{Object.entries(project).map(
+											([key, value]) => (
+												<div
+													key={key}
+												>{`${key.toUpperCase()}: ${
+													key === 'technologies'
+														? JSON.stringify(
+																value,
+																null,
+																4
+														  )
+														: value
+												}`}</div>
+											)
+										)}
+									</div>
 								</div>
 							))}
 						</div>
