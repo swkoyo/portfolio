@@ -1,11 +1,15 @@
 import React from 'react';
-import { NextPage, GetStaticProps, InferGetStaticPropsType } from 'next';
+import {
+	NextPage,
+	InferGetServerSidePropsType,
+	GetServerSideProps
+} from 'next';
 import SvgLink from '../components/SvgLink';
 import { pickBy } from 'lodash';
 
 const Index: NextPage = ({
 	user
-}: InferGetStaticPropsType<typeof getStaticProps>) => {
+}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
 	return (
 		<div className='container mx-auto space-y-14 text-center relative w-full max-w-7xl'>
 			<div className='text-5xl uppercase md:text-8xl'>
@@ -31,7 +35,7 @@ const Index: NextPage = ({
 	);
 };
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
 	const userRes = await fetch(`${process.env.API_URL}/user`);
 	const user = await userRes.json();
 

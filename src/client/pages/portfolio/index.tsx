@@ -1,12 +1,16 @@
 import React from 'react';
-import { NextPage, GetStaticProps, InferGetStaticPropsType } from 'next';
+import {
+	NextPage,
+	GetServerSideProps,
+	InferGetServerSidePropsType
+} from 'next';
 import ProjectsItems from '../../components/Project/ProjectsItems';
 import TechnologyGrid from '../../components/Technology/TechnologyGrid';
 
 const Portfolio: NextPage = ({
 	projects,
 	technologies
-}: InferGetStaticPropsType<typeof getStaticProps>) => {
+}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
 	return (
 		<div className='grid md:grid-cols-3 gap-4 mx-auto w-full max-w-7xl auto-rows-fr'>
 			<div className='md:row-span-2'>
@@ -17,7 +21,7 @@ const Portfolio: NextPage = ({
 	);
 };
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
 	const projectsRes = await fetch(`${process.env.API_URL}/projects`);
 	const projects = await projectsRes.json();
 
