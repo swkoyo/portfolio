@@ -68,6 +68,32 @@ const Dashboard: NextPage = (
 		setToken(data.access_token);
 	};
 
+	const handleDelete = async (type: string, id: number) => {
+		const res = await fetch(
+			`${process.env.API_URL}/${type}?id=${encodeURIComponent(id)}`,
+			{
+				method: 'DELETE',
+				headers: {
+					authorization: `Bearer ${token}`
+				}
+			}
+		);
+
+		if (!res.ok) {
+			const data = await res.json();
+			throw new Error(data.message);
+		}
+
+		const techRes = await fetch(`${process.env.API_URL}/technologies`);
+		const techs = await techRes.json();
+
+		const projectsRes = await fetch(`${process.env.API_URL}/projects`);
+		const project = await projectsRes.json();
+
+		setTechnologies(techs);
+		setProjects(project);
+	};
+
 	return (
 		<>
 			{token ? (
@@ -182,7 +208,7 @@ const Dashboard: NextPage = (
 									key={tech.id}
 									className='my-6 indicator h-full w-full'
 								>
-									<div className='indicator-item indicator-top'>
+									<div className='indicator-item indicator-top space-x-1'>
 										<button
 											className='btn btn-primary btn-xs'
 											onClick={() =>
@@ -190,6 +216,17 @@ const Dashboard: NextPage = (
 											}
 										>
 											Edit
+										</button>
+										<button
+											className='btn btn-error btn-xs'
+											onClick={() =>
+												handleDelete(
+													'technologies',
+													tech.id
+												)
+											}
+										>
+											X
 										</button>
 									</div>
 									<div className='flex flex-col p-4'>
@@ -231,7 +268,7 @@ const Dashboard: NextPage = (
 									key={project.id}
 									className='my-6 indicator h-full w-full'
 								>
-									<div className='indicator-item indicator-top'>
+									<div className='indicator-item indicator-top space-x-1'>
 										<button
 											className='btn btn-primary btn-xs'
 											onClick={() =>
@@ -241,6 +278,17 @@ const Dashboard: NextPage = (
 											}
 										>
 											Edit
+										</button>
+										<button
+											className='btn btn-error btn-xs'
+											onClick={() =>
+												handleDelete(
+													'projects',
+													project.id
+												)
+											}
+										>
+											X
 										</button>
 									</div>
 									<div className='flex flex-col p-4'>
