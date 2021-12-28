@@ -5,14 +5,14 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 
 const Navbar: ComponentType = () => {
-	const { userData } = useUserContext();
-	const { auth, logout } = useAuthContext();
+	// const { userData } = useUserContext();
+	// const { auth, logout } = useAuthContext();
 	const router = useRouter();
 
-	const handleLogout = () => {
-		alert('Logged Out');
-		logout();
-	};
+	// const handleLogout = () => {
+	// 	alert('Logged Out');
+	// 	logout();
+	// };
 
 	return (
 		<div className='flex flex-row w-full shadow-lg bg-neutral text-neutral-content rounded-box mb-2'>
@@ -20,7 +20,7 @@ const Navbar: ComponentType = () => {
 				<div className='px-2 mx-2 navbar-start'>
 					<Link href='/'>
 						<span className='text-lg font-bold hover:cursor-pointer'>
-							{userData.first_name} {userData.last_name}
+							{process.env.FULL_NAME}
 						</span>
 					</Link>
 				</div>
@@ -49,7 +49,7 @@ const Navbar: ComponentType = () => {
 					</Link> */}
 					</div>
 				</div>
-				<div className='px-2 mx-2 navbar-end'>
+				{/* <div className='px-2 mx-2 navbar-end'>
 					{auth ? (
 						<a
 							className='hidden sm:flex btn btn-sm rounded-btn btn-error text-white'
@@ -100,7 +100,7 @@ const Navbar: ComponentType = () => {
 							) : null}
 						</div>
 					</button>
-				</div>
+				</div> */}
 			</div>
 		</div>
 	);

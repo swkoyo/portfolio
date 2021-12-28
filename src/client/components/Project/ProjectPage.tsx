@@ -12,38 +12,38 @@ interface Props {
 }
 
 const ProjectPage: ComponentType<Props> = ({ project }) => {
-	const { auth } = useAuthContext();
-	const { technologiesData, removeProjectTechnology, addProjectTechnology } =
-		usePortfolioContext();
-	const [showFormModal, setShowFormModal] = useState(false);
-	const [showAddTechModal, setShowAddTechModal] = useState(false);
+	// const { auth } = useAuthContext();
+	// const { technologiesData, removeProjectTechnology, addProjectTechnology } =
+	// 	usePortfolioContext();
+	// const [showFormModal, setShowFormModal] = useState(false);
+	// const [showAddTechModal, setShowAddTechModal] = useState(false);
 
-	const handleAddTech = async (tech) => {
-		try {
-			await addProjectTechnology(project.id, tech.id);
-		} catch (err) {
-			alert(err.message);
-		}
-		setShowAddTechModal(false);
-	};
+	// const handleAddTech = async (tech) => {
+	// 	try {
+	// 		await addProjectTechnology(project.id, tech.id);
+	// 	} catch (err) {
+	// 		alert(err.message);
+	// 	}
+	// 	setShowAddTechModal(false);
+	// };
 
-	const handleRemoveTech = async (id: number) => {
-		try {
-			await removeProjectTechnology(project.id, id);
-		} catch (err) {
-			alert(err.message);
-		}
-	};
+	// const handleRemoveTech = async (id: number) => {
+	// 	try {
+	// 		await removeProjectTechnology(project.id, id);
+	// 	} catch (err) {
+	// 		alert(err.message);
+	// 	}
+	// };
 
-	const possibleTechs = differenceBy(
-		technologiesData,
-		project.technologies,
-		'name'
-	);
+	// const possibleTechs = differenceBy(
+	// 	technologiesData,
+	// 	project.technologies,
+	// 	'name'
+	// );
 
 	return (
 		<>
-			<div className={`modal ${showFormModal ? 'modal-open' : null}`}>
+			{/* <div className={`modal ${showFormModal ? 'modal-open' : null}`}>
 				<div className='modal-box'>
 					<ProjectForm
 						handleShow={setShowFormModal}
@@ -74,16 +74,16 @@ const ProjectPage: ComponentType<Props> = ({ project }) => {
 						Cancel
 					</div>
 				</div>
-			</div>
+			</div> */}
 			<div className='grid grid-cols-1 md:grid-cols-3 gap-4 relative mx-auto w-full max-w-7xl'>
-				{auth ? (
+				{/* {auth ? (
 					<div
 						className='absolute top-0 left-0 btn btn-primary'
 						onClick={() => setShowFormModal(true)}
 					>
 						Edit
 					</div>
-				) : null}
+				) : null} */}
 				<div className='text-4xl md:text-8xl text-center uppercase col-span-1 md:col-span-2'>
 					{project.name}
 				</div>
@@ -92,7 +92,7 @@ const ProjectPage: ComponentType<Props> = ({ project }) => {
 						<div className='mx-auto col-span-full uppercase'>
 							Technologies
 						</div>
-						{auth ? (
+						{/* {auth ? (
 							<div
 								key='add'
 								className='btn bg-green-800 hover:bg-primary col-span-full border-none'
@@ -100,11 +100,11 @@ const ProjectPage: ComponentType<Props> = ({ project }) => {
 							>
 								Add
 							</div>
-						) : null}
+						) : null} */}
 						{project.technologies.map((tech, i) => (
 							<div key={i} className='relative'>
 								<div className='flex flex-row space-x-2 items-center'>
-									{auth ? (
+									{/* {auth ? (
 										<div className='absolute top-0 right-0'>
 											<div
 												className='btn btn-xs btn-circle btn-error'
@@ -115,7 +115,7 @@ const ProjectPage: ComponentType<Props> = ({ project }) => {
 												X
 											</div>
 										</div>
-									) : null}
+									) : null} */}
 									<TechnologyLogo
 										width={40}
 										height={40}
