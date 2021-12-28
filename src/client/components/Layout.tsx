@@ -4,14 +4,12 @@ import Navbar from './Navbar';
 import { useUserContext } from '../context/UserContext';
 
 const Layout: ComponentType = ({ children }) => {
-	const { userData } = useUserContext();
+	// const { userData } = useUserContext();
 
 	return (
 		<div className='m-5'>
 			<Head>
-				<title>
-					{userData.first_name} {userData.last_name}
-				</title>
+				<title>{process.env.FULL_NAME}</title>
 			</Head>
 			<Navbar />
 			<main className='mt-10 px-6'>{children}</main>

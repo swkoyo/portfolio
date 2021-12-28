@@ -10,19 +10,19 @@ interface Values {
 }
 
 const Login: NextPage = () => {
-	const router = useRouter();
-	const { userData } = useUserContext();
-	const { auth, login } = useAuthContext();
+	// const router = useRouter();
+	// const { userData } = useUserContext();
+	// const { auth, login } = useAuthContext();
 
-	useEffect(() => {
-		if (auth) {
-			router.push('/');
-		}
-	}, [auth]);
+	// useEffect(() => {
+	// 	if (auth) {
+	// 		router.push('/');
+	// 	}
+	// }, [auth]);
 
 	return (
 		<div className='p-10 card bg-base-200'>
-			<Formik
+			{/* <Formik
 				initialValues={{
 					password: ''
 				}}
@@ -52,7 +52,7 @@ const Login: NextPage = () => {
 						Login
 					</button>
 				</Form>
-			</Formik>
+			</Formik> */}
 		</div>
 	);
 };
