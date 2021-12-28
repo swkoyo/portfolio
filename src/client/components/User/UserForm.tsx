@@ -1,6 +1,5 @@
 import { ComponentType } from 'react';
-import { Formik, Field, Form, FormikHelpers } from 'formik';
-import { UpdateUser } from '../../context/UserContext';
+import { Formik, Field, Form } from 'formik';
 import { UpdateUserSchema } from '../../utils/schema';
 import { omitBy } from 'lodash';
 import { User } from '../../models';
@@ -46,10 +45,7 @@ const UserForm: ComponentType<Props> = ({
 				avatar_url: user.avatar_url,
 				link_urls: user.link_urls
 			}}
-			onSubmit={async (
-				values: UpdateUser,
-				{ setSubmitting, resetForm }: FormikHelpers<UpdateUser>
-			) => {
+			onSubmit={async (values, { setSubmitting, resetForm }) => {
 				values.link_urls = omitBy(values.link_urls, (value) => !value);
 				let user;
 

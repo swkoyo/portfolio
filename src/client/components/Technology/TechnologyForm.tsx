@@ -1,7 +1,6 @@
 import { ComponentType, useEffect, useState } from 'react';
-import { Formik, Field, Form, FormikHelpers } from 'formik';
+import { Formik, Field, Form } from 'formik';
 import { Technology } from '../../models';
-import { AddTechnologyData } from '../../context/PortfolioContext';
 import {
 	CreateTechnologySchema,
 	UpdateTechnologySchema
@@ -77,10 +76,7 @@ const TechnologyForm: ComponentType<Props> = ({
 				name: technology?.name || '',
 				logo_url: technology?.logo_url || ''
 			}}
-			onSubmit={async (
-				values: AddTechnologyData,
-				{ setSubmitting, resetForm }: FormikHelpers<AddTechnologyData>
-			) => {
+			onSubmit={async (values, { setSubmitting, resetForm }) => {
 				let technologies;
 				try {
 					technologies = technology
