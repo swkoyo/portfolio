@@ -3,7 +3,6 @@ import { useUserContext } from '../context/UserContext';
 import { useAuthContext } from '../context/AuthContext';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { FULL_NAME } from '../config';
 
 const Navbar: ComponentType = () => {
 	// const { userData } = useUserContext();
@@ -21,7 +20,7 @@ const Navbar: ComponentType = () => {
 				<div className='px-2 mx-2 navbar-start'>
 					<Link href='/'>
 						<span className='text-lg font-bold hover:cursor-pointer'>
-							{FULL_NAME}
+							{process.env.FULL_NAME}
 						</span>
 					</Link>
 				</div>
