@@ -3,37 +3,67 @@ import { Formik, Field, Form, FormikHelpers } from 'formik';
 import { useUserContext, UpdateUser } from '../../context/UserContext';
 import { UpdateUserSchema } from '../../utils/schema';
 import { omitBy } from 'lodash';
+import { User } from '../../models';
 
 interface Props {
+	user: User;
+	token: string;
 	handleShow: (data: boolean) => void;
+	setUser: (data: User) => void;
 }
 
-const UserForm: ComponentType<Props> = (props) => {
-	const { userData, updateUser } = useUserContext();
+const UserForm: ComponentType<Props> = ({
+	user,
+	handleShow,
+	token,
+	setUser
+}) => {
+	const handleUpdate = async (data): Promise<User> => {
+		const res = await fetch(`${process.env.API_URL}/user`, {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json',
+				authorization: `Bearer ${token}`
+			},
+			body: JSON.stringify(data)
+		});
+
+		const user = await res.json();
+
+		if (!res.ok) {
+			throw new Error(user.message);
+		}
+
+		return user;
+	};
 
 	return (
 		<Formik
 			enableReinitialize
 			initialValues={{
-				tagline: userData.tagline,
-				description: userData.description,
-				avatar_url: userData.avatar_url,
-				link_urls: userData.link_urls
+				tagline: user.tagline,
+				description: user.description,
+				avatar_url: user.avatar_url,
+				link_urls: user.link_urls
 			}}
 			onSubmit={async (
 				values: UpdateUser,
 				{ setSubmitting, resetForm }: FormikHelpers<UpdateUser>
 			) => {
 				values.link_urls = omitBy(values.link_urls, (value) => !value);
+				let user;
+
 				try {
-					await updateUser(values);
+					user = await handleUpdate(values);
 					alert('User updated');
 				} catch (err) {
 					alert(err.message);
 				}
+
 				setSubmitting(false);
 				resetForm();
-				props.handleShow(false);
+				handleShow(false);
+				setUser(user);
 			}}
 			validationSchema={UpdateUserSchema}
 		>
@@ -114,7 +144,7 @@ const UserForm: ComponentType<Props> = (props) => {
 					<button
 						type='reset'
 						className='btn btn-primary'
-						onClick={() => props.handleShow(false)}
+						onClick={() => handleShow(false)}
 					>
 						Cancel
 					</button>
