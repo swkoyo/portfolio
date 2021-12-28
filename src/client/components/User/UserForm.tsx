@@ -63,7 +63,7 @@ const UserForm: ComponentType<Props> = ({
 				setSubmitting(false);
 				resetForm();
 				handleShow(false);
-				setUser(user);
+				if (user) setUser(user);
 			}}
 			validationSchema={UpdateUserSchema}
 		>
