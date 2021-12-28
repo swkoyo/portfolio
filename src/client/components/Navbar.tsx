@@ -1,18 +1,9 @@
 import { ComponentType } from 'react';
-import { useUserContext } from '../context/UserContext';
-import { useAuthContext } from '../context/AuthContext';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
 const Navbar: ComponentType = () => {
-	// const { userData } = useUserContext();
-	// const { auth, logout } = useAuthContext();
 	const router = useRouter();
-
-	// const handleLogout = () => {
-	// 	alert('Logged Out');
-	// 	logout();
-	// };
 
 	return (
 		<div className='flex flex-row w-full shadow-lg bg-neutral text-neutral-content rounded-box mb-2'>
@@ -37,27 +28,9 @@ const Navbar: ComponentType = () => {
 								Portfolio
 							</a>
 						</Link>
-						{/* <Link href='/'>
-						<a className='btn btn-ghost btn-sm rounded-btn'>
-							Resume
-						</a>
-					</Link>
-					<Link href='/'>
-						<a className='btn btn-ghost btn-sm rounded-btn'>
-							Contact
-						</a>
-					</Link> */}
 					</div>
 				</div>
-				{/* <div className='px-2 mx-2 navbar-end'>
-					{auth ? (
-						<a
-							className='hidden sm:flex btn btn-sm rounded-btn btn-error text-white'
-							onClick={() => handleLogout()}
-						>
-							Logout
-						</a>
-					) : null}
+				<div className='px-2 mx-2 navbar-end'>
 					<button className='sm:hidden btn btn-square btn-ghost group focus:btn-active relative z-50'>
 						<svg
 							xmlns='http://www.w3.org/2000/svg'
@@ -88,19 +61,9 @@ const Navbar: ComponentType = () => {
 									</a>
 								</Link>
 							</li>
-							{auth ? (
-								<li>
-									<a
-										className='btn btn-error btn-md rounded-btn border-none'
-										onClick={() => handleLogout()}
-									>
-										Logout
-									</a>
-								</li>
-							) : null}
 						</div>
 					</button>
-				</div> */}
+				</div>
 			</div>
 		</div>
 	);
