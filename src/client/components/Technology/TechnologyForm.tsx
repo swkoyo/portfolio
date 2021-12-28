@@ -1,10 +1,7 @@
 import { ComponentType, useEffect, useState } from 'react';
 import { Formik, Field, Form, FormikHelpers } from 'formik';
 import { Technology } from '../../models';
-import {
-	usePortfolioContext,
-	AddTechnologyData
-} from '../../context/PortfolioContext';
+import { AddTechnologyData } from '../../context/PortfolioContext';
 import {
 	CreateTechnologySchema,
 	UpdateTechnologySchema
