@@ -1,14 +1,10 @@
 import { ComponentType, useEffect, useState } from 'react';
 import { Formik, Field, Form, FormikHelpers } from 'formik';
 import { Project, Technology } from '../../models';
-import {
-	usePortfolioContext,
-	AddProjectData,
-	UpdateProjectData
-} from '../../context/PortfolioContext';
+import { AddProjectData } from '../../context/PortfolioContext';
 import Select from 'react-select';
 import { CreateProjectSchema, UpdateProjectSchema } from '../../utils/schema';
-import { isNil, omitBy } from 'lodash';
+import { omitBy } from 'lodash';
 
 interface Props {
 	handleShow: (data: boolean) => void;

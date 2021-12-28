@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {
 	NextPage,
 	GetStaticPaths,
@@ -6,30 +6,12 @@ import {
 	InferGetStaticPropsType
 } from 'next';
 import { useRouter } from 'next/router';
-import { usePortfolioContext } from '../../context/PortfolioContext';
 import ProjectPage from '../../components/Project/ProjectPage';
 
 const Project: NextPage = ({
 	project
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
 	const router = useRouter();
-	// const { projectsData } = usePortfolioContext();
-	// const [project, setProject] = useState(null);
-
-	// useEffect(() => {
-	// 	const id = parseInt(router.query.id as string);
-	// 	const project = projectsData.find((project) => project.id === id);
-
-	// 	if (!project) {
-	// 		alert('Project not found');
-	// 		router.push('/portfolio');
-	// 	} else {
-	// 		setProject(project);
-	// 	}
-	// }, [projectsData]);
-
-	// return project ? <ProjectPage project={project} /> : <></>;
-
 	if (router.isFallback) {
 		return <div>Loading...</div>;
 	}
