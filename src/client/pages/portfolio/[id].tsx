@@ -8,6 +8,7 @@ import {
 import { useRouter } from 'next/router';
 import { usePortfolioContext } from '../../context/PortfolioContext';
 import ProjectPage from '../../components/Project/ProjectPage';
+import { API_URL } from '../../config';
 
 const Project: NextPage = ({
 	project
@@ -38,7 +39,7 @@ const Project: NextPage = ({
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-	const projectsRes = await fetch(`${process.env.API_URL}/projects`);
+	const projectsRes = await fetch(`${API_URL}/projects`);
 	const projects = await projectsRes.json();
 
 	return {
@@ -52,7 +53,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-	const res = await fetch(`${process.env.API_URL}/projects/${params.id}`);
+	const res = await fetch(`${API_URL}/projects/${params.id}`);
 	const project = await res.json();
 
 	return {

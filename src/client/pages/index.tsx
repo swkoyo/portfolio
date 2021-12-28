@@ -5,6 +5,7 @@ import { useAuthContext } from '../context/AuthContext';
 import UserForm from '../components/User/UserForm';
 import SvgLink from '../components/SvgLink';
 import { pickBy } from 'lodash';
+import { API_URL } from '../config';
 
 const Index: NextPage = ({
 	user
@@ -54,7 +55,7 @@ const Index: NextPage = ({
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-	const userRes = await fetch(`${process.env.API_URL}/user`);
+	const userRes = await fetch(`${API_URL}/user`);
 	const user = await userRes.json();
 
 	return {
