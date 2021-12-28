@@ -11,12 +11,18 @@ import {
 } from '../../utils/schema';
 
 interface Props {
-	handleShow: (data: boolean | string) => void;
+	handleShow: (data: boolean) => void;
 	technology?: Technology;
+	setTechnologies: (data: Technology[]) => void;
+	token: string;
 }
 
-const TechnologyForm: ComponentType<Props> = (props) => {
-	const { addTechnology, updateTechnology } = usePortfolioContext();
+const TechnologyForm: ComponentType<Props> = ({
+	handleShow,
+	setTechnologies,
+	token,
+	...props
+}) => {
 	const [technology, setTechnology] = useState(props.technology);
 
 	useEffect(() => {
@@ -24,6 +30,48 @@ const TechnologyForm: ComponentType<Props> = (props) => {
 			setTechnology(props.technology);
 		}
 	}, [props.technology]);
+
+	const handleAdd = async (data): Promise<Technology> => {
+		const res = await fetch(`${process.env.API_URL}/technologies`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				authorization: `Bearer ${token}`
+			},
+			body: JSON.stringify(data)
+		});
+
+		if (!res.ok) {
+			const data = await res.json();
+			throw new Error(data.message);
+		}
+
+		const techRes = await fetch(`${process.env.API_URL}/technologies`);
+		const techs = await techRes.json();
+
+		return techs;
+	};
+
+	const handleUpdate = async (id, data): Promise<Technology> => {
+		const res = await fetch(`${process.env.API_URL}/technologies`, {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json',
+				authorization: `Bearer ${token}`
+			},
+			body: JSON.stringify({ id, data })
+		});
+
+		if (!res.ok) {
+			const data = await res.json();
+			throw new Error(data.message);
+		}
+
+		const techRes = await fetch(`${process.env.API_URL}/technologies`);
+		const techs = await techRes.json();
+
+		return techs;
+	};
 
 	return (
 		<Formik
@@ -36,17 +84,19 @@ const TechnologyForm: ComponentType<Props> = (props) => {
 				values: AddTechnologyData,
 				{ setSubmitting, resetForm }: FormikHelpers<AddTechnologyData>
 			) => {
+				let technologies;
 				try {
-					technology
-						? await updateTechnology(technology.id, values)
-						: await addTechnology(values);
+					technologies = technology
+						? await handleUpdate(technology.id, values)
+						: await handleAdd(values);
 					alert(`Technology ${technology ? 'updated' : 'created'}`);
 				} catch (err) {
 					alert(err.message);
 				}
 				setSubmitting(false);
 				resetForm();
-				props.handleShow(false);
+				handleShow(technologies ? null : false);
+				setTechnologies(technologies);
 			}}
 			validationSchema={
 				technology ? UpdateTechnologySchema : CreateTechnologySchema
@@ -82,7 +132,7 @@ const TechnologyForm: ComponentType<Props> = (props) => {
 					<button
 						type='reset'
 						className='btn btn-primary'
-						onClick={() => props.handleShow(false)}
+						onClick={() => handleShow(technology ? null : false)}
 					>
 						Cancel
 					</button>

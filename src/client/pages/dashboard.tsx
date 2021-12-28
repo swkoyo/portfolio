@@ -3,6 +3,7 @@ import { NextPage, GetStaticProps, InferGetStaticPropsType } from 'next';
 import cookieCutter from 'cookie-cutter';
 import { Formik, Field, Form, FormikHelpers } from 'formik';
 import UserForm from '../components/User/UserForm';
+import TechnologyForm from '../components/Technology/TechnologyForm';
 
 interface LoginValues {
 	password: string;
@@ -18,6 +19,7 @@ const Dashboard: NextPage = (
 	const [showUserModal, setShowUserModal] = useState(false);
 	const [showProjectModal, setShowProjectModal] = useState(false);
 	const [showTechModal, setShowTechModal] = useState(false);
+	const [showTechUpdateModal, setShowTechUpdateModal] = useState(null);
 
 	useEffect(() => {
 		(async () => {
@@ -82,6 +84,33 @@ const Dashboard: NextPage = (
 							/>
 						</div>
 					</div>
+					<div
+						className={`modal ${
+							showTechModal ? 'modal-open' : null
+						}`}
+					>
+						<div className='modal-box'>
+							<TechnologyForm
+								handleShow={setShowTechModal}
+								setTechnologies={setTechnologies}
+								token={token}
+							/>
+						</div>
+					</div>
+					<div
+						className={`modal ${
+							showTechUpdateModal ? 'modal-open' : null
+						}`}
+					>
+						<div className='modal-box'>
+							<TechnologyForm
+								handleShow={setShowTechUpdateModal}
+								technology={showTechUpdateModal}
+								token={token}
+								setTechnologies={setTechnologies}
+							/>
+						</div>
+					</div>
 					<div className='my-6 indicator h-full w-full'>
 						<div className='indicator-item indicator-top'>
 							<button
@@ -106,7 +135,10 @@ const Dashboard: NextPage = (
 					</div>
 					<div className='my-6 indicator h-full w-full'>
 						<div className='indicator-item indicator-top'>
-							<button className='btn btn-success btn-xs'>
+							<button
+								className='btn btn-success btn-xs'
+								onClick={() => setShowTechModal(true)}
+							>
 								Add
 							</button>
 						</div>
@@ -117,23 +149,35 @@ const Dashboard: NextPage = (
 							{technologies.map((tech) => (
 								<div
 									key={tech.id}
-									className='flex flex-col p-4'
+									className='my-6 indicator h-full w-full'
 								>
-									{Object.entries(tech).map(
-										([key, value]) => (
-											<div
-												key={key}
-											>{`${key.toUpperCase()}: ${
-												key === 'projects'
-													? JSON.stringify(
-															value,
-															null,
-															4
-													  )
-													: value
-											}`}</div>
-										)
-									)}
+									<div className='indicator-item indicator-top'>
+										<button
+											className='btn btn-primary btn-xs'
+											onClick={() =>
+												setShowTechUpdateModal(tech)
+											}
+										>
+											Edit
+										</button>
+									</div>
+									<div className='flex flex-col p-4'>
+										{Object.entries(tech).map(
+											([key, value]) => (
+												<div
+													key={key}
+												>{`${key.toUpperCase()}: ${
+													key === 'projects'
+														? JSON.stringify(
+																value,
+																null,
+																4
+														  )
+														: value
+												}`}</div>
+											)
+										)}
+									</div>
 								</div>
 							))}
 						</div>
