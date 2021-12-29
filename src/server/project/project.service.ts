@@ -123,7 +123,12 @@ export class ProjectService {
 			}
 		}
 
-		const project = new Project(dto.name, dto.description, dto.tagline);
+		const project = new Project(
+			dto.name,
+			dto.description,
+			dto.tagline,
+			dto.link_urls
+		);
 
 		await this.projectRepository.persist(project);
 

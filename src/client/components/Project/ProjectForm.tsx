@@ -1,35 +1,90 @@
 import { ComponentType, useEffect, useState } from 'react';
-import { Formik, Field, Form, FormikHelpers } from 'formik';
-import { Project } from '../../models';
-import {
-	usePortfolioContext,
-	AddProjectData,
-	UpdateProjectData
-} from '../../context/PortfolioContext';
+import { Formik, Field, Form } from 'formik';
+import { Project, Technology } from '../../models';
 import Select from 'react-select';
 import { CreateProjectSchema, UpdateProjectSchema } from '../../utils/schema';
-import { isNil, omitBy } from 'lodash';
+import { omitBy } from 'lodash';
 
 interface Props {
 	handleShow: (data: boolean) => void;
 	project?: Project;
+	setProjects: (data: Project[]) => void;
+	token: string;
+	technologies: Technology[];
 }
 
-const ProjectForm: ComponentType<Props> = (props) => {
-	const { technologiesData, addProject, updateProject } =
-		usePortfolioContext();
+const ProjectForm: ComponentType<Props> = ({
+	handleShow,
+	setProjects,
+	token,
+	technologies,
+	...props
+}) => {
 	const [project, setProject] = useState(props.project);
+	const [selectValues, setSelectValues] = useState([]);
 
-	const options = technologiesData.map((tech) => ({
-		value: tech.name,
+	const options = technologies.map((tech) => ({
+		value: tech.id,
 		label: tech.name
 	}));
 
 	useEffect(() => {
 		if (props.project) {
 			setProject(props.project);
+			setSelectValues(
+				props.project.technologies.map((tech) => ({
+					value: tech.id,
+					label: tech.name
+				}))
+			);
 		}
 	}, [props.project]);
+
+	const handleAdd = async (data): Promise<Project> => {
+		const res = await fetch(`${process.env.API_URL}/projects`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				authorization: `Bearer ${token}`
+			},
+			body: JSON.stringify(data)
+		});
+
+		if (!res.ok) {
+			const data = await res.json();
+			throw new Error(data.message);
+		}
+
+		const projectRes = await fetch(`${process.env.API_URL}/projects`);
+		const projects = await projectRes.json();
+
+		return projects;
+	};
+
+	const handleUpdate = async (id, data): Promise<Project> => {
+		const res = await fetch(`${process.env.API_URL}/projects`, {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json',
+				authorization: `Bearer ${token}`
+			},
+			body: JSON.stringify({ id, data })
+		});
+
+		if (!res.ok) {
+			const data = await res.json();
+			throw new Error(data.message);
+		}
+
+		const projectRes = await fetch(`${process.env.API_URL}/projects`);
+		const projects = await projectRes.json();
+
+		return projects;
+	};
+
+	const handleSelectChange = (values) => {
+		setSelectValues(values);
+	};
 
 	return (
 		<Formik
@@ -40,7 +95,10 @@ const ProjectForm: ComponentType<Props> = (props) => {
 							name: project.name,
 							description: project.description,
 							tagline: project.tagline,
-							link_urls: project.link_urls
+							link_urls: project.link_urls,
+							technologies: project.technologies.map(
+								(tech) => tech.name
+							)
 					  }
 					: {
 							name: '',
@@ -50,22 +108,22 @@ const ProjectForm: ComponentType<Props> = (props) => {
 							technologies: []
 					  }
 			}
-			onSubmit={async (
-				values: AddProjectData,
-				{ setSubmitting, resetForm }: FormikHelpers<AddProjectData>
-			) => {
+			onSubmit={async (values, { setSubmitting, resetForm }) => {
 				values.link_urls = omitBy(values.link_urls, (value) => !value);
+				let projects;
 				try {
-					project
-						? await updateProject(project.id, values)
-						: await addProject(values);
+					projects = project
+						? await handleUpdate(project.id, values)
+						: await handleAdd(values);
 					alert(`Project ${project ? 'updated' : 'created'}`);
 				} catch (err) {
 					alert(err.message);
 				}
 				setSubmitting(false);
 				resetForm();
-				props.handleShow(false);
+				handleSelectChange([]);
+				handleShow(project ? null : false);
+				if (projects) setProjects(projects);
 			}}
 			validationSchema={
 				project ? UpdateProjectSchema : CreateProjectSchema
@@ -112,28 +170,30 @@ const ProjectForm: ComponentType<Props> = (props) => {
 						</div>
 					) : null}
 
-					{!project ? (
-						<Select
-							className='w-full text-black'
-							id='technologies'
-							name='technologies'
-							instanceId='technologies'
-							placeholder='technologies'
-							isMulti={true}
-							onChange={(v) =>
-								setFieldValue(
-									'technologies',
-									v.map((tech) => tech.value)
-								)
-							}
-							options={options}
-						/>
-					) : null}
-					{!project && errors.technologies && touched.technologies ? (
+					{/* {!project ? ( */}
+					<Select
+						className='w-full text-black'
+						id='technologies'
+						name='technologies'
+						instanceId='technologies'
+						placeholder='technologies'
+						value={selectValues}
+						isMulti={true}
+						onChange={(v) => {
+							handleSelectChange(v);
+							setFieldValue(
+								'technologies',
+								v.map((tech) => tech.value)
+							);
+						}}
+						options={options}
+					/>
+					{/* ) : null} */}
+					{/* {!project && errors.technologies && touched.technologies ? (
 						<div className='text-xs text-red-600'>
 							{errors.technologies}
 						</div>
-					) : null}
+					) : null} */}
 
 					<Field
 						className='input border-white'
@@ -165,7 +225,7 @@ const ProjectForm: ComponentType<Props> = (props) => {
 					<button
 						type='reset'
 						className='btn btn-error'
-						onClick={() => props.handleShow(false)}
+						onClick={() => handleShow(project ? null : false)}
 					>
 						Cancel
 					</button>

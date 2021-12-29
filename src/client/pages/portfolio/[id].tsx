@@ -1,28 +1,32 @@
-import React, { useEffect, useState } from 'react';
-import { NextPage } from 'next';
+import React from 'react';
+import {
+	NextPage,
+	GetServerSideProps,
+	InferGetServerSidePropsType
+} from 'next';
 import { useRouter } from 'next/router';
-import { usePortfolioContext } from '../../context/PortfolioContext';
 import ProjectPage from '../../components/Project/ProjectPage';
 
-const Project: NextPage = () => {
+const Project: NextPage = ({
+	project
+}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
 	const router = useRouter();
-	const { projectsData } = usePortfolioContext();
-	const [project, setProject] = useState(null);
+	if (router.isFallback) {
+		return <div>Loading...</div>;
+	}
 
-	useEffect(() => {
-		const id = parseInt(router.query.id as string);
-		const project = projectsData.find((project) => project.id === id);
-
-		if (!project) {
-			alert('Project not found');
-			router.push('/portfolio');
-		} else {
-			setProject(project);
-		}
-	}, [projectsData]);
-
-	return project ? <ProjectPage project={project} /> : <></>;
 	return <ProjectPage project={project} />;
+};
+
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+	const res = await fetch(`${process.env.API_URL}/projects/${params.id}`);
+	const project = await res.json();
+
+	return {
+		props: {
+			project
+		}
+	};
 };
 
 export default Project;
