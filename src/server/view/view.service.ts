@@ -15,7 +15,7 @@ export class ViewService implements OnModuleInit {
 		try {
 			this.server = createServer({
 				dev:
-					this.configService.get<string>('NODE_ENV') !== 'production',
+					this.configService.get<string>('node_env') !== 'production',
 				dir: './src/client'
 			});
 

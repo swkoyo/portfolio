@@ -8,10 +8,12 @@ wait_for()
 	echo "$2:$3 available"
 }
 
-pnpm install --frozen-lockfile --reporter=silent
+pnpm config set store-dir ~/.pnpm-store
+
+NODE_ENV='development' pnpm install --frozen-lockfile --reporter=silent
 
 wait_for 10 portfolio_database 5432
 
-npx mikro-orm migration:up
+pnpm exec mikro-orm migration:up
 
 exec "$@"
