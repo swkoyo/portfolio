@@ -9,4 +9,6 @@ RUN NODE_ENV='development' pnpm install --frozen-lockfile --reporter=silent
 
 COPY . .
 
-CMD ["pnpm", "build"]
+RUN pnpm build
+
+CMD ["pnpm", "start:prod"]
