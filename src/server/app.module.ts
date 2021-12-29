@@ -31,41 +31,44 @@ import { TechnologyController } from './technology/technology.controller';
 				AuthController,
 				TechnologyController
 			],
-			pinoHttp: {
-				level: 'trace',
-				genReqId: () => nanoid(),
-				transport: {
-					target: 'pino-pretty',
-					options: {
-						colorize: true,
-						levelFirst: true
-					}
-				},
-				serializers: {
-					req(req) {
-						return {
-							id: req.id,
-							method: req.method,
-							url: req.url,
-							host: req.headers.host,
-							remoteAddress: req.remoteAddress
-						};
-					},
-					res(res) {
-						return {
-							statusCode: res.statusCode
-						};
-					},
-					err(err) {
-						return {
-							type: err.type,
-							message: err.message,
-							stack: err.stack,
-							code: err.code
-						};
-					}
-				}
-			}
+			pinoHttp:
+				process.env.NODE_ENV !== 'production'
+					? {
+							level: 'trace',
+							genReqId: () => nanoid(),
+							transport: {
+								target: 'pino-pretty',
+								options: {
+									colorize: true,
+									levelFirst: true
+								}
+							},
+							serializers: {
+								req(req) {
+									return {
+										id: req.id,
+										method: req.method,
+										url: req.url,
+										host: req.headers.host,
+										remoteAddress: req.remoteAddress
+									};
+								},
+								res(res) {
+									return {
+										statusCode: res.statusCode
+									};
+								},
+								err(err) {
+									return {
+										type: err.type,
+										message: err.message,
+										stack: err.stack,
+										code: err.code
+									};
+								}
+							}
+					  }
+					: {}
 		}),
 		MikroOrmModule.forRoot(),
 		ProjectModule,

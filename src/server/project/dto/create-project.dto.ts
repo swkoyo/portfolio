@@ -41,7 +41,7 @@ export class CreateProjectDto {
 
 	@IsArray()
 	@IsInt({ each: true })
-	@Min(0, { each: true })
+	@Min(1, { each: true })
 	technologies: number[];
 
 	@IsObject()

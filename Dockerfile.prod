@@ -1,0 +1,12 @@
+FROM node:17.2.0-alpine3.12
+RUN apk add --no-cache bash curl
+RUN curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm
+
+WORKDIR /usr/src/app
+
+COPY package.json pnpm-lock.yaml ./
+RUN NODE_ENV='development' pnpm install --frozen-lockfile --reporter=silent
+
+COPY . .
+
+CMD ["pnpm", "build"]

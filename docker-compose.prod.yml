@@ -1,0 +1,19 @@
+version: '3.7'
+
+services:
+  portfolio_app:
+    container_name: portfolio_app
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    command: pnpm start:prod
+    ports:
+      - 3000:3000
+    env_file:
+      - .env
+  nginx:
+    restart: always
+    build:
+      context: ./nginx
+    ports:
+      - 80:80
