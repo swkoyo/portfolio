@@ -7,7 +7,7 @@ fi
 
 domains=(brandonkimmmm.com www.brandonkimmmm.com)
 rsa_key_size=4096
-data_path="./certbot"
+data_path="../certbot"
 email="bkim2490@gmail.com"
 staging=0 # Set to 1 if you're testing your setup to avoid hitting request limits
 
