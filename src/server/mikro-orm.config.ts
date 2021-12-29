@@ -14,8 +14,9 @@ const config: Options = {
 	dbName: process.env.DATABASE_NAME,
 	entities: ['./dist/**/*.entity.js'],
 	entitiesTs: ['./src/server/**/*.entity.ts'],
-	debug: true,
-	highlighter: new SqlHighlighter(),
+	debug: process.env.NODE_ENV !== 'production',
+	highlighter:
+		process.env.NODE_ENV === 'production' ? null : new SqlHighlighter(),
 	logger: logger.log.bind(logger),
 	migrations: {
 		tableName: 'mikro_orm_migrations',
