@@ -6,7 +6,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.prod
-    command: pnpm start:prod
+    command: pnpm start
     ports:
       - 3000:3000
     env_file:
