@@ -94,7 +94,7 @@ const ProjectForm: ComponentType<Props> = ({
 					? {
 							name: project.name,
 							description: project.description,
-							tagline: project.tagline,
+							tagline: 'project.tagline',
 							link_urls: project.link_urls,
 							technologies: project.technologies.map(
 								(tech) => tech.name

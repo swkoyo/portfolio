@@ -36,9 +36,6 @@ const ProjectPage: ComponentType<Props> = ({ project }) => {
 					))}
 				</div>
 			</div>
-			<div className='text-center text-lg uppercase font-bold md:col-span-2'>
-				{project.tagline}
-			</div>
 			<div className='flex flex-row mx-auto space-x-2 md:col-span-2'>
 				{Object.entries(
 					pickBy(project.link_urls, (value) => !!value)

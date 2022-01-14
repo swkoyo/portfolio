@@ -16,6 +16,7 @@ const FeaturedProjects: ComponentType<Props> = ({ projects }) => {
 				<div className='flex flex-col jusitfy-center space-y-4'>
 					{projects.map((project, i) => (
 						<div
+							key={i}
 							className={`flex w-full mx-auto space-x-4 align-center ${
 								i === 1 ? 'flex-row-reverse' : ''
 							}`}
@@ -28,8 +29,9 @@ const FeaturedProjects: ComponentType<Props> = ({ projects }) => {
 								<div>{project.name}</div>
 								<div>{project.description}</div>
 								<div className='flex space-x-4'>
-									{project.technologies.map((tech) => (
+									{project.technologies.map((tech, i) => (
 										<img
+											key={i}
 											className='w-11 h-11'
 											src={tech.logo_url}
 										/>
@@ -41,8 +43,9 @@ const FeaturedProjects: ComponentType<Props> = ({ projects }) => {
 											project.link_urls,
 											(value) => !!value
 										)
-									).map(([key, value]) => (
+									).map(([key, value], i) => (
 										<img
+											key={i}
 											className='w-11 h-11'
 											src={getLogo(key)}
 										/>

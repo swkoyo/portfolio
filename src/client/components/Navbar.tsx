@@ -2,7 +2,7 @@ import { ComponentType } from 'react';
 
 const Navbar: ComponentType = () => {
 	return (
-		<div className='navbar mb-2 shadow-lg bg-neutral text-neutral-content sticky top-0'>
+		<div className='navbar shadow-lg bg-neutral text-neutral-content fixed top-0 left-0 right-0'>
 			<div className='flex-1 px-2 mx-2'>
 				<a
 					href='#Landing'

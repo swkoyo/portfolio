@@ -18,6 +18,7 @@ const OtherProjects: ComponentType<Props> = ({ projects }) => {
 				<div className='grid grid-cols-3 gap-4'>
 					{projects.map((project, i) => (
 						<div
+							key={i}
 							className={`bg-red-400 flex flex-col w-full h-full ${
 								i >= 6 && !showMore ? 'hidden' : ''
 							}`}
@@ -30,8 +31,9 @@ const OtherProjects: ComponentType<Props> = ({ projects }) => {
 											project.link_urls,
 											(value) => !!value
 										)
-									).map(([key, value]) => (
+									).map(([key, value], i) => (
 										<img
+											key={i}
 											className='w-11 h-11'
 											src={getLogo(key)}
 										/>
@@ -41,8 +43,9 @@ const OtherProjects: ComponentType<Props> = ({ projects }) => {
 							<div>{project.name}</div>
 							<div>{project.description}</div>
 							<div className='flex space-x-4'>
-								{project.technologies.map((tech) => (
+								{project.technologies.map((tech, i) => (
 									<img
+										key={i}
 										className='w-11 h-11'
 										src={tech.logo_url}
 									/>

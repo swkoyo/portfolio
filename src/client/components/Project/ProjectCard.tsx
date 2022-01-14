@@ -13,7 +13,6 @@ const ProjectCard: ComponentType<Props> = ({ project }) => {
 			<Link href={`/portfolio/${project.id}`}>
 				<div className='card-body flex flex-col justify-between hover:bg-neutral hover:cursor-pointer'>
 					<div className='card-title uppercase'>{project.name}</div>
-					<div>{project.tagline}</div>
 					<div className='flex flex-row space-x-2 justify-end'>
 						{project.technologies.map((tech, i) => (
 							<TechnologyLogo
