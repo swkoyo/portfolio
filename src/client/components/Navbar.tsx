@@ -4,9 +4,12 @@ const Navbar: ComponentType = () => {
 	return (
 		<div className='navbar mb-2 shadow-lg bg-neutral text-neutral-content sticky top-0'>
 			<div className='flex-1 px-2 mx-2'>
-				<span className='text-lg font-bold'>
+				<a
+					href='#Landing'
+					className='text-lg font-bold hover:cursor-pointer'
+				>
 					{process.env.FULL_NAME}
-				</span>
+				</a>
 			</div>
 			<div className='flex-none hidden px-2 mx-2 lg:flex'>
 				<div className='flex items-stretch'>
