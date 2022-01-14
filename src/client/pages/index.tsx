@@ -10,6 +10,7 @@ import Landing from '../components/Landing';
 import About from '../components/About';
 import FeaturedProjects from '../components/FeaturedProjects';
 import OtherProjects from '../components/OtherProjects';
+import Contact from '../components/Contact';
 
 const Index: NextPage = ({
 	user,
@@ -21,6 +22,7 @@ const Index: NextPage = ({
 			<About user={user} />
 			<FeaturedProjects projects={projects.slice(0, 3)} />
 			<OtherProjects projects={projects} />
+			<Contact user={user} />
 		</div>
 		// <div className='container mx-auto space-y-14 text-center relative w-full max-w-7xl'>
 		// 	<div className='text-5xl uppercase md:text-8xl'>
