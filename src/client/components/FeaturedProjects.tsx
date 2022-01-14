@@ -10,7 +10,7 @@ interface Props {
 
 const FeaturedProjects: ComponentType<Props> = ({ projects }) => {
 	return (
-		<ScreenItem>
+		<ScreenItem id='Featured Projects'>
 			<div className='flex flex-col w-full h-full justify-center mx-auto space-y-4'>
 				<div className='font-bold text-4xl'>Featured Projects</div>
 				<div className='flex flex-col jusitfy-center space-y-4'>

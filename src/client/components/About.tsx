@@ -8,7 +8,7 @@ interface Props {
 
 const About: ComponentType<Props> = ({ user }) => {
 	return (
-		<ScreenItem>
+		<ScreenItem id='About'>
 			<div className='flex flex-col w-full h-full justify-center mx-auto space-y-4'>
 				<div className='font-bold text-4xl'>About Me</div>
 				<div className='flex items-center space-x-7'>

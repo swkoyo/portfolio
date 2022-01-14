@@ -12,7 +12,7 @@ const OtherProjects: ComponentType<Props> = ({ projects }) => {
 	const [showMore, setShowMore] = useState<boolean>(false);
 
 	return (
-		<ScreenItem>
+		<ScreenItem id='Other Projects'>
 			<div className='flex flex-col w-full h-full justify-center mx-auto space-y-4'>
 				<div className='font-bold text-4xl'>Other Projects</div>
 				<div className='grid grid-cols-3 gap-4'>

@@ -8,9 +8,10 @@ const Layout: ComponentType = ({ children }) => {
 			<Head>
 				<title>{process.env.FULL_NAME}</title>
 			</Head>
-			{/* <Navbar /> */}
-			{/* <main className='mt-10 px-6'>{children}</main> */}
-			<main>{children}</main>
+			<main>
+				<Navbar />
+				{children}
+			</main>
 		</div>
 	);
 };

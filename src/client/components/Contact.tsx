@@ -8,7 +8,7 @@ interface Props {
 
 const Contact: ComponentType<Props> = ({ user }) => {
 	return (
-		<ScreenItem>
+		<ScreenItem id='Contact'>
 			<div className='flex flex-col w-full h-full justify-center mx-auto space-y-4'>
 				<div className='font-bold text-4xl'>Contact</div>
 				<div>Please send me an email</div>
