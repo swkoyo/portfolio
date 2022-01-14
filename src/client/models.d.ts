@@ -6,6 +6,7 @@ export interface User {
 	description: string;
 	full_name: string;
 	avatar_url: string;
+	about: string;
 	link_urls: UserLinks;
 }
 

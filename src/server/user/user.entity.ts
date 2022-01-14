@@ -33,6 +33,9 @@ export class User {
 	description!: string;
 
 	@Property()
+	about!: string;
+
+	@Property()
 	avatar_url!: string;
 
 	@Property({ type: JsonType })
@@ -51,6 +54,8 @@ export class User {
 		last_name: string,
 		tagline: string,
 		description: string,
+		about: string,
+		avatar_url: string,
 		link_urls?: UserLinks
 	) {
 		this.email = email;
@@ -59,6 +64,8 @@ export class User {
 		this.last_name = last_name;
 		this.tagline = tagline;
 		this.description = description;
+		this.about = about;
+		this.avatar_url = avatar_url;
 		this.link_urls = link_urls;
 	}
 

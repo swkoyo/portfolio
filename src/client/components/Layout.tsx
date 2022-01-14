@@ -4,12 +4,13 @@ import Navbar from './Navbar';
 
 const Layout: ComponentType = ({ children }) => {
 	return (
-		<div className='m-5'>
+		<div>
 			<Head>
 				<title>{process.env.FULL_NAME}</title>
 			</Head>
-			<Navbar />
-			<main className='mt-10 px-6'>{children}</main>
+			{/* <Navbar /> */}
+			{/* <main className='mt-10 px-6'>{children}</main> */}
+			<main>{children}</main>
 		</div>
 	);
 };
