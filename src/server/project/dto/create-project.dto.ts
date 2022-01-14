@@ -33,11 +33,9 @@ export class CreateProjectDto {
 	@IsNotEmpty()
 	description: string;
 
-	@IsString()
-	@IsNotEmpty()
-	@Transform(({ value }) => value.trim().toLowerCase())
-	@IsLowercase()
-	tagline: string;
+	@IsUrl()
+	@IsOptional()
+	image_url: string;
 
 	@IsArray()
 	@IsInt({ each: true })

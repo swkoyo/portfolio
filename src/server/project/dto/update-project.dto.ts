@@ -29,17 +29,14 @@ class UpdateProjectBody {
 	@IsLowercase()
 	name: string;
 
-	@IsString()
-	@IsNotEmpty()
+	@IsUrl()
 	@IsOptional()
-	description: string;
+	image_url: string;
 
 	@IsString()
 	@IsNotEmpty()
 	@IsOptional()
-	@Transform(({ value }) => value.trim().toLowerCase())
-	@IsLowercase()
-	tagline: string;
+	description: string;
 
 	@IsObject()
 	@IsOptional()

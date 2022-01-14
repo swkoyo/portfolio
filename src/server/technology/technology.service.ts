@@ -26,7 +26,12 @@ export class TechnologyService {
 
 		const techs = await this.technologyRepository.findAll({
 			populate: ['projects'],
-			fields: ['name', 'logo_url', 'projects.name', 'projects.tagline']
+			fields: [
+				'name',
+				'logo_url',
+				'projects.name',
+				'projects.description'
+			]
 		});
 
 		this.logger.debug('findOne found technologies %o', {
@@ -49,7 +54,7 @@ export class TechnologyService {
 					'name',
 					'logo_url',
 					'projects.name',
-					'projects.tagline'
+					'projects.description'
 				]
 			}
 		);
@@ -72,7 +77,7 @@ export class TechnologyService {
 					'name',
 					'logo_url',
 					'projects.name',
-					'projects.tagline'
+					'projects.description'
 				]
 			}
 		);

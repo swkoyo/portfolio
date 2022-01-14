@@ -126,7 +126,7 @@ export class ProjectService {
 		const project = new Project(
 			dto.name,
 			dto.description,
-			dto.tagline,
+			dto.image_url,
 			dto.link_urls
 		);
 

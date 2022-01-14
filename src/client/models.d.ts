@@ -14,7 +14,7 @@ export interface Project {
 	id: number;
 	name: string;
 	description: string;
-	tagline: string;
+	image_url?: string;
 	technologies?: Technology[];
 	link_urls: ProjectLinks;
 }

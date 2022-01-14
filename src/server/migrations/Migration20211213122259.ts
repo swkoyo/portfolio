@@ -25,7 +25,7 @@ export class Migration20211213122259 extends Migration {
 				id SERIAL PRIMARY KEY,
 				name VARCHAR(255) NOT NULL UNIQUE,
 				description TEXT NOT NULL,
-				tagline VARCHAR(255) NOT NULL,
+				image_url VARCHAR(255),
 				link_urls JSONB NOT NULL DEFAULT '{}'::JSONB,
 				created_at TIMESTAMP DEFAULT NOW(),
 				updated_at TIMESTAMP DEFAULT NOW()

@@ -26,11 +26,11 @@ export class Project {
 	@Property()
 	description!: string;
 
-	@Property()
-	tagline!: string;
-
 	@Property({ type: JsonType })
 	link_urls: ProjectLinks = {};
+
+	@Property()
+	image_url: string;
 
 	@Property({ hidden: true })
 	created_at: Date = new Date();
@@ -44,12 +44,12 @@ export class Project {
 	constructor(
 		name: string,
 		description: string,
-		tagline: string,
-		link_urls?: ProjectLinks
+		image_url: string,
+		link_urls: ProjectLinks = {}
 	) {
 		this.name = name;
 		this.description = description;
-		this.tagline = tagline;
+		this.image_url = image_url;
 		this.link_urls = link_urls;
 	}
 }

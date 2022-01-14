@@ -8,14 +8,17 @@ import SvgLink from '../components/SvgLink';
 import { pickBy } from 'lodash';
 import Landing from '../components/Landing';
 import About from '../components/About';
+import FeaturedProjects from '../components/FeaturedProjects';
 
 const Index: NextPage = ({
-	user
+	user,
+	projects
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
 	return (
 		<div className='mx-auto w-full'>
 			<Landing user={user} />
 			<About user={user} />
+			<FeaturedProjects projects={projects.slice(0, 3)} />
 		</div>
 		// <div className='container mx-auto space-y-14 text-center relative w-full max-w-7xl'>
 		// 	<div className='text-5xl uppercase md:text-8xl'>
@@ -45,9 +48,13 @@ export const getServerSideProps: GetServerSideProps = async () => {
 	const userRes = await fetch(`${process.env.API_URL}/user`);
 	const user = await userRes.json();
 
+	const projectsRes = await fetch(`${process.env.API_URL}/projects`);
+	const projects = await projectsRes.json();
+
 	return {
 		props: {
-			user
+			user,
+			projects
 		}
 	};
 };
