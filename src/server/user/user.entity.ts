@@ -1,5 +1,5 @@
 import { Entity, JsonType, PrimaryKey, Property, wrap } from '@mikro-orm/core';
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcryptjs';
 
 export interface UserLinks {
 	github?: string;

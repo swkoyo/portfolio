@@ -1,5 +1,5 @@
 import { Migration } from '@mikro-orm/migrations';
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcryptjs';
 
 export class Migration20211213122259 extends Migration {
 	async up(): Promise<void> {
