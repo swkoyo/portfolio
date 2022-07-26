@@ -3,6 +3,7 @@ import type { NextPage } from 'next';
 import About from '../features/About';
 import Contact from '../features/Contact';
 import Experience from '../features/Experience';
+import Footer from '../features/Footer';
 import Home from '../features/Home';
 import Projects from '../features/Projects';
 
@@ -16,6 +17,7 @@ const Main: NextPage = () => {
 				<Projects />
 				<Contact />
 			</Container>
+			<Footer />
 		</Box>
 	);
 };
