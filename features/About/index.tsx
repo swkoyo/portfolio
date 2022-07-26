@@ -1,19 +1,17 @@
 import { Box, Container, Stack, Typography } from '@mui/material';
 import type { NextComponentType } from 'next';
+import SectionContainer from '../../components/SectionContainer';
 
 const About: NextComponentType = () => {
 	return (
-		<Stack
-			sx={{
-				height: '100vh',
-				alignItems: 'center',
-				justifyContent: 'center'
-			}}
-		>
-			<Typography>About</Typography>
+		<SectionContainer title='About'>
 			<Stack direction='row'>
 				<Stack>
-					<Typography></Typography>
+					<Typography>
+						Software developer with a passion for consistently
+						improving as a programmer. Highly motivated and
+						disciplined individual with a strong work-ethic.
+					</Typography>
 				</Stack>
 				<Stack direction='row'>
 					<Stack>
@@ -34,7 +32,7 @@ const About: NextComponentType = () => {
 					</Stack>
 				</Stack>
 			</Stack>
-		</Stack>
+		</SectionContainer>
 	);
 };
 

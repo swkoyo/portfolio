@@ -1,21 +1,21 @@
-import { Box, Container, Stack, Typography } from '@mui/material';
+import { Stack } from '@mui/material';
 import type { NextComponentType } from 'next';
-import SectionContainer from '../../components/SectionContainer';
-import ProjItem from './ProjItem';
 import data from './data';
+import ExpItem from './ExpItem';
+import SectionContainer from '../../components/SectionContainer';
 
-const Projects: NextComponentType = () => {
+const Experience: NextComponentType = () => {
 	return (
-		<SectionContainer title='Projects'>
+		<SectionContainer title='Experience'>
 			<Stack>
 				{data.map((item, i) => (
-					<ProjItem
+					<ExpItem
 						key={item.title}
 						title={item.title}
+						role={item.role}
+						dates={item.dates}
 						description={item.description}
-						links={item.links}
 						tech_stack={item.tech_stack}
-						image={item.image}
 						reverse={i % 2 === 0 ? false : true}
 					/>
 				))}
@@ -24,4 +24,4 @@ const Projects: NextComponentType = () => {
 	);
 };
 
-export default Projects;
+export default Experience;

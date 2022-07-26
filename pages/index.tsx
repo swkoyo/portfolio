@@ -1,27 +1,23 @@
 import { Box, Container, Stack, Typography } from '@mui/material';
 import type { NextPage } from 'next';
 import About from '../features/About';
+import Contact from '../features/Contact';
+import Experience from '../features/Experience';
+import Home from '../features/Home';
+import Projects from '../features/Projects';
 
-const Home: NextPage = () => {
+const Main: NextPage = () => {
 	return (
 		<Box sx={{ width: 'auto', backgroundColor: 'blue' }}>
 			<Container>
-				<Stack
-					sx={{
-						height: '100vh',
-						alignItems: 'center',
-						justifyContent: 'center'
-					}}
-				>
-					<Typography>Hello, I&apos;m Brandon.</Typography>
-					<Typography>
-						I&apos;m a full stack web developer.
-					</Typography>
-				</Stack>
+				<Home />
 				<About />
+				<Experience />
+				<Projects />
+				<Contact />
 			</Container>
 		</Box>
 	);
 };
 
-export default Home;
+export default Main;
