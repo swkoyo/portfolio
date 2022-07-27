@@ -1,4 +1,4 @@
-import { Box, Container, Stack, Typography } from '@mui/material';
+import { Stack, Typography } from '@mui/material';
 import type { NextComponentType } from 'next';
 
 const Footer: NextComponentType = () => {

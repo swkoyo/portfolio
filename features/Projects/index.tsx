@@ -1,4 +1,4 @@
-import { Box, Container, Stack, Typography } from '@mui/material';
+import { Stack } from '@mui/material';
 import type { NextComponentType } from 'next';
 import SectionContainer from '../../components/SectionContainer';
 import ProjItem from './ProjItem';

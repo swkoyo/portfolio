@@ -1,4 +1,4 @@
-import { Box, Container, Typography } from '@mui/material';
+import { Box, Container } from '@mui/material';
 import type { NextPage } from 'next';
 import About from '../features/About';
 import Contact from '../features/Contact';

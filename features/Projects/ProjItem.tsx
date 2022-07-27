@@ -1,4 +1,4 @@
-import { Box, Container, Stack, Typography, Grid } from '@mui/material';
+import { Box, Stack, Typography, Grid } from '@mui/material';
 import { FC } from 'react';
 
 type Props = {
@@ -18,9 +18,9 @@ const ProjItem: FC<Props> = ({
 	tech_stack,
 	reverse,
 	description,
-	image,
-	links
-}: Props) => {
+	image
+}: // links
+Props) => {
 	return (
 		<Grid container direction={reverse ? 'row-reverse' : 'row'}>
 			<Grid item xs={8}>

@@ -1,4 +1,4 @@
-import { Box, Container, Stack, Typography, Grid } from '@mui/material';
+import { Stack, Typography, Grid } from '@mui/material';
 import { FC } from 'react';
 
 type Props = {

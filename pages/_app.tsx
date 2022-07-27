@@ -5,10 +5,9 @@ import { CacheProvider, EmotionCache } from '@emotion/react';
 import theme from '../src/theme';
 import { ThemeProvider } from '@mui/material/styles';
 import createEmotionCache from '../src/createEmotionCache';
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
+import '@fontsource/oxygen/300.css';
+import '@fontsource/oxygen/400.css';
+import '@fontsource/oxygen/700.css';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();

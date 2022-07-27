@@ -1,11 +1,4 @@
-import {
-	Box,
-	Button,
-	Container,
-	Stack,
-	TextField,
-	Typography
-} from '@mui/material';
+import { Button, Stack, TextField, Typography } from '@mui/material';
 import type { NextComponentType } from 'next';
 import { useState } from 'react';
 import SectionContainer from '../../components/SectionContainer';
