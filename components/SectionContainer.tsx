@@ -17,8 +17,13 @@ const SectionContainer: FC<Props> = ({ title, children, sx }: Props) => {
 				justifyContent: 'center',
 				...sx
 			}}
+			rowGap={10}
 		>
-			{title ? <Typography>{title}</Typography> : null}
+			{title ? (
+				<Typography variant='h2' fontWeight='bold'>
+					{title}
+				</Typography>
+			) : null}
 			{children}
 		</Stack>
 	);
