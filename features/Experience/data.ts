@@ -17,7 +17,11 @@ const data = [
 			TECH.REDIS,
 			TECH.PRISMA,
 			TECH.POSTGRESQL,
-			TECH.JEST
+			TECH.JEST,
+			TECH.PASSPORT,
+			TECH.SWAGGER,
+			TECH.AWS,
+			TECH.JWT
 		],
 		description: [
 			'Developed the MVP for the platform including frontend client (React/Redux/MUI), backend server (NestJS, Node), and database architecture (PostgreSQL, Prisma)',
@@ -42,7 +46,9 @@ const data = [
 			TECH.MOCHA,
 			TECH.CHAI,
 			TECH.POSTMAN,
-			TECH.SOCKET_IO
+			TECH.SOCKET_IO,
+			TECH.AWS,
+			TECH.JWT
 		],
 		description: [
 			'Developed liquidity-providing trading bot that places and manages orders based on real-time events from other cryptocurrency exchanges such as Binance and Bithumb',

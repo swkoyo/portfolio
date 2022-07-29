@@ -1,13 +1,12 @@
 import { Stack, Typography } from '@mui/material';
 import { FC } from 'react';
-import useTechIcon from '../../hooks/useTechIcon';
+import TechIcon from '../../components/TechIcon';
 
 type Props = {
 	tech: string;
 };
 
 const TechItem: FC<Props> = ({ tech }) => {
-	const Icon = useTechIcon({ tech });
 	return (
 		<Stack
 			sx={{
@@ -18,7 +17,7 @@ const TechItem: FC<Props> = ({ tech }) => {
 				alignItems: 'center'
 			}}
 		>
-			<Icon size={80} />
+			<TechIcon tech={tech} size={80} />
 			<Typography>{tech}</Typography>
 		</Stack>
 	);

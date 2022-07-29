@@ -7,7 +7,7 @@ import data from './data';
 const Projects: NextComponentType = () => {
 	return (
 		<SectionContainer title='Projects'>
-			<Stack>
+			<Stack rowGap={4}>
 				{data.map((item, i) => (
 					<ProjItem
 						key={item.title}

@@ -1,6 +1,6 @@
 import { Stack, Typography, Grid, Box } from '@mui/material';
 import { FC } from 'react';
-import ExpTechItem from './ExpTechItem';
+import TechIcon from '../../components/TechIcon';
 
 type Props = {
 	title: string;
@@ -39,7 +39,7 @@ const ExpItem: FC<Props> = ({
 					>
 						{tech_stack.map((tech) => (
 							<Box key={tech}>
-								<ExpTechItem tech={tech} />
+								<TechIcon tech={tech} size={50} />
 							</Box>
 						))}
 					</Stack>

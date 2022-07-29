@@ -24,9 +24,16 @@ import {
 	SiJest,
 	SiSequelize,
 	SiPrisma,
-	SiRedux
+	SiRedux,
+	SiPassport,
+	SiBootstrap,
+	SiJasmine,
+	SiNpm,
+	SiYarn,
+	SiGithub
 } from 'react-icons/si';
 import { RiComputerLine } from 'react-icons/ri';
+import { MdWeb } from 'react-icons/md';
 import TECH from '../constants';
 
 type Props = {
@@ -34,7 +41,7 @@ type Props = {
 };
 
 const useTechIcon = ({ tech }: Props) => {
-	const StyledIcon = (comp: IconType) => styled(comp)();
+	const StyledIcon = (comp: IconType) => styled(comp)({});
 
 	switch (tech) {
 		case TECH.NODE_JS:
@@ -85,6 +92,20 @@ const useTechIcon = ({ tech }: Props) => {
 			return StyledIcon(SiSequelize);
 		case TECH.PRISMA:
 			return StyledIcon(SiPrisma);
+		case TECH.PASSPORT:
+			return StyledIcon(SiPassport);
+		case TECH.BOOTSTRAP:
+			return StyledIcon(SiBootstrap);
+		case TECH.JASMINE:
+			return StyledIcon(SiJasmine);
+		case TECH.NPM:
+			return StyledIcon(SiNpm);
+		case TECH.YARN:
+			return StyledIcon(SiYarn);
+		case TECH.GITHUB:
+			return StyledIcon(SiGithub);
+		case TECH.WEB:
+			return StyledIcon(MdWeb);
 		default:
 			return StyledIcon(RiComputerLine);
 	}

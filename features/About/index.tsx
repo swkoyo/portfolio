@@ -5,7 +5,7 @@ import { RiUser6Line } from 'react-icons/ri';
 import TechItem from './TechItem';
 import data from './data';
 
-const StyledUserIcon = styled(RiUser6Line)();
+const StyledUserIcon = styled(RiUser6Line)({});
 
 const About: NextComponentType = () => {
 	return (

@@ -22,7 +22,14 @@ const TECH = {
 	CHAI: 'Chai',
 	JEST: 'Jest',
 	SEQUELIZE: 'Sequelize',
-	PRISMA: 'Prisma'
+	PRISMA: 'Prisma',
+	PASSPORT: 'Passport',
+	BOOTSTRAP: 'Bootstrap',
+	JASMINE: 'Jasmine',
+	NPM: 'NPM',
+	YARN: 'Yarn',
+	GITHUB: 'Github',
+	WEB: 'Web'
 };
 
 export default TECH;
