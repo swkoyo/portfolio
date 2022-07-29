@@ -33,7 +33,7 @@ import {
 	SiGithub
 } from 'react-icons/si';
 import { RiComputerLine } from 'react-icons/ri';
-import { MdWeb } from 'react-icons/md';
+import { MdWeb, MdOutlineEmail } from 'react-icons/md';
 import { TECH } from '../constants';
 
 type Props = {
@@ -106,6 +106,8 @@ const useTechIcon = ({ tech }: Props) => {
 			return StyledIcon(SiGithub);
 		case TECH.WEB:
 			return StyledIcon(MdWeb);
+		case TECH.EMAIL:
+			return StyledIcon(MdOutlineEmail);
 		default:
 			return StyledIcon(RiComputerLine);
 	}
