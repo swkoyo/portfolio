@@ -7,7 +7,7 @@ import SectionContainer from '../../components/SectionContainer';
 const Experience: NextComponentType = () => {
 	return (
 		<SectionContainer title='Experience'>
-			<Stack>
+			<Stack rowGap={4}>
 				{data.map((item, i) => (
 					<ExpItem
 						key={item.title}

@@ -1,5 +1,6 @@
-import { Stack, Typography, Grid } from '@mui/material';
+import { Stack, Typography, Grid, Box } from '@mui/material';
 import { FC } from 'react';
+import ExpTechItem from './ExpTechItem';
 
 type Props = {
 	title: string;
@@ -19,15 +20,27 @@ const ExpItem: FC<Props> = ({
 	description
 }: Props) => {
 	return (
-		<Grid container direction={reverse ? 'row-reverse' : 'row'}>
+		<Grid container direction={reverse ? 'row-reverse' : 'row'} spacing={2}>
 			<Grid item xs={4}>
-				<Stack>
-					<Typography>{title}</Typography>
-					<Typography>{role}</Typography>
-					<Typography>{dates}</Typography>
-					<Stack direction='row'>
-						{tech_stack.map((item) => (
-							<Typography key={item}>{item}</Typography>
+				<Stack sx={{ height: '100%', justifyContent: 'space-between' }}>
+					<Typography variant='h4' fontWeight='bold'>
+						{title}
+					</Typography>
+					<Stack>
+						<Typography>{role}</Typography>
+						<Typography variant='body2'>{dates}</Typography>
+					</Stack>
+					<Stack
+						direction='row'
+						sx={{
+							overflow: 'auto'
+						}}
+						columnGap={1}
+					>
+						{tech_stack.map((tech) => (
+							<Box key={tech}>
+								<ExpTechItem tech={tech} />
+							</Box>
 						))}
 					</Stack>
 				</Stack>

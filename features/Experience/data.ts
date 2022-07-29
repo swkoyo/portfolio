@@ -1,22 +1,23 @@
+import TECH from '../../constants';
+
 const data = [
 	{
 		title: 'The Villa Life',
 		role: 'Senior Full Stack Developer',
 		dates: '10/2021 ~ Current',
 		tech_stack: [
-			'NodeJS',
-			'React',
-			'Redux',
-			'Typescript',
-			'NestJS',
-			'Docker',
-			'MUI',
-			'Stripe',
-			'Redis',
-			'Prisma',
-			'PostgreSQL',
-			'Mocha',
-			'Chai'
+			TECH.NODE_JS,
+			TECH.REACT,
+			TECH.REDUX,
+			TECH.TYPESCRIPT,
+			TECH.NEST_JS,
+			TECH.DOCKER,
+			TECH.MUI,
+			TECH.STRIPE,
+			TECH.REDIS,
+			TECH.PRISMA,
+			TECH.POSTGRESQL,
+			TECH.JEST
 		],
 		description: [
 			'Developed the MVP for the platform including frontend client (React/Redux/MUI), backend server (NestJS, Node), and database architecture (PostgreSQL, Prisma)',
@@ -31,16 +32,17 @@ const data = [
 		role: 'Backend Developer',
 		dates: '04/2019 ~ 09/2021',
 		tech_stack: [
-			'NodeJS',
-			'PostgreSQL',
-			'Sequelize',
-			'Express',
-			'SwaggerUI',
-			'Docker',
-			'Redis',
-			'Mocha',
-			'Chai',
-			'Postman'
+			TECH.NODE_JS,
+			TECH.POSTGRESQL,
+			TECH.SEQUELIZE,
+			TECH.EXPRESS,
+			TECH.SWAGGER,
+			TECH.DOCKER,
+			TECH.REDIS,
+			TECH.MOCHA,
+			TECH.CHAI,
+			TECH.POSTMAN,
+			TECH.SOCKET_IO
 		],
 		description: [
 			'Developed liquidity-providing trading bot that places and manages orders based on real-time events from other cryptocurrency exchanges such as Binance and Bithumb',

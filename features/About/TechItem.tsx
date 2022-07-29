@@ -1,13 +1,13 @@
 import { Stack, Typography } from '@mui/material';
 import { FC } from 'react';
-import getTechIcon from '../../hooks/getTechIcon';
+import useTechIcon from '../../hooks/useTechIcon';
 
 type Props = {
 	tech: string;
 };
 
 const TechItem: FC<Props> = ({ tech }) => {
-	const Icon = getTechIcon({ tech });
+	const Icon = useTechIcon({ tech });
 	return (
 		<Stack
 			sx={{

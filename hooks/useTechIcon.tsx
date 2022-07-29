@@ -1,4 +1,4 @@
-import { styled, SxProps } from '@mui/material';
+import { styled } from '@mui/material';
 import { IconType } from 'react-icons';
 import {
 	SiNodedotjs,
@@ -33,7 +33,7 @@ type Props = {
 	tech: string;
 };
 
-const getTechIcon = ({ tech }: Props) => {
+const useTechIcon = ({ tech }: Props) => {
 	const StyledIcon = (comp: IconType) => styled(comp)();
 
 	switch (tech) {
@@ -90,4 +90,4 @@ const getTechIcon = ({ tech }: Props) => {
 	}
 };
 
-export default getTechIcon;
+export default useTechIcon;
