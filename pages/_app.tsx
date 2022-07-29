@@ -9,6 +9,7 @@ import { SnackbarProvider } from 'notistack';
 import '@fontsource/oxygen/300.css';
 import '@fontsource/oxygen/400.css';
 import '@fontsource/oxygen/700.css';
+import './global.css';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
