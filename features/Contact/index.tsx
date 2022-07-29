@@ -1,44 +1,117 @@
-import { Button, Stack, TextField, Typography } from '@mui/material';
+import { Stack, TextField, Typography } from '@mui/material';
 import type { NextComponentType } from 'next';
-import { useState } from 'react';
+import { FormEvent, useRef, useState } from 'react';
 import SectionContainer from '../../components/SectionContainer';
+import emailjs from '@emailjs/browser';
+import { useForm, Controller } from 'react-hook-form';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { LoadingButton } from '@mui/lab';
+import { EMAILJS } from '../../constants';
+import { useSnackbar } from 'notistack';
+
+const schema = z.object({
+	name: z.string().min(1),
+	email: z.string().email(),
+	message: z.string().min(1)
+});
 
 const Contact: NextComponentType = () => {
-	const [name, setName] = useState<string>('');
-	const [email, setEmail] = useState<string>('');
-	const [message, setMessage] = useState<string>('');
+	const form = useRef();
+	const [isLoading, setIsLoading] = useState(false);
+	const { enqueueSnackbar } = useSnackbar();
+
+	const {
+		control,
+		reset,
+		formState: { errors, isValid }
+	} = useForm<z.infer<typeof schema>>({
+		defaultValues: {
+			email: '',
+			name: '',
+			message: ''
+		},
+		mode: 'onChange',
+		resolver: zodResolver(schema)
+	});
+
+	const sendEmail = async (e: FormEvent<HTMLFormElement>) => {
+		setIsLoading(true);
+		e.preventDefault();
+		await emailjs.sendForm(
+			EMAILJS.SERVICE_ID,
+			EMAILJS.TEMPLATE_ID,
+			e.currentTarget,
+			EMAILJS.PUB_KEY
+		);
+		setIsLoading(false);
+		enqueueSnackbar('Email sent!', { variant: 'success' });
+		reset();
+	};
 
 	return (
 		<SectionContainer title='Contact'>
-			<Stack>
-				<Typography>
+			<Stack maxWidth={700} rowGap={4}>
+				<Typography variant='h5' textAlign='center'>
 					Have a question or want to work together? Leave your details
 					and I&apos;ll get back to you as soon as possible.
 				</Typography>
-				<TextField
-					label='Name'
-					variant='outlined'
-					onChange={(e) => setName(e.target.value)}
+				<Stack
+					component='form'
+					rowGap={1}
+					ref={form}
+					onSubmit={sendEmail}
 				>
-					{name}
-				</TextField>
-				<TextField
-					label='Email'
-					variant='outlined'
-					onChange={(e) => setEmail(e.target.value)}
-				>
-					{email}
-				</TextField>
-				<TextField
-					label='Message'
-					variant='outlined'
-					onChange={(e) => setMessage(e.target.value)}
-					multiline
-					rows={8}
-				>
-					{message}
-				</TextField>
-				<Button variant='contained'>Submit</Button>
+					<Controller
+						name='name'
+						control={control}
+						render={({ field }) => (
+							<TextField
+								{...field}
+								disabled={isLoading}
+								label='Name'
+								variant='outlined'
+								error={!!errors.name}
+							/>
+						)}
+					/>
+					<Controller
+						name='email'
+						control={control}
+						render={({ field }) => (
+							<TextField
+								{...field}
+								disabled={isLoading}
+								label='Email'
+								variant='outlined'
+								error={!!errors.email}
+							/>
+						)}
+					/>
+					<Controller
+						name='message'
+						control={control}
+						render={({ field }) => (
+							<TextField
+								{...field}
+								disabled={isLoading}
+								label='Message'
+								variant='outlined'
+								multiline
+								rows={8}
+								error={!!errors.message}
+							/>
+						)}
+					/>
+					<LoadingButton
+						loading={isLoading}
+						disabled={!isValid}
+						type='submit'
+						variant='contained'
+					>
+						Submit
+					</LoadingButton>
+				</Stack>
 			</Stack>
 		</SectionContainer>
 	);

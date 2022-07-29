@@ -34,7 +34,7 @@ import {
 } from 'react-icons/si';
 import { RiComputerLine } from 'react-icons/ri';
 import { MdWeb } from 'react-icons/md';
-import TECH from '../constants';
+import { TECH } from '../constants';
 
 type Props = {
 	tech: string;

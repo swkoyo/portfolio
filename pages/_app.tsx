@@ -5,6 +5,7 @@ import { CacheProvider, EmotionCache } from '@emotion/react';
 import theme from '../src/theme';
 import { ThemeProvider } from '@mui/material/styles';
 import createEmotionCache from '../src/createEmotionCache';
+import { SnackbarProvider } from 'notistack';
 import '@fontsource/oxygen/300.css';
 import '@fontsource/oxygen/400.css';
 import '@fontsource/oxygen/700.css';
@@ -33,8 +34,10 @@ function MyApp(props: MyAppProps) {
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
 			<ThemeProvider theme={theme}>
-				<CssBaseline />
-				<Component {...pageProps} />
+				<SnackbarProvider maxSnack={3} autoHideDuration={2000}>
+					<CssBaseline />
+					<Component {...pageProps} />
+				</SnackbarProvider>
 			</ThemeProvider>
 		</CacheProvider>
 	);

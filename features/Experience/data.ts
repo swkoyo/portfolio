@@ -1,4 +1,4 @@
-import TECH from '../../constants';
+import { TECH } from '../../constants';
 
 const data = [
 	{

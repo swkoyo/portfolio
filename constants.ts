@@ -1,4 +1,4 @@
-const TECH = {
+export const TECH = {
 	NODE_JS: 'Node.js',
 	TYPESCRIPT: 'Typescript',
 	REACT: 'React',
@@ -31,5 +31,8 @@ const TECH = {
 	GITHUB: 'Github',
 	WEB: 'Web'
 };
-
-export default TECH;
+export const EMAILJS = {
+	PUB_KEY: process.env.NEXT_PUBLIC_EMAILJS_PUB_KEY || '',
+	TEMPLATE_ID: process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || '',
+	SERVICE_ID: process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || ''
+};

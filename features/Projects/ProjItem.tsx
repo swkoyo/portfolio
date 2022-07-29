@@ -1,7 +1,7 @@
 import { Stack, Typography, Grid, Box } from '@mui/material';
 import { FC } from 'react';
 import TechIcon from '../../components/TechIcon';
-import TECH from '../../constants';
+import { TECH } from '../../constants';
 import Image from 'mui-image';
 import LinkIcon from '../../components/LinkIcon';
 
