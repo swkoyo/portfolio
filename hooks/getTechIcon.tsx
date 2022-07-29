@@ -1,4 +1,4 @@
-import { styled } from '@mui/material';
+import { styled, SxProps } from '@mui/material';
 import { IconType } from 'react-icons';
 import {
 	SiNodedotjs,
@@ -27,66 +27,67 @@ import {
 	SiRedux
 } from 'react-icons/si';
 import { RiComputerLine } from 'react-icons/ri';
+import TECH from '../constants';
 
 type Props = {
-	icon: string;
+	tech: string;
 };
 
-const StyledIcon = (comp: IconType) => styled(comp)();
+const getTechIcon = ({ tech }: Props) => {
+	const StyledIcon = (comp: IconType) => styled(comp)();
 
-const TechIcon = ({ icon }: Props) => {
-	switch (icon) {
-		case 'Node.js':
+	switch (tech) {
+		case TECH.NODE_JS:
 			return StyledIcon(SiNodedotjs);
-		case 'Typescript':
+		case TECH.TYPESCRIPT:
 			return StyledIcon(SiTypescript);
-		case 'React':
+		case TECH.REACT:
 			return StyledIcon(SiReact);
-		case 'PostgreSQL':
+		case TECH.POSTGRESQL:
 			return StyledIcon(SiPostgresql);
-		case 'NestJS':
+		case TECH.NEST_JS:
 			return StyledIcon(SiNestjs);
-		case 'Next.js':
+		case TECH.NEXT_JS:
 			return StyledIcon(SiNextdotjs);
-		case 'Redis':
+		case TECH.REDIS:
 			return StyledIcon(SiRedis);
-		case 'Stripe':
+		case TECH.STRIPE:
 			return StyledIcon(SiStripe);
-		case 'Material UI':
+		case TECH.MUI:
 			return StyledIcon(SiMaterialui);
-		case 'JWT':
+		case TECH.JWT:
 			return StyledIcon(SiJsonwebtokens);
-		case 'Express':
+		case TECH.EXPRESS:
 			return StyledIcon(SiExpress);
-		case 'Redux':
+		case TECH.REDUX:
 			return StyledIcon(SiRedux);
-		case 'Socket.io':
+		case TECH.SOCKET_IO:
 			return StyledIcon(SiSocketdotio);
-		case 'Heroku':
+		case TECH.HEROKU:
 			return StyledIcon(SiHeroku);
-		case 'AWS':
+		case TECH.AWS:
 			return StyledIcon(SiAmazonaws);
-		case 'Netlify':
+		case TECH.NETLIFY:
 			return StyledIcon(SiNetlify);
-		case 'Docker':
+		case TECH.DOCKER:
 			return StyledIcon(SiDocker);
-		case 'Swagger':
+		case TECH.SWAGGER:
 			return StyledIcon(SiSwagger);
-		case 'Postman':
+		case TECH.POSTMAN:
 			return StyledIcon(SiPostman);
-		case 'Mocha':
+		case TECH.MOCHA:
 			return StyledIcon(SiMocha);
-		case 'Chai':
+		case TECH.CHAI:
 			return StyledIcon(SiChai);
-		case 'Jest':
+		case TECH.JEST:
 			return StyledIcon(SiJest);
-		case 'Sequelize':
+		case TECH.SEQUELIZE:
 			return StyledIcon(SiSequelize);
-		case 'Prisma':
+		case TECH.PRISMA:
 			return StyledIcon(SiPrisma);
 		default:
 			return StyledIcon(RiComputerLine);
 	}
 };
 
-export default TechIcon;
+export default getTechIcon;

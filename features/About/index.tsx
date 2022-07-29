@@ -2,6 +2,8 @@ import { Stack, Typography, Grid, styled } from '@mui/material';
 import type { NextComponentType } from 'next';
 import SectionContainer from '../../components/SectionContainer';
 import { RiUser6Line } from 'react-icons/ri';
+import TechItem from './TechItem';
+import data from './data';
 
 const StyledUserIcon = styled(RiUser6Line)();
 
@@ -20,24 +22,23 @@ const About: NextComponentType = () => {
 					</Stack>
 				</Grid>
 				<Grid item xs={6}>
-					<Stack direction='row'>
-						<Stack>
-							<Typography>Node</Typography>
-							<Typography>Typescript</Typography>
-							<Typography>React</Typography>
-						</Stack>
-						<Stack>
-							<Typography>PostgreSQL</Typography>
-							<Typography>NestJS</Typography>
-							<Typography>Next.JS</Typography>
-							<Typography>Redis</Typography>
-						</Stack>
-						<Stack>
-							<Typography>Stripe</Typography>
-							<Typography>Material UI</Typography>
-							<Typography>JWT</Typography>
-						</Stack>
-					</Stack>
+					<Grid container justifyContent='center' alignItems='center'>
+						<Grid item xs={4}>
+							{data.slice(0, 3).map((tech) => (
+								<TechItem key={tech} tech={tech} />
+							))}
+						</Grid>
+						<Grid item xs={4}>
+							{data.slice(3, 7).map((tech) => (
+								<TechItem key={tech} tech={tech} />
+							))}
+						</Grid>
+						<Grid item xs={4}>
+							{data.slice(7).map((tech) => (
+								<TechItem key={tech} tech={tech} />
+							))}
+						</Grid>
+					</Grid>
 				</Grid>
 			</Grid>
 		</SectionContainer>

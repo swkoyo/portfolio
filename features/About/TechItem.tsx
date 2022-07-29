@@ -1,16 +1,25 @@
 import { Stack, Typography } from '@mui/material';
-import { FC, ReactNode } from 'react';
+import { FC } from 'react';
+import getTechIcon from '../../hooks/getTechIcon';
 
 type Props = {
-	name: string;
-	icon: ReactNode;
+	tech: string;
 };
 
-const TechItem: FC<Props> = ({ name, icon }: Props) => {
+const TechItem: FC<Props> = ({ tech }) => {
+	const Icon = getTechIcon({ tech });
 	return (
-		<Stack>
-			<Typography>{name}</Typography>
-			{icon}
+		<Stack
+			sx={{
+				px: 2,
+				py: 1,
+				border: 1,
+				borderRadius: 4,
+				alignItems: 'center'
+			}}
+		>
+			<Icon size={80} />
+			<Typography>{tech}</Typography>
 		</Stack>
 	);
 };
