@@ -1,4 +1,4 @@
-import { Stack, Typography } from '@mui/material';
+import { Container, Stack, Typography } from '@mui/material';
 import { Theme, SxProps } from '@mui/system';
 import { FC, ReactNode } from 'react';
 
@@ -10,22 +10,30 @@ type Props = {
 
 const SectionContainer: FC<Props> = ({ title, children, sx }: Props) => {
 	return (
-		<Stack
+		<Container
+			component={Stack}
 			sx={{
-				height: '100vh',
-				alignItems: 'center',
+				position: 'relative',
+				display: 'flex',
+				minHeight: '100vh',
+				width: '100%',
+				py: 10,
 				justifyContent: 'center',
+				alignItems: 'center',
 				...sx
 			}}
-			rowGap={10}
 		>
 			{title ? (
-				<Typography variant='h2' fontWeight='bold'>
+				<Typography
+					sx={{ pb: 10, textAlign: 'center' }}
+					variant='h2'
+					fontWeight='bold'
+				>
 					{title}
 				</Typography>
 			) : null}
 			{children}
-		</Stack>
+		</Container>
 	);
 };
 

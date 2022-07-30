@@ -1,4 +1,4 @@
-import { Stack, Typography, Grid, Box } from '@mui/material';
+import { Stack, Typography, Grid, Box, List, ListItem } from '@mui/material';
 import { FC } from 'react';
 import TechIcon from '../../components/TechIcon';
 
@@ -16,13 +16,18 @@ const ExpItem: FC<Props> = ({
 	role,
 	dates,
 	tech_stack,
-	reverse,
 	description
 }: Props) => {
 	return (
-		<Grid container direction={reverse ? 'row-reverse' : 'row'} spacing={2}>
+		<Grid container columnSpacing={4}>
 			<Grid item xs={4}>
-				<Stack sx={{ height: '100%', justifyContent: 'space-between' }}>
+				<Stack
+					sx={{
+						height: '100%',
+						maxHeight: 200,
+						justifyContent: 'space-between'
+					}}
+				>
 					<Typography variant='h4' fontWeight='bold'>
 						{title}
 					</Typography>
@@ -46,13 +51,13 @@ const ExpItem: FC<Props> = ({
 				</Stack>
 			</Grid>
 			<Grid item xs={8}>
-				<ul>
+				<List disablePadding>
 					{description.map((item) => (
-						<li key={item}>
-							<Typography>{item}</Typography>
-						</li>
+						<ListItem key={item} disableGutters>
+							<Typography variant='body2'>{item}</Typography>
+						</ListItem>
 					))}
-				</ul>
+				</List>
 			</Grid>
 		</Grid>
 	);

@@ -45,10 +45,10 @@ const Main: NextPage = () => {
 					}
 				}}
 			/>
-			<Container>
-				<Home />
-			</Container>
-			<Stack
+			{/* <Container sx={{ background: 'blue' }}> */}
+			<Home />
+			{/* </Container> */}
+			{/* <Stack
 				sx={{
 					position: 'sticky',
 					top: '50%',
@@ -99,21 +99,20 @@ const Main: NextPage = () => {
 				>
 					Contact
 				</Link>
-			</Stack>
-			<Container>
-				<Element name='about'>
-					<About />
-				</Element>
-				<Element name='experience'>
-					<Experience />
-				</Element>
-				<Element name='projects'>
-					<Projects />
-				</Element>
-				<Element name='contact'>
-					<Contact />
-				</Element>
-			</Container>
+			</Stack> */}
+
+			<Element name='about'>
+				<About />
+			</Element>
+			<Element name='experience'>
+				<Experience />
+			</Element>
+			<Element name='projects'>
+				<Projects />
+			</Element>
+			<Element name='contact'>
+				<Contact />
+			</Element>
 			<Footer />
 		</Box>
 	);

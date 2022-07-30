@@ -10,9 +10,9 @@ const StyledUserIcon = styled(RiUser6Line)({});
 const About: NextComponentType = () => {
 	return (
 		<SectionContainer title='About'>
-			<Grid container>
+			<Grid container columnSpacing={5}>
 				<Grid item xs={6}>
-					<Stack sx={{ width: 'auto' }}>
+					<Stack sx={{ width: 'auto' }} rowGap={1}>
 						<StyledUserIcon size={200} sx={{ mx: 'auto' }} />
 						<Typography variant='h6'>
 							Software developer with a passion for consistently
@@ -22,21 +22,32 @@ const About: NextComponentType = () => {
 					</Stack>
 				</Grid>
 				<Grid item xs={6}>
-					<Grid container justifyContent='center' alignItems='center'>
+					<Grid
+						container
+						justifyContent='center'
+						alignItems='center'
+						columnSpacing={2}
+					>
 						<Grid item xs={4}>
-							{data.slice(0, 3).map((tech) => (
-								<TechItem key={tech} tech={tech} />
-							))}
+							<Stack rowGap={2}>
+								{data.slice(0, 3).map((tech) => (
+									<TechItem key={tech} tech={tech} />
+								))}
+							</Stack>
 						</Grid>
 						<Grid item xs={4}>
-							{data.slice(3, 7).map((tech) => (
-								<TechItem key={tech} tech={tech} />
-							))}
+							<Stack rowGap={2}>
+								{data.slice(3, 7).map((tech) => (
+									<TechItem key={tech} tech={tech} />
+								))}
+							</Stack>
 						</Grid>
 						<Grid item xs={4}>
-							{data.slice(7).map((tech) => (
-								<TechItem key={tech} tech={tech} />
-							))}
+							<Stack rowGap={2}>
+								{data.slice(7).map((tech) => (
+									<TechItem key={tech} tech={tech} />
+								))}
+							</Stack>
 						</Grid>
 					</Grid>
 				</Grid>
