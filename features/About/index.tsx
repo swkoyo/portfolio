@@ -13,7 +13,10 @@ const About: NextComponentType = () => {
 			<Grid container columnSpacing={5}>
 				<Grid item xs={6}>
 					<Stack sx={{ width: 'auto' }} rowGap={1}>
-						<StyledUserIcon size={200} sx={{ mx: 'auto' }} />
+						<StyledUserIcon
+							size={200}
+							sx={{ mx: 'auto', color: 'primary.main' }}
+						/>
 						<Typography variant='h6'>
 							Software developer with a passion for consistently
 							improving as a programmer. Highly motivated and

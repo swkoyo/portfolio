@@ -4,7 +4,11 @@ import SectionContainer from '../../components/SectionContainer';
 
 const Home: NextComponentType = () => {
 	return (
-		<SectionContainer>
+		<SectionContainer
+			sx={{
+				minHeight: '100vh'
+			}}
+		>
 			<Stack
 				sx={{
 					width: '100%',
@@ -12,13 +16,13 @@ const Home: NextComponentType = () => {
 					textAlign: 'center'
 				}}
 			>
-				<Typography variant='h3'>
+				<Typography variant='h3' fontWeight='bold'>
 					Hello, I&apos;m{' '}
-					<Box component='span' sx={{ color: 'secondary.main' }}>
+					<Box component='span' sx={{ color: 'primary.main' }}>
 						Brandon.
 					</Box>
 				</Typography>
-				<Typography variant='h3'>
+				<Typography variant='h3' fontWeight='bold'>
 					I&apos;m a full stack web developer.
 				</Typography>
 			</Stack>

@@ -14,6 +14,7 @@ const TechItem: FC<Props> = ({ tech }) => {
 				py: 1,
 				border: 1,
 				borderRadius: 4,
+				borderColor: 'secondary.main',
 				alignItems: 'center'
 			}}
 		>

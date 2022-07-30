@@ -1,4 +1,4 @@
-import { Box, Container, Stack } from '@mui/material';
+import { Box, Stack } from '@mui/material';
 import type { NextPage } from 'next';
 import About from '../features/About';
 import Contact from '../features/Contact';
@@ -8,12 +8,13 @@ import Home from '../features/Home';
 import Projects from '../features/Projects';
 import Particles from 'react-tsparticles';
 import type { Engine } from 'tsparticles-engine';
-import { loadLinksPreset } from 'tsparticles-preset-links';
+// import { loadLinksPreset } from 'tsparticles-preset-links';
+import { loadStarsPreset } from 'tsparticles-preset-stars';
 import { Link, Element } from 'react-scroll';
 
 const Main: NextPage = () => {
 	const particlesInit = async (main: Engine) => {
-		await loadLinksPreset(main);
+		await loadStarsPreset(main);
 	};
 
 	return (
@@ -21,11 +22,14 @@ const Main: NextPage = () => {
 			<Particles
 				init={particlesInit}
 				options={{
-					preset: 'links',
+					preset: 'stars',
 					detectRetina: true,
 					backgroundMode: {
 						zIndex: -1,
 						enable: true
+					},
+					background: {
+						color: '#1B1B1A'
 					},
 					interactivity: {
 						detectsOn: 'window',
@@ -45,10 +49,8 @@ const Main: NextPage = () => {
 					}
 				}}
 			/>
-			{/* <Container sx={{ background: 'blue' }}> */}
 			<Home />
-			{/* </Container> */}
-			{/* <Stack
+			<Stack
 				sx={{
 					position: 'sticky',
 					top: '50%',
@@ -99,8 +101,7 @@ const Main: NextPage = () => {
 				>
 					Contact
 				</Link>
-			</Stack> */}
-
+			</Stack>
 			<Element name='about'>
 				<About />
 			</Element>

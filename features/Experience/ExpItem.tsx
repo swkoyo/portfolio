@@ -20,12 +20,15 @@ const ExpItem: FC<Props> = ({
 }: Props) => {
 	return (
 		<Grid container columnSpacing={4}>
-			<Grid item xs={4}>
+			<Grid item xs={5}>
 				<Stack
 					sx={{
-						height: '100%',
-						maxHeight: 200,
-						justifyContent: 'space-between'
+						height: 250,
+						justifyContent: 'space-between',
+						backgroundColor: 'primary.main',
+						p: 4,
+						borderRadius: 4,
+						boxShadow: 10
 					}}
 				>
 					<Typography variant='h4' fontWeight='bold'>
@@ -50,7 +53,7 @@ const ExpItem: FC<Props> = ({
 					</Stack>
 				</Stack>
 			</Grid>
-			<Grid item xs={8}>
+			<Grid item xs={7}>
 				<List disablePadding>
 					{description.map((item) => (
 						<ListItem key={item} disableGutters>

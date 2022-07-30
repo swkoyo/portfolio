@@ -3,12 +3,15 @@ import { createTheme } from '@mui/material/styles';
 const theme = createTheme({
 	palette: {
 		mode: 'dark',
+		primary: {
+			main: '#57b3b0'
+		},
 		secondary: {
-			main: '#4d918f'
+			main: '#F48C06'
 		}
 	},
 	typography: {
-		fontFamily: 'Oxygen'
+		fontFamily: 'Montserrat'
 	}
 });
 
