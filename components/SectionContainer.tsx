@@ -39,8 +39,8 @@ const SectionContainer: FC<Props> = ({ title, children, sx }: Props) => {
 						sx={{
 							position: 'absolute',
 							bottom: 0,
-							width: 200,
-							backgroundColor: 'secondary.main',
+							width: '70%',
+							backgroundColor: 'primary.main',
 							height: 20,
 							right: -20,
 							zIndex: -1
