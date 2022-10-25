@@ -14,13 +14,11 @@ type Props = {
 	color?:
 		| 'inherit'
 		| 'secondary'
-		| 'default'
 		| 'primary'
 		| 'error'
 		| 'info'
 		| 'success'
-		| 'warning'
-		| undefined;
+		| 'warning';
 };
 
 const LinkIcon: FC<Props> = ({

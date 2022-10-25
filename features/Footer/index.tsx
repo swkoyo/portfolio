@@ -2,7 +2,13 @@ import { Stack, Typography } from '@mui/material';
 import type { NextComponentType } from 'next';
 import LinkIcon from '../../components/LinkIcon';
 import TechIcon from '../../components/TechIcon';
-import { BUILT_WITH, EMAIL_ADDRESS, GITHUB_LINK, TECH } from '../../constants';
+import {
+	BUILT_WITH,
+	EMAIL_ADDRESS,
+	GITHUB_LINK,
+	LINKEDIN_LINK,
+	TECH
+} from '../../constants';
 
 const Footer: NextComponentType = () => {
 	return (
@@ -19,6 +25,12 @@ const Footer: NextComponentType = () => {
 					tech={TECH.GITHUB}
 					size={30}
 					link={GITHUB_LINK}
+					icon_button
+				/>
+				<LinkIcon
+					tech={TECH.LINKEDIN}
+					size={30}
+					link={LINKEDIN_LINK}
 					icon_button
 				/>
 				<LinkIcon
