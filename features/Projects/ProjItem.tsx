@@ -93,12 +93,11 @@ const ProjItem: FC<Props> = ({
 				</Stack>
 			</Grid>
 			<Grid item xs={4}>
-				<Stack height='100%'>
-					<Typography variant='h4' fontWeight='bold' gutterBottom>
+				<Stack height='100%' justifyContent='space-evenly'>
+					<Typography variant='h4' fontWeight='bold'>
 						{title}
 					</Typography>
 					<Typography>{description}</Typography>
-					<Box sx={{ flexGrow: 1 }} />
 					<Stack
 						direction='row'
 						sx={{
