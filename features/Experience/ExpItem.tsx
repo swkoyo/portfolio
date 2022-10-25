@@ -1,8 +1,11 @@
+import { FiberManualRecord } from '@mui/icons-material';
 import {
 	Box,
 	Grid,
 	List,
 	ListItem,
+	ListItemIcon,
+	ListItemText,
 	Stack,
 	Typography,
 	useMediaQuery,
@@ -31,7 +34,7 @@ const ExpItem: FC<Props> = ({
 	const matches = useMediaQuery(theme.breakpoints.up('md'));
 
 	return (
-		<Grid container columnSpacing={4} rowSpacing={4}>
+		<Grid container columnSpacing={7} rowSpacing={4}>
 			<Grid item xs={12} md={5}>
 				<Stack
 					sx={{
@@ -82,10 +85,13 @@ const ExpItem: FC<Props> = ({
 				</Stack>
 			</Grid>
 			<Grid item xs={12} md={7}>
-				<List disablePadding>
+				<List dense disablePadding>
 					{description.map((item) => (
 						<ListItem key={item} disableGutters>
-							<Typography variant='body2'>{item}</Typography>
+							<ListItemIcon>
+								<FiberManualRecord fontSize='small' />
+							</ListItemIcon>
+							<ListItemText primary={item} />
 						</ListItem>
 					))}
 				</List>
