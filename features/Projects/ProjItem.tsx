@@ -119,7 +119,7 @@ const ProjItem: FC<Props> = ({
 							src={image}
 							alt={title}
 							height={350}
-							width='100%'
+							width={750}
 							priority
 							style={{
 								WebkitFilter: isHover
@@ -129,6 +129,8 @@ const ProjItem: FC<Props> = ({
 								transition: 'all .3s ease-in-out'
 							}}
 							quality={100}
+							layout='responsive'
+							objectFit='fill'
 						/>
 						<Stack
 							direction='row'
