@@ -22,18 +22,24 @@ const Footer: NextComponentType = () => {
 		>
 			<Stack direction='row'>
 				<LinkIcon
+					useColor
+					title='Github'
 					tech={TECH.GITHUB}
 					size={30}
 					link={GITHUB_LINK}
 					icon_button
 				/>
 				<LinkIcon
+					useColor
+					title='LinkedIn'
 					tech={TECH.LINKEDIN}
 					size={30}
 					link={LINKEDIN_LINK}
 					icon_button
 				/>
 				<LinkIcon
+					useColor
+					title='Email'
 					tech={TECH.EMAIL}
 					size={30}
 					blank_target={false}
@@ -53,7 +59,7 @@ const Footer: NextComponentType = () => {
 				<Typography variant='caption'>Built With</Typography>
 				<Stack direction='row' columnGap={0.5}>
 					{BUILT_WITH.map((tech) => (
-						<TechIcon key={tech} tech={tech} size={15} />
+						<TechIcon tooltip key={tech} tech={tech} size={15} />
 					))}
 				</Stack>
 			</Stack>

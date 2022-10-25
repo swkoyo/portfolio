@@ -125,6 +125,7 @@ const ProjItem: FC<Props> = ({
 					<Typography>{description}</Typography>
 					<Stack
 						direction='row'
+						flexWrap='wrap'
 						sx={{
 							overflow: 'auto',
 							'&::-webkit-scrollbar': {
@@ -145,6 +146,8 @@ const ProjItem: FC<Props> = ({
 						{tech_stack.map((tech) => (
 							<Box key={tech}>
 								<TechIcon
+									useColor
+									tooltip
 									tech={tech}
 									size={matches ? 50 : 30}
 								/>

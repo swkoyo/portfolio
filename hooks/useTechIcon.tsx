@@ -37,86 +37,88 @@ import {
 	SiVite,
 	SiYarn
 } from 'react-icons/si';
-import { TECH } from '../constants';
+import { TECH, TECH_COLOR } from '../constants';
 
 type Props = {
 	tech: string;
+	useColor?: boolean;
 };
 
-const useTechIcon = ({ tech }: Props) => {
-	const StyledIcon = (comp: IconType) => styled(comp)({});
+const useTechIcon = ({ tech, useColor }: Props) => {
+	const StyledIcon = (comp: IconType, color: string = 'white') =>
+		styled(comp)({ color: useColor ? color : 'white' });
 
 	switch (tech) {
 		case TECH.NODE_JS:
-			return StyledIcon(SiNodedotjs);
+			return StyledIcon(SiNodedotjs, TECH_COLOR.NODE_JS);
 		case TECH.TYPESCRIPT:
-			return StyledIcon(SiTypescript);
+			return StyledIcon(SiTypescript, TECH_COLOR.TYPESCRIPT);
 		case TECH.REACT:
-			return StyledIcon(SiReact);
+			return StyledIcon(SiReact, TECH_COLOR.REACT);
 		case TECH.POSTGRESQL:
-			return StyledIcon(SiPostgresql);
+			return StyledIcon(SiPostgresql, TECH_COLOR.POSTGRESQL);
 		case TECH.NEST_JS:
-			return StyledIcon(SiNestjs);
+			return StyledIcon(SiNestjs, TECH_COLOR.NEST_JS);
 		case TECH.NEXT_JS:
-			return StyledIcon(SiNextdotjs);
+			return StyledIcon(SiNextdotjs, TECH_COLOR.NEXT_JS);
 		case TECH.REDIS:
-			return StyledIcon(SiRedis);
+			return StyledIcon(SiRedis, TECH_COLOR.REDIS);
 		case TECH.STRIPE:
-			return StyledIcon(SiStripe);
+			return StyledIcon(SiStripe, TECH_COLOR.STRIPE);
 		case TECH.MUI:
-			return StyledIcon(SiMaterialui);
+			return StyledIcon(SiMaterialui, TECH_COLOR.MUI);
 		case TECH.JWT:
-			return StyledIcon(SiJsonwebtokens);
+			return StyledIcon(SiJsonwebtokens, TECH_COLOR.JWT);
 		case TECH.EXPRESS:
-			return StyledIcon(SiExpress);
+			return StyledIcon(SiExpress, TECH_COLOR.EXPRESS);
 		case TECH.REDUX:
-			return StyledIcon(SiRedux);
+			return StyledIcon(SiRedux, TECH_COLOR.REDUX);
 		case TECH.SOCKET_IO:
-			return StyledIcon(SiSocketdotio);
+			return StyledIcon(SiSocketdotio, TECH_COLOR.SOCKET_IO);
 		case TECH.HEROKU:
-			return StyledIcon(SiHeroku);
+			return StyledIcon(SiHeroku, TECH_COLOR.HEROKU);
 		case TECH.AWS:
-			return StyledIcon(SiAmazonaws);
+			return StyledIcon(SiAmazonaws, TECH_COLOR.AWS);
 		case TECH.NETLIFY:
-			return StyledIcon(SiNetlify);
+			return StyledIcon(SiNetlify, TECH_COLOR.NETLIFY);
 		case TECH.DOCKER:
-			return StyledIcon(SiDocker);
+			return StyledIcon(SiDocker, TECH_COLOR.DOCKER);
 		case TECH.SWAGGER:
-			return StyledIcon(SiSwagger);
+			return StyledIcon(SiSwagger, TECH_COLOR.SWAGGER);
 		case TECH.POSTMAN:
-			return StyledIcon(SiPostman);
+			return StyledIcon(SiPostman, TECH_COLOR.POSTMAN);
 		case TECH.MOCHA:
-			return StyledIcon(SiMocha);
+			return StyledIcon(SiMocha, TECH_COLOR.MOCHA);
 		case TECH.CHAI:
-			return StyledIcon(SiChai);
+			return StyledIcon(SiChai, TECH_COLOR.CHAI);
 		case TECH.JEST:
-			return StyledIcon(SiJest);
+			return StyledIcon(SiJest, TECH_COLOR.JEST);
 		case TECH.SEQUELIZE:
-			return StyledIcon(SiSequelize);
+			return StyledIcon(SiSequelize, TECH_COLOR.SEQUELIZE);
 		case TECH.PRISMA:
-			return StyledIcon(SiPrisma);
+			return StyledIcon(SiPrisma, TECH_COLOR.PRISMA);
 		case TECH.PASSPORT:
-			return StyledIcon(SiPassport);
+			return StyledIcon(SiPassport, TECH_COLOR.PASSPORT);
 		case TECH.BOOTSTRAP:
-			return StyledIcon(SiBootstrap);
+			return StyledIcon(SiBootstrap, TECH_COLOR.BOOTSTRAP);
 		case TECH.JASMINE:
-			return StyledIcon(SiJasmine);
+			return StyledIcon(SiJasmine, TECH_COLOR.JASMINE);
 		case TECH.NPM:
-			return StyledIcon(SiNpm);
+			return StyledIcon(SiNpm, TECH_COLOR.NPM);
 		case TECH.YARN:
-			return StyledIcon(SiYarn);
+			return StyledIcon(SiYarn, TECH_COLOR.YARN);
 		case TECH.GITHUB:
-			return StyledIcon(SiGithub);
+			return StyledIcon(SiGithub, TECH_COLOR.GITHUB);
 		case TECH.WEB:
 			return StyledIcon(MdWeb);
 		case TECH.EMAIL:
 			return StyledIcon(MdOutlineEmail);
 		case TECH.LINKEDIN:
-			return StyledIcon(SiLinkedin);
+			return StyledIcon(SiLinkedin, TECH_COLOR.LINKEDIN);
 		case TECH.CHAKRA_UI:
-			return StyledIcon(SiChakraui);
+			return StyledIcon(SiChakraui, TECH_COLOR.CHAKRA_UI);
 		case TECH.VITE:
-			return StyledIcon(SiVite);
+			return StyledIcon(SiVite, TECH_COLOR.VITE);
 		default:
 			return StyledIcon(RiComputerLine);
 	}

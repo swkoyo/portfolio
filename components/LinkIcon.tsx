@@ -11,6 +11,7 @@ type Props = {
 	icon_button?: boolean;
 	sx?: SxProps<Theme>;
 	title?: string;
+	useColor?: boolean;
 	color?:
 		| 'inherit'
 		| 'secondary'
@@ -28,10 +29,11 @@ const LinkIcon: FC<Props> = ({
 	link,
 	icon_button = false,
 	title,
+	useColor,
 	color,
 	sx = {}
 }: Props) => {
-	const Icon = useTechIcon({ tech });
+	const Icon = useTechIcon({ tech, useColor });
 
 	const element = () => {
 		if (icon_button) {

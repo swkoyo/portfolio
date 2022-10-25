@@ -4,7 +4,7 @@ const data = [
 	{
 		title: 'Collablist',
 		description:
-			'Collablist is a real-time collborative web-application where multiple users can create, read, update, and delete items on a list. The list will be updated for every member of a list the moment one of them perform CRUD actions. The app is a great way for teams to efficiently and effectively collaborate on shopping lists, to-do lists, or any other forms of lists.',
+			'Collablist is a real-time collborative web-application where multiple users can create, read, update, and delete items on a list.',
 		tech_stack: [
 			TECH.NODE_JS,
 			TECH.REACT,

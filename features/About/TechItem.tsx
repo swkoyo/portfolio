@@ -32,8 +32,10 @@ const TechItem: FC<Props> = ({ tech }) => {
 			}}
 			rowGap={0.5}
 		>
-			<TechIcon tech={tech} size={matches ? 80 : 40} />
-			<Typography variant='body2'>{tech}</Typography>
+			<TechIcon tech={tech} size={matches ? 80 : 40} useColor />
+			<Typography variant='body2' fontWeight='bold'>
+				{tech}
+			</Typography>
 		</Stack>
 	);
 };
