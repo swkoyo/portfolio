@@ -33,7 +33,7 @@ const Home: NextComponentType = () => {
 					opacity: isShown ? 1 : 0,
 					scale: isShown ? 1 : 0.5
 				}}
-				transition={{ duration: 0.3 }}
+				transition={{ duration: 0.5 }}
 			>
 				<Stack
 					sx={{

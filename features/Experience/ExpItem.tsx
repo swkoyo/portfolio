@@ -55,7 +55,7 @@ const ExpItem: FC<Props> = ({
 				opacity: isShown ? 1 : 0,
 				scale: isShown ? 1 : 0.5
 			}}
-			transition={{ duration: 0.3 }}
+			transition={{ duration: 0.5 }}
 		>
 			<Grid container columnSpacing={7} rowSpacing={4}>
 				<Grid item xs={12} md={5}>

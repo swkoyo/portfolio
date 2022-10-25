@@ -93,7 +93,7 @@ const ProjItem: FC<Props> = ({
 				opacity: isShown ? 1 : 0,
 				scale: isShown ? 1 : 0.5
 			}}
-			transition={{ duration: 0.3 }}
+			transition={{ duration: 0.5 }}
 		>
 			<Grid
 				container
@@ -112,7 +112,7 @@ const ProjItem: FC<Props> = ({
 							':hover': {
 								transform: 'scale(1.1)'
 							},
-							transition: 'all .5s ease-in-out'
+							transition: 'all .3s ease-in-out'
 						}}
 					>
 						<Image
@@ -126,7 +126,7 @@ const ProjItem: FC<Props> = ({
 									? undefined
 									: 'grayscale(100%)',
 								filter: isHover ? undefined : 'grayscale(100%)',
-								transition: 'all .5s ease-in-out'
+								transition: 'all .3s ease-in-out'
 							}}
 							onLoad={() => {}}
 						/>

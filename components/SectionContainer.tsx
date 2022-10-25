@@ -27,7 +27,7 @@ const SectionContainer: FC<Props> = ({ title, children, sx }: Props) => {
 			sx={{
 				position: 'relative',
 				display: 'flex',
-				// minHeight: '100vh',
+				minHeight: '100vh',
 				width: '100%',
 				py: 10,
 				justifyContent: 'center',
@@ -46,7 +46,7 @@ const SectionContainer: FC<Props> = ({ title, children, sx }: Props) => {
 						opacity: isShown ? 1 : 0,
 						scale: isShown ? 1 : 0.5
 					}}
-					transition={{ duration: 0.3 }}
+					transition={{ duration: 0.5 }}
 				>
 					<Typography
 						sx={{

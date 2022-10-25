@@ -72,7 +72,7 @@ const Contact: NextComponentType = () => {
 					opacity: isShown ? 1 : 0,
 					scale: isShown ? 1 : 0.5
 				}}
-				transition={{ duration: 0.3 }}
+				transition={{ duration: 0.5 }}
 			>
 				<Stack maxWidth={700} rowGap={4}>
 					<Typography variant='h5' textAlign='center'>
