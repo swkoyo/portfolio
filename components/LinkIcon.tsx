@@ -1,5 +1,5 @@
-import { Button, IconButton } from '@mui/material';
-import { Theme, SxProps } from '@mui/system';
+import { Button, IconButton, Tooltip } from '@mui/material';
+import { SxProps, Theme } from '@mui/system';
 import { FC } from 'react';
 import useTechIcon from '../hooks/useTechIcon';
 
@@ -10,6 +10,7 @@ type Props = {
 	blank_target?: boolean;
 	icon_button?: boolean;
 	sx?: SxProps<Theme>;
+	title?: string;
 };
 
 const LinkIcon: FC<Props> = ({
@@ -18,29 +19,42 @@ const LinkIcon: FC<Props> = ({
 	size,
 	link,
 	icon_button = false,
+	title,
 	sx = {}
 }: Props) => {
 	const Icon = useTechIcon({ tech });
 
-	if (icon_button) {
+	const element = () => {
+		if (icon_button) {
+			return (
+				<IconButton
+					target={blank_target ? '_blank' : undefined}
+					href={link}
+				>
+					<Icon size={size} sx={sx} />
+				</IconButton>
+			);
+		} else {
+			return (
+				<Button
+					target={blank_target ? '_blank' : undefined}
+					href={link}
+					variant='contained'
+				>
+					<Icon size={size} sx={sx} />
+				</Button>
+			);
+		}
+	};
+
+	if (title) {
 		return (
-			<IconButton
-				target={blank_target ? '_blank' : undefined}
-				href={link}
-			>
-				<Icon size={size} sx={sx} />
-			</IconButton>
+			<Tooltip arrow title={title}>
+				{element()}
+			</Tooltip>
 		);
 	} else {
-		return (
-			<Button
-				target={blank_target ? '_blank' : undefined}
-				href={link}
-				variant='contained'
-			>
-				<Icon size={size} sx={sx} />
-			</Button>
-		);
+		return element();
 	}
 };
 

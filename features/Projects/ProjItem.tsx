@@ -1,9 +1,10 @@
-import { Stack, Typography, Grid, Box } from '@mui/material';
+import { Box, Grid, Stack, Typography } from '@mui/material';
+import { isArray } from 'lodash';
+import Image from 'mui-image';
 import { FC } from 'react';
+import LinkIcon from '../../components/LinkIcon';
 import TechIcon from '../../components/TechIcon';
 import { TECH } from '../../constants';
-import Image from 'mui-image';
-import LinkIcon from '../../components/LinkIcon';
 
 type Props = {
 	title: string;
@@ -12,7 +13,7 @@ type Props = {
 	reverse?: boolean;
 	image: string;
 	links: {
-		github: string;
+		github: string | string[];
 		web?: string;
 	};
 };
@@ -25,6 +26,35 @@ const ProjItem: FC<Props> = ({
 	image,
 	links
 }: Props) => {
+	const githubLinks = () => {
+		if (isArray(links.github)) {
+			return (
+				<>
+					<LinkIcon
+						tech={TECH.GITHUB}
+						size={40}
+						link={links.github[0]}
+						title='Github Client'
+					/>
+					<LinkIcon
+						tech={TECH.GITHUB}
+						size={40}
+						link={links.github[1]}
+						title='Github Server'
+					/>
+				</>
+			);
+		} else {
+			return (
+				<LinkIcon
+					tech={TECH.GITHUB}
+					size={40}
+					link={links.github}
+					title='Github'
+				/>
+			);
+		}
+	};
 	return (
 		<Grid container direction={reverse ? 'row-reverse' : 'row'} spacing={2}>
 			<Grid item xs={8}>
@@ -44,18 +74,13 @@ const ProjItem: FC<Props> = ({
 						top={0}
 						left={0}
 					>
-						{links.github ? (
-							<LinkIcon
-								tech={TECH.GITHUB}
-								size={40}
-								link={links.github}
-							/>
-						) : null}
+						{githubLinks()}
 						{links.web ? (
 							<LinkIcon
-								tech={TECH.GITHUB}
+								tech={TECH.WEB}
 								size={40}
 								link={links.web}
+								title='Website'
 							/>
 						) : null}
 					</Stack>

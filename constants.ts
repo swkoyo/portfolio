@@ -30,7 +30,10 @@ export const TECH = {
 	YARN: 'Yarn',
 	GITHUB: 'Github',
 	WEB: 'Web',
-	EMAIL: 'Email'
+	EMAIL: 'Email',
+	LINKEDIN: 'LinkedIn',
+	CHAKRA_UI: 'Chakra UI',
+	VITE: 'Vite'
 };
 export const EMAILJS = {
 	PUB_KEY: process.env.NEXT_PUBLIC_EMAILJS_PUB_KEY || '',

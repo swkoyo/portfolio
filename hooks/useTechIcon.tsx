@@ -1,39 +1,42 @@
 import { styled } from '@mui/material';
 import { IconType } from 'react-icons';
-import {
-	SiNodedotjs,
-	SiTypescript,
-	SiReact,
-	SiPostgresql,
-	SiNestjs,
-	SiNextdotjs,
-	SiRedis,
-	SiStripe,
-	SiMaterialui,
-	SiJsonwebtokens,
-	SiExpress,
-	SiSocketdotio,
-	SiHeroku,
-	SiAmazonaws,
-	SiNetlify,
-	SiDocker,
-	SiSwagger,
-	SiPostman,
-	SiMocha,
-	SiChai,
-	SiJest,
-	SiSequelize,
-	SiPrisma,
-	SiRedux,
-	SiPassport,
-	SiBootstrap,
-	SiJasmine,
-	SiNpm,
-	SiYarn,
-	SiGithub
-} from 'react-icons/si';
+import { MdOutlineEmail, MdWeb } from 'react-icons/md';
 import { RiComputerLine } from 'react-icons/ri';
-import { MdWeb, MdOutlineEmail } from 'react-icons/md';
+import {
+	SiAmazonaws,
+	SiBootstrap,
+	SiChai,
+	SiChakraui,
+	SiDocker,
+	SiExpress,
+	SiGithub,
+	SiHeroku,
+	SiJasmine,
+	SiJest,
+	SiJsonwebtokens,
+	SiLinkedin,
+	SiMaterialui,
+	SiMocha,
+	SiNestjs,
+	SiNetlify,
+	SiNextdotjs,
+	SiNodedotjs,
+	SiNpm,
+	SiPassport,
+	SiPostgresql,
+	SiPostman,
+	SiPrisma,
+	SiReact,
+	SiRedis,
+	SiRedux,
+	SiSequelize,
+	SiSocketdotio,
+	SiStripe,
+	SiSwagger,
+	SiTypescript,
+	SiVite,
+	SiYarn
+} from 'react-icons/si';
 import { TECH } from '../constants';
 
 type Props = {
@@ -108,6 +111,12 @@ const useTechIcon = ({ tech }: Props) => {
 			return StyledIcon(MdWeb);
 		case TECH.EMAIL:
 			return StyledIcon(MdOutlineEmail);
+		case TECH.LINKEDIN:
+			return StyledIcon(SiLinkedin);
+		case TECH.CHAKRA_UI:
+			return StyledIcon(SiChakraui);
+		case TECH.VITE:
+			return StyledIcon(SiVite);
 		default:
 			return StyledIcon(RiComputerLine);
 	}

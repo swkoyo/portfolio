@@ -13,14 +13,18 @@ const data = [
 			TECH.SEQUELIZE,
 			TECH.PASSPORT,
 			TECH.SOCKET_IO,
-			TECH.MUI,
+			TECH.CHAKRA_UI,
+			TECH.VITE,
 			TECH.HEROKU,
 			TECH.JWT
 		],
 		links: {
-			github: 'https://github.com/brandonkimmmm/collablist'
+			github: [
+				'https://github.com/brandonkimmmm/collablist-client',
+				'https://github.com/brandonkimmmm/collablist-server'
+			]
 		},
-		image: 'https://camo.githubusercontent.com/a3b39ae4fa4feae6efaf6fd93b8532f1c8d788c0b3c293cbc5dde678decf7fbf/68747470733a2f2f692e696d6775722e636f6d2f6862627963514a2e706e67'
+		image: './collablist.png'
 	},
 	{
 		title: 'Knowledge Drop',
