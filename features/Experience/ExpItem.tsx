@@ -1,4 +1,13 @@
-import { Box, Grid, List, ListItem, Stack, Typography } from '@mui/material';
+import {
+	Box,
+	Grid,
+	List,
+	ListItem,
+	Stack,
+	Typography,
+	useMediaQuery,
+	useTheme
+} from '@mui/material';
 import { FC } from 'react';
 import TechIcon from '../../components/TechIcon';
 
@@ -18,18 +27,21 @@ const ExpItem: FC<Props> = ({
 	tech_stack,
 	description
 }: Props) => {
+	const theme = useTheme();
+	const matches = useMediaQuery(theme.breakpoints.up('md'));
+
 	return (
-		<Grid container columnSpacing={4}>
-			<Grid item xs={5}>
+		<Grid container columnSpacing={4} rowSpacing={4}>
+			<Grid item xs={12} md={5}>
 				<Stack
 					sx={{
-						height: 250,
-						justifyContent: 'space-between',
+						justifyContent: 'space-evenly',
 						backgroundColor: 'primary.main',
 						p: 4,
 						borderRadius: 4,
 						boxShadow: 10
 					}}
+					gap={3}
 				>
 					<Typography variant='h4' fontWeight='bold'>
 						{title}
@@ -42,8 +54,9 @@ const ExpItem: FC<Props> = ({
 						direction='row'
 						sx={{
 							overflow: 'auto',
+							flexWrap: 'wrap',
 							'&::-webkit-scrollbar': {
-								height: '0.4em'
+								width: '0.4em'
 							},
 							'&::-webkit-scrollbar-track': {
 								boxShadow: 'inset 0 0 6px rgba(128, 128, 128)',
@@ -59,13 +72,16 @@ const ExpItem: FC<Props> = ({
 					>
 						{tech_stack.map((tech) => (
 							<Box key={tech}>
-								<TechIcon tech={tech} size={50} />
+								<TechIcon
+									tech={tech}
+									size={matches ? 50 : 30}
+								/>
 							</Box>
 						))}
 					</Stack>
 				</Stack>
 			</Grid>
-			<Grid item xs={7}>
+			<Grid item xs={12} md={7}>
 				<List disablePadding>
 					{description.map((item) => (
 						<ListItem key={item} disableGutters>

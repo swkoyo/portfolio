@@ -1,4 +1,11 @@
-import { Grid, Stack, styled, Typography, useTheme } from '@mui/material';
+import {
+	Grid,
+	Stack,
+	styled,
+	Typography,
+	useMediaQuery,
+	useTheme
+} from '@mui/material';
 import type { NextComponentType } from 'next';
 import { RiUser6Line } from 'react-icons/ri';
 import SectionContainer from '../../components/SectionContainer';
@@ -9,9 +16,16 @@ const StyledUserIcon = styled(RiUser6Line)({});
 
 const About: NextComponentType = () => {
 	const theme = useTheme();
+	const matches = useMediaQuery(theme.breakpoints.up('md'));
+
 	return (
 		<SectionContainer title='About'>
-			<Grid container columnSpacing={5}>
+			<Grid
+				container
+				columnSpacing={5}
+				rowSpacing={5}
+				direction={matches ? 'row' : 'column'}
+			>
 				<Grid item xs={6}>
 					<Stack sx={{ width: 'auto' }} rowGap={1}>
 						<svg width={0} height={0}>
@@ -36,7 +50,7 @@ const About: NextComponentType = () => {
 							size={200}
 							sx={{ mx: 'auto', fill: 'url(#usericongradient)' }}
 						/>
-						<Typography variant='subtitle1'>
+						<Typography variant={matches ? 'subtitle2' : 'body1'}>
 							Experienced software developer offering expertise in
 							full software development lifecycle, web application
 							architecture, and project management. Proven

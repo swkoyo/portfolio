@@ -1,7 +1,14 @@
-import { Box, Grid, Stack, Typography } from '@mui/material';
+import {
+	Box,
+	Grid,
+	Stack,
+	Typography,
+	useMediaQuery,
+	useTheme
+} from '@mui/material';
 import { isArray } from 'lodash';
+import Image from 'next/image';
 import { FC } from 'react';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 import LinkIcon from '../../components/LinkIcon';
 import TechIcon from '../../components/TechIcon';
 import { TECH } from '../../constants';
@@ -26,6 +33,9 @@ const ProjItem: FC<Props> = ({
 	image,
 	links
 }: Props) => {
+	const theme = useTheme();
+	const matches = useMediaQuery(theme.breakpoints.up('md'));
+
 	const githubLinks = () => {
 		if (isArray(links.github)) {
 			return (
@@ -60,8 +70,13 @@ const ProjItem: FC<Props> = ({
 	};
 
 	return (
-		<Grid container direction={reverse ? 'row-reverse' : 'row'} spacing={2}>
-			<Grid item xs={8}>
+		<Grid
+			container
+			direction={reverse ? 'row-reverse' : 'row'}
+			columnSpacing={5}
+			rowGap={1}
+		>
+			<Grid item xs={12} md={8}>
 				<Stack
 					position='relative'
 					p={2}
@@ -70,7 +85,13 @@ const ProjItem: FC<Props> = ({
 						backgroundColor: 'primary.main'
 					}}
 				>
-					<LazyLoadImage src={image} alt={title} height={350} />
+					<Image
+						src={image}
+						alt={title}
+						height={350}
+						width='100%'
+						priority
+					/>
 					<Stack
 						direction='row'
 						columnGap={1}
@@ -92,8 +113,12 @@ const ProjItem: FC<Props> = ({
 					</Stack>
 				</Stack>
 			</Grid>
-			<Grid item xs={4}>
-				<Stack height='100%' justifyContent='space-evenly'>
+			<Grid item xs={12} md={4}>
+				<Stack
+					height='100%'
+					minHeight={300}
+					justifyContent='space-evenly'
+				>
 					<Typography variant='h4' fontWeight='bold'>
 						{title}
 					</Typography>
@@ -103,7 +128,7 @@ const ProjItem: FC<Props> = ({
 						sx={{
 							overflow: 'auto',
 							'&::-webkit-scrollbar': {
-								height: '0.4em'
+								width: '0.4em'
 							},
 							'&::-webkit-scrollbar-track': {
 								boxShadow: 'inset 0 0 6px rgba(128, 128, 128)',
@@ -119,7 +144,10 @@ const ProjItem: FC<Props> = ({
 					>
 						{tech_stack.map((tech) => (
 							<Box key={tech}>
-								<TechIcon tech={tech} size={50} />
+								<TechIcon
+									tech={tech}
+									size={matches ? 50 : 30}
+								/>
 							</Box>
 						))}
 					</Stack>

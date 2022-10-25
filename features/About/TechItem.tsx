@@ -1,4 +1,4 @@
-import { Stack, Typography, useTheme } from '@mui/material';
+import { Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { FC } from 'react';
 import TechIcon from '../../components/TechIcon';
 
@@ -8,6 +8,8 @@ type Props = {
 
 const TechItem: FC<Props> = ({ tech }) => {
 	const theme = useTheme();
+	const matches = useMediaQuery(theme.breakpoints.up('md'));
+
 	return (
 		<Stack
 			sx={{
@@ -30,8 +32,8 @@ const TechItem: FC<Props> = ({ tech }) => {
 			}}
 			rowGap={0.5}
 		>
-			<TechIcon tech={tech} size={80} />
-			<Typography>{tech}</Typography>
+			<TechIcon tech={tech} size={matches ? 80 : 40} />
+			<Typography variant='body2'>{tech}</Typography>
 		</Stack>
 	);
 };
