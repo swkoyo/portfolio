@@ -1,14 +1,4 @@
-import type { AppProps } from 'next/app';
-import Head from 'next/head';
-import CssBaseline from '@mui/material/CssBaseline';
 import { CacheProvider, EmotionCache } from '@emotion/react';
-import theme from '../src/theme';
-import { ThemeProvider } from '@mui/material/styles';
-import createEmotionCache from '../src/createEmotionCache';
-import { SnackbarProvider } from 'notistack';
-// import '@fontsource/oxygen/300.css';
-// import '@fontsource/oxygen/400.css';
-// import '@fontsource/oxygen/700.css';
 import '@fontsource/montserrat/100.css';
 import '@fontsource/montserrat/200.css';
 import '@fontsource/montserrat/300.css';
@@ -18,11 +8,13 @@ import '@fontsource/montserrat/600.css';
 import '@fontsource/montserrat/700.css';
 import '@fontsource/montserrat/800.css';
 import '@fontsource/montserrat/900.css';
-// import '@fontsource/quicksand/300.css';
-// import '@fontsource/quicksand/400.css';
-// import '@fontsource/quicksand/500.css';
-// import '@fontsource/quicksand/600.css';
-// import '@fontsource/quicksand/700.css';
+import CssBaseline from '@mui/material/CssBaseline';
+import { ThemeProvider } from '@mui/material/styles';
+import type { AppProps } from 'next/app';
+import Head from 'next/head';
+import { SnackbarProvider } from 'notistack';
+import createEmotionCache from '../src/createEmotionCache';
+import theme from '../src/theme';
 import './global.css';
 
 // Client-side cache, shared for the whole session of the user in the browser.
