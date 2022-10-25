@@ -1,12 +1,12 @@
 import { Stack } from '@mui/material';
-import type { NextComponentType } from 'next';
+import { forwardRef } from 'react';
 import SectionContainer from '../../components/SectionContainer';
-import ProjItem from './ProjItem';
 import data from './data';
+import ProjItem from './ProjItem';
 
-const Projects: NextComponentType = () => {
+const Projects = forwardRef<HTMLDivElement>((props, ref) => {
 	return (
-		<SectionContainer title='Projects'>
+		<SectionContainer ref={ref} title='Projects'>
 			<Stack rowGap={15}>
 				{data.map((item, i) => (
 					<ProjItem
@@ -22,6 +22,8 @@ const Projects: NextComponentType = () => {
 			</Stack>
 		</SectionContainer>
 	);
-};
+});
+
+Projects.displayName = 'Projects';
 
 export default Projects;

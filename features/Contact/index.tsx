@@ -3,9 +3,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { LoadingButton } from '@mui/lab';
 import { Stack, TextField, Typography } from '@mui/material';
 import { motion } from 'framer-motion';
-import type { NextComponentType } from 'next';
 import { useSnackbar } from 'notistack';
-import { FormEvent, useEffect, useRef, useState } from 'react';
+import { FormEvent, forwardRef, useEffect, useRef, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useIntersectionObserver } from 'usehooks-ts';
 import { z } from 'zod';
@@ -18,13 +17,13 @@ const schema = z.object({
 	message: z.string().min(1)
 });
 
-const Contact: NextComponentType = () => {
+const Contact = forwardRef<HTMLDivElement>((props, ref) => {
 	const form = useRef();
 	const [isLoading, setIsLoading] = useState(false);
 	const { enqueueSnackbar } = useSnackbar();
 	const [isShown, setShown] = useState(false);
-	const ref = useRef<HTMLDivElement | null>(null);
-	const entry = useIntersectionObserver(ref, {});
+	const contentRef = useRef<HTMLDivElement | null>(null);
+	const entry = useIntersectionObserver(contentRef, {});
 
 	useEffect(() => {
 		if (entry?.isIntersecting) {
@@ -61,9 +60,9 @@ const Contact: NextComponentType = () => {
 	};
 
 	return (
-		<SectionContainer title='Contact'>
+		<SectionContainer ref={ref} title='Contact'>
 			<motion.div
-				ref={ref}
+				ref={contentRef}
 				initial={{
 					opacity: 0,
 					scale: 0.5
@@ -140,6 +139,8 @@ const Contact: NextComponentType = () => {
 			</motion.div>
 		</SectionContainer>
 	);
-};
+});
+
+Contact.displayName = 'Contact';
 
 export default Contact;

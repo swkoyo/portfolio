@@ -1,12 +1,12 @@
 import { Stack } from '@mui/material';
-import type { NextComponentType } from 'next';
+import { forwardRef } from 'react';
 import SectionContainer from '../../components/SectionContainer';
 import data from './data';
 import ExpItem from './ExpItem';
 
-const Experience: NextComponentType = () => {
+const Experience = forwardRef<HTMLDivElement>((props, ref) => {
 	return (
-		<SectionContainer title='Experience'>
+		<SectionContainer ref={ref} title='Experience'>
 			<Stack rowGap={15}>
 				{data.map((item) => (
 					<ExpItem
@@ -21,6 +21,8 @@ const Experience: NextComponentType = () => {
 			</Stack>
 		</SectionContainer>
 	);
-};
+});
+
+Experience.displayName = 'Experience';
 
 export default Experience;

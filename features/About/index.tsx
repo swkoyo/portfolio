@@ -7,8 +7,7 @@ import {
 	useTheme
 } from '@mui/material';
 import { motion } from 'framer-motion';
-import type { NextComponentType } from 'next';
-import { useEffect, useRef, useState } from 'react';
+import { forwardRef, RefObject, useEffect, useRef, useState } from 'react';
 import { RiUser6Line } from 'react-icons/ri';
 import { useIntersectionObserver } from 'usehooks-ts';
 import SectionContainer from '../../components/SectionContainer';
@@ -17,12 +16,12 @@ import TechItem from './TechItem';
 
 const StyledUserIcon = styled(RiUser6Line)({});
 
-const About: NextComponentType = () => {
+const About = forwardRef<HTMLDivElement>((props, ref) => {
 	const theme = useTheme();
 	const matches = useMediaQuery(theme.breakpoints.up('md'));
 	const [isShown, setShown] = useState(false);
-	const ref = useRef<HTMLDivElement | null>(null);
-	const entry = useIntersectionObserver(ref, {});
+	const sectionRef = useRef<HTMLDivElement>(null);
+	const entry = useIntersectionObserver(sectionRef as RefObject<Element>, {});
 
 	useEffect(() => {
 		if (entry?.isIntersecting) {
@@ -31,9 +30,9 @@ const About: NextComponentType = () => {
 	}, [entry]);
 
 	return (
-		<SectionContainer title='About'>
+		<SectionContainer ref={ref} title='About'>
 			<motion.div
-				ref={ref}
+				ref={sectionRef}
 				initial={{
 					opacity: 0,
 					scale: 0.5
@@ -133,6 +132,8 @@ const About: NextComponentType = () => {
 			</motion.div>
 		</SectionContainer>
 	);
-};
+});
+
+About.displayName = 'About';
 
 export default About;
