@@ -30,6 +30,8 @@ const LinkIcon: FC<Props> = ({
 				<IconButton
 					target={blank_target ? '_blank' : undefined}
 					href={link}
+					size='small'
+					color='secondary'
 				>
 					<Icon size={size} sx={sx} />
 				</IconButton>
@@ -39,7 +41,9 @@ const LinkIcon: FC<Props> = ({
 				<Button
 					target={blank_target ? '_blank' : undefined}
 					href={link}
+					color='secondary'
 					variant='contained'
+					size='small'
 				>
 					<Icon size={size} sx={sx} />
 				</Button>

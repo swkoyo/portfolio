@@ -32,13 +32,13 @@ const ProjItem: FC<Props> = ({
 				<>
 					<LinkIcon
 						tech={TECH.GITHUB}
-						size={40}
+						size={30}
 						link={links.github[0]}
 						title='Github Client'
 					/>
 					<LinkIcon
 						tech={TECH.GITHUB}
-						size={40}
+						size={30}
 						link={links.github[1]}
 						title='Github Server'
 					/>
@@ -48,37 +48,39 @@ const ProjItem: FC<Props> = ({
 			return (
 				<LinkIcon
 					tech={TECH.GITHUB}
-					size={40}
+					size={30}
 					link={links.github}
 					title='Github'
 				/>
 			);
 		}
 	};
+
 	return (
 		<Grid container direction={reverse ? 'row-reverse' : 'row'} spacing={2}>
 			<Grid item xs={8}>
-				<Stack position='relative'>
-					<Image
-						src={image}
-						alt={title}
-						height={350}
-						style={{
-							opacity: 0.7
-						}}
-					/>
+				<Stack
+					position='relative'
+					p={2}
+					sx={{
+						borderRadius: 2,
+						backgroundColor: 'primary.main'
+					}}
+				>
+					<Image src={image} alt={title} height={350} fit='fill' />
 					<Stack
 						direction='row'
 						columnGap={1}
 						position='absolute'
-						top={0}
-						left={0}
+						bottom={5}
+						left={reverse ? undefined : 5}
+						right={reverse ? 5 : undefined}
 					>
 						{githubLinks()}
 						{links.web ? (
 							<LinkIcon
 								tech={TECH.WEB}
-								size={40}
+								size={30}
 								link={links.web}
 								title='Website'
 							/>
