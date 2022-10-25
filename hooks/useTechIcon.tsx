@@ -42,11 +42,17 @@ import { TECH, TECH_COLOR } from '../constants';
 type Props = {
 	tech: string;
 	useColor?: boolean;
+	colorMode?: 'hover' | 'static';
 };
 
-const useTechIcon = ({ tech, useColor }: Props) => {
+const useTechIcon = ({ tech, useColor, colorMode = 'static' }: Props) => {
 	const StyledIcon = (comp: IconType, color: string = 'white') =>
-		styled(comp)({ color: useColor ? color : 'white' });
+		styled(comp)({
+			color: useColor && colorMode === 'static' ? color : 'white',
+			':hover': {
+				color: !useColor ? 'white' : color
+			}
+		});
 
 	switch (tech) {
 		case TECH.NODE_JS:

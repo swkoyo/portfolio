@@ -83,10 +83,10 @@ const ProjItem: FC<Props> = ({
 				<Stack
 					ref={hoverRef}
 					position='relative'
-					p={2}
+					p={1}
 					sx={{
 						borderRadius: 2,
-						background: `linear-gradient(to bottom right, ${theme.palette.primary.main}, ${theme.palette.secondary.main});`
+						background: theme.palette.primary.main
 					}}
 				>
 					<Image
@@ -130,7 +130,15 @@ const ProjItem: FC<Props> = ({
 					minHeight={300}
 					justifyContent='space-evenly'
 				>
-					<Typography variant='h4' fontWeight='bold'>
+					<Typography
+						variant='h4'
+						fontWeight='bold'
+						sx={{
+							background: `linear-gradient(to bottom right, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
+							WebkitBackgroundClip: 'text',
+							WebkitTextFillColor: 'transparent'
+						}}
+					>
 						{title}
 					</Typography>
 					<Typography>{description}</Typography>
@@ -158,6 +166,7 @@ const ProjItem: FC<Props> = ({
 							<Box key={tech}>
 								<TechIcon
 									useColor
+									colorMode='hover'
 									tooltip
 									tech={tech}
 									size={matches ? 50 : 30}

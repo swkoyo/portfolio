@@ -8,6 +8,7 @@ type Props = {
 	size: number;
 	tooltip?: boolean;
 	useColor?: boolean;
+	colorMode?: 'static' | 'hover';
 	sx?: SxProps<Theme>;
 };
 
@@ -16,9 +17,10 @@ const TechIcon: FC<Props> = ({
 	size,
 	useColor,
 	tooltip,
+	colorMode,
 	sx = {}
 }: Props) => {
-	const Icon = useTechIcon({ tech, useColor });
+	const Icon = useTechIcon({ tech, useColor, colorMode });
 	if (tooltip) {
 		return (
 			<Tooltip title={tech} arrow>

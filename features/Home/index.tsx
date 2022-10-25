@@ -1,8 +1,10 @@
-import { Box, Stack, Typography } from '@mui/material';
+import { Box, Stack, Typography, useTheme } from '@mui/material';
 import type { NextComponentType } from 'next';
 import SectionContainer from '../../components/SectionContainer';
 
 const Home: NextComponentType = () => {
+	const theme = useTheme();
+
 	return (
 		<SectionContainer
 			sx={{
@@ -18,7 +20,14 @@ const Home: NextComponentType = () => {
 			>
 				<Typography variant='h3' fontWeight='bold'>
 					Hello, I&apos;m{' '}
-					<Box component='span' sx={{ color: 'primary.main' }}>
+					<Box
+						component='span'
+						sx={{
+							background: `linear-gradient(to bottom right, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
+							WebkitBackgroundClip: 'text',
+							WebkitTextFillColor: 'transparent'
+						}}
+					>
 						Brandon.
 					</Box>
 				</Typography>

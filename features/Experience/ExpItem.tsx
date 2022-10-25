@@ -76,6 +76,8 @@ const ExpItem: FC<Props> = ({
 						{tech_stack.map((tech) => (
 							<Box key={tech}>
 								<TechIcon
+									useColor
+									colorMode='hover'
 									tooltip
 									tech={tech}
 									size={matches ? 50 : 30}
