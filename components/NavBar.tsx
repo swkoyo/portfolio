@@ -1,12 +1,50 @@
 import { AppBar, Box, Button, Stack, Toolbar } from '@mui/material';
 import Link from 'next/link';
-import { FC } from 'react';
+import { FC, RefObject, useEffect, useState } from 'react';
+import { useIntersectionObserver } from 'usehooks-ts';
 
 type Props = {
-	currentComponent: string | null;
+	aboutRef: RefObject<HTMLDivElement>;
+	experienceRef: RefObject<HTMLDivElement>;
+	projectsRef: RefObject<HTMLDivElement>;
+	contactRef: RefObject<HTMLDivElement>;
 };
 
-const NavBar: FC<Props> = ({ currentComponent }) => {
+const NavBar: FC<Props> = ({
+	aboutRef,
+	experienceRef,
+	projectsRef,
+	contactRef
+}) => {
+	const [currentComponent, setCurrentComponent] = useState<string | null>(
+		null
+	);
+
+	const aboutEntry = useIntersectionObserver(aboutRef, { threshold: 0.3 });
+	const experienceEntry = useIntersectionObserver(experienceRef, {
+		threshold: 0.3
+	});
+	const projectsEntry = useIntersectionObserver(projectsRef, {
+		threshold: 0.3
+	});
+	const contactEntry = useIntersectionObserver(contactRef, {
+		threshold: 0.3
+	});
+
+	useEffect(() => {
+		if (aboutEntry?.isIntersecting) {
+			setCurrentComponent('about');
+		} else if (experienceEntry?.isIntersecting) {
+			setCurrentComponent('experience');
+		} else if (projectsEntry?.isIntersecting) {
+			setCurrentComponent('projects');
+		} else if (contactEntry?.isIntersecting) {
+			setCurrentComponent('contact');
+		} else {
+			setCurrentComponent(null);
+		}
+	}, [aboutEntry, experienceEntry, projectsEntry, contactEntry]);
+
 	return (
 		<AppBar
 			position='sticky'

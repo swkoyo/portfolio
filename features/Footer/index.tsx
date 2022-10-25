@@ -47,7 +47,7 @@ const Footer: NextComponentType = () => {
 					icon_button
 				/>
 			</Stack>
-			<Typography variant='body2'>Brandon Kim ©2022</Typography>
+			<Typography variant='overline'>Brandon Kim ©2022</Typography>
 			<Stack
 				direction='row'
 				columnGap={1}
