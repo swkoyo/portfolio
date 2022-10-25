@@ -1,4 +1,12 @@
-import { AppBar, Box, Button, Stack, Toolbar } from '@mui/material';
+import {
+	AppBar,
+	Box,
+	Button,
+	Stack,
+	Toolbar,
+	useMediaQuery,
+	useTheme
+} from '@mui/material';
 import Link from 'next/link';
 import { FC, RefObject, useEffect, useState } from 'react';
 import { useIntersectionObserver } from 'usehooks-ts';
@@ -16,6 +24,8 @@ const NavBar: FC<Props> = ({
 	projectsRef,
 	contactRef
 }) => {
+	const theme = useTheme();
+	const matches = useMediaQuery(theme.breakpoints.up('md'));
 	const [currentComponent, setCurrentComponent] = useState<string | null>(
 		null
 	);
@@ -49,12 +59,13 @@ const NavBar: FC<Props> = ({
 		<AppBar
 			position='sticky'
 			sx={{
-				top: 0
+				top: 0,
+				alignItems: matches ? 'end' : 'center'
 			}}
 		>
 			<Toolbar>
-				<Box flexGrow={1} />
-				<Stack direction='row' gap={2}>
+				{matches && <Box flexGrow={1} />}
+				<Stack direction='row' gap={matches ? 2 : 1}>
 					<Link href='#About' passHref>
 						<Button
 							variant={
@@ -62,6 +73,7 @@ const NavBar: FC<Props> = ({
 									? 'contained'
 									: 'text'
 							}
+							size='small'
 							sx={{
 								transition: 'all .2s ease-in-out'
 							}}
@@ -76,6 +88,7 @@ const NavBar: FC<Props> = ({
 									? 'contained'
 									: 'text'
 							}
+							size='small'
 							sx={{
 								transition: 'all .2s ease-in-out'
 							}}
@@ -85,6 +98,7 @@ const NavBar: FC<Props> = ({
 					</Link>
 					<Link href='#Projects' passHref>
 						<Button
+							size='small'
 							variant={
 								currentComponent === 'projects'
 									? 'contained'
@@ -99,6 +113,7 @@ const NavBar: FC<Props> = ({
 					</Link>
 					<Link href='#Contact' passHref>
 						<Button
+							size='small'
 							variant={
 								currentComponent === 'contact'
 									? 'contained'

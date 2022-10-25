@@ -110,7 +110,7 @@ const ProjItem: FC<Props> = ({
 							borderRadius: 2,
 							background: theme.palette.primary.main,
 							':hover': {
-								transform: 'scale(1.1)'
+								transform: matches ? 'scale(1.05)' : undefined
 							},
 							transition: 'all .3s ease-in-out'
 						}}
@@ -122,10 +122,16 @@ const ProjItem: FC<Props> = ({
 							width={750}
 							priority
 							style={{
-								WebkitFilter: isHover
-									? undefined
-									: 'grayscale(100%)',
-								filter: isHover ? undefined : 'grayscale(100%)',
+								WebkitFilter: matches
+									? isHover
+										? undefined
+										: 'grayscale(100%)'
+									: undefined,
+								filter: matches
+									? isHover
+										? undefined
+										: 'grayscale(100%)'
+									: undefined,
 								transition: 'all .3s ease-in-out'
 							}}
 							quality={100}

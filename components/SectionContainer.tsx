@@ -1,4 +1,11 @@
-import { Box, Container, Stack, Typography } from '@mui/material';
+import {
+	Box,
+	Container,
+	Stack,
+	Typography,
+	useMediaQuery,
+	useTheme
+} from '@mui/material';
 import { SxProps, Theme } from '@mui/system';
 import { motion } from 'framer-motion';
 import { forwardRef, ReactNode, RefObject, useEffect, useState } from 'react';
@@ -14,6 +21,8 @@ const SectionContainer = forwardRef<HTMLDivElement, Props>(
 	({ title, children, sx }, ref) => {
 		const [isShown, setShown] = useState(false);
 		const entry = useIntersectionObserver(ref as RefObject<Element>, {});
+		const theme = useTheme();
+		const matches = useMediaQuery(theme.breakpoints.up('md'));
 
 		useEffect(() => {
 			if (entry?.isIntersecting) {
@@ -54,7 +63,7 @@ const SectionContainer = forwardRef<HTMLDivElement, Props>(
 								textAlign: 'center',
 								position: 'relative'
 							}}
-							variant='h2'
+							variant={matches ? 'h2' : 'h3'}
 							fontWeight='bold'
 						>
 							{title}

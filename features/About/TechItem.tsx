@@ -31,14 +31,14 @@ const TechItem: FC<Props> = ({ tech }) => {
 					position: 'absolute'
 				},
 				':hover': {
-					transform: 'scale(1.1)'
+					transform: 'scale(1.05)'
 				},
 				transition: 'all .2s ease-in-out'
 			}}
 			rowGap={0.5}
 		>
 			<TechIcon tech={tech} size={matches ? 80 : 40} useColor />
-			<Typography variant='body2' fontWeight='bold'>
+			<Typography variant='caption' fontWeight='bold'>
 				{tech}
 			</Typography>
 		</Stack>

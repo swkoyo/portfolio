@@ -67,7 +67,7 @@ const ExpItem: FC<Props> = ({
 							borderRadius: 4,
 							boxShadow: 10,
 							':hover': {
-								transform: 'scale(1.1)'
+								transform: matches ? 'scale(1.05)' : undefined
 							},
 							transition: 'all .2s ease-in-out'
 						}}
