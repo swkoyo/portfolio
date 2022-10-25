@@ -51,7 +51,8 @@ const useTechIcon = ({ tech, useColor, colorMode = 'static' }: Props) => {
 			color: useColor && colorMode === 'static' ? color : 'white',
 			':hover': {
 				color: !useColor ? 'white' : color
-			}
+			},
+			transition: 'all .2s ease-in-out'
 		});
 
 	switch (tech) {

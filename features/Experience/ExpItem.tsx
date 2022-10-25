@@ -42,7 +42,11 @@ const ExpItem: FC<Props> = ({
 						background: `linear-gradient(to bottom right, ${theme.palette.primary.main}, ${theme.palette.secondary.main});`,
 						p: 4,
 						borderRadius: 4,
-						boxShadow: 10
+						boxShadow: 10,
+						':hover': {
+							transform: 'scale(1.1)'
+						},
+						transition: 'all .2s ease-in-out'
 					}}
 					gap={3}
 				>

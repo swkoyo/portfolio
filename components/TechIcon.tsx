@@ -23,7 +23,7 @@ const TechIcon: FC<Props> = ({
 	const Icon = useTechIcon({ tech, useColor, colorMode });
 	if (tooltip) {
 		return (
-			<Tooltip title={tech} arrow>
+			<Tooltip title={tech} arrow followCursor>
 				<span>
 					<Icon size={size} sx={sx} />
 				</span>

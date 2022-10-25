@@ -17,6 +17,7 @@ const TechItem: FC<Props> = ({ tech }) => {
 				px: 2,
 				py: 1,
 				alignItems: 'center',
+				justifyContent: 'center',
 				'::before': {
 					borderRadius: 5,
 					content: '""',
@@ -28,7 +29,11 @@ const TechItem: FC<Props> = ({ tech }) => {
 					WebkitMaskComposite: 'xor',
 					maskComposite: 'exclude',
 					position: 'absolute'
-				}
+				},
+				':hover': {
+					transform: 'scale(1.1)'
+				},
+				transition: 'all .2s ease-in-out'
 			}}
 			rowGap={0.5}
 		>

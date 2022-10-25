@@ -86,7 +86,11 @@ const ProjItem: FC<Props> = ({
 					p={1}
 					sx={{
 						borderRadius: 2,
-						background: theme.palette.primary.main
+						background: theme.palette.primary.main,
+						':hover': {
+							transform: 'scale(1.1)'
+						},
+						transition: 'all .5s ease-in-out'
 					}}
 				>
 					<Image
@@ -99,7 +103,8 @@ const ProjItem: FC<Props> = ({
 							WebkitFilter: isHover
 								? undefined
 								: 'grayscale(100%)',
-							filter: isHover ? undefined : 'grayscale(100%)'
+							filter: isHover ? undefined : 'grayscale(100%)',
+							transition: 'all .5s ease-in-out'
 						}}
 						onLoad={() => {}}
 					/>
