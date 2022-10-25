@@ -1,4 +1,4 @@
-import { Box, Stack } from '@mui/material';
+import { Box } from '@mui/material';
 import type { NextPage } from 'next';
 import Particles from 'react-tsparticles';
 import type { Engine } from 'tsparticles-engine';
@@ -9,7 +9,7 @@ import Footer from '../features/Footer';
 import Home from '../features/Home';
 import Projects from '../features/Projects';
 // import { loadLinksPreset } from 'tsparticles-preset-links';
-import { Element, Link } from 'react-scroll';
+import { Element } from 'react-scroll';
 import { loadStarsPreset } from 'tsparticles-preset-stars';
 
 const Main: NextPage = () => {
@@ -50,7 +50,7 @@ const Main: NextPage = () => {
 				}}
 			/>
 			<Home />
-			<Stack
+			{/* <Stack
 				sx={{
 					position: 'sticky',
 					top: '50%',
@@ -101,7 +101,7 @@ const Main: NextPage = () => {
 				>
 					Contact
 				</Link>
-			</Stack>
+			</Stack> */}
 			<Element name='about'>
 				<About />
 			</Element>

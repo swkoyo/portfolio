@@ -1,9 +1,9 @@
-import { Stack, Typography, Grid, styled, useTheme } from '@mui/material';
+import { Grid, Stack, styled, Typography, useTheme } from '@mui/material';
 import type { NextComponentType } from 'next';
-import SectionContainer from '../../components/SectionContainer';
 import { RiUser6Line } from 'react-icons/ri';
-import TechItem from './TechItem';
+import SectionContainer from '../../components/SectionContainer';
 import data from './data';
+import TechItem from './TechItem';
 
 const StyledUserIcon = styled(RiUser6Line)({});
 
@@ -36,10 +36,22 @@ const About: NextComponentType = () => {
 							size={200}
 							sx={{ mx: 'auto', fill: 'url(#usericongradient)' }}
 						/>
-						<Typography variant='h6'>
-							Software developer with a passion for consistently
-							improving as a programmer. Highly motivated and
-							disciplined individual with a strong work-ethic.
+						<Typography variant='subtitle1'>
+							Experienced software developer offering expertise in
+							full software development lifecycle, web application
+							architecture, and project management. Proven
+							track-record of designing and executing strategic
+							development initiatives aligned to organizational
+							objectives with a focus on end user satisfaction and
+							engagement. Deep technical expertise combined with
+							an understanding of the importance of client
+							engagement and satisfaction. Collaborative team
+							leader continually focused on building relationships
+							to produce highly effective teams, increasing
+							productivity, and improving outcomes. Individual
+							dedicated to self-reflection and personal
+							improvement who consistently exceeds performance
+							metrics.
 						</Typography>
 					</Stack>
 				</Grid>
