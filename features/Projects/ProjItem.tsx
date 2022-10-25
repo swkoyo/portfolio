@@ -128,7 +128,7 @@ const ProjItem: FC<Props> = ({
 								filter: isHover ? undefined : 'grayscale(100%)',
 								transition: 'all .3s ease-in-out'
 							}}
-							onLoad={() => {}}
+							quality={100}
 						/>
 						<Stack
 							direction='row'
