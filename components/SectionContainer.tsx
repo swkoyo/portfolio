@@ -1,5 +1,5 @@
 import { Box, Container, Stack, Typography } from '@mui/material';
-import { Theme, SxProps } from '@mui/system';
+import { SxProps, Theme } from '@mui/system';
 import { FC, ReactNode } from 'react';
 
 type Props = {
@@ -18,7 +18,6 @@ const SectionContainer: FC<Props> = ({ title, children, sx }: Props) => {
 				// minHeight: '100vh',
 				width: '100%',
 				py: 10,
-				my: 5,
 				justifyContent: 'center',
 				alignItems: 'center',
 				...sx

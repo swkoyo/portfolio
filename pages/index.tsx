@@ -1,16 +1,16 @@
 import { Box, Stack } from '@mui/material';
 import type { NextPage } from 'next';
+import Particles from 'react-tsparticles';
+import type { Engine } from 'tsparticles-engine';
 import About from '../features/About';
 import Contact from '../features/Contact';
 import Experience from '../features/Experience';
 import Footer from '../features/Footer';
 import Home from '../features/Home';
 import Projects from '../features/Projects';
-import Particles from 'react-tsparticles';
-import type { Engine } from 'tsparticles-engine';
 // import { loadLinksPreset } from 'tsparticles-preset-links';
+import { Element, Link } from 'react-scroll';
 import { loadStarsPreset } from 'tsparticles-preset-stars';
-import { Link, Element } from 'react-scroll';
 
 const Main: NextPage = () => {
 	const particlesInit = async (main: Engine) => {

@@ -12,7 +12,7 @@ const Home: NextComponentType = () => {
 			<Stack
 				sx={{
 					width: '100%',
-					mx: 'auto',
+					py: 'auto',
 					textAlign: 'center'
 				}}
 			>
