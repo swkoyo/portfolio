@@ -38,7 +38,7 @@ function MyApp(props: MyAppProps) {
 					name='viewport'
 					content='initial-scale=1, width=device-width'
 				/>
-				<link rel='icon' href='/favicon.ico' />
+				<link rel='icon' href='/favicon.svg' />
 			</Head>
 			<ThemeProvider theme={theme}>
 				<SnackbarProvider maxSnack={3} autoHideDuration={2000}>
