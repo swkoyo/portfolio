@@ -11,6 +11,16 @@ type Props = {
 	icon_button?: boolean;
 	sx?: SxProps<Theme>;
 	title?: string;
+	color?:
+		| 'inherit'
+		| 'secondary'
+		| 'default'
+		| 'primary'
+		| 'error'
+		| 'info'
+		| 'success'
+		| 'warning'
+		| undefined;
 };
 
 const LinkIcon: FC<Props> = ({
@@ -20,6 +30,7 @@ const LinkIcon: FC<Props> = ({
 	link,
 	icon_button = false,
 	title,
+	color,
 	sx = {}
 }: Props) => {
 	const Icon = useTechIcon({ tech });
@@ -31,7 +42,7 @@ const LinkIcon: FC<Props> = ({
 					target={blank_target ? '_blank' : undefined}
 					href={link}
 					size='small'
-					color='secondary'
+					color={color}
 				>
 					<Icon size={size} sx={sx} />
 				</IconButton>
@@ -41,7 +52,7 @@ const LinkIcon: FC<Props> = ({
 				<Button
 					target={blank_target ? '_blank' : undefined}
 					href={link}
-					color='secondary'
+					color={color}
 					variant='contained'
 					size='small'
 				>

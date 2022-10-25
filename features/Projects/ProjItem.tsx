@@ -33,12 +33,14 @@ const ProjItem: FC<Props> = ({
 					<LinkIcon
 						tech={TECH.GITHUB}
 						size={30}
+						color='secondary'
 						link={links.github[0]}
 						title='Github Client'
 					/>
 					<LinkIcon
 						tech={TECH.GITHUB}
 						size={30}
+						color='secondary'
 						link={links.github[1]}
 						title='Github Server'
 					/>
@@ -48,6 +50,7 @@ const ProjItem: FC<Props> = ({
 			return (
 				<LinkIcon
 					tech={TECH.GITHUB}
+					color='secondary'
 					size={30}
 					link={links.github}
 					title='Github'
@@ -80,6 +83,7 @@ const ProjItem: FC<Props> = ({
 						{links.web ? (
 							<LinkIcon
 								tech={TECH.WEB}
+								color='secondary'
 								size={30}
 								link={links.web}
 								title='Website'
