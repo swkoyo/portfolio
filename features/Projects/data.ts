@@ -24,7 +24,7 @@ const data = [
 				'https://github.com/brandonkimmmm/collablist-server'
 			]
 		},
-		image: './collablist.png'
+		image: 'collablist.png'
 	},
 	{
 		title: 'Knowledge Drop',

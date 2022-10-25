@@ -1,4 +1,4 @@
-import { Stack, Typography, Grid, Box, List, ListItem } from '@mui/material';
+import { Box, Grid, List, ListItem, Stack, Typography } from '@mui/material';
 import { FC } from 'react';
 import TechIcon from '../../components/TechIcon';
 
@@ -41,7 +41,19 @@ const ExpItem: FC<Props> = ({
 					<Stack
 						direction='row'
 						sx={{
-							overflow: 'auto'
+							overflow: 'auto',
+							'&::-webkit-scrollbar': {
+								height: '0.4em'
+							},
+							'&::-webkit-scrollbar-track': {
+								boxShadow: 'inset 0 0 6px rgba(128, 128, 128)',
+								borderRadius: 10,
+								webkitBoxShadow: 'inset 0 0 6px rgba(0,0,0, 0)'
+							},
+							'&::-webkit-scrollbar-thumb': {
+								backgroundColor: 'rgba(178, 190, 181)',
+								borderRadius: 10
+							}
 						}}
 						columnGap={1}
 					>

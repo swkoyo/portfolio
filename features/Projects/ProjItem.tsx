@@ -1,7 +1,7 @@
 import { Box, Grid, Stack, Typography } from '@mui/material';
 import { isArray } from 'lodash';
-import Image from 'mui-image';
 import { FC } from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import LinkIcon from '../../components/LinkIcon';
 import TechIcon from '../../components/TechIcon';
 import { TECH } from '../../constants';
@@ -70,7 +70,7 @@ const ProjItem: FC<Props> = ({
 						backgroundColor: 'primary.main'
 					}}
 				>
-					<Image src={image} alt={title} height={350} fit='fill' />
+					<LazyLoadImage src={image} alt={title} height={350} />
 					<Stack
 						direction='row'
 						columnGap={1}
@@ -102,7 +102,19 @@ const ProjItem: FC<Props> = ({
 					<Stack
 						direction='row'
 						sx={{
-							overflow: 'auto'
+							overflow: 'auto',
+							'&::-webkit-scrollbar': {
+								height: '0.4em'
+							},
+							'&::-webkit-scrollbar-track': {
+								boxShadow: 'inset 0 0 6px rgba(128, 128, 128)',
+								borderRadius: 10,
+								webkitBoxShadow: 'inset 0 0 6px rgba(0,0,0, 0)'
+							},
+							'&::-webkit-scrollbar-thumb': {
+								backgroundColor: 'rgba(178, 190, 181)',
+								borderRadius: 10
+							}
 						}}
 						columnGap={1}
 					>
