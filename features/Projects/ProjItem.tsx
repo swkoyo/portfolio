@@ -8,7 +8,8 @@ import {
 } from '@mui/material';
 import { isArray } from 'lodash';
 import Image from 'next/image';
-import { FC } from 'react';
+import { FC, useRef } from 'react';
+import { useHover } from 'usehooks-ts';
 import LinkIcon from '../../components/LinkIcon';
 import TechIcon from '../../components/TechIcon';
 import { TECH } from '../../constants';
@@ -35,6 +36,8 @@ const ProjItem: FC<Props> = ({
 }: Props) => {
 	const theme = useTheme();
 	const matches = useMediaQuery(theme.breakpoints.up('md'));
+	const hoverRef = useRef(null);
+	const isHover = useHover(hoverRef);
 
 	const githubLinks = () => {
 		if (isArray(links.github)) {
@@ -78,11 +81,12 @@ const ProjItem: FC<Props> = ({
 		>
 			<Grid item xs={12} md={8}>
 				<Stack
+					ref={hoverRef}
 					position='relative'
 					p={2}
 					sx={{
 						borderRadius: 2,
-						backgroundColor: 'primary.main'
+						background: `linear-gradient(to bottom right, ${theme.palette.primary.main}, ${theme.palette.secondary.main});`
 					}}
 				>
 					<Image
@@ -91,6 +95,13 @@ const ProjItem: FC<Props> = ({
 						height={350}
 						width='100%'
 						priority
+						style={{
+							WebkitFilter: isHover
+								? undefined
+								: 'grayscale(100%)',
+							filter: isHover ? undefined : 'grayscale(100%)'
+						}}
+						onLoad={() => {}}
 					/>
 					<Stack
 						direction='row'

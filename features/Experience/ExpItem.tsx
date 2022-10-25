@@ -39,7 +39,7 @@ const ExpItem: FC<Props> = ({
 				<Stack
 					sx={{
 						justifyContent: 'space-evenly',
-						backgroundColor: 'primary.main',
+						background: `linear-gradient(to bottom right, ${theme.palette.primary.main}, ${theme.palette.secondary.main});`,
 						p: 4,
 						borderRadius: 4,
 						boxShadow: 10
