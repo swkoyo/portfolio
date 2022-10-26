@@ -68,7 +68,6 @@ const Home: NextComponentType = () => {
 					</Typography>
 					<Stack direction='row' mx='auto' gap={0.5} mt={1}>
 						<LinkIcon
-							useColor
 							title='Github'
 							tech={TECH.GITHUB}
 							size='large'
@@ -76,7 +75,6 @@ const Home: NextComponentType = () => {
 							icon_button
 						/>
 						<LinkIcon
-							useColor
 							title='LinkedIn'
 							tech={TECH.LINKEDIN}
 							size='large'
@@ -84,7 +82,6 @@ const Home: NextComponentType = () => {
 							icon_button
 						/>
 						<LinkIcon
-							useColor
 							title='Resume'
 							tech={TECH.RESUME}
 							size='large'
@@ -92,7 +89,6 @@ const Home: NextComponentType = () => {
 							icon_button
 						/>
 						<LinkIcon
-							useColor
 							title='Email'
 							tech={TECH.EMAIL}
 							size='large'
