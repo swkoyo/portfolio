@@ -5,7 +5,7 @@ import useTechIcon from '../hooks/useTechIcon';
 
 type Props = {
 	tech: string;
-	size: number;
+	size?: 'large' | 'medium' | 'small';
 	link: string;
 	blank_target?: boolean;
 	icon_button?: boolean;
@@ -41,10 +41,10 @@ const LinkIcon: FC<Props> = ({
 				<IconButton
 					target={blank_target ? '_blank' : undefined}
 					href={link}
-					size='small'
+					size={size}
 					color={color}
 				>
-					<Icon size={size} sx={sx} />
+					<Icon />
 				</IconButton>
 			);
 		} else {
@@ -54,9 +54,9 @@ const LinkIcon: FC<Props> = ({
 					href={link}
 					color={color}
 					variant='contained'
-					size='small'
+					size={size}
 				>
-					<Icon size={size} sx={sx} />
+					<Icon sx={sx} />
 				</Button>
 			);
 		}

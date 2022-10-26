@@ -1,6 +1,6 @@
 import { styled } from '@mui/material';
 import { IconType } from 'react-icons';
-import { MdOutlineEmail, MdWeb } from 'react-icons/md';
+import { MdOutlineArticle, MdOutlineEmail, MdWeb } from 'react-icons/md';
 import { RiComputerLine } from 'react-icons/ri';
 import {
 	SiAmazonaws,
@@ -129,6 +129,8 @@ const useTechIcon = ({ tech, useColor, colorMode = 'static' }: Props) => {
 			return StyledIcon(SiVite, TECH_COLOR.VITE);
 		case TECH.SQLITE:
 			return StyledIcon(SiSqlite, TECH_COLOR.SQLITE);
+		case TECH.RESUME:
+			return StyledIcon(MdOutlineArticle);
 		default:
 			return StyledIcon(RiComputerLine);
 	}
