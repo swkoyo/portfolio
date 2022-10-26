@@ -31,6 +31,7 @@ import {
 	SiRedux,
 	SiSequelize,
 	SiSocketdotio,
+	SiSqlite,
 	SiStripe,
 	SiSwagger,
 	SiTypescript,
@@ -126,6 +127,8 @@ const useTechIcon = ({ tech, useColor, colorMode = 'static' }: Props) => {
 			return StyledIcon(SiChakraui, TECH_COLOR.CHAKRA_UI);
 		case TECH.VITE:
 			return StyledIcon(SiVite, TECH_COLOR.VITE);
+		case TECH.SQLITE:
+			return StyledIcon(SiSqlite, TECH_COLOR.SQLITE);
 		default:
 			return StyledIcon(RiComputerLine);
 	}

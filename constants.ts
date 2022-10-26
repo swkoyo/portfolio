@@ -33,7 +33,8 @@ export const TECH = {
 	EMAIL: 'Email',
 	LINKEDIN: 'LinkedIn',
 	CHAKRA_UI: 'Chakra UI',
-	VITE: 'Vite'
+	VITE: 'Vite',
+	SQLITE: 'SQLite'
 };
 
 export const TECH_COLOR = {
@@ -69,7 +70,8 @@ export const TECH_COLOR = {
 	GITHUB: '#22262D',
 	LINKEDIN: '#0860B8',
 	CHAKRA_UI: '#3CBCBB',
-	VITE: '#7878F1'
+	VITE: '#7878F1',
+	SQLITE: '#2C8FCF'
 };
 
 export const EMAILJS = {

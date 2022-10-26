@@ -8,21 +8,21 @@ const data = [
 		tech_stack: [
 			TECH.NODE_JS,
 			TECH.REACT,
-			TECH.EXPRESS,
-			TECH.POSTGRESQL,
-			TECH.SEQUELIZE,
+			TECH.NEST_JS,
+			TECH.SQLITE,
+			TECH.PRISMA,
 			TECH.PASSPORT,
 			TECH.SOCKET_IO,
 			TECH.CHAKRA_UI,
 			TECH.VITE,
-			TECH.HEROKU,
 			TECH.JWT
 		],
 		links: {
 			github: [
 				'https://github.com/brandonkimmmm/collablist-client',
 				'https://github.com/brandonkimmmm/collablist-server'
-			]
+			],
+			web: 'https://collablist.onrender.com'
 		},
 		image: '/collablist.png'
 	},
