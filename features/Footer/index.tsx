@@ -7,6 +7,7 @@ import {
 	EMAIL_ADDRESS,
 	GITHUB_LINK,
 	LINKEDIN_LINK,
+	RESUME_LINK,
 	TECH
 } from '../../constants';
 
@@ -18,14 +19,14 @@ const Footer: NextComponentType = () => {
 				py: 2,
 				alignItems: 'center'
 			}}
-			rowGap={1}
+			rowGap={0.5}
 		>
 			<Stack direction='row'>
 				<LinkIcon
 					useColor
 					title='Github'
 					tech={TECH.GITHUB}
-					size={30}
+					size='medium'
 					link={GITHUB_LINK}
 					icon_button
 				/>
@@ -33,15 +34,23 @@ const Footer: NextComponentType = () => {
 					useColor
 					title='LinkedIn'
 					tech={TECH.LINKEDIN}
-					size={30}
+					size='medium'
 					link={LINKEDIN_LINK}
+					icon_button
+				/>
+				<LinkIcon
+					useColor
+					title='Resume'
+					tech={TECH.RESUME}
+					size='medium'
+					link={RESUME_LINK}
 					icon_button
 				/>
 				<LinkIcon
 					useColor
 					title='Email'
 					tech={TECH.EMAIL}
-					size={30}
+					size='medium'
 					blank_target={false}
 					link={`mailto:${EMAIL_ADDRESS}`}
 					icon_button

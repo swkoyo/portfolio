@@ -1,6 +1,6 @@
 import { styled } from '@mui/material';
 import { IconType } from 'react-icons';
-import { MdOutlineEmail, MdWeb } from 'react-icons/md';
+import { MdOutlineArticle, MdOutlineEmail, MdWeb } from 'react-icons/md';
 import { RiComputerLine } from 'react-icons/ri';
 import {
 	SiAmazonaws,
@@ -135,6 +135,8 @@ const useTechIcon = ({ tech, useColor, colorMode = 'static' }: Props) => {
 			return StyledIcon(SiFirebase, TECH_COLOR.FIREBASE);
 		case TECH.ZOD:
 			return StyledIcon(ZodIcon, TECH_COLOR.ZOD);
+		case TECH.RESUME:
+			return StyledIcon(MdOutlineArticle);
 		default:
 			return StyledIcon(RiComputerLine);
 	}

@@ -55,17 +55,23 @@ const ProjItem: FC<Props> = ({
 				<>
 					<LinkIcon
 						tech={TECH.GITHUB}
-						size={30}
+						size='large'
 						color='secondary'
 						link={links.github[0]}
 						title='Github Client'
+						sx={{
+							fontSize: 30
+						}}
 					/>
 					<LinkIcon
 						tech={TECH.GITHUB}
-						size={30}
+						size='large'
 						color='secondary'
 						link={links.github[1]}
 						title='Github Server'
+						sx={{
+							fontSize: 30
+						}}
 					/>
 				</>
 			);
@@ -74,9 +80,12 @@ const ProjItem: FC<Props> = ({
 				<LinkIcon
 					tech={TECH.GITHUB}
 					color='secondary'
-					size={30}
+					size='large'
 					link={links.github}
 					title='Github'
+					sx={{
+						fontSize: 30
+					}}
 				/>
 			);
 		}
@@ -151,9 +160,12 @@ const ProjItem: FC<Props> = ({
 								<LinkIcon
 									tech={TECH.WEB}
 									color='secondary'
-									size={30}
+									size='large'
 									link={links.web}
 									title='Website'
+									sx={{
+										fontSize: 30
+									}}
 								/>
 							) : null}
 						</Stack>

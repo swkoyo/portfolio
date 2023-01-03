@@ -36,7 +36,8 @@ export const TECH = {
 	VITE: 'Vite',
 	SQLITE: 'SQLite',
 	FIREBASE: 'Firebase',
-	ZOD: 'Zod'
+	ZOD: 'Zod',
+	RESUME: 'Resume'
 };
 
 export const TECH_COLOR = {
@@ -87,5 +88,6 @@ export const EMAILJS = {
 export const GITHUB_LINK = process.env.NEXT_PUBLIC_GITHUB_LINK || '';
 export const EMAIL_ADDRESS = process.env.NEXT_PUBLIC_EMAIL_ADDRESS || '';
 export const LINKEDIN_LINK = process.env.NEXT_PUBLIC_LINKEDIN_LINK || '';
+export const RESUME_LINK = process.env.NEXT_PUBLIC_RESUME_LINK || '';
 
 export const BUILT_WITH = [TECH.NEXT_JS, TECH.TYPESCRIPT, TECH.REACT, TECH.MUI];
