@@ -6,10 +6,12 @@ const data = [
 		description:
 			'Collablist is a real-time collborative web-application where multiple users can create, read, update, and delete items on a list.',
 		tech_stack: [
+			TECH.TYPESCRIPT,
 			TECH.NODE_JS,
 			TECH.REACT,
 			TECH.NEST_JS,
 			TECH.SQLITE,
+			TECH.REDUX,
 			TECH.PRISMA,
 			TECH.PASSPORT,
 			TECH.ZOD,
@@ -31,12 +33,14 @@ const data = [
 		description:
 			'RESTful Reddit-clone where users can post topics, post comments, vote on both, and favorite topics and comments.',
 		tech_stack: [
+			TECH.TYPESCRIPT,
 			TECH.NODE_JS,
 			TECH.REACT,
 			TECH.NEST_JS,
 			TECH.SQLITE,
 			TECH.PRISMA,
 			TECH.PASSPORT,
+			TECH.REDUX,
 			TECH.CHAKRA_UI,
 			TECH.VITE,
 			TECH.JWT,
@@ -52,14 +56,21 @@ const data = [
 		image: '/agora.png'
 	},
 	{
-		title: 'HollaEx Client',
+		title: 'Chatty',
 		description:
-			'A node client library for connecting to the HollaEx cryptocurrency exchange with Typescript support.',
-		tech_stack: [TECH.NODE_JS, TECH.TYPESCRIPT, TECH.NPM],
+			'SPA chat-room that uses React router and allows users to chat as a guest or a signed-in user inside chat rooms.',
+		tech_stack: [
+			TECH.TYPESCRIPT,
+			TECH.REACT,
+			TECH.CHAKRA_UI,
+			TECH.VITE,
+			TECH.FIREBASE
+		],
 		links: {
-			github: 'https://github.com/brandonkimmmm/hollaex-client'
+			github: 'https://github.com/brandonkimmmm/chatty',
+			web: 'https://chatty-z8hu.onrender.com/'
 		},
-		image: 'https://www.zdnet.com/a/img/resize/826926ea82c40ba7e01656e2d0a884df497a668e/2020/01/13/7b52414d-132a-4ef9-b050-0f16e37f433b/npm.png?auto=webp&width=1200'
+		image: '/chatty.png'
 	}
 ];
 
