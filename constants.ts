@@ -34,7 +34,9 @@ export const TECH = {
 	LINKEDIN: 'LinkedIn',
 	CHAKRA_UI: 'Chakra UI',
 	VITE: 'Vite',
-	SQLITE: 'SQLite'
+	SQLITE: 'SQLite',
+	FIREBASE: 'Firebase',
+	ZOD: 'Zod'
 };
 
 export const TECH_COLOR = {
@@ -71,7 +73,9 @@ export const TECH_COLOR = {
 	LINKEDIN: '#0860B8',
 	CHAKRA_UI: '#3CBCBB',
 	VITE: '#7878F1',
-	SQLITE: '#2C8FCF'
+	SQLITE: '#2C8FCF',
+	FIREBASE: '#F3C301',
+	ZOD: '#3169B7'
 };
 
 export const EMAILJS = {

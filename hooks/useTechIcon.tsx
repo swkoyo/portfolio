@@ -9,6 +9,7 @@ import {
 	SiChakraui,
 	SiDocker,
 	SiExpress,
+	SiFirebase,
 	SiGithub,
 	SiHeroku,
 	SiJasmine,
@@ -38,6 +39,7 @@ import {
 	SiVite,
 	SiYarn
 } from 'react-icons/si';
+import ZodIcon from '../assets/ZodIcon';
 import { TECH, TECH_COLOR } from '../constants';
 
 type Props = {
@@ -129,6 +131,10 @@ const useTechIcon = ({ tech, useColor, colorMode = 'static' }: Props) => {
 			return StyledIcon(SiVite, TECH_COLOR.VITE);
 		case TECH.SQLITE:
 			return StyledIcon(SiSqlite, TECH_COLOR.SQLITE);
+		case TECH.FIREBASE:
+			return StyledIcon(SiFirebase, TECH_COLOR.FIREBASE);
+		case TECH.ZOD:
+			return StyledIcon(ZodIcon, TECH_COLOR.ZOD);
 		default:
 			return StyledIcon(RiComputerLine);
 	}

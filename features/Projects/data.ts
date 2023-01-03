@@ -12,7 +12,7 @@ const data = [
 			TECH.SQLITE,
 			TECH.PRISMA,
 			TECH.PASSPORT,
-			TECH.SOCKET_IO,
+			TECH.ZOD,
 			TECH.CHAKRA_UI,
 			TECH.VITE,
 			TECH.JWT
@@ -27,23 +27,29 @@ const data = [
 		image: '/collablist.png'
 	},
 	{
-		title: 'Knowledge Drop',
+		title: 'Agora',
 		description:
-			'RESTful Wikipedia-clone that allows users to upgrade their accounts, post wikis, collaborate on wikis, and view wikis.',
+			'RESTful Reddit-clone where users can post topics, post comments, vote on both, and favorite topics and comments.',
 		tech_stack: [
 			TECH.NODE_JS,
-			TECH.EXPRESS,
-			TECH.BOOTSTRAP,
-			TECH.JASMINE,
-			TECH.POSTGRESQL,
-			TECH.STRIPE,
+			TECH.REACT,
+			TECH.NEST_JS,
+			TECH.SQLITE,
+			TECH.PRISMA,
 			TECH.PASSPORT,
-			TECH.HEROKU
+			TECH.CHAKRA_UI,
+			TECH.VITE,
+			TECH.JWT,
+			TECH.ZOD
 		],
 		links: {
-			github: 'https://github.com/brandonkimmmm/knowledge-drop'
+			github: [
+				'https://github.com/brandonkimmmm/agora-client',
+				'https://github.com/brandonkimmmm/agora-server'
+			],
+			web: 'https://agora-9tod.onrender.com'
 		},
-		image: 'https://camo.githubusercontent.com/4936658b0b3bfb7da11c4b825a082f17049119c2bc3d49abc802775f43c3c256/68747470733a2f2f692e696d6775722e636f6d2f394d384b7078512e706e67'
+		image: '/agora.png'
 	},
 	{
 		title: 'HollaEx Client',
