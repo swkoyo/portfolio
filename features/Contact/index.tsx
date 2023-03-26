@@ -128,7 +128,7 @@ const Contact = forwardRef<HTMLDivElement>((props, ref) => {
 						/>
 						<LoadingButton
 							loading={isLoading}
-							disabled={!isValid}
+							disabled
 							type='submit'
 							variant='contained'
 						>

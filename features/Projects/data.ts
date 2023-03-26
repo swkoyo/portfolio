@@ -20,10 +20,7 @@ const data = [
 			TECH.JWT
 		],
 		links: {
-			github: [
-				'https://github.com/brandonkimmmm/collablist-client',
-				'https://github.com/brandonkimmmm/collablist-server'
-			],
+			github: 'https://github.com/swkoyo/collablist',
 			web: 'https://collablist.onrender.com'
 		},
 		image: '/collablist.png'
@@ -47,10 +44,7 @@ const data = [
 			TECH.ZOD
 		],
 		links: {
-			github: [
-				'https://github.com/brandonkimmmm/agora-client',
-				'https://github.com/brandonkimmmm/agora-server'
-			],
+			github: 'https://github.com/swkoyo/agora',
 			web: 'https://agora-9tod.onrender.com'
 		},
 		image: '/agora.png'
@@ -67,7 +61,7 @@ const data = [
 			TECH.FIREBASE
 		],
 		links: {
-			github: 'https://github.com/brandonkimmmm/chatty',
+			github: 'https://github.com/swkoyo/chatty',
 			web: 'https://chatty-z8hu.onrender.com/'
 		},
 		image: '/chatty.png'
