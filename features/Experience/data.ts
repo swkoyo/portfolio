@@ -2,8 +2,8 @@ import { TECH } from '../../constants';
 
 const data = [
 	{
-		title: 'The Villa Life',
-		role: 'Full Stack Developer',
+		title: 'Toptal',
+		role: 'Freelance Software Developer',
 		dates: '10/2021 ~ Current',
 		tech_stack: [
 			TECH.NODE_JS,
@@ -24,7 +24,32 @@ const data = [
 			TECH.JWT
 		],
 		description: [
-			'Oversaw an international team of developers across three countries to develop the initial MVP used to raise over $1MM in investment funding while ensuring 100% of team KPI’s were met.',
+			'Oversaw an international team of developers across three countries to develop the initial MVP used to raise over $1MM in investment funding while ensuring 100% of team KPI’s were met.'
+		]
+	},
+	{
+		title: 'The Villa Life',
+		role: 'Full Stack Developer',
+		dates: '10/2021 ~ -3/2023',
+		tech_stack: [
+			TECH.NODE_JS,
+			TECH.REACT,
+			TECH.REDUX,
+			TECH.TYPESCRIPT,
+			TECH.NEST_JS,
+			TECH.DOCKER,
+			TECH.MUI,
+			TECH.STRIPE,
+			TECH.REDIS,
+			TECH.PRISMA,
+			TECH.POSTGRESQL,
+			TECH.JEST,
+			TECH.PASSPORT,
+			TECH.SWAGGER,
+			TECH.AWS,
+			TECH.JWT
+		],
+		description: [
 			'Implemented NestJS and Typescript as replacements for NodeJS and Express to improve code efficiency by 30%, reduce error rate by 30%, and implement a new architecture that improved efficiency and maintenance.',
 			'Created an affiliation program allowing strategic partnerships with travel agents and influencers, contracting with approximately 30 external stakeholders to allow access to the platform, increasing revenue 20%.',
 			'Developed database resource optimizations through implementation of redis cache for frequently accessed DBs as well as implementing a new pricing structure, reducing database resource usage by 80%.',
