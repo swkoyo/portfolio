@@ -42,7 +42,9 @@ import {
 	SiEslint,
 	SiPrettier,
 	SiRender,
-	SiVercel
+	SiVercel,
+	SiLodash,
+	SiGooglecloud
 } from 'react-icons/si';
 import ZodIcon from '../assets/ZodIcon';
 import { TECH, TECH_COLOR } from '../constants';
@@ -96,6 +98,8 @@ const useTechIcon = ({ tech, useColor, colorMode = 'static' }: Props) => {
 			return StyledIcon(SiAmazonaws, TECH_COLOR.AWS);
 		case TECH.NETLIFY:
 			return StyledIcon(SiNetlify, TECH_COLOR.NETLIFY);
+		case TECH.GOOGLE_CLOUD:
+			return StyledIcon(SiGooglecloud, TECH_COLOR.GOOGLE_CLOUD);
 		case TECH.DOCKER:
 			return StyledIcon(SiDocker, TECH_COLOR.DOCKER);
 		case TECH.SWAGGER:
@@ -124,6 +128,8 @@ const useTechIcon = ({ tech, useColor, colorMode = 'static' }: Props) => {
 			return StyledIcon(SiYarn, TECH_COLOR.YARN);
 		case TECH.GITHUB:
 			return StyledIcon(SiGithub, TECH_COLOR.GITHUB);
+		case TECH.LODASH:
+			return StyledIcon(SiLodash, TECH_COLOR.LODASH);
 		case TECH.WEB:
 			return StyledIcon(MdWeb);
 		case TECH.EMAIL:

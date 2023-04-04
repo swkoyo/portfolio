@@ -42,7 +42,9 @@ export const TECH = {
 	ESLINT: 'ESLint',
 	PRETTIER: 'Prettier',
 	RENDER: 'Render',
-	VERCEL: 'Vercel'
+	VERCEL: 'Vercel',
+	LODASH: 'Lodash',
+	GOOGLE_CLOUD: 'Google Cloud'
 };
 
 export const TECH_COLOR = {
@@ -86,7 +88,9 @@ export const TECH_COLOR = {
 	ESLINT: '#4A2FC5',
 	PRETTIER: '#1A2A35',
 	RENDER: '#34F9C3',
-	VERCEL: '#FEFFFE'
+	VERCEL: '#FEFFFE',
+	LODASH: '#3493FE',
+	GOOGLE_CLOUD: '#0186FC'
 };
 
 export const EMAILJS = {
