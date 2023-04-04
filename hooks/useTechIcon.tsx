@@ -16,7 +16,7 @@ import {
 	SiJest,
 	SiJsonwebtokens,
 	SiLinkedin,
-	SiMaterialui,
+	SiMui,
 	SiMocha,
 	SiNestjs,
 	SiNetlify,
@@ -37,7 +37,12 @@ import {
 	SiSwagger,
 	SiTypescript,
 	SiVite,
-	SiYarn
+	SiYarn,
+	SiWebpack,
+	SiEslint,
+	SiPrettier,
+	SiRender,
+	SiVercel
 } from 'react-icons/si';
 import ZodIcon from '../assets/ZodIcon';
 import { TECH, TECH_COLOR } from '../constants';
@@ -76,7 +81,7 @@ const useTechIcon = ({ tech, useColor, colorMode = 'static' }: Props) => {
 		case TECH.STRIPE:
 			return StyledIcon(SiStripe, TECH_COLOR.STRIPE);
 		case TECH.MUI:
-			return StyledIcon(SiMaterialui, TECH_COLOR.MUI);
+			return StyledIcon(SiMui, TECH_COLOR.MUI);
 		case TECH.JWT:
 			return StyledIcon(SiJsonwebtokens, TECH_COLOR.JWT);
 		case TECH.EXPRESS:
@@ -135,6 +140,16 @@ const useTechIcon = ({ tech, useColor, colorMode = 'static' }: Props) => {
 			return StyledIcon(SiFirebase, TECH_COLOR.FIREBASE);
 		case TECH.ZOD:
 			return StyledIcon(ZodIcon, TECH_COLOR.ZOD);
+		case TECH.WEBPACK:
+			return StyledIcon(SiWebpack, TECH_COLOR.WEBPACK);
+		case TECH.ESLINT:
+			return StyledIcon(SiEslint, TECH_COLOR.ESLINT);
+		case TECH.PRETTIER:
+			return StyledIcon(SiPrettier, TECH_COLOR.PRETTIER);
+		case TECH.RENDER:
+			return StyledIcon(SiRender, TECH_COLOR.RENDER);
+		case TECH.VERCEL:
+			return StyledIcon(SiVercel, TECH_COLOR.VERCEL);
 		case TECH.RESUME:
 			return StyledIcon(MdOutlineArticle);
 		default:

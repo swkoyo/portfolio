@@ -37,7 +37,12 @@ export const TECH = {
 	SQLITE: 'SQLite',
 	FIREBASE: 'Firebase',
 	ZOD: 'Zod',
-	RESUME: 'Resume'
+	RESUME: 'Resume',
+	WEBPACK: 'Webpack',
+	ESLINT: 'ESLint',
+	PRETTIER: 'Prettier',
+	RENDER: 'Render',
+	VERCEL: 'Vercel'
 };
 
 export const TECH_COLOR = {
@@ -76,7 +81,12 @@ export const TECH_COLOR = {
 	VITE: '#7878F1',
 	SQLITE: '#2C8FCF',
 	FIREBASE: '#F3C301',
-	ZOD: '#3169B7'
+	ZOD: '#3169B7',
+	WEBPACK: '#8ED7FA',
+	ESLINT: '#4A2FC5',
+	PRETTIER: '#1A2A35',
+	RENDER: '#34F9C3',
+	VERCEL: '#FEFFFE'
 };
 
 export const EMAILJS = {
