@@ -14,7 +14,8 @@ const data = [
 			TECH.LODASH,
 			TECH.ESLINT,
 			TECH.PRETTIER,
-			TECH.RENDER
+			TECH.RENDER,
+			TECH.GIT
 		],
 		links: {
 			github: 'https://github.com/swkoyo/portfolio',
@@ -41,7 +42,8 @@ const data = [
 			TECH.VITE,
 			TECH.JWT,
 			TECH.ESLINT,
-			TECH.PRETTIER
+			TECH.PRETTIER,
+			TECH.GIT
 		],
 		links: {
 			github: 'https://github.com/swkoyo/collablist',
@@ -69,7 +71,8 @@ const data = [
 			TECH.ZOD,
 			TECH.RENDER,
 			TECH.ESLINT,
-			TECH.PRETTIER
+			TECH.PRETTIER,
+			TECH.GIT
 		],
 		links: {
 			github: 'https://github.com/swkoyo/agora',
@@ -91,7 +94,8 @@ const data = [
 			TECH.FIREBASE,
 			TECH.ESLINT,
 			TECH.PRETTIER,
-			TECH.RENDER
+			TECH.RENDER,
+			TECH.GIT
 		],
 		links: {
 			github: 'https://github.com/swkoyo/chatty',
@@ -112,13 +116,39 @@ const data = [
 			TECH.ESLINT,
 			TECH.LODASH,
 			TECH.PRETTIER,
-			TECH.RENDER
+			TECH.RENDER,
+			TECH.GIT
 		],
 		links: {
 			github: 'https://github.com/swkoyo/blackjack',
 			web: 'https://blackjack-u3ip.onrender.com'
 		},
 		image: '/blackjack.png'
+	},
+	{
+		title: 'NBooA',
+		description:
+			'Fullstack Vue/Flask application that uses webscrapping and pandas to get NBA player stats on specific dates.',
+		tech_stack: [
+			TECH.TYPESCRIPT,
+			TECH.VUE,
+			TECH.TAILWIND,
+			TECH.PYTHON,
+			TECH.FLASK,
+			TECH.SQL_ALCHEMY,
+			TECH.SQLITE,
+			TECH.MARSHMALLOW,
+			TECH.BEAUTIFUL_SOUP,
+			TECH.GUNICORN,
+			TECH.PANDAS,
+			TECH.RENDER,
+			TECH.GIT
+		],
+		links: {
+			github: 'https://github.com/swkoyo/nbooa',
+			web: 'https://nbooa.onrender.com'
+		},
+		image: '/nbooa.png'
 	}
 ];
 
