@@ -1,6 +1,11 @@
 import { styled } from '@mui/material';
 import { IconType } from 'react-icons';
-import { MdOutlineArticle, MdOutlineEmail, MdWeb } from 'react-icons/md';
+import {
+	MdOutlineArticle,
+	MdOutlineEmail,
+	MdWeb,
+	MdOutlineSoupKitchen
+} from 'react-icons/md';
 import { RiComputerLine } from 'react-icons/ri';
 import {
 	SiAmazonaws,
@@ -44,9 +49,18 @@ import {
 	SiRender,
 	SiVercel,
 	SiLodash,
-	SiGooglecloud
+	SiGooglecloud,
+	SiVuedotjs,
+	SiPython,
+	SiFlask,
+	SiGunicorn,
+	SiTailwindcss,
+	SiPandas,
+	SiGit
 } from 'react-icons/si';
 import ZodIcon from '../assets/ZodIcon';
+import SqlAlchemyIcon from '../assets/SqlAlchemyIcon';
+import MarshmallowIcon from '../assets/MarshmallowIcon';
 import { TECH, TECH_COLOR } from '../constants';
 
 type Props = {
@@ -156,6 +170,26 @@ const useTechIcon = ({ tech, useColor, colorMode = 'static' }: Props) => {
 			return StyledIcon(SiRender, TECH_COLOR.RENDER);
 		case TECH.VERCEL:
 			return StyledIcon(SiVercel, TECH_COLOR.VERCEL);
+		case TECH.BEAUTIFUL_SOUP:
+			return StyledIcon(MdOutlineSoupKitchen);
+		case TECH.VUE:
+			return StyledIcon(SiVuedotjs, TECH_COLOR.VUE);
+		case TECH.PYTHON:
+			return StyledIcon(SiPython, TECH_COLOR.PYTHON);
+		case TECH.FLASK:
+			return StyledIcon(SiFlask);
+		case TECH.PANDAS:
+			return StyledIcon(SiPandas, TECH_COLOR.PANDAS);
+		case TECH.GUNICORN:
+			return StyledIcon(SiGunicorn, TECH_COLOR.GUNICORN);
+		case TECH.TAILWIND:
+			return StyledIcon(SiTailwindcss, TECH_COLOR.TAILWIND);
+		case TECH.MARSHMALLOW:
+			return StyledIcon(MarshmallowIcon);
+		case TECH.SQL_ALCHEMY:
+			return StyledIcon(SqlAlchemyIcon, TECH_COLOR.SQL_ALCHEMY);
+		case TECH.GIT:
+			return StyledIcon(SiGit, TECH_COLOR.GIT);
 		case TECH.RESUME:
 			return StyledIcon(MdOutlineArticle);
 		default:

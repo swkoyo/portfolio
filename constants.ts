@@ -44,7 +44,17 @@ export const TECH = {
 	RENDER: 'Render',
 	VERCEL: 'Vercel',
 	LODASH: 'Lodash',
-	GOOGLE_CLOUD: 'Google Cloud'
+	GOOGLE_CLOUD: 'Google Cloud',
+	VUE: 'Vue',
+	PYTHON: 'Python',
+	FLASK: 'Flask',
+	PANDAS: 'Pandas',
+	BEAUTIFUL_SOUP: 'Beautiful Soup',
+	GUNICORN: 'Gunicorn',
+	TAILWIND: 'Tailwind',
+	GIT: 'Git',
+	SQL_ALCHEMY: 'SQLAlchemy',
+	MARSHMALLOW: 'Marshmallow'
 };
 
 export const TECH_COLOR = {
@@ -90,7 +100,14 @@ export const TECH_COLOR = {
 	RENDER: '#34F9C3',
 	VERCEL: '#FEFFFE',
 	LODASH: '#3493FE',
-	GOOGLE_CLOUD: '#0186FC'
+	GOOGLE_CLOUD: '#0186FC',
+	VUE: '#42B982',
+	PYTHON: '#3471A1',
+	GUNICORN: '#4B974D',
+	TAILWIND: '#39BCF8',
+	PANDAS: '#140556',
+	GIT: '#F64D27',
+	SQL_ALCHEMY: '#CA2304'
 };
 
 export const EMAILJS = {
