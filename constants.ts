@@ -122,3 +122,5 @@ export const LINKEDIN_LINK = process.env.NEXT_PUBLIC_LINKEDIN_LINK || '';
 export const RESUME_LINK = process.env.NEXT_PUBLIC_RESUME_LINK || '';
 
 export const BUILT_WITH = [TECH.NEXT_JS, TECH.TYPESCRIPT, TECH.REACT, TECH.MUI];
+
+export const NODE_ENV = process.env.NODE_ENV || 'development';
