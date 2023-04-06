@@ -86,6 +86,7 @@ export default function SideBar() {
 					label='Links'
 					icon={<TbExternalLink size='1.5rem' />}
 					childrenOffset={28}
+					defaultOpened
 				>
 					{EXTERNAL_LINKS.map(({ label, link, icon }) => (
 						<NavLink
