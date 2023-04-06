@@ -1,35 +1,55 @@
-import { Box } from '@mui/material';
 import type { NextPage } from 'next';
-import { useRef } from 'react';
-import NavBar from '../components/NavBar';
-import About from '../features/About';
-import Contact from '../features/Contact';
-import Experience from '../features/Experience';
-import Footer from '../features/Footer';
-import Home from '../features/Home';
-import Projects from '../features/Projects';
+import {
+	AppShell,
+	Navbar,
+	Header,
+	Loader,
+	Center,
+	Image,
+	Stack
+} from '@mantine/core';
+import { useState } from 'react';
+import { useTimeout } from '@mantine/hooks';
 
 const Main: NextPage = () => {
-	const aboutRef = useRef<HTMLDivElement>(null);
-	const experienceRef = useRef<HTMLDivElement>(null);
-	const projectsRef = useRef<HTMLDivElement>(null);
-	const contactRef = useRef<HTMLDivElement>(null);
+	const [isLoading, setIsLoading] = useState<boolean>(true);
+	useTimeout(() => setIsLoading(false), 2000, { autoInvoke: true });
+
+	if (isLoading) {
+		return (
+			<Center h='100vh'>
+				<Stack align='center'>
+					<Image src='./logo.png' />
+					<Loader />
+				</Stack>
+			</Center>
+		);
+	}
 
 	return (
-		<Box sx={{ width: 'auto' }}>
-			<Home />
-			<NavBar
-				aboutRef={aboutRef}
-				experienceRef={experienceRef}
-				projectsRef={projectsRef}
-				contactRef={contactRef}
-			/>
-			<About ref={aboutRef} />
-			<Experience ref={experienceRef} />
-			<Projects ref={projectsRef} />
-			<Contact ref={contactRef} />
-			<Footer />
-		</Box>
+		<AppShell
+			padding='md'
+			navbar={
+				<Navbar width={{ base: 300 }} height='100vh' p='xs'>
+					Navbar
+				</Navbar>
+			}
+			header={
+				<Header height={60} p='xs'>
+					Header
+				</Header>
+			}
+			styles={(theme) => ({
+				main: {
+					backgroundColor:
+						theme.colorScheme === 'dark'
+							? theme.colors.dark[8]
+							: theme.colors.gray[0]
+				}
+			})}
+		>
+			Content
+		</AppShell>
 	);
 };
 
