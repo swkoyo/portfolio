@@ -1,5 +1,5 @@
 import { Box } from '@mantine/core';
 
 export default function Experience() {
-	return <Box>HI</Box>;
+	return <Box>EXPERIENCE</Box>;
 }

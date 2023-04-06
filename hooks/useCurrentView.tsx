@@ -18,7 +18,7 @@ export default function useCurrentView() {
 				view: <Experience />,
 				value: 'experience'
 			};
-		} else if (hash === 'projects') {
+		} else if (hash === '#projects') {
 			return {
 				view: <Projects />,
 				value: 'projects'
