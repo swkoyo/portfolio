@@ -1,4 +1,13 @@
-import { Box, Flex, Group, NavLink, Navbar, Text, rem } from '@mantine/core';
+import {
+	Box,
+	Flex,
+	Group,
+	NavLink,
+	Navbar,
+	Stack,
+	Text,
+	rem
+} from '@mantine/core';
 import {
 	TbUser,
 	TbBriefcase,
@@ -6,7 +15,11 @@ import {
 	TbExternalLink,
 	TbBrandGithub,
 	TbBrandLinkedin,
-	TbMail
+	TbMail,
+	TbBrandNextjs,
+	TbBrandTypescript,
+	TbBrandReact,
+	TbBrandMantine
 } from 'react-icons/tb';
 import Logo from '../components/Logo';
 import useCurrentView from '../hooks/useCurrentView';
@@ -87,7 +100,25 @@ export default function SideBar() {
 				</NavLink>
 			</Navbar.Section>
 			<Navbar.Section>
-				<Text>Built With NextJS TS React Mantine</Text>
+				<Stack
+					sx={(theme) => ({
+						paddingTop: theme.spacing.sm,
+						borderTop: `${rem(1)} solid ${theme.colors.dark[4]}`,
+						gap: rem(10),
+						alignItems: 'center'
+					})}
+				>
+					<Text>Brandon Kim ©2023</Text>
+					<Group sx={{ gap: rem(4) }}>
+						<Text>Built with</Text>
+						<Group sx={{ gap: rem(3) }}>
+							<TbBrandNextjs size='1.5rem' />
+							<TbBrandTypescript size='1.5rem' />
+							<TbBrandReact size='1.5rem' />
+							<TbBrandMantine size='1.5rem' />
+						</Group>
+					</Group>
+				</Stack>
 			</Navbar.Section>
 		</Navbar>
 	);
