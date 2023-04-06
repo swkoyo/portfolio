@@ -21,7 +21,7 @@ import {
 	TbBrandReact,
 	TbBrandMantine
 } from 'react-icons/tb';
-import Logo from '../components/Logo';
+import MainLogo from '../components/MainLogo';
 import useCurrentView from '../hooks/useCurrentView';
 import { capitalize } from 'lodash';
 import { EMAIL_ADDRESS, GITHUB_LINK, LINKEDIN_LINK } from '../constants';
@@ -66,7 +66,7 @@ export default function SideBar() {
 				>
 					<Group position='apart'>
 						<Flex align='center' gap={10}>
-							<Logo remVal={40} />
+							<MainLogo remVal={40} />
 							<Text>Brandon Kim</Text>
 						</Flex>
 					</Group>

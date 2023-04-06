@@ -1,6 +1,6 @@
 import { rem } from '@mantine/core';
 
-export default function Logo({ remVal }: { remVal: number }) {
+export default function MainLogo({ remVal }: { remVal: number }) {
 	return (
 		<svg
 			width={rem(remVal)}
