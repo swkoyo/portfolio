@@ -76,6 +76,17 @@ export enum APP {
 	EMAIL = 'Email'
 }
 
+export enum FILE {
+	PDF = 'PDF'
+}
+
+export enum NAV {
+	ABOUT = 'About',
+	EXPERIENCE = 'Experience',
+	PROJECTS = 'Projects',
+	LINKS = 'Links'
+}
+
 // export const TECH_COLOR = {
 // 	NODE_JS: '#6CA75C',
 // 	TYPESCRIPT: '#2F75C1',
