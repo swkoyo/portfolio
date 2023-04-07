@@ -1,6 +1,5 @@
-import { MdOutlineScience, MdOutlineSoupKitchen } from 'react-icons/md';
-import { TECH, APP, FILE, NAV } from '../constants';
 import { GrDocumentPdf } from 'react-icons/gr';
+import { MdOutlineScience, MdOutlineSoupKitchen } from 'react-icons/md';
 import {
 	SiAmazonaws,
 	SiChai,
@@ -62,10 +61,11 @@ import {
 	TbCode,
 	TbCodeCircle,
 	TbExternalLink,
+	TbHome,
 	TbMail,
-	TbUser,
 	TbWorldWww
 } from 'react-icons/tb';
+import { APP, FILE, NAV, TECH } from '../constants';
 
 interface Props {
 	type: TECH | APP | FILE | NAV;
@@ -192,8 +192,8 @@ export default function Icon({ type, size }: Props) {
 			return <TbBrandLinkedin size={size} />;
 		case FILE.PDF:
 			return <GrDocumentPdf size={size} />;
-		case NAV.ABOUT:
-			return <TbUser size={size} />;
+		case NAV.HOME:
+			return <TbHome size={size} />;
 		case NAV.EXPERIENCE:
 			return <TbBriefcase size={size} />;
 		case NAV.PROJECTS:

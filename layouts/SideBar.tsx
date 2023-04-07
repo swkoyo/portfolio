@@ -11,32 +11,10 @@ import {
 import { capitalize } from 'lodash';
 import Icon from '../components/Icon';
 import MainLogo from '../components/MainLogo';
-import {
-	APP,
-	EMAIL_ADDRESS,
-	GITHUB_LINK,
-	LINKEDIN_LINK,
-	NAV,
-	TECH
-} from '../constants';
+import { NAV, TECH } from '../constants';
 import useCurrentView from '../hooks/useCurrentView';
 
-const NAV_LINK_ITEMS = [NAV.ABOUT, NAV.EXPERIENCE, NAV.PROJECTS, NAV.RESUME];
-
-const EXTERNAL_LINKS = [
-	{
-		type: APP.GITHUB,
-		link: GITHUB_LINK
-	},
-	{
-		type: APP.LINKEDIN,
-		link: LINKEDIN_LINK
-	},
-	{
-		type: APP.EMAIL,
-		link: `mailto:${EMAIL_ADDRESS}`
-	}
-];
+const NAV_LINK_ITEMS = [NAV.HOME, NAV.PROJECTS, NAV.RESUME];
 
 export default function SideBar() {
 	const { currentView, changeView } = useCurrentView();
@@ -70,23 +48,6 @@ export default function SideBar() {
 						onClick={() => changeView(type)}
 					/>
 				))}
-				<NavLink
-					label='Links'
-					icon={<Icon type={NAV.LINKS} size='1.5rem' />}
-					childrenOffset={28}
-					defaultOpened
-				>
-					{EXTERNAL_LINKS.map(({ type, link }) => (
-						<NavLink
-							component='a'
-							href={link}
-							label={type}
-							key={type}
-							icon={<Icon type={type} size='1.5rem' />}
-							target='_blank'
-						/>
-					))}
-				</NavLink>
 			</Navbar.Section>
 			<Navbar.Section>
 				<Stack

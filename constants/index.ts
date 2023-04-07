@@ -81,10 +81,8 @@ export enum FILE {
 }
 
 export enum NAV {
-	ABOUT = 'About',
-	EXPERIENCE = 'Experience',
+	HOME = 'Home',
 	PROJECTS = 'Projects',
-	LINKS = 'Links',
 	RESUME = 'Resume'
 }
 
