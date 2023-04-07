@@ -1,16 +1,6 @@
-import {
-	Box,
-	Flex,
-	Group,
-	NavLink,
-	Navbar,
-	Stack,
-	Text,
-	rem
-} from '@mantine/core';
+import { Group, NavLink, Navbar, Stack, Text, rem } from '@mantine/core';
 import { capitalize } from 'lodash';
 import Icon from '../components/Icon';
-import MainLogo from '../components/MainLogo';
 import { NAV, TECH } from '../constants';
 import useCurrentView from '../hooks/useCurrentView';
 
@@ -21,24 +11,7 @@ export default function SideBar() {
 
 	return (
 		<Navbar width={{ base: 300 }} p='xs'>
-			<Navbar.Section mt='xs'>
-				<Box
-					sx={(theme) => ({
-						paddingLeft: theme.spacing.xs,
-						paddingRight: theme.spacing.xs,
-						paddingBottom: theme.spacing.lg,
-						borderBottom: `${rem(1)} solid ${theme.colors.dark[4]}`
-					})}
-				>
-					<Group position='apart'>
-						<Flex align='center' gap={10}>
-							<MainLogo width={rem(50)} />
-							<Text>Brandon Kim</Text>
-						</Flex>
-					</Group>
-				</Box>
-			</Navbar.Section>
-			<Navbar.Section grow mt='md'>
+			<Navbar.Section grow mt='xs'>
 				{NAV_LINK_ITEMS.map((type) => (
 					<NavLink
 						key={type}

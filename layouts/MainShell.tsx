@@ -1,6 +1,7 @@
 import { AppShell } from '@mantine/core';
-import SideBar from './SideBar';
 import useCurrentView from '../hooks/useCurrentView';
+import SideBar from './SideBar';
+import TopBar from './TopBar';
 
 export default function MainShell() {
 	const { View } = useCurrentView();
@@ -8,6 +9,7 @@ export default function MainShell() {
 	return (
 		<AppShell
 			padding='md'
+			header={<TopBar />}
 			navbar={<SideBar />}
 			styles={(theme) => ({
 				main: {
