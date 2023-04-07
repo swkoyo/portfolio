@@ -21,7 +21,7 @@ import {
 } from '../constants';
 import useCurrentView from '../hooks/useCurrentView';
 
-const NAV_LINK_ITEMS = [NAV.ABOUT, NAV.EXPERIENCE, NAV.PROJECTS];
+const NAV_LINK_ITEMS = [NAV.ABOUT, NAV.EXPERIENCE, NAV.PROJECTS, NAV.RESUME];
 
 const EXTERNAL_LINKS = [
 	{

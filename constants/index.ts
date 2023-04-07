@@ -84,7 +84,8 @@ export enum NAV {
 	ABOUT = 'About',
 	EXPERIENCE = 'Experience',
 	PROJECTS = 'Projects',
-	LINKS = 'Links'
+	LINKS = 'Links',
+	RESUME = 'Resume'
 }
 
 // export const TECH_COLOR = {

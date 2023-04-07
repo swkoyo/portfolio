@@ -4,6 +4,7 @@ import { NAV } from '../constants';
 import About from '../features/About';
 import Experience from '../features/Experience';
 import Projects from '../features/Projects';
+import Resume from '../features/Resume';
 
 export default function useCurrentView() {
 	const [hash, setHash] = useHash();
@@ -23,6 +24,11 @@ export default function useCurrentView() {
 			return {
 				view: <Projects />,
 				value: NAV.PROJECTS
+			};
+		} else if (hash === `#${NAV.RESUME}`) {
+			return {
+				view: <Resume />,
+				value: NAV.RESUME
 			};
 		} else {
 			return {
