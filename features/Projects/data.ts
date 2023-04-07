@@ -1,14 +1,15 @@
-import { TECH } from '../../constants';
+import { APP, TECH } from '../../constants';
 
-const data = [
+export const PROJECTS = [
 	{
 		title: 'Portfolio',
+		featured: false,
 		description: 'This current website.',
 		tech_stack: [
-			TECH.TYPESCRIPT,
+			TECH.TS,
 			TECH.REACT,
 			TECH.MUI,
-			TECH.NEXT_JS,
+			TECH.NEXT,
 			TECH.ZOD,
 			TECH.VERCEL,
 			TECH.LODASH,
@@ -17,27 +18,34 @@ const data = [
 			TECH.RENDER,
 			TECH.GIT
 		],
-		links: {
-			github: 'https://github.com/swkoyo/portfolio',
-			web: 'https://swkoyo.com'
-		},
+		links: [
+			{
+				type: APP.GITHUB,
+				url: 'https://github.com/swkoyo/portfolio'
+			},
+			{
+				type: APP.WEBSITE,
+				url: 'https://swkoyo.com'
+			}
+		],
 		image: '/portfolio.png'
 	},
 	{
 		title: 'Collablist',
+		featured: true,
 		description:
 			'Collablist is a real-time collborative web-application where multiple users can create, read, update, and delete items on a list.',
 		tech_stack: [
-			TECH.TYPESCRIPT,
-			TECH.NODE_JS,
+			TECH.TS,
+			TECH.NODE,
 			TECH.REACT,
-			TECH.NEST_JS,
+			TECH.NEST,
 			TECH.SQLITE,
 			TECH.REDUX,
 			TECH.PRISMA,
 			TECH.PASSPORT,
 			TECH.ZOD,
-			TECH.CHAKRA_UI,
+			TECH.CHAKRAUI,
 			TECH.LODASH,
 			TECH.VITE,
 			TECH.JWT,
@@ -45,26 +53,33 @@ const data = [
 			TECH.PRETTIER,
 			TECH.GIT
 		],
-		links: {
-			github: 'https://github.com/swkoyo/collablist',
-			web: 'https://collablist.onrender.com'
-		},
+		links: [
+			{
+				type: APP.GITHUB,
+				url: 'https://github.com/swkoyo/collablist'
+			},
+			{
+				type: APP.WEBSITE,
+				url: 'https://collablist.onrender.com'
+			}
+		],
 		image: '/collablist.png'
 	},
 	{
 		title: 'Agora',
+		featured: true,
 		description:
 			'RESTful Reddit-clone where users can post topics, post comments, vote on both, and favorite topics and comments.',
 		tech_stack: [
-			TECH.TYPESCRIPT,
-			TECH.NODE_JS,
+			TECH.TS,
+			TECH.NODE,
 			TECH.REACT,
-			TECH.NEST_JS,
+			TECH.NEST,
 			TECH.SQLITE,
 			TECH.PRISMA,
 			TECH.PASSPORT,
 			TECH.REDUX,
-			TECH.CHAKRA_UI,
+			TECH.CHAKRAUI,
 			TECH.VITE,
 			TECH.JWT,
 			TECH.LODASH,
@@ -74,21 +89,28 @@ const data = [
 			TECH.PRETTIER,
 			TECH.GIT
 		],
-		links: {
-			github: 'https://github.com/swkoyo/agora',
-			web: 'https://agora-9tod.onrender.com'
-		},
+		links: [
+			{
+				type: APP.GITHUB,
+				url: 'https://github.com/swkoyo/agora'
+			},
+			{
+				type: APP.WEBSITE,
+				url: 'https://agora-9tod.onrender.com'
+			}
+		],
 		image: '/agora.png'
 	},
 	{
 		title: 'Chatty',
+		featured: false,
 		description:
 			'SPA chat-room that uses React router and allows users to chat as a guest or a signed-in user inside chat rooms.',
 		tech_stack: [
-			TECH.TYPESCRIPT,
+			TECH.TS,
 			TECH.REACT,
-			TECH.CHAKRA_UI,
-			TECH.GOOGLE_CLOUD,
+			TECH.CHAKRAUI,
+			TECH.GOOGLECLOUD,
 			TECH.LODASH,
 			TECH.VITE,
 			TECH.FIREBASE,
@@ -97,18 +119,25 @@ const data = [
 			TECH.RENDER,
 			TECH.GIT
 		],
-		links: {
-			github: 'https://github.com/swkoyo/chatty',
-			web: 'https://chatty-z8hu.onrender.com'
-		},
+		links: [
+			{
+				type: APP.GITHUB,
+				url: 'https://github.com/swkoyo/chatty'
+			},
+			{
+				type: APP.WEBSITE,
+				url: 'https://chatty-z8hu.onrender.com'
+			}
+		],
 		image: '/chatty.png'
 	},
 	{
 		title: 'Blackjack',
+		featured: true,
 		description:
 			'SPA blackjack game build using Create React App that uses deckofcards API to draw cards.',
 		tech_stack: [
-			TECH.TYPESCRIPT,
+			TECH.TS,
 			TECH.REACT,
 			TECH.MUI,
 			TECH.WEBPACK,
@@ -119,23 +148,30 @@ const data = [
 			TECH.RENDER,
 			TECH.GIT
 		],
-		links: {
-			github: 'https://github.com/swkoyo/blackjack',
-			web: 'https://blackjack-u3ip.onrender.com'
-		},
+		links: [
+			{
+				type: APP.GITHUB,
+				url: 'https://github.com/swkoyo/blackjack'
+			},
+			{
+				type: APP.WEBSITE,
+				url: 'https://blackjack-u3ip.onrender.com'
+			}
+		],
 		image: '/blackjack.png'
 	},
 	{
 		title: 'NBooA',
+		featured: false,
 		description:
 			'Fullstack Vue/Flask application that uses webscrapping and pandas to get NBA player stats on specific dates.',
 		tech_stack: [
-			TECH.TYPESCRIPT,
+			TECH.TS,
 			TECH.VUE,
 			TECH.TAILWIND,
 			TECH.PYTHON,
 			TECH.FLASK,
-			TECH.SQL_ALCHEMY,
+			TECH.SQLALCHEMY,
 			TECH.SQLITE,
 			TECH.MARSHMALLOW,
 			TECH.BEAUTIFUL_SOUP,
@@ -144,12 +180,16 @@ const data = [
 			TECH.RENDER,
 			TECH.GIT
 		],
-		links: {
-			github: 'https://github.com/swkoyo/nbooa',
-			web: 'https://nbooa.onrender.com'
-		},
+		links: [
+			{
+				type: APP.GITHUB,
+				url: 'https://github.com/swkoyo/nbooa'
+			},
+			{
+				type: APP.WEBSITE,
+				url: 'https://nbooa.onrender.com'
+			}
+		],
 		image: '/nbooa.png'
 	}
 ];
-
-export default data;
