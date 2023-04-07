@@ -1,8 +1,8 @@
 import { useHash } from '@mantine/hooks';
 import { useMemo } from 'react';
 import { NAV } from '../constants';
-import Resume from '../features/Resume';
 import Home from '../views/Home';
+import Resume from '../views/Resume';
 
 export default function useCurrentView() {
 	const [hash, setHash] = useHash();
