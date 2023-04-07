@@ -1,9 +1,7 @@
-import { rem } from '@mantine/core';
-
-export default function MainLogo({ remVal }: { remVal: number }) {
+export default function MainLogo({ width }: { width: string }) {
 	return (
 		<svg
-			width={rem(remVal)}
+			width={width}
 			viewBox='0 0 64 64'
 			xmlns='http://www.w3.org/2000/svg'
 			xmlnsXlink='http://www.w3.org/1999/xlink'

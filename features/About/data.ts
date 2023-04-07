@@ -1,4 +1,10 @@
-import { TECH } from '../../constants';
+import {
+	APP,
+	EMAIL_ADDRESS,
+	GITHUB_LINK,
+	LINKEDIN_LINK,
+	TECH
+} from '../../constants';
 
 export const BIO = `Experienced software developer offering
 expertise in full software development
@@ -28,4 +34,22 @@ export const CORE_TECH = [
 	TECH.JS,
 	TECH.REDIS,
 	TECH.REDUX
+];
+
+export const INFO = [
+	{
+		type: APP.EMAIL,
+		value: EMAIL_ADDRESS,
+		link: `mailto:${EMAIL_ADDRESS}`
+	},
+	{
+		type: APP.GITHUB,
+		value: GITHUB_LINK.split('.com/')[1],
+		link: GITHUB_LINK
+	},
+	{
+		type: APP.LINKEDIN,
+		value: LINKEDIN_LINK.split('/in/')[1],
+		link: LINKEDIN_LINK
+	}
 ];
