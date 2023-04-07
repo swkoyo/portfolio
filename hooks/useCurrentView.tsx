@@ -1,27 +1,28 @@
 import { useHash } from '@mantine/hooks';
+import { useMemo } from 'react';
+import { NAV } from '../constants';
 import About from '../features/About';
 import Experience from '../features/Experience';
 import Projects from '../features/Projects';
-import { useMemo } from 'react';
 
 export default function useCurrentView() {
 	const [hash, setHash] = useHash();
 
 	const currentView = useMemo(() => {
-		if (!hash || hash === '#about') {
+		if (!hash || hash === `#${NAV.ABOUT}`) {
 			return {
 				view: <About />,
-				value: 'about'
+				value: NAV.ABOUT
 			};
-		} else if (hash === '#experience') {
+		} else if (hash === `#${NAV.EXPERIENCE}`) {
 			return {
 				view: <Experience />,
-				value: 'experience'
+				value: NAV.EXPERIENCE
 			};
-		} else if (hash === '#projects') {
+		} else if (hash === `#${NAV.PROJECTS}`) {
 			return {
 				view: <Projects />,
-				value: 'projects'
+				value: NAV.PROJECTS
 			};
 		} else {
 			return {
@@ -31,7 +32,7 @@ export default function useCurrentView() {
 		}
 	}, [hash]);
 
-	const changeView = (view: string) => {
+	const changeView = (view: NAV) => {
 		setHash(view);
 	};
 

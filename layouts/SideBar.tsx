@@ -8,45 +8,33 @@ import {
 	Text,
 	rem
 } from '@mantine/core';
-import {
-	TbUser,
-	TbBriefcase,
-	TbCode,
-	TbExternalLink,
-	TbBrandGithub,
-	TbBrandLinkedin,
-	TbMail,
-	TbBrandNextjs,
-	TbBrandTypescript,
-	TbBrandReact,
-	TbBrandMantine
-} from 'react-icons/tb';
-import MainLogo from '../components/MainLogo';
-import useCurrentView from '../hooks/useCurrentView';
 import { capitalize } from 'lodash';
-import { EMAIL_ADDRESS, GITHUB_LINK, LINKEDIN_LINK } from '../constants';
+import Icon from '../components/Icon';
+import MainLogo from '../components/MainLogo';
+import {
+	APP,
+	EMAIL_ADDRESS,
+	GITHUB_LINK,
+	LINKEDIN_LINK,
+	NAV,
+	TECH
+} from '../constants';
+import useCurrentView from '../hooks/useCurrentView';
 
-const NAV_LINK_ITEMS = [
-	{ label: 'about', icon: <TbUser size='1.5rem' /> },
-	{ label: 'experience', icon: <TbBriefcase size='1.5rem' /> },
-	{ label: 'projects', icon: <TbCode size='1.5rem' /> }
-];
+const NAV_LINK_ITEMS = [NAV.ABOUT, NAV.EXPERIENCE, NAV.PROJECTS];
 
 const EXTERNAL_LINKS = [
 	{
-		label: 'GitHub',
-		link: GITHUB_LINK,
-		icon: <TbBrandGithub size='1.5rem' />
+		type: APP.GITHUB,
+		link: GITHUB_LINK
 	},
 	{
-		label: 'LinkedIn',
-		link: LINKEDIN_LINK,
-		icon: <TbBrandLinkedin size='1.5rem' />
+		type: APP.LINKEDIN,
+		link: LINKEDIN_LINK
 	},
 	{
-		label: 'Email',
-		link: `mailto:${EMAIL_ADDRESS}`,
-		icon: <TbMail size='1.5rem' />
+		type: APP.EMAIL,
+		link: `mailto:${EMAIL_ADDRESS}`
 	}
 ];
 
@@ -73,28 +61,28 @@ export default function SideBar() {
 				</Box>
 			</Navbar.Section>
 			<Navbar.Section grow mt='md'>
-				{NAV_LINK_ITEMS.map(({ label, icon }) => (
+				{NAV_LINK_ITEMS.map((type) => (
 					<NavLink
-						key={label}
-						label={capitalize(label)}
-						icon={icon}
-						active={currentView === label}
-						onClick={() => changeView(label)}
+						key={type}
+						label={capitalize(type)}
+						icon={<Icon type={type} size='1.5rem' />}
+						active={currentView === type}
+						onClick={() => changeView(type)}
 					/>
 				))}
 				<NavLink
 					label='Links'
-					icon={<TbExternalLink size='1.5rem' />}
+					icon={<Icon type={NAV.LINKS} size='1.5rem' />}
 					childrenOffset={28}
 					defaultOpened
 				>
-					{EXTERNAL_LINKS.map(({ label, link, icon }) => (
+					{EXTERNAL_LINKS.map(({ type, link }) => (
 						<NavLink
 							component='a'
 							href={link}
-							label={label}
-							key={label}
-							icon={icon}
+							label={type}
+							key={type}
+							icon={<Icon type={type} size='1.5rem' />}
 							target='_blank'
 						/>
 					))}
@@ -113,10 +101,10 @@ export default function SideBar() {
 					<Group sx={{ gap: rem(4) }}>
 						<Text>Built with</Text>
 						<Group sx={{ gap: rem(3) }}>
-							<TbBrandNextjs size='1.5rem' />
-							<TbBrandTypescript size='1.5rem' />
-							<TbBrandReact size='1.5rem' />
-							<TbBrandMantine size='1.5rem' />
+							<Icon type={TECH.NEXT} size='1.5rem' />
+							<Icon type={TECH.TS} size='1.5rem' />
+							<Icon type={TECH.REACT} size='1.5rem' />
+							<Icon type={TECH.MANTINE} size='1.5rem' />
 						</Group>
 					</Group>
 				</Stack>
