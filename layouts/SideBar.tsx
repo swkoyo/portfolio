@@ -1,4 +1,5 @@
 import {
+	Avatar,
 	Box,
 	Flex,
 	Group,
@@ -10,7 +11,6 @@ import {
 } from '@mantine/core';
 import { capitalize } from 'lodash';
 import Icon from '../components/Icon';
-import MainLogo from '../components/MainLogo';
 import {
 	APP,
 	EMAIL_ADDRESS,
@@ -54,7 +54,7 @@ export default function SideBar() {
 				>
 					<Group position='apart'>
 						<Flex align='center' gap={10}>
-							<MainLogo remVal={40} />
+							<Avatar src='./avatar.png' size='lg' radius='xl' />
 							<Text>Brandon Kim</Text>
 						</Flex>
 					</Group>
