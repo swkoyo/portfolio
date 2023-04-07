@@ -57,10 +57,8 @@ import {
 	TbBrandVercel,
 	TbBrandVite,
 	TbBrandVue,
-	TbBriefcase,
 	TbCode,
 	TbCodeCircle,
-	TbExternalLink,
 	TbHome,
 	TbMail,
 	TbWorldWww
@@ -68,7 +66,7 @@ import {
 import { APP, FILE, NAV, TECH } from '../constants';
 
 interface Props {
-	type: TECH | APP | FILE | NAV;
+	type?: TECH | APP | FILE | NAV;
 	size?: string | number;
 }
 
@@ -194,12 +192,8 @@ export default function Icon({ type, size }: Props) {
 			return <GrDocumentPdf size={size} />;
 		case NAV.HOME:
 			return <TbHome size={size} />;
-		case NAV.EXPERIENCE:
-			return <TbBriefcase size={size} />;
 		case NAV.PROJECTS:
 			return <TbCode size={size} />;
-		case NAV.LINKS:
-			return <TbExternalLink size={size} />;
 		default:
 			return <TbCodeCircle size={size} />;
 	}

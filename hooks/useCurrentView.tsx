@@ -2,6 +2,7 @@ import { useHash } from '@mantine/hooks';
 import { useMemo } from 'react';
 import { NAV } from '../constants';
 import Home from '../views/Home';
+import Projects from '../views/Projects';
 import Resume from '../views/Resume';
 
 export default function useCurrentView() {
@@ -15,7 +16,7 @@ export default function useCurrentView() {
 			};
 		} else if (hash === `#${NAV.PROJECTS}`) {
 			return {
-				view: <div />,
+				view: <Projects />,
 				value: NAV.PROJECTS
 			};
 		} else if (hash === `#${NAV.RESUME}`) {
