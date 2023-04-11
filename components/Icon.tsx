@@ -37,10 +37,12 @@ import {
 } from 'react-icons/si';
 import {
 	TbBrandBootstrap,
+	TbBrandCss3,
 	TbBrandDocker,
 	TbBrandFirebase,
 	TbBrandGit,
 	TbBrandGithub,
+	TbBrandHtml5,
 	TbBrandJavascript,
 	TbBrandLinkedin,
 	TbBrandMantine,
@@ -154,6 +156,10 @@ export default function Icon({ type, size }: Props) {
 			return <TbBrandFirebase size={size} />;
 		case TECH.WEBPACK:
 			return <SiWebpack size={size} />;
+		case TECH.HTML:
+			return <TbBrandHtml5 size={size} />;
+		case TECH.CSS:
+			return <TbBrandCss3 size={size} />;
 		case TECH.ESLINT:
 			return <SiEslint size={size} />;
 		case TECH.PRETTIER:

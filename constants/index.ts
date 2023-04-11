@@ -66,7 +66,9 @@ export enum TECH {
 	SQLALCHEMY = 'SQLAlchemy',
 	MARSHMALLOW = 'Marshmallow',
 	MANTINE = 'Mantine',
-	LINUX = 'Linux'
+	LINUX = 'Linux',
+	HTML = 'HTML',
+	CSS = 'CSS'
 }
 
 export enum APP {

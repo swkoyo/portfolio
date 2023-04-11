@@ -1,24 +1,22 @@
+import { uniq } from 'lodash';
 import { APP, TECH } from '../../constants';
 import { Project } from '../../types';
 
-export const PROJECTS: Project[] = [
+const projects: Project[] = [
 	{
 		title: 'Portfolio',
 		featured: false,
 		description: 'This current website.',
-		tech_stack: [
-			TECH.TS,
-			TECH.REACT,
-			TECH.MUI,
-			TECH.NEXT,
-			TECH.ZOD,
-			TECH.VERCEL,
-			TECH.LODASH,
-			TECH.ESLINT,
-			TECH.PRETTIER,
-			TECH.RENDER,
-			TECH.GIT
-		],
+		tech: {
+			full: [],
+			core: [TECH.TS, TECH.NEXT, TECH.REACT, TECH.MANTINE],
+			deployment: [TECH.VERCEL],
+			libraries: [TECH.MANTINE, TECH.LODASH],
+			database: [],
+			languages: [TECH.TS, TECH.JS, TECH.HTML, TECH.CSS],
+			frameworks: [TECH.NEXT, TECH.REACT],
+			environment: [TECH.GIT, TECH.WEBPACK, TECH.ESLINT, TECH.PRETTIER]
+		},
 		links: [
 			{
 				type: APP.GITHUB,
@@ -36,24 +34,29 @@ export const PROJECTS: Project[] = [
 		featured: true,
 		description:
 			'Collablist is a real-time collborative web-application where multiple users can create, read, update, and delete items on a list.',
-		tech_stack: [
-			TECH.TS,
-			TECH.NODE,
-			TECH.REACT,
-			TECH.NEST,
-			TECH.SQLITE,
-			TECH.REDUX,
-			TECH.PRISMA,
-			TECH.PASSPORT,
-			TECH.ZOD,
-			TECH.CHAKRAUI,
-			TECH.LODASH,
-			TECH.VITE,
-			TECH.JWT,
-			TECH.ESLINT,
-			TECH.PRETTIER,
-			TECH.GIT
-		],
+		tech: {
+			full: [],
+			core: [TECH.TS, TECH.NEXT, TECH.REACT, TECH.REDUX],
+			deployment: [TECH.RENDER],
+			libraries: [
+				TECH.REDUX,
+				TECH.PASSPORT,
+				TECH.ZOD,
+				TECH.CHAKRAUI,
+				TECH.LODASH,
+				TECH.JWT
+			],
+			database: [TECH.SQLITE, TECH.PRISMA],
+			languages: [TECH.TS, TECH.JS, TECH.HTML, TECH.CSS, TECH.SQL],
+			frameworks: [TECH.REACT, TECH.NEST, TECH.EXPRESS],
+			environment: [
+				TECH.NODE,
+				TECH.GIT,
+				TECH.VITE,
+				TECH.ESLINT,
+				TECH.PRETTIER
+			]
+		},
 		links: [
 			{
 				type: APP.GITHUB,
@@ -71,25 +74,29 @@ export const PROJECTS: Project[] = [
 		featured: true,
 		description:
 			'RESTful Reddit-clone where users can post topics, post comments, vote on both, and favorite topics and comments.',
-		tech_stack: [
-			TECH.TS,
-			TECH.NODE,
-			TECH.REACT,
-			TECH.NEST,
-			TECH.SQLITE,
-			TECH.PRISMA,
-			TECH.PASSPORT,
-			TECH.REDUX,
-			TECH.CHAKRAUI,
-			TECH.VITE,
-			TECH.JWT,
-			TECH.LODASH,
-			TECH.ZOD,
-			TECH.RENDER,
-			TECH.ESLINT,
-			TECH.PRETTIER,
-			TECH.GIT
-		],
+		tech: {
+			full: [],
+			core: [TECH.TS, TECH.NEST, TECH.REACT, TECH.REDUX],
+			deployment: [TECH.RENDER],
+			libraries: [
+				TECH.PASSPORT,
+				TECH.REDUX,
+				TECH.CHAKRAUI,
+				TECH.JWT,
+				TECH.LODASH,
+				TECH.ZOD
+			],
+			database: [TECH.SQLITE, TECH.PRISMA],
+			languages: [TECH.TS, TECH.JS, TECH.HTML, TECH.CSS, TECH.SQL],
+			frameworks: [TECH.REACT, TECH.NEST, TECH.EXPRESS],
+			environment: [
+				TECH.NODE,
+				TECH.VITE,
+				TECH.GIT,
+				TECH.ESLINT,
+				TECH.PRETTIER
+			]
+		},
 		links: [
 			{
 				type: APP.GITHUB,
@@ -107,19 +114,16 @@ export const PROJECTS: Project[] = [
 		featured: false,
 		description:
 			'SPA chat-room that uses React router and allows users to chat as a guest or a signed-in user inside chat rooms.',
-		tech_stack: [
-			TECH.TS,
-			TECH.REACT,
-			TECH.CHAKRAUI,
-			TECH.GOOGLECLOUD,
-			TECH.LODASH,
-			TECH.VITE,
-			TECH.FIREBASE,
-			TECH.ESLINT,
-			TECH.PRETTIER,
-			TECH.RENDER,
-			TECH.GIT
-		],
+		tech: {
+			full: [],
+			core: [TECH.REACT, TECH.FIREBASE, TECH.TS, TECH.CHAKRAUI],
+			deployment: [TECH.RENDER, TECH.GOOGLECLOUD],
+			libraries: [TECH.CHAKRAUI, TECH.LODASH],
+			database: [TECH.FIREBASE],
+			languages: [TECH.TS, TECH.JS, TECH.HTML, TECH.CSS],
+			frameworks: [TECH.REACT],
+			environment: [TECH.VITE, TECH.GIT, TECH.ESLINT, TECH.PRETTIER]
+		},
 		links: [
 			{
 				type: APP.GITHUB,
@@ -137,18 +141,16 @@ export const PROJECTS: Project[] = [
 		featured: true,
 		description:
 			'SPA blackjack game build using Create React App that uses deckofcards API to draw cards.',
-		tech_stack: [
-			TECH.TS,
-			TECH.REACT,
-			TECH.MUI,
-			TECH.WEBPACK,
-			TECH.REDUX,
-			TECH.ESLINT,
-			TECH.LODASH,
-			TECH.PRETTIER,
-			TECH.RENDER,
-			TECH.GIT
-		],
+		tech: {
+			full: [],
+			core: [TECH.TS, TECH.REACT, TECH.REDUX, TECH.MUI],
+			deployment: [TECH.RENDER],
+			libraries: [TECH.MUI, TECH.REDUX, TECH.LODASH],
+			database: [],
+			languages: [TECH.TS, TECH.JS, TECH.HTML, TECH.CSS],
+			frameworks: [TECH.REACT],
+			environment: [TECH.WEBPACK, TECH.GIT, TECH.ESLINT, TECH.PRETTIER]
+		},
 		links: [
 			{
 				type: APP.GITHUB,
@@ -166,21 +168,21 @@ export const PROJECTS: Project[] = [
 		featured: false,
 		description:
 			'Fullstack Vue/Flask application that uses webscrapping and pandas to get NBA player stats on specific dates.',
-		tech_stack: [
-			TECH.TS,
-			TECH.VUE,
-			TECH.TAILWIND,
-			TECH.PYTHON,
-			TECH.FLASK,
-			TECH.SQLALCHEMY,
-			TECH.SQLITE,
-			TECH.MARSHMALLOW,
-			TECH.BEAUTIFUL_SOUP,
-			TECH.GUNICORN,
-			TECH.PANDAS,
-			TECH.RENDER,
-			TECH.GIT
-		],
+		tech: {
+			full: [],
+			core: [TECH.TS, TECH.VUE, TECH.PYTHON, TECH.FLASK],
+			deployment: [TECH.RENDER],
+			libraries: [
+				TECH.TAILWIND,
+				TECH.MARSHMALLOW,
+				TECH.BEAUTIFUL_SOUP,
+				TECH.PANDAS
+			],
+			database: [TECH.SQLITE, TECH.SQLALCHEMY],
+			languages: [TECH.TS, TECH.JS, TECH.HTML, TECH.CSS, TECH.PYTHON],
+			frameworks: [TECH.VUE, TECH.FLASK],
+			environment: [TECH.VITE, TECH.GUNICORN, TECH.GIT]
+		},
 		links: [
 			{
 				type: APP.GITHUB,
@@ -194,3 +196,27 @@ export const PROJECTS: Project[] = [
 		image: '/nbooa.png'
 	}
 ];
+
+export const TECH_CATEGORIES = [
+	'languages',
+	'frameworks',
+	'libraries',
+	'database',
+	'deployment',
+	'environment'
+];
+
+export const PROJECTS = projects.map(({ tech, ...project }) => ({
+	...project,
+	tech: {
+		...tech,
+		full: uniq([
+			...tech.database,
+			...tech.deployment,
+			...tech.environment,
+			...tech.languages,
+			...tech.libraries,
+			...tech.frameworks
+		])
+	}
+}));
