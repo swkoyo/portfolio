@@ -1,8 +1,8 @@
-import { MantineThemeOverride } from '@mantine/core';
+import { ColorScheme, MantineThemeOverride } from '@mantine/core';
 import '@fontsource/montserrat';
 
-const theme: MantineThemeOverride = {
-	colorScheme: 'dark',
+export const getTheme = (colorScheme: ColorScheme): MantineThemeOverride => ({
+	colorScheme,
 	fontFamily: 'Montserrat, sans-serif',
 	colors: {
 		brand: [
@@ -16,9 +16,19 @@ const theme: MantineThemeOverride = {
 			'#285856',
 			'#183534',
 			'#081211'
+		],
+		secondary: [
+			'#fef4e6',
+			'#fdddb4',
+			'#fcc783',
+			'#fbb051',
+			'#f99a1f',
+			'#e08106',
+			'#ae6404',
+			'#7c4703',
+			'#4b2b02',
+			'#190e01'
 		]
 	},
 	primaryColor: 'brand'
-};
-
-export default theme;
+});

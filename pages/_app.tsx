@@ -1,11 +1,19 @@
-import { MantineProvider } from '@mantine/core';
+import {
+	ColorScheme,
+	ColorSchemeProvider,
+	MantineProvider
+} from '@mantine/core';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
-import theme from '../config/theme';
+import { useState } from 'react';
+import { getTheme } from '../config/theme';
 import './global.css';
 
 function MyApp(props: AppProps) {
 	const { Component, pageProps } = props;
+	const [colorScheme, setColorScheme] = useState<ColorScheme>('dark');
+	const toggleColorScheme = (value?: ColorScheme) =>
+		setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
 
 	return (
 		<>
@@ -17,9 +25,18 @@ function MyApp(props: AppProps) {
 				/>
 				<link rel='icon' href='/favicon.svg' />
 			</Head>
-			<MantineProvider withGlobalStyles withNormalizeCSS theme={theme}>
-				<Component {...pageProps} />
-			</MantineProvider>
+			<ColorSchemeProvider
+				colorScheme={colorScheme}
+				toggleColorScheme={toggleColorScheme}
+			>
+				<MantineProvider
+					withGlobalStyles
+					withNormalizeCSS
+					theme={getTheme(colorScheme)}
+				>
+					<Component {...pageProps} />
+				</MantineProvider>
+			</ColorSchemeProvider>
 		</>
 	);
 }
