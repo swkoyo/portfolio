@@ -3,15 +3,19 @@ import {
 	ColorSchemeProvider,
 	MantineProvider
 } from '@mantine/core';
+import { useLocalStorage } from '@mantine/hooks';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
-import { useState } from 'react';
 import { getTheme } from '../config/theme';
 import './global.css';
 
 function MyApp(props: AppProps) {
 	const { Component, pageProps } = props;
-	const [colorScheme, setColorScheme] = useState<ColorScheme>('dark');
+	const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
+		key: 'swkoyo-color-scheme',
+		defaultValue: 'dark',
+		getInitialValueInEffect: true
+	});
 	const toggleColorScheme = (value?: ColorScheme) =>
 		setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
 
