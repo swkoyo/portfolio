@@ -54,9 +54,10 @@ export default function Projects() {
 	};
 
 	const handleProjectClose = () => {
-		setFeaturedProject(null);
 		close();
 	};
+
+	const TRANSITION_DURATION = 500;
 
 	return (
 		<>
@@ -65,10 +66,12 @@ export default function Projects() {
 				onClose={handleProjectClose}
 				size='60%'
 				centered
+				transitionProps={{ duration: TRANSITION_DURATION }}
 				withCloseButton={false}
 			>
 				{featuredProject ? (
 					<FeaturedProject
+						TRANSITION_DURATION={TRANSITION_DURATION}
 						project={featuredProject}
 						handleProjectClose={handleProjectClose}
 					/>
@@ -97,6 +100,26 @@ export default function Projects() {
 								onClick={() => handleProjectOpen(project)}
 							>
 								<Paper shadow='xs' p='md' h='100%' mih={350}>
+									{/* <Carousel
+										maw='auto'
+										mx='auto'
+										withIndicators
+										height={200}
+										// plugins={[autoplay.current]}
+										// onMouseEnter={autoplay.current.stop}
+										// onMouseLeave={autoplay.current.reset}
+									>
+										{project.images.map((img) => (
+											<Carousel.Slide key={img}>
+												<Image
+													src={img}
+													alt={project.title}
+													width='100%'
+													height='100%'
+												/>
+											</Carousel.Slide>
+										))}
+									</Carousel> */}
 									<Stack h='100%' sx={{ rowGap: 30 }}>
 										<Group position='apart'>
 											<Icon size='3rem' />

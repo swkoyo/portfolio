@@ -8,7 +8,7 @@ export interface Project {
 		type: APP | TECH;
 		url: string;
 	}[];
-	image: string;
+	images: string[];
 	tech: {
 		full: TECH[];
 		core: TECH[];

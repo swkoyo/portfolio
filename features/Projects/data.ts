@@ -27,7 +27,12 @@ const projects: Project[] = [
 				url: 'https://swkoyo.com'
 			}
 		],
-		image: '/portfolio.png'
+		images: [
+			'/projects/portfolio/landing.png',
+			'/projects/portfolio/about.png',
+			'/projects/portfolio/experience.png',
+			'/projects/portfolio/projects.png'
+		]
 	},
 	{
 		title: 'Collablist',
@@ -67,7 +72,11 @@ const projects: Project[] = [
 				url: 'https://collablist.onrender.com'
 			}
 		],
-		image: '/collablist.png'
+		images: [
+			'/projects/collablist/landing.png',
+			'/projects/collablist/dashboard.png',
+			'/projects/collablist/newlist.png'
+		]
 	},
 	{
 		title: 'Agora',
@@ -107,7 +116,12 @@ const projects: Project[] = [
 				url: 'https://agora-9tod.onrender.com'
 			}
 		],
-		image: '/agora.png'
+		images: [
+			'/projects/agora/landing.png',
+			'/projects/agora/login.png',
+			'/projects/agora/post-page.png',
+			'/projects/agora/topic-page.png'
+		]
 	},
 	{
 		title: 'Chatty',
@@ -134,7 +148,10 @@ const projects: Project[] = [
 				url: 'https://chatty-z8hu.onrender.com'
 			}
 		],
-		image: '/chatty.png'
+		images: [
+			'/projects/chatty/landing.png',
+			'/projects/chatty/chat-page.png'
+		]
 	},
 	{
 		title: 'Blackjack',
@@ -161,7 +178,12 @@ const projects: Project[] = [
 				url: 'https://blackjack-u3ip.onrender.com'
 			}
 		],
-		image: '/blackjack.png'
+		images: [
+			'/projects/blackjack/landing.png',
+			'/projects/blackjack/game.png',
+			'/projects/blackjack/win.png',
+			'/projects/blackjack/lose.png'
+		]
 	},
 	{
 		title: 'NBooA',
@@ -193,7 +215,11 @@ const projects: Project[] = [
 				url: 'https://nbooa.onrender.com'
 			}
 		],
-		image: '/nbooa.png'
+		images: [
+			'/projects/nbooa/landing.png',
+			'/projects/nbooa/players.png',
+			'/projects/nbooa/gamelog.png'
+		]
 	}
 ];
 

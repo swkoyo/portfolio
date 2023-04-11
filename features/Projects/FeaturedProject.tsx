@@ -1,3 +1,4 @@
+import { Carousel, Embla, useAnimationOffsetEffect } from '@mantine/carousel';
 import {
 	Box,
 	CloseButton,
@@ -8,22 +9,32 @@ import {
 	Stack,
 	Text
 } from '@mantine/core';
+import Autoplay from 'embla-carousel-autoplay';
 import { isEmpty, pickBy, startCase } from 'lodash';
+import { useRef, useState } from 'react';
 import Icon from '../../components/Icon';
 import { Project } from '../../types';
 import { TECH_CATEGORIES } from './data';
 
 export default function FeaturedProject({
-	project: { title, image, description, tech, links },
-	handleProjectClose
+	project: { title, images, description, tech, links },
+	handleProjectClose,
+	TRANSITION_DURATION
 }: {
 	project: Project;
 	handleProjectClose: () => void;
+	TRANSITION_DURATION: number;
 }) {
 	const tech_used = pickBy(
 		tech,
 		(value, key) => TECH_CATEGORIES.includes(key) && !isEmpty(value)
 	);
+
+	const [embla, setEmbla] = useState<Embla | null>(null);
+
+	const autoplay = useRef(Autoplay({ delay: 2000 }));
+
+	useAnimationOffsetEffect(embla, TRANSITION_DURATION);
 
 	return (
 		<Stack>
@@ -44,7 +55,21 @@ export default function FeaturedProject({
 				</Group>
 			</Flex>
 			<Text size='sm'>{description}</Text>
-			<Image src={image} alt={title} width='100%' height='100%' />
+			<Carousel
+				mx='auto'
+				withIndicators
+				loop
+				getEmblaApi={setEmbla}
+				plugins={[autoplay.current]}
+				onMouseEnter={autoplay.current.stop}
+				onMouseLeave={autoplay.current.reset}
+			>
+				{images.map((img) => (
+					<Carousel.Slide key={img}>
+						<Image src={img} alt={title} />
+					</Carousel.Slide>
+				))}
+			</Carousel>
 			<Text size='xl'>Tech Stack</Text>
 			<Grid>
 				{Object.entries(tech_used).map(([key, value]) => (
