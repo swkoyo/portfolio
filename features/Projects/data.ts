@@ -1,6 +1,7 @@
 import { APP, TECH } from '../../constants';
+import { Project } from '../../types';
 
-export const PROJECTS = [
+export const PROJECTS: Project[] = [
 	{
 		title: 'Portfolio',
 		featured: false,

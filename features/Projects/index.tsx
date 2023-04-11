@@ -1,14 +1,17 @@
 import {
 	ActionIcon,
+	Box,
 	Grid,
 	Group,
 	MultiSelect,
 	Paper,
+	Stack,
 	Text
 } from '@mantine/core';
 import { useState } from 'react';
 import Icon from '../../components/Icon';
 import { TECH } from '../../constants';
+import { Project } from '../../types';
 import { SelectItem, SelectValue } from './ProjectTechSelectHelpers';
 import { PROJECTS } from './data';
 
@@ -20,13 +23,13 @@ const techData = (Object.values(TECH) as Array<keyof typeof TECH>).map(
 );
 
 export default function Projects() {
+	const [projects, setProjects] = useState<Project[]>(PROJECTS);
 	const [techFilters, setTechFilters] = useState<TECH[]>([]);
 
-	console.log(techFilters);
-
 	return (
-		<Grid>
-			<Grid.Col span={12}>
+		<Stack sx={{ rowGap: 30 }}>
+			<Stack>
+				<Text size='xl'>Some things I&apos;ve built</Text>
 				<MultiSelect
 					data={techData}
 					value={techFilters}
@@ -35,33 +38,44 @@ export default function Projects() {
 					itemComponent={SelectItem}
 					searchable
 					placeholder='Filter projects by technologies used'
-					label='Technologies Used'
 					clearable
 				/>
-			</Grid.Col>
-			{PROJECTS.map(({ title, links, description, tech_stack }) => (
-				<Grid.Col span={4} key={title}>
-					<Paper shadow='xs' p='md' mih={350}>
-						<Group position='apart'>
-							<Icon size='3rem' />
-							<Group>
-								{links.map(({ type, url }) => (
-									<ActionIcon key={type}>
-										<Icon type={type} />
-									</ActionIcon>
-								))}
-							</Group>
-						</Group>
-						<Text>{title}</Text>
-						<Text>{description}</Text>
-						<Group>
-							{tech_stack.slice(0, 3).map((tech) => (
-								<Text key={tech}>{tech}</Text>
-							))}
-						</Group>
-					</Paper>
-				</Grid.Col>
-			))}
-		</Grid>
+			</Stack>
+			<Grid>
+				{projects.map(({ title, links, description, tech_stack }) => (
+					<Grid.Col span={4} key={title}>
+						<Paper shadow='xs' p='md' h='100%' mih={350}>
+							<Stack h='100%' sx={{ rowGap: 30 }}>
+								<Group position='apart'>
+									<Icon size='3rem' />
+									<Group>
+										{links.map(({ type, url }) => (
+											<ActionIcon key={type}>
+												<Icon
+													type={type}
+													size='1.5rem'
+												/>
+											</ActionIcon>
+										))}
+									</Group>
+								</Group>
+								<Stack>
+									<Text size='lg'>{title}</Text>
+									<Text size='sm'>{description}</Text>
+								</Stack>
+								<Box sx={{ flexGrow: 1 }} />
+								<Group>
+									{tech_stack.slice(0, 3).map((tech) => (
+										<Text size='xs' key={tech}>
+											{tech}
+										</Text>
+									))}
+								</Group>
+							</Stack>
+						</Paper>
+					</Grid.Col>
+				))}
+			</Grid>
+		</Stack>
 	);
 }
