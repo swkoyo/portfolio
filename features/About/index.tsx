@@ -1,14 +1,14 @@
-import { Avatar, Grid, Group, Text, rem } from '@mantine/core';
+import { Avatar, Grid, Group, Stack, Text, rem } from '@mantine/core';
 import Icon from '../../components/Icon';
-import { BIO, CORE_TECH, INFO } from './data';
+import { BIO, CORE_TECH } from './data';
 
 export default function About() {
 	return (
-		<Grid>
-			<Grid.Col span={6}>
+		<Grid gutter={50} align='center'>
+			<Grid.Col span={4}>
 				<Avatar
 					src='./avatar.png'
-					size={300}
+					size='full'
 					radius={500}
 					sx={(theme) => ({
 						border: `${rem(3)} solid ${theme.colors.dark[4]}`,
@@ -16,26 +16,23 @@ export default function About() {
 					})}
 				/>
 			</Grid.Col>
-			<Grid.Col span={6}>
-				<Text>Hello, I&apos;m Brandon.</Text>
-				<Text>I&apos;m a full stack web developer.</Text>
-				{INFO.map(({ type, value }) => (
-					<Group key={type}>
-						<Icon type={type} size='1.5rem' />
-						<Text>{value}</Text>
-					</Group>
-				))}
-			</Grid.Col>
-			<Grid.Col span={12}>
-				{CORE_TECH.map((tech) => (
-					<Group key={tech}>
-						<Icon type={tech} size='1.5rem' />
-						<Text>{tech}</Text>
-					</Group>
-				))}
-			</Grid.Col>
-			<Grid.Col span={12}>
-				<Text>{BIO}</Text>
+			<Grid.Col span={8}>
+				<Stack>
+					{BIO.map((paragraph, i) => (
+						<Text key={i}>{paragraph}</Text>
+					))}
+					<Text>My core tech stack is:</Text>
+					<Grid>
+						{CORE_TECH.map((tech) => (
+							<Grid.Col key={tech} span={4}>
+								<Group>
+									<Icon type={tech} size='1.2rem' />
+									<Text>{tech}</Text>
+								</Group>
+							</Grid.Col>
+						))}
+					</Grid>
+				</Stack>
 			</Grid.Col>
 		</Grid>
 	);
