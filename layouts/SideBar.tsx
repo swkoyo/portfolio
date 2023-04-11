@@ -1,7 +1,7 @@
 import { Group, NavLink, Navbar, Stack, Text, rem } from '@mantine/core';
 import { capitalize } from 'lodash';
 import Icon from '../components/Icon';
-import { NAV, TECH } from '../constants';
+import { APP, NAV } from '../constants';
 import useCurrentView from '../hooks/useCurrentView';
 
 const NAV_LINK_ITEMS = [NAV.HOME, NAV.PROJECTS, NAV.RESUME];
@@ -33,12 +33,10 @@ export default function SideBar() {
 				>
 					<Text>Brandon Kim ©2023</Text>
 					<Group sx={{ gap: rem(4) }}>
-						<Text>Built with</Text>
+						<Text>Inspired by Brittany Chiang</Text>
 						<Group sx={{ gap: rem(3) }}>
-							<Icon type={TECH.NEXT} size='1.5rem' />
-							<Icon type={TECH.TS} size='1.5rem' />
-							<Icon type={TECH.REACT} size='1.5rem' />
-							<Icon type={TECH.MANTINE} size='1.5rem' />
+							<Icon type={APP.GITHUB} size='1.5rem' />
+							<Icon type={APP.WEBSITE} size='1.5rem' />
 						</Group>
 					</Group>
 				</Stack>
