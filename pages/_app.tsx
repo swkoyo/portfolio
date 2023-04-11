@@ -1,7 +1,8 @@
+import { MantineProvider } from '@mantine/core';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
+import theme from '../config/theme';
 import './global.css';
-import { MantineProvider } from '@mantine/core';
 
 function MyApp(props: AppProps) {
 	const { Component, pageProps } = props;
@@ -16,13 +17,7 @@ function MyApp(props: AppProps) {
 				/>
 				<link rel='icon' href='/favicon.svg' />
 			</Head>
-			<MantineProvider
-				withGlobalStyles
-				withNormalizeCSS
-				theme={{
-					colorScheme: 'dark'
-				}}
-			>
+			<MantineProvider withGlobalStyles withNormalizeCSS theme={theme}>
 				<Component {...pageProps} />
 			</MantineProvider>
 		</>
