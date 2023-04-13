@@ -1,5 +1,6 @@
 import { Carousel, Embla, useAnimationOffsetEffect } from '@mantine/carousel';
 import {
+	ActionIcon,
 	Box,
 	CloseButton,
 	Flex,
@@ -46,7 +47,14 @@ export default function FeaturedProject({
 				<Box sx={{ flexGrow: 1 }} />
 				<Group>
 					{links.map(({ type, url }) => (
-						<Icon key={type} type={type} size='1.5rem' />
+						<ActionIcon
+							key={type}
+							component='a'
+							href={url}
+							target='_blank'
+						>
+							<Icon type={type} size='1.5rem' />
+						</ActionIcon>
 					))}
 					<CloseButton
 						size='lg'

@@ -12,7 +12,7 @@ import {
 import { TbMoonStars, TbSun } from 'react-icons/tb';
 import Icon from '../components/Icon';
 import MainLogo from '../components/MainLogo';
-import { APP, GITHUB_LINK, LINKEDIN_LINK } from '../constants';
+import { APP, EMAIL_ADDRESS, GITHUB_LINK, LINKEDIN_LINK } from '../constants';
 
 export const LINKS = [
 	{
@@ -53,11 +53,21 @@ export default function TopBar() {
 						)}
 					</ActionIcon>
 					{LINKS.map(({ type, url }) => (
-						<ActionIcon key={type}>
+						<ActionIcon
+							component='a'
+							href={url}
+							target='_blank'
+							key={type}
+						>
 							<Icon type={type} size='2rem' />
 						</ActionIcon>
 					))}
-					<Button leftIcon={<Icon type={APP.EMAIL} size='2rem' />}>
+					<Button
+						component='a'
+						href={`mailto:${EMAIL_ADDRESS}`}
+						target='_blank'
+						leftIcon={<Icon type={APP.EMAIL} size='2rem' />}
+					>
 						<Text>Contact</Text>
 					</Button>
 				</Group>

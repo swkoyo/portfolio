@@ -1,4 +1,12 @@
-import { Group, NavLink, Navbar, Stack, Text, rem } from '@mantine/core';
+import {
+	ActionIcon,
+	Group,
+	NavLink,
+	Navbar,
+	Stack,
+	Text,
+	rem
+} from '@mantine/core';
 import { capitalize } from 'lodash';
 import Icon from '../components/Icon';
 import { APP, NAV } from '../constants';
@@ -31,12 +39,24 @@ export default function SideBar() {
 						alignItems: 'center'
 					})}
 				>
-					<Text>Brandon Kim ©2023</Text>
+					<Text size='xs'>Brandon Kim ©2023</Text>
 					<Group sx={{ gap: rem(4) }}>
-						<Text>Inspired by Brittany Chiang</Text>
+						<Text size='xs'>Inspired by Brittany Chiang</Text>
 						<Group sx={{ gap: rem(3) }}>
-							<Icon type={APP.GITHUB} size='1.5rem' />
-							<Icon type={APP.WEBSITE} size='1.5rem' />
+							<ActionIcon
+								component='a'
+								href='https://github.com/bchiang7/v4'
+								target='_blank'
+							>
+								<Icon type={APP.GITHUB} size='1.2rem' />
+							</ActionIcon>
+							<ActionIcon
+								component='a'
+								href='https://brittanychiang.com'
+								target='_blank'
+							>
+								<Icon type={APP.WEBSITE} size='1.2rem' />
+							</ActionIcon>
 						</Group>
 					</Group>
 				</Stack>

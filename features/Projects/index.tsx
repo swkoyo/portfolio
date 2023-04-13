@@ -100,33 +100,21 @@ export default function Projects() {
 								onClick={() => handleProjectOpen(project)}
 							>
 								<Paper shadow='xs' p='md' h='100%' mih={350}>
-									{/* <Carousel
-										maw='auto'
-										mx='auto'
-										withIndicators
-										height={200}
-										// plugins={[autoplay.current]}
-										// onMouseEnter={autoplay.current.stop}
-										// onMouseLeave={autoplay.current.reset}
-									>
-										{project.images.map((img) => (
-											<Carousel.Slide key={img}>
-												<Image
-													src={img}
-													alt={project.title}
-													width='100%'
-													height='100%'
-												/>
-											</Carousel.Slide>
-										))}
-									</Carousel> */}
 									<Stack h='100%' sx={{ rowGap: 30 }}>
 										<Group position='apart'>
 											<Icon size='3rem' />
 											<Group>
 												{project.links.map(
 													({ type, url }) => (
-														<ActionIcon key={type}>
+														<ActionIcon
+															key={type}
+															component='a'
+															href={url}
+															target='_blank'
+															onClick={(event) =>
+																event.stopPropagation()
+															}
+														>
 															<Icon
 																type={type}
 																size='1.5rem'
