@@ -11,6 +11,7 @@ import {
 	Text,
 	useMantineTheme
 } from '@mantine/core';
+import { useMediaQuery } from '@mantine/hooks';
 import Autoplay from 'embla-carousel-autoplay';
 import { isEmpty, pickBy, startCase } from 'lodash';
 import { useRef, useState } from 'react';
@@ -42,16 +43,22 @@ export default function FeaturedProject({
 
 	const theme = useMantineTheme();
 
+	const greaterThanXs = useMediaQuery(`(min-width: ${theme.breakpoints.xs})`);
+
 	return (
-		<Stack p='sm'>
+		<Stack p='sm' spacing='md'>
 			<Flex>
 				<Group>
 					<Icon
 						type={NAV.PROJECTS}
 						color={theme.colors.teal[4]}
-						size='2rem'
+						size={greaterThanXs ? '2rem' : '1rem'}
 					/>
-					<Title hideUnderline value={title} />
+					<Title
+						hideUnderline
+						value={title}
+						size={greaterThanXs ? '3xl' : 'xl'}
+					/>
 				</Group>
 				<Box sx={{ flexGrow: 1 }} />
 				<Group>
@@ -59,6 +66,7 @@ export default function FeaturedProject({
 						<ActionIcon
 							key={type}
 							component='a'
+							size={greaterThanXs ? 'md' : 'xs'}
 							color={
 								theme.colorScheme === 'dark'
 									? undefined
@@ -71,12 +79,12 @@ export default function FeaturedProject({
 						</ActionIcon>
 					))}
 					<CloseButton
-						size='lg'
+						size={greaterThanXs ? 'md' : 'sm'}
 						onClick={() => handleProjectClose()}
 					/>
 				</Group>
 			</Flex>
-			<Text size='lg'>{description}</Text>
+			<Text size={greaterThanXs ? 'lg' : 'md'}>{description}</Text>
 			<Carousel
 				py='lg'
 				mx='auto'
@@ -94,7 +102,7 @@ export default function FeaturedProject({
 				))}
 			</Carousel>
 			<Title value='Tech Stack' size='2xl' />
-			<Grid>
+			<Grid pt='md'>
 				{Object.entries(tech_used).map(([key, value]) => (
 					<Grid.Col span={6} key={key}>
 						<Stack spacing='xs'>

@@ -8,10 +8,12 @@ export default function About() {
 		<Stack sx={{ rowGap: 30 }}>
 			<Title value='About me' />
 			<Grid gutter={50} align='center'>
-				<Grid.Col span={4}>
+				<Grid.Col xs={12} sm={4}>
 					<Avatar
 						src='./avatar.png'
 						size='full'
+						maw='15rem'
+						mx='auto'
 						radius={500}
 						sx={(theme) => ({
 							border: `${rem(3)} solid ${
@@ -26,7 +28,7 @@ export default function About() {
 						})}
 					/>
 				</Grid.Col>
-				<Grid.Col span={8}>
+				<Grid.Col xs={12} sm={8}>
 					<Stack>
 						{BIO.map((paragraph, i) => (
 							<Text size='lg' key={i}>
@@ -36,8 +38,8 @@ export default function About() {
 						<Text size='lg'>My core tech stack is:</Text>
 						<Grid pt='sm'>
 							{CORE_TECH.map((tech) => (
-								<Grid.Col key={tech} span={4}>
-									<Group>
+								<Grid.Col key={tech} span={6} xs={4}>
+									<Group noWrap>
 										<Icon type={tech} size='1.2rem' />
 										<Text size='sm'>{tech}</Text>
 									</Group>

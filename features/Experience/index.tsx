@@ -1,18 +1,36 @@
-import { Anchor, Grid, Group, List, Stack, Tabs, Text } from '@mantine/core';
+import {
+	Anchor,
+	Grid,
+	Group,
+	List,
+	Stack,
+	Tabs,
+	Text,
+	useMantineTheme
+} from '@mantine/core';
+import { useMediaQuery } from '@mantine/hooks';
 import { TbArrowBigRightLine } from 'react-icons/tb';
 import Icon from '../../components/Icon';
 import Title from '../../components/Title';
 import { JOBS } from './data';
 
 export default function Experience() {
+	const theme = useMantineTheme();
+
+	const greaterThanSm = useMediaQuery(`(min-width: ${theme.breakpoints.sm})`);
 	return (
 		<Stack sx={{ rowGap: 30 }}>
 			<Title value="Where I've worked" />
-			<Tabs defaultValue={JOBS[0].title} orientation='vertical'>
+			<Tabs
+				defaultValue={JOBS[0].title}
+				orientation={greaterThanSm ? 'vertical' : 'horizontal'}
+			>
 				<Tabs.List>
 					{JOBS.map(({ title }) => (
 						<Tabs.Tab value={title} key={title}>
-							<Text size='md'>{title}</Text>
+							<Text size={greaterThanSm ? 'md' : 'xs'}>
+								{title}
+							</Text>
 						</Tabs.Tab>
 					))}
 				</Tabs.List>
@@ -45,7 +63,12 @@ export default function Experience() {
 								</Stack>
 								<List
 									spacing='sm'
-									icon={<TbArrowBigRightLine size='1.2rem' />}
+									icon={
+										<TbArrowBigRightLine
+											color={theme.colors.teal[5]}
+											size='1.2rem'
+										/>
+									}
 								>
 									{tasks.map((task) => (
 										<List.Item key={task}>
@@ -55,8 +78,13 @@ export default function Experience() {
 								</List>
 								<Grid>
 									{tech_stack.map((tech) => (
-										<Grid.Col span={3} key={tech}>
-											<Group spacing='xs'>
+										<Grid.Col
+											xs={6}
+											sm={4}
+											md={3}
+											key={tech}
+										>
+											<Group noWrap spacing='xs'>
 												<Icon
 													type={tech}
 													size='1.2rem'

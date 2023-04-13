@@ -1,5 +1,6 @@
 import {
 	ActionIcon,
+	Flex,
 	Group,
 	NavLink,
 	Navbar,
@@ -21,7 +22,7 @@ export default function SideBar() {
 	const theme = useMantineTheme();
 
 	return (
-		<Navbar width={{ base: 300 }} p='xs'>
+		<Navbar width={{ base: 70, lg: 300, md: 230 }} p='xs'>
 			<Navbar.Section grow mt='xs'>
 				{NAV_LINK_ITEMS.map((type) => (
 					<NavLink
@@ -47,11 +48,12 @@ export default function SideBar() {
 					})}
 				>
 					<Text size='xs'>Brandon Kim ©2023</Text>
-					<Group sx={{ gap: rem(4) }}>
+					<Group sx={{ gap: rem(2) }}>
 						<Text size='xs'>Inspired by Brittany Chiang</Text>
-						<Group sx={{ gap: rem(1) }}>
+						<Flex>
 							<ActionIcon
 								component='a'
+								size='sm'
 								color={
 									theme.colorScheme === 'dark'
 										? undefined
@@ -64,6 +66,7 @@ export default function SideBar() {
 							</ActionIcon>
 							<ActionIcon
 								component='a'
+								size='sm'
 								color={
 									theme.colorScheme === 'dark'
 										? undefined
@@ -74,7 +77,7 @@ export default function SideBar() {
 							>
 								<Icon type={APP.WEBSITE} size='1rem' />
 							</ActionIcon>
-						</Group>
+						</Flex>
 					</Group>
 				</Stack>
 			</Navbar.Section>

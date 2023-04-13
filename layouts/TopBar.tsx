@@ -10,6 +10,7 @@ import {
 	useMantineColorScheme,
 	useMantineTheme
 } from '@mantine/core';
+import { useMediaQuery } from '@mantine/hooks';
 import { TbMoonStars, TbSun } from 'react-icons/tb';
 import Icon from '../components/Icon';
 import MainLogo from '../components/MainLogo';
@@ -32,21 +33,28 @@ export default function TopBar() {
 
 	const theme = useMantineTheme();
 
+	const greaterThanXs = useMediaQuery(`(min-width: ${theme.breakpoints.xs})`);
+
 	return (
 		<Header height={70} p='xs'>
 			<Flex align='center' h='100%'>
 				<Group position='apart'>
 					<Flex align='center' gap={10}>
-						<MainLogo width={rem(40)} />
-						<Text size='2xl' weight='bold'>
+						<MainLogo width={rem(greaterThanXs ? 40 : 30)} />
+						<Text size={greaterThanXs ? '2xl' : 'lg'} weight='bold'>
 							Brandon Kim
 						</Text>
 					</Flex>
 				</Group>
 				<Box sx={{ flexGrow: 1 }} />
-				<Group position='apart'>
+				<Group
+					position='apart'
+					align='center'
+					spacing={greaterThanXs ? 'md' : 8}
+				>
 					<ActionIcon
 						variant='outline'
+						size={greaterThanXs ? 'md' : 'sm'}
 						color={isDark ? 'orange' : 'teal'}
 						onClick={() => toggleColorScheme()}
 						title='Toggle color scheme'
@@ -61,6 +69,7 @@ export default function TopBar() {
 						<ActionIcon
 							component='a'
 							href={url}
+							size={greaterThanXs ? 'md' : 'sm'}
 							target='_blank'
 							key={type}
 							color={
@@ -72,14 +81,26 @@ export default function TopBar() {
 							<Icon type={type} size='2rem' />
 						</ActionIcon>
 					))}
-					<Button
-						component='a'
-						href={`mailto:${EMAIL_ADDRESS}`}
-						target='_blank'
-						leftIcon={<Icon type={APP.EMAIL} size='1.5rem' />}
-					>
-						<Text size='md'>Contact</Text>
-					</Button>
+					{greaterThanXs ? (
+						<Button
+							component='a'
+							href={`mailto:${EMAIL_ADDRESS}`}
+							target='_blank'
+							leftIcon={<Icon type={APP.EMAIL} size='1.5rem' />}
+						>
+							<Text size='md'>Contact</Text>
+						</Button>
+					) : (
+						<ActionIcon
+							component='a'
+							href={`mailto:${EMAIL_ADDRESS}`}
+							target='_blank'
+							color={theme.colors.teal[5]}
+							variant='filled'
+						>
+							<Icon type={APP.EMAIL} size='1.5rem' />
+						</ActionIcon>
+					)}
 				</Group>
 			</Flex>
 		</Header>

@@ -11,7 +11,7 @@ import {
 	Text,
 	useMantineTheme
 } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
+import { useDisclosure, useMediaQuery } from '@mantine/hooks';
 import { intersection } from 'lodash';
 import { useMemo, useState } from 'react';
 import { TbError404 } from 'react-icons/tb';
@@ -64,12 +64,14 @@ export default function Projects() {
 
 	const theme = useMantineTheme();
 
+	const greaterThanMd = useMediaQuery(`(min-width: ${theme.breakpoints.md})`);
+
 	return (
 		<>
 			<Modal
 				opened={opened}
 				onClose={handleProjectClose}
-				size='60%'
+				size={greaterThanMd ? '60%' : 'full'}
 				centered
 				transitionProps={{ duration: TRANSITION_DURATION }}
 				withCloseButton={false}
@@ -98,7 +100,9 @@ export default function Projects() {
 					<Grid>
 						{projects.map((project) => (
 							<Grid.Col
-								span={4}
+								xs={12}
+								sm={6}
+								lg={4}
 								key={project.title}
 								onClick={() => handleProjectOpen(project)}
 								sx={{
