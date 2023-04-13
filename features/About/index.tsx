@@ -14,8 +14,15 @@ export default function About() {
 						size='full'
 						radius={500}
 						sx={(theme) => ({
-							border: `${rem(3)} solid ${theme.colors.dark[4]}`,
-							backgroundColor: 'white'
+							border: `${rem(3)} solid ${
+								theme.colorScheme === 'dark'
+									? theme.colors.dark[4]
+									: theme.colors.gray[5]
+							}`,
+							backgroundColor:
+								theme.colorScheme === 'dark'
+									? theme.colors.dark[4]
+									: theme.colors.gray[5]
 						})}
 					/>
 				</Grid.Col>

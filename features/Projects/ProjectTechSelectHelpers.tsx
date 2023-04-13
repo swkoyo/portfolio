@@ -24,8 +24,15 @@ export function SelectValue({
 					display: 'flex',
 					cursor: 'default',
 					alignItems: 'center',
-					backgroundColor: theme.colors.dark[7],
-					border: `${rem(1)} solid ${theme.colors.dark[7]}`,
+					backgroundColor:
+						theme.colorScheme === 'dark'
+							? theme.colors.dark[7]
+							: theme.colors.gray[3],
+					border: `${rem(1)} solid ${
+						theme.colorScheme === 'dark'
+							? theme.colors.dark[7]
+							: theme.colors.gray[3]
+					}`,
 					paddingLeft: theme.spacing.xs,
 					borderRadius: theme.radius.sm
 				})}

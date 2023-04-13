@@ -48,7 +48,7 @@ export default function FeaturedProject({
 				<Group>
 					<Icon
 						type={NAV.PROJECTS}
-						color={theme.colors.teal[5]}
+						color={theme.colors.teal[4]}
 						size='2rem'
 					/>
 					<Title hideUnderline value={title} />
@@ -59,6 +59,11 @@ export default function FeaturedProject({
 						<ActionIcon
 							key={type}
 							component='a'
+							color={
+								theme.colorScheme === 'dark'
+									? undefined
+									: 'dark'
+							}
 							href={url}
 							target='_blank'
 						>
@@ -88,7 +93,7 @@ export default function FeaturedProject({
 					</Carousel.Slide>
 				))}
 			</Carousel>
-			<Title value='Tech Stack' />
+			<Title value='Tech Stack' size='2xl' />
 			<Grid>
 				{Object.entries(tech_used).map(([key, value]) => (
 					<Grid.Col span={6} key={key}>

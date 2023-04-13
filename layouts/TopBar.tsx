@@ -7,7 +7,8 @@ import {
 	Header,
 	Text,
 	rem,
-	useMantineColorScheme
+	useMantineColorScheme,
+	useMantineTheme
 } from '@mantine/core';
 import { TbMoonStars, TbSun } from 'react-icons/tb';
 import Icon from '../components/Icon';
@@ -28,6 +29,8 @@ export const LINKS = [
 export default function TopBar() {
 	const { colorScheme, toggleColorScheme } = useMantineColorScheme();
 	const isDark = colorScheme === 'dark';
+
+	const theme = useMantineTheme();
 
 	return (
 		<Header height={70} p='xs'>
@@ -60,6 +63,11 @@ export default function TopBar() {
 							href={url}
 							target='_blank'
 							key={type}
+							color={
+								theme.colorScheme === 'dark'
+									? undefined
+									: 'dark'
+							}
 						>
 							<Icon type={type} size='2rem' />
 						</ActionIcon>

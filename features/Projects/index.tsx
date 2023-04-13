@@ -115,7 +115,7 @@ export default function Projects() {
 											<Icon
 												type={NAV.PROJECTS}
 												size='3rem'
-												color={theme.colors.teal[5]}
+												color={theme.colors.teal[4]}
 											/>
 											<Group>
 												{project.links.map(
@@ -124,6 +124,12 @@ export default function Projects() {
 															key={type}
 															component='a'
 															href={url}
+															color={
+																theme.colorScheme ===
+																'dark'
+																	? undefined
+																	: 'dark'
+															}
 															target='_blank'
 															onClick={(event) =>
 																event.stopPropagation()

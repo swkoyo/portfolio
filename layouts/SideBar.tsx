@@ -5,7 +5,8 @@ import {
 	Navbar,
 	Stack,
 	Text,
-	rem
+	rem,
+	useMantineTheme
 } from '@mantine/core';
 import { capitalize } from 'lodash';
 import Icon from '../components/Icon';
@@ -16,6 +17,8 @@ const NAV_LINK_ITEMS = [NAV.HOME, NAV.PROJECTS, NAV.RESUME];
 
 export default function SideBar() {
 	const { currentView, changeView } = useCurrentView();
+
+	const theme = useMantineTheme();
 
 	return (
 		<Navbar width={{ base: 300 }} p='xs'>
@@ -34,7 +37,11 @@ export default function SideBar() {
 				<Stack
 					sx={(theme) => ({
 						paddingTop: theme.spacing.sm,
-						borderTop: `${rem(1)} solid ${theme.colors.dark[4]}`,
+						borderTop: `${rem(1)} solid ${
+							theme.colorScheme === 'dark'
+								? theme.colors.dark[4]
+								: theme.colors.gray[4]
+						}`,
 						gap: rem(10),
 						alignItems: 'center'
 					})}
@@ -45,6 +52,11 @@ export default function SideBar() {
 						<Group sx={{ gap: rem(1) }}>
 							<ActionIcon
 								component='a'
+								color={
+									theme.colorScheme === 'dark'
+										? undefined
+										: 'dark'
+								}
 								href='https://github.com/bchiang7/v4'
 								target='_blank'
 							>
@@ -52,6 +64,11 @@ export default function SideBar() {
 							</ActionIcon>
 							<ActionIcon
 								component='a'
+								color={
+									theme.colorScheme === 'dark'
+										? undefined
+										: 'dark'
+								}
 								href='https://brittanychiang.com'
 								target='_blank'
 							>

@@ -2,14 +2,16 @@ import { Box, Text } from '@mantine/core';
 
 export default function Title({
 	value,
-	hideUnderline
+	hideUnderline,
+	size = '3xl'
 }: {
 	value: string;
 	hideUnderline?: boolean;
+	size?: string;
 }) {
 	return (
 		<Box pos='relative' w='fit-content'>
-			<Text size='2xl' weight='bold'>
+			<Text size={size} weight='bold'>
 				{value}
 			</Text>
 			{!hideUnderline && (
@@ -19,7 +21,9 @@ export default function Title({
 					pos='absolute'
 					bottom={-4}
 					right={-20}
-					sx={(theme) => ({ backgroundColor: theme.colors.teal })}
+					sx={(theme) => ({
+						backgroundColor: theme.colors.teal[4]
+					})}
 				/>
 			)}
 		</Box>

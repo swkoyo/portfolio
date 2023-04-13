@@ -10,7 +10,12 @@ export const getTheme = (colorScheme: ColorScheme): MantineThemeOverride => ({
 		md: '0.9rem',
 		lg: '1rem',
 		xl: '1.2rem',
-		'2xl': '1.4rem'
+		'2xl': '1.4rem',
+		'3xl': '2rem'
 	},
-	primaryColor: 'teal'
+	primaryColor: 'teal',
+	primaryShade: {
+		light: 6,
+		dark: 8
+	}
 });
