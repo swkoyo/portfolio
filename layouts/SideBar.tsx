@@ -23,7 +23,7 @@ export default function SideBar() {
 				{NAV_LINK_ITEMS.map((type) => (
 					<NavLink
 						key={type}
-						label={capitalize(type)}
+						label={<Text size='lg'>{capitalize(type)}</Text>}
 						icon={<Icon type={type} size='1.5rem' />}
 						active={currentView === type}
 						onClick={() => changeView(type)}
@@ -42,20 +42,20 @@ export default function SideBar() {
 					<Text size='xs'>Brandon Kim ©2023</Text>
 					<Group sx={{ gap: rem(4) }}>
 						<Text size='xs'>Inspired by Brittany Chiang</Text>
-						<Group sx={{ gap: rem(3) }}>
+						<Group sx={{ gap: rem(1) }}>
 							<ActionIcon
 								component='a'
 								href='https://github.com/bchiang7/v4'
 								target='_blank'
 							>
-								<Icon type={APP.GITHUB} size='1.2rem' />
+								<Icon type={APP.GITHUB} size='1rem' />
 							</ActionIcon>
 							<ActionIcon
 								component='a'
 								href='https://brittanychiang.com'
 								target='_blank'
 							>
-								<Icon type={APP.WEBSITE} size='1.2rem' />
+								<Icon type={APP.WEBSITE} size='1rem' />
 							</ActionIcon>
 						</Group>
 					</Group>

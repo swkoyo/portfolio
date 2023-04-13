@@ -13,6 +13,7 @@ import {
 import { useDisclosure } from '@mantine/hooks';
 import { intersection } from 'lodash';
 import { useMemo, useState } from 'react';
+import { TbError404 } from 'react-icons/tb';
 import Icon from '../../components/Icon';
 import { TECH } from '../../constants';
 import { Project } from '../../types';
@@ -79,7 +80,9 @@ export default function Projects() {
 			</Modal>
 			<Stack sx={{ rowGap: 30 }}>
 				<Stack>
-					<Text size='xl'>Some things I&apos;ve built</Text>
+					<Text size='2xl' weight='bold'>
+						Some things I&apos;ve built
+					</Text>
 					<MultiSelect
 						data={techData}
 						value={techFilters}
@@ -98,6 +101,11 @@ export default function Projects() {
 								span={4}
 								key={project.title}
 								onClick={() => handleProjectOpen(project)}
+								sx={{
+									':hover': {
+										cursor: 'pointer'
+									}
+								}}
 							>
 								<Paper shadow='xs' p='md' h='100%' mih={350}>
 									<Stack h='100%' sx={{ rowGap: 30 }}>
@@ -125,17 +133,17 @@ export default function Projects() {
 											</Group>
 										</Group>
 										<Stack>
-											<Text size='lg'>
+											<Text size='xl'>
 												{project.title}
 											</Text>
-											<Text size='sm'>
+											<Text size='md'>
 												{project.description}
 											</Text>
 										</Stack>
 										<Box sx={{ flexGrow: 1 }} />
 										<Group>
 											{project.tech.core.map((tech) => (
-												<Text size='xs' key={tech}>
+												<Text size='sm' key={tech}>
 													{tech}
 												</Text>
 											))}
@@ -147,7 +155,10 @@ export default function Projects() {
 					</Grid>
 				) : (
 					<Center>
-						<Text>No projects found!</Text>
+						<Stack spacing={0} align='center'>
+							<TbError404 size='10rem' />
+							<Text size='2xl'>No projects found!</Text>
+						</Stack>
 					</Center>
 				)}
 			</Stack>

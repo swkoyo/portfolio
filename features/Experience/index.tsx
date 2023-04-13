@@ -6,12 +6,14 @@ import { JOBS } from './data';
 export default function Experience() {
 	return (
 		<Stack sx={{ rowGap: 30 }}>
-			<Text size='xl'>Where I&apos;ve worked</Text>
+			<Text size='2xl' weight='bold'>
+				Where I&apos;ve worked
+			</Text>
 			<Tabs defaultValue={JOBS[0].title} orientation='vertical'>
 				<Tabs.List>
 					{JOBS.map(({ title }) => (
 						<Tabs.Tab value={title} key={title}>
-							{title}
+							<Text size='md'>{title}</Text>
 						</Tabs.Tab>
 					))}
 				</Tabs.List>
@@ -25,19 +27,33 @@ export default function Experience() {
 						tasks,
 						url
 					}) => (
-						<Tabs.Panel pl='xl' key={title} value={title}>
-							<Stack>
+						<Tabs.Panel p='xl' key={title} value={title}>
+							<Stack spacing='xl'>
 								<Stack sx={{ rowGap: 5 }}>
-									<Text>
+									<Text size='lg'>
 										{role}{' '}
-										<Anchor href={url} target='_blank'>
+										<Anchor
+											weight='bold'
+											href={url}
+											target='_blank'
+										>
 											@{title}
 										</Anchor>
 									</Text>
-									<Text>
+									<Text size='md'>
 										{start_date} - {end_date || 'Current'}
 									</Text>
 								</Stack>
+								<List
+									spacing='sm'
+									icon={<TbArrowBigRightLine size='1.2rem' />}
+								>
+									{tasks.map((task) => (
+										<List.Item key={task}>
+											<Text size='lg'>{task}</Text>
+										</List.Item>
+									))}
+								</List>
 								<Grid>
 									{tech_stack.map((tech) => (
 										<Grid.Col span={3} key={tech}>
@@ -51,11 +67,6 @@ export default function Experience() {
 										</Grid.Col>
 									))}
 								</Grid>
-								<List icon={<TbArrowBigRightLine />}>
-									{tasks.map((task) => (
-										<List.Item key={task}>{task}</List.Item>
-									))}
-								</List>
 							</Stack>
 						</Tabs.Panel>
 					)

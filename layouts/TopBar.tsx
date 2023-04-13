@@ -35,7 +35,9 @@ export default function TopBar() {
 				<Group position='apart'>
 					<Flex align='center' gap={10}>
 						<MainLogo width={rem(40)} />
-						<Text>Brandon Kim</Text>
+						<Text size='2xl' weight='bold'>
+							Brandon Kim
+						</Text>
 					</Flex>
 				</Group>
 				<Box sx={{ flexGrow: 1 }} />
@@ -66,9 +68,9 @@ export default function TopBar() {
 						component='a'
 						href={`mailto:${EMAIL_ADDRESS}`}
 						target='_blank'
-						leftIcon={<Icon type={APP.EMAIL} size='2rem' />}
+						leftIcon={<Icon type={APP.EMAIL} size='1.5rem' />}
 					>
-						<Text>Contact</Text>
+						<Text size='md'>Contact</Text>
 					</Button>
 				</Group>
 			</Flex>

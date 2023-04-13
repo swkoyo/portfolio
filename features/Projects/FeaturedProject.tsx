@@ -38,11 +38,13 @@ export default function FeaturedProject({
 	useAnimationOffsetEffect(embla, TRANSITION_DURATION);
 
 	return (
-		<Stack>
+		<Stack p='sm'>
 			<Flex>
 				<Group>
 					<Icon size='2rem' />
-					<Text size='xl'>{title}</Text>
+					<Text size='2xl' weight='bold'>
+						{title}
+					</Text>
 				</Group>
 				<Box sx={{ flexGrow: 1 }} />
 				<Group>
@@ -62,7 +64,7 @@ export default function FeaturedProject({
 					/>
 				</Group>
 			</Flex>
-			<Text size='sm'>{description}</Text>
+			<Text size='lg'>{description}</Text>
 			<Carousel
 				mx='auto'
 				withIndicators
@@ -78,16 +80,18 @@ export default function FeaturedProject({
 					</Carousel.Slide>
 				))}
 			</Carousel>
-			<Text size='xl'>Tech Stack</Text>
+			<Text size='xl' weight='bold'>
+				Tech Stack
+			</Text>
 			<Grid>
 				{Object.entries(tech_used).map(([key, value]) => (
 					<Grid.Col span={6} key={key}>
 						<Stack spacing='xs'>
-							<Text size='md'>{startCase(key)}</Text>
-							<Flex gap={14} sx={{ overflow: 'wrap' }}>
+							<Text size='lg'>{startCase(key)}</Text>
+							<Flex gap={14} wrap='wrap'>
 								{value.map((tech) => (
-									<Group key={tech} spacing='xs'>
-										<Icon size='1.2rem' type={tech} />
+									<Group key={tech} spacing='xs' noWrap>
+										<Icon size='1rem' type={tech} />
 										<Text size='sm'>{tech}</Text>
 									</Group>
 								))}
