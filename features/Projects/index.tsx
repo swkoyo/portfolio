@@ -103,7 +103,9 @@ export default function Projects() {
 								onClick={() => handleProjectOpen(project)}
 								sx={{
 									':hover': {
-										cursor: 'pointer'
+										cursor: 'pointer',
+										transform: 'scale(1.05)',
+										transition: 'all .2s ease-in-out'
 									}
 								}}
 							>
