@@ -8,14 +8,16 @@ import {
 	MultiSelect,
 	Paper,
 	Stack,
-	Text
+	Text,
+	useMantineTheme
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { intersection } from 'lodash';
 import { useMemo, useState } from 'react';
 import { TbError404 } from 'react-icons/tb';
 import Icon from '../../components/Icon';
-import { TECH } from '../../constants';
+import Title from '../../components/Title';
+import { NAV, TECH } from '../../constants';
 import { Project } from '../../types';
 import FeaturedProject from './FeaturedProject';
 import { SelectItem, SelectValue } from './ProjectTechSelectHelpers';
@@ -60,6 +62,8 @@ export default function Projects() {
 
 	const TRANSITION_DURATION = 500;
 
+	const theme = useMantineTheme();
+
 	return (
 		<>
 			<Modal
@@ -79,21 +83,17 @@ export default function Projects() {
 				) : null}
 			</Modal>
 			<Stack sx={{ rowGap: 30 }}>
-				<Stack>
-					<Text size='2xl' weight='bold'>
-						Some things I&apos;ve built
-					</Text>
-					<MultiSelect
-						data={techData}
-						value={techFilters}
-						onChange={(value: TECH[]) => setTechFilters(value)}
-						valueComponent={SelectValue}
-						itemComponent={SelectItem}
-						searchable
-						placeholder='Filter projects by technologies used'
-						clearable
-					/>
-				</Stack>
+				<Title value="Some things I've built" />
+				<MultiSelect
+					data={techData}
+					value={techFilters}
+					onChange={(value: TECH[]) => setTechFilters(value)}
+					valueComponent={SelectValue}
+					itemComponent={SelectItem}
+					searchable
+					placeholder='Filter projects by technologies used'
+					clearable
+				/>
 				{projects.length > 0 ? (
 					<Grid>
 						{projects.map((project) => (
@@ -112,7 +112,11 @@ export default function Projects() {
 								<Paper shadow='xs' p='md' h='100%' mih={350}>
 									<Stack h='100%' sx={{ rowGap: 30 }}>
 										<Group position='apart'>
-											<Icon size='3rem' />
+											<Icon
+												type={NAV.PROJECTS}
+												size='3rem'
+												color={theme.colors.teal[5]}
+											/>
 											<Group>
 												{project.links.map(
 													({ type, url }) => (
@@ -145,7 +149,11 @@ export default function Projects() {
 										<Box sx={{ flexGrow: 1 }} />
 										<Group>
 											{project.tech.core.map((tech) => (
-												<Text size='sm' key={tech}>
+												<Text
+													color={theme.colors.gray[6]}
+													size='sm'
+													key={tech}
+												>
 													{tech}
 												</Text>
 											))}

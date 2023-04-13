@@ -1,14 +1,13 @@
 import { Anchor, Grid, Group, List, Stack, Tabs, Text } from '@mantine/core';
 import { TbArrowBigRightLine } from 'react-icons/tb';
 import Icon from '../../components/Icon';
+import Title from '../../components/Title';
 import { JOBS } from './data';
 
 export default function Experience() {
 	return (
 		<Stack sx={{ rowGap: 30 }}>
-			<Text size='2xl' weight='bold'>
-				Where I&apos;ve worked
-			</Text>
+			<Title value="Where I've worked" />
 			<Tabs defaultValue={JOBS[0].title} orientation='vertical'>
 				<Tabs.List>
 					{JOBS.map(({ title }) => (

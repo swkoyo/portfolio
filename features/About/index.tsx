@@ -1,13 +1,12 @@
 import { Avatar, Grid, Group, Stack, Text, rem } from '@mantine/core';
 import Icon from '../../components/Icon';
+import Title from '../../components/Title';
 import { BIO, CORE_TECH } from './data';
 
 export default function About() {
 	return (
 		<Stack sx={{ rowGap: 30 }}>
-			<Text size='2xl' weight='bold'>
-				About me
-			</Text>
+			<Title value='About me' />
 			<Grid gutter={50} align='center'>
 				<Grid.Col span={4}>
 					<Avatar

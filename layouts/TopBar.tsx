@@ -44,7 +44,7 @@ export default function TopBar() {
 				<Group position='apart'>
 					<ActionIcon
 						variant='outline'
-						color={isDark ? 'secondary' : 'brand'}
+						color={isDark ? 'orange' : 'teal'}
 						onClick={() => toggleColorScheme()}
 						title='Toggle color scheme'
 					>

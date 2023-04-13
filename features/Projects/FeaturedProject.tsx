@@ -8,12 +8,15 @@ import {
 	Group,
 	Image,
 	Stack,
-	Text
+	Text,
+	useMantineTheme
 } from '@mantine/core';
 import Autoplay from 'embla-carousel-autoplay';
 import { isEmpty, pickBy, startCase } from 'lodash';
 import { useRef, useState } from 'react';
 import Icon from '../../components/Icon';
+import Title from '../../components/Title';
+import { NAV } from '../../constants';
 import { Project } from '../../types';
 import { TECH_CATEGORIES } from './data';
 
@@ -37,14 +40,18 @@ export default function FeaturedProject({
 
 	useAnimationOffsetEffect(embla, TRANSITION_DURATION);
 
+	const theme = useMantineTheme();
+
 	return (
 		<Stack p='sm'>
 			<Flex>
 				<Group>
-					<Icon size='2rem' />
-					<Text size='2xl' weight='bold'>
-						{title}
-					</Text>
+					<Icon
+						type={NAV.PROJECTS}
+						color={theme.colors.teal[5]}
+						size='2rem'
+					/>
+					<Title hideUnderline value={title} />
 				</Group>
 				<Box sx={{ flexGrow: 1 }} />
 				<Group>
@@ -66,6 +73,7 @@ export default function FeaturedProject({
 			</Flex>
 			<Text size='lg'>{description}</Text>
 			<Carousel
+				py='lg'
 				mx='auto'
 				withIndicators
 				loop
@@ -80,9 +88,7 @@ export default function FeaturedProject({
 					</Carousel.Slide>
 				))}
 			</Carousel>
-			<Text size='xl' weight='bold'>
-				Tech Stack
-			</Text>
+			<Title value='Tech Stack' />
 			<Grid>
 				{Object.entries(tech_used).map(([key, value]) => (
 					<Grid.Col span={6} key={key}>
