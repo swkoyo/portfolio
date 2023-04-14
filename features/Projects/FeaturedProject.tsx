@@ -6,7 +6,6 @@ import {
 	Flex,
 	Grid,
 	Group,
-	Image,
 	Stack,
 	Text,
 	useMantineTheme
@@ -14,6 +13,7 @@ import {
 import { useMediaQuery } from '@mantine/hooks';
 import Autoplay from 'embla-carousel-autoplay';
 import { isEmpty, pickBy, startCase } from 'lodash';
+import Image from 'next/image';
 import { useRef, useState } from 'react';
 import Icon from '../../components/Icon';
 import Title from '../../components/Title';
@@ -88,6 +88,8 @@ export default function FeaturedProject({
 			<Carousel
 				py='lg'
 				mx='auto'
+				w='100%'
+				h='100%'
 				withIndicators
 				loop
 				getEmblaApi={setEmbla}
@@ -96,8 +98,8 @@ export default function FeaturedProject({
 				onMouseLeave={autoplay.current.reset}
 			>
 				{images.map((img) => (
-					<Carousel.Slide key={img} mah={360}>
-						<Image src={img} alt={title} />
+					<Carousel.Slide key={img} mah={400} mih={400}>
+						<Image fill src={img} alt={title} />
 					</Carousel.Slide>
 				))}
 			</Carousel>
