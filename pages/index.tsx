@@ -1,36 +1,62 @@
-import { Box } from '@mui/material';
+import { Center, RingProgress, rem } from '@mantine/core';
+import { useInterval, useTimeout } from '@mantine/hooks';
 import type { NextPage } from 'next';
-import { useRef } from 'react';
-import NavBar from '../components/NavBar';
-import About from '../features/About';
-import Contact from '../features/Contact';
-import Experience from '../features/Experience';
-import Footer from '../features/Footer';
-import Home from '../features/Home';
-import Projects from '../features/Projects';
+import { useEffect, useState } from 'react';
+import { TbCheck } from 'react-icons/tb';
+import MainLogo from '../components/MainLogo';
+import { NODE_ENV } from '../constants';
+import MainShell from '../layouts/MainShell';
 
 const Main: NextPage = () => {
-	const aboutRef = useRef<HTMLDivElement>(null);
-	const experienceRef = useRef<HTMLDivElement>(null);
-	const projectsRef = useRef<HTMLDivElement>(null);
-	const contactRef = useRef<HTMLDivElement>(null);
-
-	return (
-		<Box sx={{ width: 'auto' }}>
-			<Home />
-			<NavBar
-				aboutRef={aboutRef}
-				experienceRef={experienceRef}
-				projectsRef={projectsRef}
-				contactRef={contactRef}
-			/>
-			<About ref={aboutRef} />
-			<Experience ref={experienceRef} />
-			<Projects ref={projectsRef} />
-			<Contact ref={contactRef} />
-			<Footer />
-		</Box>
+	const [isLoading, setIsLoading] = useState<boolean>(
+		NODE_ENV === 'production'
 	);
+	const [seconds, setSeconds] = useState(0);
+	const interval = useInterval(() => setSeconds((s) => s + 1), 10);
+	const { start, clear } = useTimeout(() => {
+		setIsLoading(false);
+		clear();
+	}, 1000);
+
+	useEffect(() => {
+		if (isLoading) {
+			interval.start();
+		}
+	}, []);
+
+	useEffect(() => {
+		if (interval.active && seconds >= 100) {
+			interval.stop();
+			start();
+		}
+	}, [seconds, interval, start]);
+
+	if (isLoading) {
+		return (
+			<Center h='100vh'>
+				<RingProgress
+					size={200}
+					sections={[{ value: seconds, color: 'teal' }]}
+					sx={{
+						transform: seconds < 100 ? undefined : 'scale(2)',
+						transition: 'all .3s ease-in-out'
+					}}
+					roundCaps
+					label={
+						<Center>
+							{seconds < 100 ? (
+								<MainLogo width={rem(70)} />
+							) : (
+								<TbCheck color='teal' size={rem(70)} />
+							)}
+						</Center>
+					}
+				/>
+			</Center>
+		);
+	}
+
+	return <MainShell />;
 };
 
 export default Main;
