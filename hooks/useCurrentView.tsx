@@ -1,6 +1,7 @@
 import { useHash } from '@mantine/hooks';
 import { useMemo } from 'react';
 import { NAV } from '../constants';
+import Error from '../views/Error';
 import Home from '../views/Home';
 import Projects from '../views/Projects';
 import Resume from '../views/Resume';
@@ -26,7 +27,7 @@ export default function useCurrentView() {
 			};
 		} else {
 			return {
-				view: <div>HI</div>,
+				view: <Error />,
 				value: 'error'
 			};
 		}

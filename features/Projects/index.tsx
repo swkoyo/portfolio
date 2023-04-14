@@ -126,21 +126,18 @@ export default function Projects() {
 													({ type, url }) => (
 														<ActionIcon
 															key={type}
+															component='a'
+															href={url}
 															color={
 																theme.colorScheme ===
 																'dark'
 																	? undefined
 																	: 'dark'
 															}
-															onClick={(
-																event
-															) => {
-																event.stopPropagation();
-																window.open(
-																	url,
-																	'_blank'
-																);
-															}}
+															target='_blank'
+															onClick={(event) =>
+																event.stopPropagation()
+															}
 														>
 															<Icon
 																type={type}

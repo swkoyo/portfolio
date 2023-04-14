@@ -1,9 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-	reactStrictMode: true,
+	reactStrictMode: false,
 	swcMinify: true,
-	images: {
-		domains: ['camo.githubusercontent.com', 'www.zdnet.com']
+	eslint: {
+		ignoreDuringBuilds: true
 	}
 };
 

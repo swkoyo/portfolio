@@ -1,10 +1,20 @@
-import { AppShell } from '@mantine/core';
+import { AppShell, Box } from '@mantine/core';
+import { useTimeout } from '@mantine/hooks';
+import { useEffect, useState } from 'react';
 import useCurrentView from '../hooks/useCurrentView';
 import SideBar from './SideBar';
 import TopBar from './TopBar';
 
 export default function MainShell() {
 	const { View } = useCurrentView();
+	const [isLoading, setIsLoading] = useState(true);
+
+	const { start, clear } = useTimeout(() => {
+		setIsLoading(false);
+		clear();
+	}, 100);
+
+	useEffect(() => start(), []);
 
 	return (
 		<AppShell
@@ -20,7 +30,7 @@ export default function MainShell() {
 				}
 			})}
 		>
-			{View}
+			{isLoading ? <Box /> : View}
 		</AppShell>
 	);
 }
