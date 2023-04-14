@@ -99,7 +99,13 @@ export default function FeaturedProject({
 			>
 				{images.map((img) => (
 					<Carousel.Slide key={img} mah={400} mih={400}>
-						<Image fill src={img} alt={title} />
+						<Image
+							fill
+							src={img}
+							alt={title}
+							priority
+							quality={100}
+						/>
 					</Carousel.Slide>
 				))}
 			</Carousel>
