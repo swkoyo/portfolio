@@ -28,10 +28,10 @@ const projects: Project[] = [
 			}
 		],
 		images: [
-			'/projects/portfolio/landing.png',
 			'/projects/portfolio/about.png',
-			'/projects/portfolio/experience.png',
-			'/projects/portfolio/projects.png'
+			'/projects/portfolio/projects.png',
+			'/projects/portfolio/featured-project.png',
+			'/projects/portfolio/resume.png'
 		]
 	},
 	{

@@ -96,7 +96,7 @@ export default function FeaturedProject({
 				onMouseLeave={autoplay.current.reset}
 			>
 				{images.map((img) => (
-					<Carousel.Slide key={img}>
+					<Carousel.Slide key={img} mah={360}>
 						<Image src={img} alt={title} />
 					</Carousel.Slide>
 				))}
