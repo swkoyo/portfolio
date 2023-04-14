@@ -29,9 +29,9 @@ export const JOBS = [
 			TECH.JWT
 		],
 		tasks: [
-			'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-			'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-			'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'
+			'Wrote efficient, maintainable code for a diverse array of clients',
+			'Worked with a variety of different technologies such as Nest.JS, Guesty API, ICS, and CalDAV',
+			'Communicated with multi-disciplinary and multi-cultural teams of engineers, designers, product managers, and clients'
 		]
 	},
 	{
@@ -63,9 +63,9 @@ export const JOBS = [
 			TECH.JWT
 		],
 		tasks: [
-			'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-			'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-			'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'
+			'Led development of user-facing client that allowed customers to view, reserver, and manage bookings for various properties',
+			'Designed and implemented architecture for backend server API that managed user, booking, property, and finance for platform',
+			'Improved database architecture to allow dynamic pricing for properties based on guest count, holidays, etc'
 		]
 	},
 	{
@@ -93,9 +93,9 @@ export const JOBS = [
 			TECH.JWT
 		],
 		tasks: [
-			'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-			'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-			'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'
+			'Created an automated algorithmic trading bot to provide liquidity to the exchange utilizing other crypto exchanges such as Binance and Bithumb',
+			'Developed an architecture for open-source plugin development for the exchange',
+			'Integrated various third party APIs to the exchange, including various fiat banking services and KYC SaaS services'
 		]
 	}
 ];
