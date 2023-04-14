@@ -1,10 +1,23 @@
+import {
+	ColorScheme,
+	ColorSchemeProvider,
+	MantineProvider
+} from '@mantine/core';
+import { useLocalStorage } from '@mantine/hooks';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
+import { getTheme } from '../config/theme';
 import './global.css';
-import { MantineProvider } from '@mantine/core';
 
 function MyApp(props: AppProps) {
 	const { Component, pageProps } = props;
+	const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
+		key: 'swkoyo-color-scheme',
+		defaultValue: 'dark',
+		getInitialValueInEffect: true
+	});
+	const toggleColorScheme = (value?: ColorScheme) =>
+		setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
 
 	return (
 		<>
@@ -16,15 +29,18 @@ function MyApp(props: AppProps) {
 				/>
 				<link rel='icon' href='/favicon.svg' />
 			</Head>
-			<MantineProvider
-				withGlobalStyles
-				withNormalizeCSS
-				theme={{
-					colorScheme: 'dark'
-				}}
+			<ColorSchemeProvider
+				colorScheme={colorScheme}
+				toggleColorScheme={toggleColorScheme}
 			>
-				<Component {...pageProps} />
-			</MantineProvider>
+				<MantineProvider
+					withGlobalStyles
+					withNormalizeCSS
+					theme={getTheme(colorScheme)}
+				>
+					<Component {...pageProps} />
+				</MantineProvider>
+			</ColorSchemeProvider>
 		</>
 	);
 }

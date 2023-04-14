@@ -3,8 +3,9 @@ import { TECH } from '../../constants';
 export const JOBS = [
 	{
 		title: 'Toptal',
+		url: 'https://toptal.com',
 		role: 'Freelance Software Developer',
-		dates: '10/2021 ~ Current',
+		start_date: 'October 2021',
 		tech_stack: [
 			TECH.NODE,
 			TECH.REACT,
@@ -28,13 +29,17 @@ export const JOBS = [
 			TECH.JWT
 		],
 		tasks: [
-			"Oversaw an international team of developers across three countries to develop the initial MVP used to raise over $1MM in investment funding while ensuring 100% of team KPI's were met."
+			'Wrote efficient, maintainable code for a diverse array of clients',
+			'Worked with a variety of different technologies such as Nest.JS, Guesty API, ICS, and CalDAV',
+			'Communicated with multi-disciplinary and multi-cultural teams of engineers, designers, product managers, and clients'
 		]
 	},
 	{
 		title: 'The Villa Life',
+		url: 'https://thevillalife.com',
 		role: 'Full Stack Developer',
-		dates: '10/2021 ~ -3/2023',
+		start_date: 'October 2021',
+		end_date: 'March 2023',
 		tech_stack: [
 			TECH.NODE,
 			TECH.REACT,
@@ -58,19 +63,17 @@ export const JOBS = [
 			TECH.JWT
 		],
 		tasks: [
-			'Implemented NestJS and Typescript as replacements for NodeJS and Express to improve code efficiency by 30%, reduce error rate by 30%, and implement a new architecture that improved efficiency and maintenance.',
-			'Created an affiliation program allowing strategic partnerships with travel agents and influencers, contracting with approximately 30 external stakeholders to allow access to the platform, increasing revenue 20%.',
-			'Developed database resource optimizations through implementation of redis cache for frequently accessed DBs as well as implementing a new pricing structure, reducing database resource usage by 80%.',
-			'Led projects improving efficiencies including employing Slack and Monday.com to improve communication and task management and developing our own calendar management system saving $6,000 annually in service fees.',
-			"Managed a move from utilizing Sequelize ORM to Prisma ORM to utilize the latter's improved Typescript support, this project improved coding efficiency by 20% and was completed on time and under budget.",
-			'Acted as a consultant with the CTO to implement a new pricing structure using the same DB structure to support both the old and new structures, saving 240 hours that were able to be dedicated to other projects.',
-			'Built ICS syncing functionality to allow hosts to integrate their calendars into the system, this decreased denied bookings by 40% improving client and stakeholder satisfaction with the platform.'
+			'Led development of user-facing client that allowed customers to view, reserver, and manage bookings for various properties',
+			'Designed and implemented architecture for backend server API that managed user, booking, property, and finance for platform',
+			'Improved database architecture to allow dynamic pricing for properties based on guest count, holidays, etc'
 		]
 	},
 	{
 		title: 'bitHolla',
+		url: 'https://bitholla.com',
 		role: 'Software Developer',
-		dates: '04/2019 ~ 09/2021',
+		start_date: 'April 2019',
+		end_date: 'September 2021',
 		tech_stack: [
 			TECH.NODE,
 			TECH.PSQL,
@@ -90,11 +93,9 @@ export const JOBS = [
 			TECH.JWT
 		],
 		tasks: [
-			'Led the development of a trading algorithm to provide liquidity to the exchange, increasing customer volume by more than double, increased transaction fee revenue by 100%, and reduced liquidity maintenance hours by 90%.',
-			'Created the architecture for open-source plugin development, increasing developer engagement on Discord and Github by 60%, the new architecture allowed the development of three plugins within the first two months.',
-			'Automated systems including withdrawal/deposits and user tier upgrading, tasks that previously had to be manually handled by admins, reducing error rates of transactions by 30% and increasing work hour efficiency by 70%.',
-			'Implemented improved exchange configuration architecture, allowing operators to update crucial values such as trade fees and trade limits on the fly, increasing uptime of servers by 30%.',
-			'Integrated a third party KYC service to significantly improve user authentication services, this automation of the authentication flow decreased error rate by 30% and improved efficiency by 90%.'
+			'Created an automated algorithmic trading bot to provide liquidity to the exchange utilizing other crypto exchanges such as Binance and Bithumb',
+			'Developed an architecture for open-source plugin development for the exchange',
+			'Integrated various third party APIs to the exchange, including various fiat banking services and KYC SaaS services'
 		]
 	}
 ];

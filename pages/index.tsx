@@ -1,10 +1,10 @@
-import type { NextPage } from 'next';
-import { Loader, Center, Stack } from '@mantine/core';
-import { useState } from 'react';
+import { Center, Loader, Stack, rem } from '@mantine/core';
 import { useTimeout } from '@mantine/hooks';
-import MainShell from '../layouts/MainShell';
-import { NODE_ENV } from '../constants';
+import type { NextPage } from 'next';
+import { useState } from 'react';
 import MainLogo from '../components/MainLogo';
+import { NODE_ENV } from '../constants';
+import MainShell from '../layouts/MainShell';
 
 const Main: NextPage = () => {
 	const [isLoading, setIsLoading] = useState<boolean>(
@@ -16,7 +16,7 @@ const Main: NextPage = () => {
 		return (
 			<Center h='100vh'>
 				<Stack align='center'>
-					<MainLogo remVal={100} />
+					<MainLogo width={rem(100)} />
 					<Loader />
 				</Stack>
 			</Center>

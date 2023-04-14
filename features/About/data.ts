@@ -6,23 +6,21 @@ import {
 	TECH
 } from '../../constants';
 
-export const BIO = `Experienced software developer offering
-expertise in full software development
-lifecycle, web application architecture, and
-project management. Proven track-record of
-designing and executing strategic development
-initiatives aligned to organizational objectives
-with a focus on end user satisfaction and
-engagement. Deep technical expertise combined
-with an understanding of the importance of
-client engagement and satisfaction.
-Collaborative team leader continually focused on
-building relationships to produce highly
-effective teams, increasing productivity, and
-improving outcomes. Individual dedicated to
-self-reflection and personal improvement who
-consistently exceeds performance metrics.
-`;
+export const BIO = [
+	`
+		Hello! My name is Brandon, and I enjoy creating things that live on the internet.
+		My journey in development started in 2017 when I decided to take an Intro to CS course on a whim.
+		I immediately fell in love with it and decided to pursue it as a career.
+	`,
+	`
+		Fast forward to today, and I've had the privilege of working at a cryptocurrency exchange company and a hospitality startup.
+		My main focus is writing clear, maintainable code that fulfills the required use cases.
+	`,
+	`
+		Outside of work, I pursue personal projects that help me learn new technologies.
+		These projects include building a home server, aggregating NBA statistics, and testing new Linux operating systems.
+	`
+];
 
 export const CORE_TECH = [
 	TECH.NODE,
