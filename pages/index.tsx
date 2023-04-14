@@ -1,36 +1,29 @@
-import { Box } from '@mui/material';
+import { Center, Loader, Stack, rem } from '@mantine/core';
+import { useTimeout } from '@mantine/hooks';
 import type { NextPage } from 'next';
-import { useRef } from 'react';
-import NavBar from '../components/NavBar';
-import About from '../features/About';
-import Contact from '../features/Contact';
-import Experience from '../features/Experience';
-import Footer from '../features/Footer';
-import Home from '../features/Home';
-import Projects from '../features/Projects';
+import { useState } from 'react';
+import MainLogo from '../components/MainLogo';
+import { NODE_ENV } from '../constants';
+import MainShell from '../layouts/MainShell';
 
 const Main: NextPage = () => {
-	const aboutRef = useRef<HTMLDivElement>(null);
-	const experienceRef = useRef<HTMLDivElement>(null);
-	const projectsRef = useRef<HTMLDivElement>(null);
-	const contactRef = useRef<HTMLDivElement>(null);
-
-	return (
-		<Box sx={{ width: 'auto' }}>
-			<Home />
-			<NavBar
-				aboutRef={aboutRef}
-				experienceRef={experienceRef}
-				projectsRef={projectsRef}
-				contactRef={contactRef}
-			/>
-			<About ref={aboutRef} />
-			<Experience ref={experienceRef} />
-			<Projects ref={projectsRef} />
-			<Contact ref={contactRef} />
-			<Footer />
-		</Box>
+	const [isLoading, setIsLoading] = useState<boolean>(
+		NODE_ENV === 'production'
 	);
+	useTimeout(() => setIsLoading(false), 2000, { autoInvoke: true });
+
+	if (isLoading) {
+		return (
+			<Center h='100vh'>
+				<Stack align='center'>
+					<MainLogo width={rem(100)} />
+					<Loader />
+				</Stack>
+			</Center>
+		);
+	}
+
+	return <MainShell />;
 };
 
 export default Main;
