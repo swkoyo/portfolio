@@ -1,4 +1,5 @@
 import { Avatar, Grid, Group, Stack, Text, rem } from '@mantine/core';
+import Image from 'next/image';
 import Icon from '../../components/Icon';
 import Title from '../../components/Title';
 import { BIO, CORE_TECH } from './data';
@@ -10,9 +11,9 @@ export default function About() {
 			<Grid gutter={50} align='center'>
 				<Grid.Col xs={12} sm={4}>
 					<Avatar
-						src='./avatar.png'
 						size='full'
-						maw='15rem'
+						h='13rem'
+						w='13rem'
 						mx='auto'
 						radius={500}
 						sx={(theme) => ({
@@ -26,7 +27,9 @@ export default function About() {
 									? theme.colors.dark[4]
 									: theme.colors.gray[5]
 						})}
-					/>
+					>
+						<Image src='/avatar.png' alt='avatar' fill priority />
+					</Avatar>
 				</Grid.Col>
 				<Grid.Col xs={12} sm={8}>
 					<Stack>
