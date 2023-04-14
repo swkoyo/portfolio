@@ -19,7 +19,9 @@ const Main: NextPage = () => {
 	}, 1000);
 
 	useEffect(() => {
-		interval.start();
+		if (isLoading) {
+			interval.start();
+		}
 	}, []);
 
 	useEffect(() => {
