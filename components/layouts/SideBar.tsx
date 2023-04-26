@@ -10,27 +10,32 @@ import {
 	useMantineTheme
 } from '@mantine/core';
 import { capitalize } from 'lodash';
-import Icon from '../components/Icon';
-import { APP, NAV } from '../constants';
-import useCurrentView from '../hooks/useCurrentView';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { APP, NAV } from '../../constants';
+import Icon from '../Icon';
 
-const NAV_LINK_ITEMS = [NAV.HOME, NAV.PROJECTS, NAV.RESUME];
+const NAV_LINK_ITEMS = [
+	{ value: NAV.HOME, href: '/' },
+	{ value: NAV.PROJECTS, href: '/projects' },
+	{ value: NAV.RESUME, href: '/resume' }
+];
 
 export default function SideBar() {
-	const { currentView, changeView } = useCurrentView();
-
 	const theme = useMantineTheme();
+	const router = useRouter();
 
 	return (
 		<Navbar width={{ base: 70, lg: 300, md: 230 }} p='xs'>
 			<Navbar.Section grow mt='xs'>
-				{NAV_LINK_ITEMS.map((type) => (
+				{NAV_LINK_ITEMS.map(({ value, href }) => (
 					<NavLink
-						key={type}
-						label={<Text size='lg'>{capitalize(type)}</Text>}
-						icon={<Icon type={type} size='1.5rem' />}
-						active={currentView === type}
-						onClick={() => changeView(type)}
+						component={Link}
+						key={value}
+						label={<Text size='lg'>{capitalize(value)}</Text>}
+						icon={<Icon type={value} size='1.5rem' />}
+						href={href}
+						active={router.pathname === href}
 					/>
 				))}
 			</Navbar.Section>

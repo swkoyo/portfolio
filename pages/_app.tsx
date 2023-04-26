@@ -1,16 +1,26 @@
+/* eslint-disable no-unused-vars */
 import {
 	ColorScheme,
 	ColorSchemeProvider,
 	MantineProvider
 } from '@mantine/core';
 import { useLocalStorage } from '@mantine/hooks';
+import { NextPage } from 'next';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
+import { type ReactElement, type ReactNode } from 'react';
 import { getTheme } from '../config/theme';
 import './global.css';
 
-function MyApp(props: AppProps) {
-	const { Component, pageProps } = props;
+export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+	getLayout?: (page: ReactElement) => ReactNode;
+};
+
+type AppPropsWithLayout = AppProps & {
+	Component: NextPageWithLayout;
+};
+
+function MyApp({ Component, pageProps }: AppPropsWithLayout) {
 	const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
 		key: 'swkoyo-color-scheme',
 		defaultValue: 'dark',
@@ -18,6 +28,8 @@ function MyApp(props: AppProps) {
 	});
 	const toggleColorScheme = (value?: ColorScheme) =>
 		setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
+
+	const getLayout = Component.getLayout ?? ((page) => page);
 
 	return (
 		<>
@@ -38,7 +50,7 @@ function MyApp(props: AppProps) {
 					withNormalizeCSS
 					theme={getTheme(colorScheme)}
 				>
-					<Component {...pageProps} />
+					{getLayout(<Component {...pageProps} />)}
 				</MantineProvider>
 			</ColorSchemeProvider>
 		</>

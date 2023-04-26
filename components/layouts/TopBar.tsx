@@ -12,9 +12,14 @@ import {
 } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import { TbMoonStars, TbSun } from 'react-icons/tb';
-import Icon from '../components/Icon';
-import MainLogo from '../components/MainLogo';
-import { APP, EMAIL_ADDRESS, GITHUB_LINK, LINKEDIN_LINK } from '../constants';
+import {
+	APP,
+	EMAIL_ADDRESS,
+	GITHUB_LINK,
+	LINKEDIN_LINK
+} from '../../constants';
+import Icon from '../Icon';
+import MainLogo from '../MainLogo';
 
 export const LINKS = [
 	{
