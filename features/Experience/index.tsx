@@ -12,9 +12,9 @@ import { useMediaQuery } from '@mantine/hooks';
 import { TbArrowBigRightLine } from 'react-icons/tb';
 import Icon from '../../components/Icon';
 import Title from '../../components/Title';
-import { JOBS } from './data';
+import { HomeProps } from '../../pages';
 
-export default function Experience() {
+export default function Experience({ jobs }: Pick<HomeProps, 'jobs'>) {
 	const theme = useMantineTheme();
 
 	const greaterThanSm = useMediaQuery(`(min-width: ${theme.breakpoints.sm})`);
@@ -22,11 +22,11 @@ export default function Experience() {
 		<Stack sx={{ rowGap: 30 }}>
 			<Title value="Where I've worked" />
 			<Tabs
-				defaultValue={JOBS[0].title}
+				defaultValue={jobs[0].title}
 				orientation={greaterThanSm ? 'vertical' : 'horizontal'}
 			>
 				<Tabs.List>
-					{JOBS.map(({ title }) => (
+					{jobs.map(({ title }) => (
 						<Tabs.Tab value={title} key={title}>
 							<Text size={greaterThanSm ? 'md' : 'xs'}>
 								{title}
@@ -34,7 +34,7 @@ export default function Experience() {
 						</Tabs.Tab>
 					))}
 				</Tabs.List>
-				{JOBS.map(
+				{jobs.map(
 					({
 						title,
 						role,

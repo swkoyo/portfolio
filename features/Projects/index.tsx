@@ -18,32 +18,25 @@ import { TbError404 } from 'react-icons/tb';
 import Icon from '../../components/Icon';
 import Title from '../../components/Title';
 import { NAV, TECH } from '../../constants';
+import { ProjectsProps } from '../../pages/projects';
 import { Project } from '../../types';
 import FeaturedProject from './FeaturedProject';
 import { SelectItem, SelectValue } from './ProjectTechSelectHelpers';
-import { PROJECTS } from './data';
 
-const techData = (Object.values(TECH) as Array<keyof typeof TECH>).map(
-	(key) => ({
-		value: key,
-		label: key
-	})
-);
-
-export default function Projects() {
+export default function Projects({ projects, tech_data }: ProjectsProps) {
 	const [techFilters, setTechFilters] = useState<TECH[]>([]);
 
-	const projects = useMemo(() => {
+	const p = useMemo(() => {
 		if (techFilters.length === 0) {
-			return PROJECTS;
+			return projects;
 		} else {
-			return PROJECTS.filter(
+			return projects.filter(
 				({ tech: { full } }) =>
 					intersection(full, techFilters).length ===
 					techFilters.length
 			);
 		}
-	}, [techFilters]);
+	}, [techFilters, projects]);
 
 	const [featuredProject, setFeaturedProject] = useState<Project | null>(
 		null
@@ -87,7 +80,7 @@ export default function Projects() {
 			<Stack sx={{ rowGap: 30 }}>
 				<Title value="Some things I've built" />
 				<MultiSelect
-					data={techData}
+					data={tech_data}
 					value={techFilters}
 					onChange={(value: TECH[]) => setTechFilters(value)}
 					valueComponent={SelectValue}
@@ -96,9 +89,9 @@ export default function Projects() {
 					placeholder='Filter projects by technologies used'
 					clearable
 				/>
-				{projects.length > 0 ? (
+				{p.length > 0 ? (
 					<Grid>
-						{projects.map((project) => (
+						{p.map((project) => (
 							<Grid.Col
 								xs={12}
 								sm={6}

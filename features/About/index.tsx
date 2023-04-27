@@ -2,9 +2,12 @@ import { Avatar, Grid, Group, Stack, Text, rem } from '@mantine/core';
 import Image from 'next/image';
 import Icon from '../../components/Icon';
 import Title from '../../components/Title';
-import { BIO, CORE_TECH } from './data';
+import { HomeProps } from '../../pages';
 
-export default function About() {
+export default function About({
+	bio,
+	core_tech
+}: Pick<HomeProps, 'bio' | 'core_tech'>) {
 	return (
 		<Stack sx={{ rowGap: 30 }}>
 			<Title value='About me' />
@@ -33,14 +36,14 @@ export default function About() {
 				</Grid.Col>
 				<Grid.Col xs={12} sm={8}>
 					<Stack>
-						{BIO.map((paragraph, i) => (
+						{bio.map((paragraph, i) => (
 							<Text size='lg' key={i}>
 								{paragraph}
 							</Text>
 						))}
 						<Text size='lg'>My core tech stack is:</Text>
 						<Grid pt='sm'>
-							{CORE_TECH.map((tech) => (
+							{core_tech.map((tech) => (
 								<Grid.Col key={tech} span={6} xs={4}>
 									<Group noWrap>
 										<Icon type={tech} size='1.2rem' />
