@@ -6,6 +6,7 @@ import {
 	SiChakraui,
 	SiEslint,
 	SiExpress,
+	SiFastapi,
 	SiFlask,
 	SiGooglecloud,
 	SiGunicorn,
@@ -27,8 +28,10 @@ import {
 	SiPostgresql,
 	SiPostman,
 	SiPrettier,
+	SiPuppeteer,
 	SiRedis,
 	SiRender,
+	SiRuff,
 	SiSequelize,
 	SiSqlite,
 	SiSwagger,
@@ -36,8 +39,10 @@ import {
 	SiYarn
 } from 'react-icons/si';
 import {
+	TbBrandAzure,
 	TbBrandBootstrap,
 	TbBrandCss3,
+	TbBrandDjango,
 	TbBrandDocker,
 	TbBrandFirebase,
 	TbBrandGit,
@@ -188,6 +193,16 @@ export default function Icon({ type, size, color }: Props) {
 			return <MdOutlineScience size={size} color={color} />;
 		case TECH.GIT:
 			return <TbBrandGit size={size} color={color} />;
+		case TECH.DJANGO:
+			return <TbBrandDjango size={size} color={color} />;
+		case TECH.AZURE:
+			return <TbBrandAzure size={size} color={color} />;
+		case TECH.FAST_API:
+			return <SiFastapi size={size} color={color} />;
+		case TECH.PUPPETEER:
+			return <SiPuppeteer size={size} color={color} />;
+		case TECH.RUFF:
+			return <SiRuff size={size} color={color} />;
 		case APP.GITHUB:
 			return <TbBrandGithub size={size} color={color} />;
 		case APP.WEBSITE:

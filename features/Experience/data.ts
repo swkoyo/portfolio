@@ -2,36 +2,32 @@ import { TECH } from '../../constants';
 
 export const JOBS = [
 	{
-		title: 'Toptal',
-		url: 'https://toptal.com',
-		role: 'Freelance Software Developer',
-		start_date: 'October 2021',
+		title: 'Thumb',
+		url: 'https://www.thumb.is',
+		role: 'Backend Developer',
+		start_date: 'July 2023',
 		tech_stack: [
+			TECH.PYTHON,
+			TECH.DJANGO,
+			TECH.AZURE,
+			TECH.PUPPETEER,
+			TECH.FAST_API,
 			TECH.NODE,
-			TECH.REACT,
-			TECH.REDUX,
 			TECH.TS,
-			TECH.NEST,
+			TECH.AWS,
 			TECH.DOCKER,
-			TECH.MUI,
 			TECH.STRIPE,
 			TECH.REDIS,
-			TECH.PRISMA,
 			TECH.PSQL,
-			TECH.JEST,
-			TECH.LODASH,
-			TECH.GOOGLECLOUD,
 			TECH.PRETTIER,
 			TECH.ESLINT,
-			TECH.PASSPORT,
-			TECH.SWAGGER,
-			TECH.AWS,
+			TECH.RUFF,
 			TECH.JWT
 		],
 		tasks: [
-			'Wrote efficient, maintainable code for a diverse array of clients',
-			'Worked with a variety of different technologies such as Nest.JS, Guesty API, ICS, and CalDAV',
-			'Communicated with multi-disciplinary and multi-cultural teams of engineers, designers, product managers, and clients'
+			'Implemented Microsoft Active Directory provisioning with SCIM protocol',
+			'Added dev tooling that improved code readability and maintainability',
+			'Improved core application that utilized less resources and had better error handling'
 		]
 	},
 	{
@@ -39,7 +35,7 @@ export const JOBS = [
 		url: 'https://thevillalife.com',
 		role: 'Full Stack Developer',
 		start_date: 'October 2021',
-		end_date: 'March 2023',
+		end_date: 'July 2023',
 		tech_stack: [
 			TECH.NODE,
 			TECH.REACT,
