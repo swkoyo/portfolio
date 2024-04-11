@@ -1,0 +1,45 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Line from "../components/Line.astro";
+---
+
+<Layout title="Welcome to Astro.">
+    <main class="text-black dark:text-white">
+        <Line lineno={4}>
+            <p>Hi there! 👋</p>
+        </Line>
+        <Line lineno={3} />
+        <Line lineno={2}>
+            <p>I am Brandon Kim, a software engineer living in Seoul.</p>
+        </Line>
+        <Line lineno={1}>
+            <p>Neovim, btw</p>
+        </Line>
+        <Line lineno={6}>
+            <div class="animate-pulse bg-black p-1 dark:bg-white"></div>
+        </Line>
+        <Line lineno={1}>
+            <p>
+                <a href="https://github.com/swkoyo" target="_blank"
+                    >[[ GitHub ]]</a
+                >
+            </p>
+        </Line>
+        <Line lineno={2}>
+            <p><a href="https://x.com/swkoyodev" target="_blank">[[ X ]]</a></p>
+        </Line>
+        <Line lineno={3}>
+            <p>
+                <a href="mailto:contact@swkoyo.com">[[ contact@swkoyo.com ]]</a>
+            </p>
+        </Line>
+        <Line />
+        <Line />
+        <Line />
+        <Line />
+        <Line />
+        <Line />
+        <Line />
+        <Line />
+    </main>
+</Layout>

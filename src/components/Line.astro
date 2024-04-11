@@ -1,0 +1,18 @@
+---
+interface Props {
+    lineno?: number;
+}
+
+const { lineno } = Astro.props;
+---
+
+<li class="flex">
+    {
+        lineno ? (
+            <div class="mr-1 border-r border-r-white pr-1">{lineno}</div>
+        ) : (
+            <div>~</div>
+        )
+    }
+    <slot />
+</li>
