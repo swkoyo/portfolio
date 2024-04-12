@@ -2,16 +2,23 @@
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="Welcome to Astro.">
-    <main class="container mx-auto max-w-lg text-white">
+<Layout title="swkoyo - Brandon Kim">
+    <main
+        class="mx-auto flex h-screen items-center justify-center font-mono text-white"
+    >
         <div class="flex-col">
-            <h1 class="my-3 text-4xl font-bold text-blue-400">~ swkoyo</h1>
+            <h1 class="text-4xl font-bold text-blue-300">~ swkoyo</h1>
+            <br />
             <p>
                 <span class="text-green-300"
                     ><span class="font-bold">&gt;</span> cat</span
-                > ./about
+                > about.txt
             </p>
-            <p>\[._.]/ Hey there, I'm Brandon Kim</p>
+            <p>
+                \[._.]/ Hey there, I'm <span class="font-bold text-purple-300"
+                    >Brandon Kim</span
+                >
+            </p>
             <p>I build software</p>
             <p>
                 <a
@@ -24,21 +31,21 @@ import Layout from "../layouts/Layout.astro";
             <p>
                 <span class="text-green-300">
                     <span class="font-bold">&gt;</span> cat</span
-                > ./links
+                > links.txt
             </p>
-            <a
-                class="text-blue-400 hover:underline"
-                href="https://linkedin.com/in/brandoncwkim"
-                target="_blank"
-            >
-                <p>LinkedIn</p>
-            </a>
             <a
                 class="text-blue-400 hover:underline"
                 href="https://github.com/swkoyo"
                 target="_blank"
             >
                 <p>GitHub</p>
+            </a>
+            <a
+                class="text-blue-400 hover:underline"
+                href="https://linkedin.com/in/brandoncwkim"
+                target="_blank"
+            >
+                <p>LinkedIn</p>
             </a>
             <a
                 class="text-blue-400 hover:underline"
