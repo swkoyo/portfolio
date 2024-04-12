@@ -1,45 +1,63 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Line from "../components/Line.astro";
 ---
 
 <Layout title="Welcome to Astro.">
-    <main class="text-black dark:text-white">
-        <Line lineno={4}>
-            <p>Hi there! 👋</p>
-        </Line>
-        <Line lineno={3} />
-        <Line lineno={2}>
-            <p>I am Brandon Kim, a software engineer living in Seoul.</p>
-        </Line>
-        <Line lineno={1}>
-            <p>Neovim, btw</p>
-        </Line>
-        <Line lineno={6}>
-            <div class="animate-pulse bg-black p-1 dark:bg-white"></div>
-        </Line>
-        <Line lineno={1}>
+    <main class="container mx-auto max-w-lg text-white">
+        <div class="flex-col">
+            <h1 class="my-3 text-4xl font-bold text-blue-400">~ swkoyo</h1>
             <p>
-                <a href="https://github.com/swkoyo" target="_blank"
-                    >[[ GitHub ]]</a
-                >
+                <span class="text-green-300"
+                    ><span class="font-bold">&gt;</span> cat</span
+                > ./about
             </p>
-        </Line>
-        <Line lineno={2}>
-            <p><a href="https://x.com/swkoyodev" target="_blank">[[ X ]]</a></p>
-        </Line>
-        <Line lineno={3}>
+            <p>\[._.]/ Hey there, I'm Brandon Kim</p>
+            <p>I build software</p>
             <p>
-                <a href="mailto:contact@swkoyo.com">[[ contact@swkoyo.com ]]</a>
+                <a
+                    class="text-blue-400 hover:underline"
+                    href="https://github.com/swkoyo/nvim-config"
+                    target="_blank">Neovim</a
+                > btw
             </p>
-        </Line>
-        <Line />
-        <Line />
-        <Line />
-        <Line />
-        <Line />
-        <Line />
-        <Line />
-        <Line />
+            <br />
+            <p>
+                <span class="text-green-300">
+                    <span class="font-bold">&gt;</span> cat</span
+                > ./links
+            </p>
+            <a
+                class="text-blue-400 hover:underline"
+                href="https://linkedin.com/in/brandoncwkim"
+                target="_blank"
+            >
+                <p>LinkedIn</p>
+            </a>
+            <a
+                class="text-blue-400 hover:underline"
+                href="https://github.com/swkoyo"
+                target="_blank"
+            >
+                <p>GitHub</p>
+            </a>
+            <a
+                class="text-blue-400 hover:underline"
+                href="https://x.com/swkoyodev"
+                target="_blank"
+            >
+                <p>X</p>
+            </a>
+            <a
+                class="text-blue-400 hover:underline"
+                href="mailto:contact@swkoyo.com"
+            >
+                <p>Email</p>
+            </a>
+            <br />
+            <div>
+                <span class="font-bold text-green-400">&gt;</span>
+                <span class="inline-flex w-2 animate-pulse bg-white">|</span>
+            </div>
+        </div>
     </main>
 </Layout>
